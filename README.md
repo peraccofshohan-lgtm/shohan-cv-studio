@@ -104,7 +104,7 @@ src/lib/             Golden-ratio maths, section engine, composition tokens,
                      layout report, ATS checks, backup format, colour maths
 scripts/             CSP injection, font builder, preview renderer, bundle
                      verifier, feature audit
-tests/               Vitest suites — 19 files / 236 tests
+tests/               Vitest suites — 20 files / 244 tests
 docs/                Deliverable documentation + generated template previews
 ```
 

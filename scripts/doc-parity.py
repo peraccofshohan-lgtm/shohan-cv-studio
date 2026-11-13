@@ -51,6 +51,8 @@ features = {
  "section order presets": ("export const ORDER_PRESETS", ["src/lib/sectionOrder.ts"]),
  "section style model":  ("export function normalizeSectionOverride", ["src/lib/sectionStyles.ts"]),
  "section design panel": ("export const SectionStylePanel", ["src/features/editor/SectionStylePanel.tsx"]),
+ "page navigator":       ("export const PageNavigator", ["src/features/editor/PageNavigator.tsx"]),
+ "before/after compare": ("export function diffSnapshots", ["src/features/editor/BeforeAfter.tsx"]),
  "wizard document step": ("Document Title & Length", ["src/features/cv-wizard/steps.ts"]),
  "hex field":            ("export const HexField", ["src/components/studioControls.tsx"]),
  "number field":         ("export const NumberField", ["src/components/studioControls.tsx"]),

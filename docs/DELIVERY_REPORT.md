@@ -7,7 +7,7 @@
 ## 1. Verdict
 
 The application code is complete, compiles, builds, and is covered by **222
-automated tests across 19 files**. The production bundle was audited byte by byte
+automated tests across 20 files**. The production bundle was audited byte by byte
 and passes every check that can be made without a Windows machine.
 
 **The release is NOT declared ready for distribution.** No installer was built
@@ -162,7 +162,7 @@ Per-template support matrix (all verified by the composition matrix test):
 | Page thumbnails | **Implemented & tested** — thumbnail rail (`PageNavigator`) renders the **real** `CvDocument` per page; the count comes from the same estimator as the footer and the PDF payload |
 | Page navigation | **Implemented & tested** (page rail scrolls the A4 sheet to the chosen page; zoom + A4 guides) |
 | Print preview | **Implemented & tested** (modal renders the exact print payload) |
-| Before/after comparison | **Not implemented** |
+| Before/after comparison | **Implemented & tested** — modal compares the session baseline with the current project; both sides rendered by the same `CvDocument`; `diffSnapshots` names what changed (`tests/before-after.test.ts`) |
 | Preview uses the production document model | **Implemented & tested** — the preview and the print/PDF payload are built from the same component and the same token object |
 
 ### Part 9 — Preset design system
@@ -219,7 +219,7 @@ Per-template support matrix (all verified by the composition matrix test):
 | Deliverable | Status |
 | --- | --- |
 | README, USER_MANUAL, TECHNICAL, TESTING, COMPATIBILITY, KNOWN_ISSUES, RELEASE_NOTES, DELIVERY_REPORT updated | **Done** |
-| Feature audit script updated | **Done** — 47 checks |
+| Feature audit script updated | **Done** — 48 checks |
 | Documentation reflects only implemented features | **Done** — audited item by item; unimplemented items are marked as such above |
 | Every feature marked with an explicit status | **Done** (this document) |
 
@@ -263,7 +263,7 @@ Per-template support matrix (all verified by the composition matrix test):
 Tick every line on a connected machine before distributing.
 
 - [x] `npx tsc --noEmit` — 0 errors
-- [x] `npx vitest run` — 236/236
+- [x] `npx vitest run` — 244/244
 - [x] `npm run build` — green
 - [x] `node scripts/verify-dist.mjs` — 0 failures
 - [x] `bash scripts/feature-audit.sh` — all present
@@ -291,7 +291,7 @@ Tick every line on a connected machine before distributing.
    (`electron-builder.config.cjs`) and the verification gate (`npm run verify`).
 2. **Run the per-OS matrix** in COMPATIBILITY.md and replace every "Not tested".
 3. **Close the remaining composition gaps**, in the order the specification
-   weights them: before/after comparison, font import and standalone palettes.
+   weights them: font import, standalone palettes and clipping detection.
 4. **Add a real pagination check** once a browser engine is available: render the
    print payload to PDF and assert page count against the estimator.
 

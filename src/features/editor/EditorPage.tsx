@@ -5,7 +5,7 @@
  * exposes save, undo/redo, preview, print, DOCX and PDF. Design customisation
  * only ever writes to `project.design` — customer content is never touched.
  */
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
   ArrowDown,
   ArrowUp,
@@ -69,6 +69,8 @@ import { ReportsPanel } from './ReportsPanel';
 import { PresetsPanel } from './PresetsPanel';
 import { SectionStylePanel } from './SectionStylePanel';
 import { PageNavigator } from './PageNavigator';
+import { BeforeAfter, type Snapshot } from './BeforeAfter';
+import { GitCompareArrows } from 'lucide-react';
 import { hasOverride } from '@/lib/sectionStyles';
 import { composeDocumentTokens } from '@/lib/composition';
 import { ORDER_PRESETS, applyOrderPreset, detectOrderPreset, type OrderPresetId } from '@/lib/sectionOrder';
@@ -88,6 +90,27 @@ export const EditorPage: React.FC = () => {
   const tr = useT();
   const lang = language;
   const [previewOpen, setPreviewOpen] = useState(false);
+  const [compareOpen, setCompareOpen] = useState(false);
+  /**
+   * Baseline for the before/after comparison: the project as it looked when
+   * this studio session opened it. Re-captured whenever a different project
+   * is opened, never on every keystroke.
+   */
+  const [baseline, setBaseline] = useState<Snapshot | null>(null);
+  const baselineFor = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (!current) return;
+    // Capture once per opened project. Editing the same project must not move
+    // the baseline, otherwise "before" would creep forward with every keystroke.
+    if (baselineFor.current === current.id) return;
+    baselineFor.current = current.id;
+    setBaseline({
+      data: JSON.parse(JSON.stringify(current.data)) as Snapshot['data'],
+      design: JSON.parse(JSON.stringify(current.design)) as Snapshot['design'],
+      templateId: current.templateId,
+    });
+  }, [current]);
   const [busy, setBusy] = useState<null | 'docx' | 'pdf' | 'print' | 'html'>(null);
   const [targetSection, setTargetSection] = useState<SectionId | 'personal'>('personal');
   const editorPage = useUI((s) => s.editorPage);
@@ -256,6 +279,21 @@ export const EditorPage: React.FC = () => {
           title={lang === 'bn' ? 'A4 পৃষ্ঠা সীমানা দেখান' : 'Show A4 page boundaries'}
         >
           {lang === 'bn' ? 'গাইড' : 'Guides'}
+        </Button>
+        <Button
+          size="sm"
+          variant={compareOpen ? 'primary' : 'ghost'}
+          aria-pressed={compareOpen}
+          icon={<GitCompareArrows size={14} />}
+          onClick={() => setCompareOpen(true)}
+          disabled={!baseline}
+          title={
+            lang === 'bn'
+              ? 'খোলার সময়ের সঙ্গে তুলনা করুন'
+              : 'Compare with the state this project was opened in'
+          }
+        >
+          {lang === 'bn' ? 'আগে/এখন' : 'Before/after'}
         </Button>
         <Button
           size="sm"
@@ -458,6 +496,29 @@ export const EditorPage: React.FC = () => {
           </div>
         </aside>
       </div>
+
+      <Modal
+        open={compareOpen}
+        onClose={() => setCompareOpen(false)}
+        title={lang === 'bn' ? 'আগে ও এখন' : 'Before and after'}
+        description={
+          lang === 'bn'
+            ? 'বাম দিকে সেশন শুরুর রূপ, ডানে বর্তমান রূপ — দুটোই একই প্রোডাকশন ডকুমেন্ট মডেল থেকে আঁকা।'
+            : 'Left: the project as it was when this session opened it. Right: now. Both are rendered from the same production document model.'
+        }
+        size="lg"
+        footer={<Button onClick={() => setCompareOpen(false)}>{tr('common.close')}</Button>}
+      >
+        <div style={{ background: 'var(--bg-sunken)', borderRadius: 'var(--radius-sm)', overflow: 'auto', maxHeight: '64vh', padding: 'var(--sp-4)' }}>
+          {baseline && current ? (
+            <BeforeAfter
+              language={lang}
+              before={baseline}
+              after={{ data: current.data, design: current.design, templateId: current.templateId }}
+            />
+          ) : null}
+        </div>
+      </Modal>
 
       <Modal
         open={previewOpen}

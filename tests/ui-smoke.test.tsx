@@ -332,6 +332,26 @@ describe('page thumbnails', () => {
   });
 });
 
+describe('before/after comparison', () => {
+  it('captures a baseline and reports what changed, without touching content', async () => {
+    installStores();
+    useUI.setState({ language: 'en', editorPanel: 'design' });
+    const store = (await import('@/store/workspace')).useWorkspace;
+    const { EditorPage } = await import('@/features/editor/EditorPage');
+    const { container, getByTitle } = render(<EditorPage />);
+    const before = JSON.stringify(store.getState().current!.data);
+
+    // A design-only change: the comparison must notice it and leave text alone.
+    store.getState().updateDesign({ density: 'compact' });
+    fireEvent.click(getByTitle('Compare with the state this project was opened in'));
+    // The modal renders through a portal, so read the document, not the container.
+    const text = document.body.textContent ?? '';
+    expect(text).toContain('Before and after');
+    expect(text).toMatch(/Changed: .*design setting/);
+    expect(JSON.stringify(store.getState().current!.data)).toBe(before);
+  });
+});
+
 describe('named presets in the editor', () => {
   it('applies a named preset by changing the design only', async () => {
     installStores();

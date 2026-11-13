@@ -160,6 +160,10 @@ Changing the template **never** changes your text.
 * **Pages** (thumbnail rail) — a strip of miniature A4 pages built from the real
   document, one per page. Click one to jump there. The count is the same
   estimate shown in the footer and used for the PDF, so the two always agree.
+* **Before/after** — opens a side-by-side comparison against the project as it
+  looked when you opened it in this session, and lists what changed (template,
+  design settings, sections, content areas). Both halves are the real document,
+  not screenshots, so nothing can be shown that the exporter would not produce.
 * **Template / palette / font** — switch while keeping all content.
 * Multi-page CVs are normal; content flows onto as many A4 pages as needed and
   never overlaps.

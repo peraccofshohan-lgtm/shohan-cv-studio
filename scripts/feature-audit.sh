@@ -50,6 +50,7 @@ check "preset store actions"       "applyPreset|duplicatePreset" src/store/works
 check "wizard document step"       "Document Title & Length" src/features/cv-wizard/steps.ts
 check "margin/zoom guides"         "margin-guides" src/features/editor/EditorPage.tsx
 check "page thumbnails"            "export const PageNavigator" src/features/editor/PageNavigator.tsx
+check "before/after compare"       "export function diffSnapshots" src/features/editor/BeforeAfter.tsx
 check "schema v2 migration"        "document-composition" src/database/schema.ts
 check "production verifier"        "verify-dist" package.json
 check "order presets"              "export const ORDER_PRESETS" src/lib/sectionOrder.ts
