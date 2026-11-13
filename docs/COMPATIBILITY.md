@@ -41,7 +41,7 @@ EXE for **x64** and **ia32**. The build configuration is committed.
 
 | Step | Result | Evidence |
 | --- | --- | --- |
-| `npm run build` (renderer) | **PASS** | `dist/` 1.56 MB, CSP injected |
+| `npm run build` (renderer) | **PASS** | `dist/` 1.60 MB, CSP injected |
 | `node scripts/verify-dist.mjs` | **PASS** | 8 checks passed, 2 documented warnings |
 | `node node_modules/electron/install.js` | **FAIL** | `unable to verify the first certificate` |
 | `npx electron-builder --win --x64` | **FAIL** | cannot fetch `electron-v22.3.27-win32-x64.zip` (release-assets host blocked) |

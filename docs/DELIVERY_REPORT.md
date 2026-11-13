@@ -211,7 +211,7 @@ Per-template support matrix (all verified by the composition matrix test):
 | Autosave preserved | **Implemented & tested** |
 | Basic users can finish without Advanced mode | **Implemented & tested** — Basic is the default; test asserts advanced fields are hidden |
 | Tooltips and sensible defaults | **Implemented** |
-| Bundle size | 1.56 MB JS across 5 chunks (measured) |
+| Bundle size | 1.60 MB JS across 5 chunks (measured) |
 
 ### Part 13 — Final validation
 
@@ -233,7 +233,7 @@ Per-template support matrix (all verified by the composition matrix test):
 | Palettes / font pairs | 9 / 4 (+10 named presets) |
 | Database tables / schema version | 29 / **3** |
 | Test files / tests | **21 / 251** |
-| Production bundle | 1.56 MB JS, 5 chunks; 64 `woff2` (15 Bengali); 128 CSS asset URLs, 0 missing |
+| Production bundle | 1.60 MB JS, 5 chunks; 64 `woff2` (15 Bengali); 128 CSS asset URLs, 0 missing |
 | Documented preview pages | 122 PNG (60 first pages + 62 continuation) |
 | Commits on this branch | 31 (see `git log`) |
 | TypeScript errors | 0 |
