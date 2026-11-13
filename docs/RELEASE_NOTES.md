@@ -15,9 +15,12 @@ tell the operator what is wrong before the CV is sent.
 | Templates | **30** designs (10 new: Swiss Minimalist, Scandinavian Executive, Modern Editorial, Premium Luxury, Global ATS Professional, Modern Two-Column Professional, Executive Leadership Pro, Compact One-Page Expert, Academic International Pro, Contemporary Creative Portfolio) |
 | Document title | Six title modes (CV / CURRICULUM VITAE / RESUME / PROFESSIONAL RESUME / No title / Custom) with full styling: font, size, weight, italic, underline, colour, letter case, letter spacing, alignment, position, spacing, rules, background and accent line |
 | Page length | Exactly one page / target two pages / automatic, with a page ceiling and per-section manual page breaks |
-| Typography | Per-role font families (name, title, heading, subheading, body, contact, dates, bullets, footer, page numbers), exact point sizes, line height, body alignment (left/centre/right/justify) and first-line indent |
+| Typography | Per-role font families (name, title, heading, subheading, body, contact, dates, bullets, footer, page numbers), exact point sizes, line height, body alignment (left/centre/right/justify), first-line indent, plus title strikethrough and Latin-only word spacing |
+| Section control | Seven recommended orderings, a per-section design panel (heading colour/align/size, gap, bullet marker, page break) and the visibility manager |
+| Preview | Real page-thumbnail rail and a before/after comparison against the state the project was opened in |
+| Presets | Ten named looks, user-saved presets, and standalone colour palettes (schema v3) |
 | Spacing | Twelve independent spacing tokens, four-sided page margins, and three density presets that change real layout parameters |
-| Colour | Thirteen palettes plus per-token overrides with a colour picker and HEX/RGB entry |
+| Colour | Nine built-in palettes with 13 colour tokens each, per-token overrides (picker + HEX/RGB), ten named presets and standalone saved palettes |
 | Inspection | Layout diagnostics, ATS suitability score, quality checklist and content-length warnings |
 | Presets | Save / apply / rename / duplicate / delete reusable style presets |
 | Preview | Fit-to-page, fit-to-width, zoom, A4 page guides and margin guides |
