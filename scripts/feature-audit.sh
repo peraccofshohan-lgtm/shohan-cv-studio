@@ -52,6 +52,9 @@ check "schema v2 migration"        "document-composition" src/database/schema.ts
 check "production verifier"        "verify-dist" package.json
 check "order presets"              "export const ORDER_PRESETS" src/lib/sectionOrder.ts
 check "order selector (editor)"    "applyOrderPreset" src/features/editor/EditorPage.tsx
+check "section style model"        "normalizeSectionOverride" src/lib/sectionStyles.ts
+check "section design panel"       "export const SectionStylePanel" src/features/editor/SectionStylePanel.tsx
+check "section override in CSS"    "sec-heading-scale" src/document/styles.ts
 
 echo "--- counts ---"
 count "wizard steps:"   "$(grep -c "id: '" src/features/cv-wizard/steps.ts)"

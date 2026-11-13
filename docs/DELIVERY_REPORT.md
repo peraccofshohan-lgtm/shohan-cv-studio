@@ -6,8 +6,8 @@
 
 ## 1. Verdict
 
-The application code is complete, compiles, builds, and is covered by **206
-automated tests across 16 files**. The production bundle was audited byte by byte
+The application code is complete, compiles, builds, and is covered by **222
+automated tests across 17 files**. The production bundle was audited byte by byte
 and passes every check that can be made without a Windows machine.
 
 **The release is NOT declared ready for distribution.** No installer was built
@@ -109,7 +109,7 @@ Status vocabulary used throughout, and used consistently:
 | Header centred / left / right, compact / balanced / spacious | **Implemented & tested** | Header styles + density presets |
 | Photo size / shape / border / position / zoom / crop | **Implemented & tested** (size, shape, border, position, zoom) / **crop via zoom+offset** | `PhotoState`, matrix test |
 | Photo absence leaves no placeholder | **Implemented & tested** | Element not emitted |
-| Per-section design (heading colour/align/scale, bullet style) | **Partial** | Model (`SectionStyleOverride`) and storage exist; UI exposes global heading styling rather than per-section controls |
+| Per-section design (heading colour/align/scale, bullet style) | **Implemented & tested** | `src/lib/sectionStyles.ts` + `SectionStylePanel` (opened from the 🖌 button on a section row); override reaches preview, print payload and DOCX; `tests/section-styles.test.ts` (15 tests) |
 | Borders and decorative elements | **Implemented & tested** | Five title rules, six heading styles, entry rules, bands |
 | Ten named premium presets | **Partial** | The 30 templates act as presets; user presets are save/apply/rename/duplicate/delete. The specific ten names from the prompt are not hard-coded as a separate list |
 
@@ -217,7 +217,7 @@ Per-template support matrix (all verified by the composition matrix test):
 | Deliverable | Status |
 | --- | --- |
 | README, USER_MANUAL, TECHNICAL, TESTING, COMPATIBILITY, KNOWN_ISSUES, RELEASE_NOTES, DELIVERY_REPORT updated | **Done** |
-| Feature audit script updated | **Done** — 40 checks |
+| Feature audit script updated | **Done** — 43 checks |
 | Documentation reflects only implemented features | **Done** — audited item by item; unimplemented items are marked as such above |
 | Every feature marked with an explicit status | **Done** (this document) |
 
@@ -231,7 +231,7 @@ Per-template support matrix (all verified by the composition matrix test):
 | Wizard steps | **20** (was 19; the document-title step was added) |
 | Palettes / font pairs | 13 / 4 |
 | Database tables / schema version | 28 / **2** |
-| Test files / tests | **16 / 206** |
+| Test files / tests | **17 / 222** |
 | Production bundle | 1.56 MB JS, 5 chunks; 64 `woff2` (15 Bengali); 128 CSS asset URLs, 0 missing |
 | Documented preview pages | 122 PNG (60 first pages + 62 continuation) |
 | Commits on this branch | 19 (see `git log`) |
@@ -261,7 +261,7 @@ Per-template support matrix (all verified by the composition matrix test):
 Tick every line on a connected machine before distributing.
 
 - [x] `npx tsc --noEmit` — 0 errors
-- [x] `npx vitest run` — 206/206
+- [x] `npx vitest run` — 222/222
 - [x] `npm run build` — green
 - [x] `node scripts/verify-dist.mjs` — 0 failures
 - [x] `bash scripts/feature-audit.sh` — all present
@@ -289,8 +289,9 @@ Tick every line on a connected machine before distributing.
    (`electron-builder.config.cjs`) and the verification gate (`npm run verify`).
 2. **Run the per-OS matrix** in COMPATIBILITY.md and replace every "Not tested".
 3. **Close the remaining composition gaps**, in the order the specification
-   weights them: page thumbnails, per-section style UI, recommended section
-   strikethrough/word-spacing, font import.
+   weights them: page thumbnails, before/after comparison, strikethrough and
+   word-spacing, font import, the named 10-preset library and standalone
+   palettes.
 4. **Add a real pagination check** once a browser engine is available: render the
    print payload to PDF and assert page count against the estimator.
 

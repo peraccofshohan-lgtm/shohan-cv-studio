@@ -22,6 +22,8 @@ internet connection, no subscription and no telemetry.
 | **Live studio** | Edit any field and see the A4 page update immediately. Undo/redo, zoom, fit-to-page, A4 and margin guides, template switching without touching your text. |
 | **Document title** | CV / CURRICULUM VITAE / RESUME / PROFESSIONAL RESUME / no title / custom — with font, size, weight, colour, case, letter spacing, alignment, position, spacing, rules and background. "No title" removes the block completely; the header reflows. |
 | **Page length** | Exactly one page, a two-page target, or automatic — with a page ceiling and per-section manual page breaks. A page target **never** deletes information; it warns instead. |
+| **Section design** | Restyle one section without touching the rest: heading colour, alignment and size (0.8–1.25×), the gap above it (1–2.5×, add-only), dot/dash/square/no bullets and an optional page break. Reset returns the section to the template's exact look. |
+| **Recommended order** | Seven orderings (fresher, experienced, executive, technical, academic, ATS-first, Bangladesh standard) that rearrange existing sections only — nothing is added, hidden or rewritten. |
 | **Typography & spacing** | Ten font roles, exact point sizes, line height, four alignments, first-line indent, twelve spacing tokens, four-sided margins and compact/balanced/spacious density modes that change real layout parameters. |
 | **Colour studio** | 13 palettes plus per-token overrides with a colour picker and HEX/RGB entry; save any look as a reusable preset. |
 | **Inspection** | Layout diagnostics (overflow, orphan headings, duplicate skills, missing dates), an offline ATS suitability score and a ten-point quality checklist. |
@@ -101,7 +103,7 @@ src/lib/             Golden-ratio maths, section engine, composition tokens,
                      layout report, ATS checks, backup format, colour maths
 scripts/             CSP injection, font builder, preview renderer, bundle
                      verifier, feature audit
-tests/               Vitest suites — 16 files / 206 tests
+tests/               Vitest suites — 17 files / 222 tests
 docs/                Deliverable documentation + generated template previews
 ```
 

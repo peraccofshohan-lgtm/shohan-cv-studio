@@ -23,6 +23,7 @@ import {
   ClipboardCheck,
   Minimize2,
   MoveHorizontal,
+  Paintbrush,
   FileStack,
   Ruler,
   Type,
@@ -65,6 +66,8 @@ import { TitlePanel } from './TitlePanel';
 import { PageLengthPanel } from './PageLengthPanel';
 import { ReportsPanel } from './ReportsPanel';
 import { PresetsPanel } from './PresetsPanel';
+import { SectionStylePanel } from './SectionStylePanel';
+import { hasOverride } from '@/lib/sectionStyles';
 import { composeDocumentTokens } from '@/lib/composition';
 import { ORDER_PRESETS, applyOrderPreset, detectOrderPreset, type OrderPresetId } from '@/lib/sectionOrder';
 import { buildLayoutReport } from '@/lib/layoutReport';
@@ -320,7 +323,14 @@ export const EditorPage: React.FC = () => {
               <span className="sec-name">{lang === 'bn' ? 'ব্যক্তিগত তথ্য ও যোগাযোগ' : 'Personal & contact'}</span>
               <ChevronDown size={13} className="faint" />
             </button>
-            <SectionNavigator active={targetSection} onSelect={setTargetSection} />
+            <SectionNavigator
+                active={targetSection}
+                onSelect={setTargetSection}
+                onDesign={(id) => {
+                  setTargetSection(id);
+                  setEditorPanel('section');
+                }}
+              />
           </div>
           <div style={{ padding: '0 var(--sp-4) var(--sp-5)' }}>
             <Button
@@ -398,6 +408,9 @@ export const EditorPage: React.FC = () => {
               <ReportsPanel report={report} data={data} templateName={design.template.name} />
             ) : null}
             {editorPanel === 'presets' ? <PresetsPanel /> : null}
+            {editorPanel === 'section' && targetSection !== 'personal' ? (
+              <SectionStylePanel section={targetSection} />
+            ) : null}
           </div>
         </aside>
       </div>
@@ -437,7 +450,8 @@ export const EditorPage: React.FC = () => {
 const SectionNavigator: React.FC<{
   active: SectionId | 'personal';
   onSelect: (id: SectionId | 'personal') => void;
-}> = ({ active, onSelect }) => {
+  onDesign: (id: SectionId) => void;
+}> = ({ active, onSelect, onDesign }) => {
   const data = useWorkspace((s) => s.current!.data);
   const update = useWorkspace((s) => s.updateData);
   const lang = useLang();
@@ -537,6 +551,22 @@ const SectionNavigator: React.FC<{
                 aria-label={`Move ${title} down`}
               >
                 <ArrowDown size={11} />
+              </button>
+              <button
+                className="btn btn-icon btn-sm"
+                style={{ width: 20, height: 20 }}
+                onClick={() => onDesign(section.id)}
+                aria-label={`Design ${title}`}
+                title={
+                  hasOverride(data.sectionStyles, section.id)
+                    ? lang === 'bn' ? 'সেকশন ডিজাইন (পরিবর্তিত)' : 'Section design (customised)'
+                    : lang === 'bn' ? 'সেকশন ডিজাইন' : 'Section design'
+                }
+              >
+                <Paintbrush
+                  size={11}
+                  style={{ opacity: hasOverride(data.sectionStyles, section.id) ? 1 : 0.4 }}
+                />
               </button>
               <button
                 className="btn btn-icon btn-sm"

@@ -248,10 +248,24 @@ ${title?.accentLine ? `.cv-title::after {
 
 /* -------------------------------------------------------------- sections */
 .cv-sections { display: flex; flex-direction: column; gap: var(--gap); flex: 1 1 auto; }
-.cv-section { break-inside: auto; }
+/* Per-section overrides (Part 5) arrive as inline custom properties on the
+   <section> element; these fallbacks are the document defaults, so a section
+   without an override lays out exactly as before. Every declaration here is
+   additive or a colour/scale swap — none of them can move text under other
+   text, and the gap multiplier is clamped to >= 1 in the model. */
+.cv-section {
+  break-inside: auto;
+  --sec-heading: var(--accent);
+  --sec-rule: var(--accent);
+  --sec-heading-scale: 1;
+  --sec-heading-align: flex-start;
+  --sec-gap-mul: 1;
+}
+.cv-section + .cv-section { margin-top: calc(var(--gap) * (var(--sec-gap-mul) - 1)); }
 .cv-section-head {
   display: flex;
   align-items: center;
+  justify-content: var(--sec-heading-align);
   gap: 3mm;
   margin-bottom: 2.4mm;
   break-after: avoid;
@@ -259,15 +273,17 @@ ${title?.accentLine ? `.cv-title::after {
 }
 .cv-section-title {
   font-family: ${headFont};
-  font-size: ${headingSize.toFixed(2)}pt;
+  font-size: calc(${headingSize.toFixed(2)}pt * var(--sec-heading-scale));
   font-weight: 700;
   letter-spacing: ${design.upperHeadings ? '0.11em' : '0.005em'};
   text-transform: ${design.upperHeadings ? 'uppercase' : 'none'};
-  color: var(--accent);
+  color: var(--sec-heading);
   margin: 0;
   white-space: nowrap;
 }
-.cv-section-head .rule { flex: 1 1 auto; height: 0.25mm; background: var(--accent); opacity: 0.55; }
+.cv-section-head .rule { flex: 1 1 auto; height: 0.25mm; background: var(--sec-rule); opacity: 0.55; }
+/* A centred or right-aligned heading has no room for the leader rule. */
+.cv-section[data-head-align] .cv-section-head .rule { display: none; }
 
 /* heading variants */
 .hd-rule .rule { height: 0.25mm; }
@@ -334,6 +350,29 @@ ${bodyAlign === 'justify' ? '.entry-bullets li, .labelled-row dd { text-align: l
 .labelled-row { display: flex; gap: 2mm; font-size: ${(base - 0.4).toFixed(2)}pt; }
 .labelled-row dt { color: var(--ink-muted); flex: 0 0 34mm; }
 .labelled-row dd { margin: 0; flex: 1 1 auto; color: var(--ink); }
+/* Per-section marker styles: the marker is still drawn by CSS, so the text run
+   keeps its exact Bengali metrics. */
+.cv-section[data-bullets='dash'] .entry-bullets li::before,
+.cv-section[data-bullets='dash'] .simple-list li::before {
+  width: 2.4mm;
+  height: 0.35mm;
+  border-radius: 0;
+  top: 0.58em;
+}
+.cv-section[data-bullets='square'] .entry-bullets li::before,
+.cv-section[data-bullets='square'] .simple-list li::before {
+  border-radius: 0;
+  width: 1.1mm;
+  height: 1.1mm;
+}
+.cv-section[data-bullets='none'] .entry-bullets li::before,
+.cv-section[data-bullets='none'] .simple-list li::before {
+  display: none;
+}
+.cv-section[data-bullets='none'] .entry-bullets li,
+.cv-section[data-bullets='none'] .simple-list li {
+  padding-left: 0;
+}
 .simple-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6mm 6mm; }
 .simple-list li { position: relative; padding-left: 3.6mm; font-size: ${(base - 0.4).toFixed(2)}pt; }
 .simple-list li::before { content: ''; position: absolute; left: 0.4mm; top: 0.6em; width: 1.1mm; height: 1.1mm; background: var(--accent-2); }

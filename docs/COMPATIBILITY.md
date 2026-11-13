@@ -119,9 +119,9 @@ does not depend on fonts installed on the target machine.
 | npm (build host) | bundled with Node 22 | Tested Passed |
 | TypeScript compiler | 5.x | Tested Passed — 0 errors |
 | Vite production build | 5.x | Tested Passed — build completes, CSP injected |
-| Vitest suites | 16 files / **206 tests** | **Tested Passed — 206/206** |
+| Vitest suites | 17 files / **222 tests** | **Tested Passed — 222/222** |
 | Production bundle verifier | `scripts/verify-dist.mjs` | **Tested Passed** — 8 checks, 0 failures, 2 documented warnings |
-| Feature-presence audit | `scripts/feature-audit.sh` | **Tested Passed** — 40 checks present |
+| Feature-presence audit | `scripts/feature-audit.sh` | **Tested Passed** — 43 checks present |
 | Preview rasteriser | HarfBuzz + FreeType via `scripts/render_previews.py` | **Tested Passed** — 122 A4 pages rendered from the production model |
 | Chromium 108 CSS parity | static analysis | **Tested Passed** — no `color-mix()`, container queries, `@layer`, `subgrid` or `:has(` in the source |
 

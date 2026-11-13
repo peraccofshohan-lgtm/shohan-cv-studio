@@ -37,6 +37,7 @@ import {
   type IParagraphStyleOptions,
 } from 'docx';
 import type { CVData, TextTransform } from '@/types/cv';
+import { overrideFor } from '@/lib/sectionStyles';
 import { TITLE_PRESET_TEXT } from '@/types/cv';
 import { applyTransform } from '@/lib/composition';
 import type { ResolvedDesign } from '@/templates/catalog';
@@ -265,10 +266,18 @@ export async function buildDocx({ data, design, title }: DocxExportOptions): Pro
 
   // ------------------------------------------------------------ sections
   const headingFor = (section: ResolvedSection): Paragraph => {
+    // Per-section design overrides (Part 5): colour, size, alignment and page
+    // break are read from the same sanitiser the preview uses, so a customised
+    // heading cannot look one way on screen and another in Word.
+    const override = overrideFor(data.sectionStyles, section.id);
+    const thisHeading = override?.headingScale
+      ? Math.round(headingSize * override.headingScale)
+      : headingSize;
+    const headingColor = override?.headingColor ?? p.primary;
     const baseChildren = [
       run(
         design.upperHeadings ? section.title.toUpperCase() : section.title,
-        { bold: true, size: headingSize, color: p.primary, font: headFont, spacing: design.upperHeadings ? 20 : 0 },
+        { bold: true, size: thisHeading, color: headingColor, font: headFont, spacing: design.upperHeadings ? 20 : 0 },
       ),
     ];
     const style = design.headingStyle;
@@ -287,9 +296,20 @@ export async function buildDocx({ data, design, title }: DocxExportOptions): Pro
           : style === 'side-mark'
             ? { left: { style: BorderStyle.SINGLE, size: 18, color: hex(p.accent), space: 6 } }
             : undefined;
+    const align =
+      override?.headingAlign === 'center'
+        ? AlignmentType.CENTER
+        : override?.headingAlign === 'right'
+          ? AlignmentType.RIGHT
+          : undefined;
     return new Paragraph({
       heading: HeadingLevel.HEADING_2,
-      spacing: { before: Math.round(200 * design.sectionSpacing), after: 90 },
+      alignment: align,
+      pageBreakBefore: override?.pageBreakBefore === true,
+      spacing: {
+        before: Math.round(200 * design.sectionSpacing * (override?.paragraphSpacing ?? 1)),
+        after: 90,
+      },
       keepNext: true,
       border,
       shading:
@@ -300,12 +320,31 @@ export async function buildDocx({ data, design, title }: DocxExportOptions): Pro
     });
   };
 
-  const bullet = (text: string, level = 0): Paragraph =>
-    new Paragraph({
-      numbering: { reference: 'cv-bullets', level },
+  /**
+   * Word bullet lists take their marker from the numbering definition, so a
+   * per-section marker style selects a different numbering reference. The
+   * "none" style becomes a plain indented paragraph — a list with no marker,
+   * which is exactly what the preview draws.
+   */
+  const bulletRef: Record<string, string> = {
+    dot: 'cv-bullets',
+    dash: 'cv-bullets-dash',
+    square: 'cv-bullets-square',
+  };
+  const bullet = (text: string, level = 0, style = 'dot'): Paragraph => {
+    if (style === 'none') {
+      return new Paragraph({
+        spacing: { after: 30, line: lineSpacing },
+        indent: { left: 220 },
+        children: [run(text, { size: bodySize, font: bodyFont })],
+      });
+    }
+    return new Paragraph({
+      numbering: { reference: bulletRef[style] ?? 'cv-bullets', level },
       spacing: { after: 30, line: lineSpacing },
       children: [run(text, { size: bodySize, font: bodyFont })],
     });
+  };
 
   const metaLine = (text: string, opts: { color?: string; size?: number } = {}): Paragraph =>
     new Paragraph({
@@ -315,6 +354,7 @@ export async function buildDocx({ data, design, title }: DocxExportOptions): Pro
 
   for (const section of sections) {
     if (section.id === 'signature') continue; // rendered in the tail
+    const sectionBullet = overrideFor(data.sectionStyles, section.id)?.bulletStyle ?? 'dot';
     children.push(headingFor(section));
 
     if (section.kind === 'paragraph') {
@@ -342,7 +382,7 @@ export async function buildDocx({ data, design, title }: DocxExportOptions): Pro
     }
 
     if (section.kind === 'simple-list') {
-      for (const item of section.list) children.push(bullet(item));
+      for (const item of section.list) children.push(bullet(item, 0, sectionBullet));
     }
 
     if (section.kind === 'labelled-grid') {
@@ -424,7 +464,7 @@ export async function buildDocx({ data, design, title }: DocxExportOptions): Pro
         }
         if (item.subtitle) children.push(metaLine(item.subtitle));
         if (item.meta) children.push(metaLine(item.meta, { color: p.accent, size: bodySize - 2 }));
-        for (const b of item.bullets) children.push(bullet(b));
+        for (const b of item.bullets) children.push(bullet(b, 0, sectionBullet));
         if (item.body) {
           for (const line of item.body.split('\n').filter(Boolean)) {
             children.push(
@@ -572,6 +612,32 @@ export async function buildDocx({ data, design, title }: DocxExportOptions): Pro
               text: '–',
               alignment: AlignmentType.LEFT,
               style: { paragraph: { indent: { left: 680, hanging: 200 } } },
+            },
+          ],
+        },
+        // Per-section marker variants (Part 5). Same indents, different glyph,
+        // so changing a section's bullets never reflows its text.
+        {
+          reference: 'cv-bullets-dash',
+          levels: [
+            {
+              level: 0,
+              format: LevelFormat.BULLET,
+              text: '–',
+              alignment: AlignmentType.LEFT,
+              style: { paragraph: { indent: { left: 340, hanging: 200 } }, run: { color: hex(p.accent), size: bodySize } },
+            },
+          ],
+        },
+        {
+          reference: 'cv-bullets-square',
+          levels: [
+            {
+              level: 0,
+              format: LevelFormat.BULLET,
+              text: '▪',
+              alignment: AlignmentType.LEFT,
+              style: { paragraph: { indent: { left: 340, hanging: 200 } }, run: { color: hex(p.accent), size: bodySize } },
             },
           ],
         },

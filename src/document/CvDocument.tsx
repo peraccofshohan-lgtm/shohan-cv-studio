@@ -12,6 +12,7 @@ import type { ResolvedSection } from '@/lib/sections';
 import { printableSections } from '@/lib/sections';
 import { formatDate } from '@/lib/sections';
 import type { DocumentTokens } from '@/lib/composition';
+import { overrideFor, sectionCssVars, sectionsStartingNewPage } from '@/lib/sectionStyles';
 
 export interface CvDocumentProps {
   data: CVData;
@@ -279,7 +280,10 @@ export function CvDocument({
   pageCount = 1,
   tokens = undefined,
 }: CvDocumentProps): React.ReactElement {
-  const pageBreak = new Set(tokens?.pageLength.breakBefore ?? []);
+  // Manual breaks come from the page-length panel *and* from a section's own
+  // "start on a new page" override; the union is deduplicated so a section can
+  // never emit two breaks.
+  const pageBreak = sectionsStartingNewPage(tokens?.pageLength.breakBefore, data.sectionStyles);
   const sections = printableSections(data, { language });
   const ordered = orderedForRender(sections);
   const { tail } = splitTailSections(ordered);
@@ -288,16 +292,27 @@ export function CvDocument({
   const footer = design.showFooter || design.showPageNumbers;
 
   const renderSections = (list: ResolvedSection[], suffix: string) =>
-    list.map((section) => (
-      <section
-        className={`cv-section${pageBreak.has(section.id) ? ' cv-section-break' : ''}`}
-        key={`${section.id}-${suffix}`}
-        data-keep={tokens?.pageLength.keepTogether ? 'true' : 'false'}
-      >
-        <SectionHeading section={section} design={design} />
-        <SectionBody section={section} design={design} />
-      </section>
-    ));
+    list.map((section) => {
+      const override = overrideFor(data.sectionStyles, section.id);
+      // Only non-default values become data attributes, so an untouched section
+      // keeps the exact markup it had before this feature existed.
+      const attrs: Record<string, string> = {};
+      if (override?.headingAlign) attrs['data-head-align'] = override.headingAlign;
+      if (override?.bulletStyle) attrs['data-bullets'] = override.bulletStyle;
+      return (
+        <section
+          className={`cv-section${pageBreak.has(section.id) ? ' cv-section-break' : ''}`}
+          key={`${section.id}-${suffix}`}
+          data-keep={tokens?.pageLength.keepTogether ? 'true' : 'false'}
+          data-section={section.id}
+          {...attrs}
+          style={sectionCssVars(override)}
+        >
+          <SectionHeading section={section} design={design} />
+          <SectionBody section={section} design={design} />
+        </section>
+      );
+    });
 
   const tailBlock = (
     <>

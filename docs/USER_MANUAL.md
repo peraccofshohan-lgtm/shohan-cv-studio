@@ -161,9 +161,9 @@ Changing the template **never** changes your text.
 * Multi-page CVs are normal; content flows onto as many A4 pages as needed and
   never overlaps.
 
-### The five editor panels
+### The editor panels
 
-The right-hand rail has five tabs. You can finish a professional CV using only
+The right-hand rail has six tabs. You can finish a professional CV using only
 the first one plus the template gallery; the rest are optional.
 
 | Tab | What it is for |
@@ -174,6 +174,32 @@ the first one plus the template gallery; the rest are optional.
 | **Pages** | One page / two pages / automatic, maximum pages, and per-section manual page breaks (see §4.2) |
 | **Reports** | Layout diagnostics, ATS suitability score and the quality checklist |
 | **Presets** | Save the current look as a reusable style preset |
+| **Section design** | Opened by the 🖌 button on any section row — restyle that one section (see §4.3) |
+
+### 4.3 Section-by-section design
+
+Every section row in the left navigator has a 🖌 button. It opens **Section
+design**, which restyles *that section only*:
+
+| Control | Effect | Limit |
+| --- | --- | --- |
+| Heading colour | Recolours that section's heading and its rule | Must be a hex colour |
+| Heading alignment | Left, centred or right — the leader rule is hidden when not left | — |
+| Heading size | 0.8×–1.25× of the document heading size | Clamped, never unlimited |
+| Gap above | 1×–2.5× of the document section gap | **Can only add** space, never squeeze |
+| Bullet marker | Dot, dash, square or none | Changes only the drawn marker |
+| Start on a new page | Forces this section to the top of a page | May add a page; content is never removed |
+
+The 🖌 icon is at full brightness when the section is customised and dimmed when
+it uses the template's own look. **Reset** removes the override completely, so
+the section returns to the template — not to a close approximation of it. The
+same values are written into the DOCX (real Word page break, Word bullet
+numbering, heading colour and alignment), the print document and the PDF
+payload, so a restyled section cannot look different in an export.
+
+Sections are never allowed to overlap: the gap control has a floor of 1× and the
+heading-size control is clamped, because the only alternative would be shrinking
+text into the space next to it.
 
 ### 4.1 Document title
 

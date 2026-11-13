@@ -273,6 +273,42 @@ describe('recommended section order in the editor', () => {
   });
 });
 
+describe('per-section design panel', () => {
+  it('opens from the navigator, edits only that section, and resets', async () => {
+    installStores();
+    useUI.setState({ language: 'en' });
+    const store = (await import('@/store/workspace')).useWorkspace;
+    // One real skill, so the section actually prints and its markup is visible.
+    store.getState().updateData((draft) => {
+      draft.skills = [{ id: 's1', name: 'Tally ERP 9', category: 'Software', level: 'advanced' }];
+    });
+    const { EditorPage } = await import('@/features/editor/EditorPage');
+    const { container, getByLabelText } = render(<EditorPage />);
+
+    fireEvent.click(getByLabelText('Design Skills'));
+    const text = container.textContent ?? '';
+    expect(text).toContain('Section design');
+    expect(text).toContain('Heading colour');
+    expect(text).toContain('Bullet marker');
+
+    // Change the bullet marker: only `skills` is written.
+    fireEvent.change(getByLabelText('Bullet marker'), { target: { value: 'square' } });
+    const styles = store.getState().current!.data.sectionStyles;
+    expect(styles.skills).toEqual({ bulletStyle: 'square' });
+    expect(Object.keys(styles)).toHaveLength(1);
+    // The live preview is the real document model, so it carries the override.
+    const canvas = container.querySelector('.editor-canvas') as HTMLElement;
+    expect(canvas.innerHTML).toContain('data-bullets="square"');
+    // Content is untouched.
+    expect(store.getState().current!.data.skills).toHaveLength(1);
+
+    // Reset clears the entry, so the section returns to the template look.
+    fireEvent.click(container.querySelector('button[title="Back to the template look"]') as Element);
+    expect(store.getState().current!.data.sectionStyles.skills).toBeUndefined();
+    expect(canvas.innerHTML).not.toContain('data-bullets="square"');
+  });
+});
+
 describe('wizard document step', () => {
   it('offers title and page-length controls while creating a CV', async () => {
     installStores();

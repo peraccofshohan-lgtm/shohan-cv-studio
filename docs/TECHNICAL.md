@@ -192,6 +192,27 @@ section. `detectOrderPreset` compares the stored order against each preset and
 returns the match (or `null` for a hand-made order), which is what the ✓ marker
 in the navigator reads.
 
+**Per-section overrides (Part 5.4).** `src/lib/sectionStyles.ts` sanitises the
+`SectionStyleOverride` that schema v2 already stored per section:
+hex-only heading colour, four alignments, heading scale clamped to 0.8–1.25,
+section-gap multiplier clamped to 1–2.5 (it can add space, never squeeze),
+four bullet markers, and an optional page break. `normalizeSectionOverride`
+returns `null` when nothing differs, so "reset" deletes the entry instead of
+storing defaults, and an untouched document keeps byte-identical markup.
+
+The renderer reads the override three ways, all from the same object:
+
+* `sectionCssVars` → inline custom properties (`--sec-heading`,
+  `--sec-heading-scale`, `--sec-heading-align`, `--sec-gap-mul`) on the
+  `<section>`, plus `data-head-align` / `data-bullets` attributes. The
+  stylesheet defines the same variables with template defaults as fallbacks.
+* `sectionsStartingNewPage` unions the page-length policy's `breakBefore` with
+  every section's `pageBreakBefore`, deduplicated — one section, one break.
+* `buildDocx` re-reads the override for the heading colour, size, alignment,
+  paragraph spacing and `pageBreakBefore`, and selects a Word numbering
+  reference per bullet marker (`cv-bullets`, `cv-bullets-dash`,
+  `cv-bullets-square`; `none` emits plain indented paragraphs).
+
 ### 4.2 Geometry
 
 * A4 = 210 × 297 mm = 11905 × 16837 twips (DOCX) = 793.7 × 1122.5 px @96 dpi.
