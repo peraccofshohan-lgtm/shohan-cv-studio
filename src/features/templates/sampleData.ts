@@ -132,8 +132,27 @@ export function buildSampleCv(language: 'bn' | 'en' = 'en'): CVData {
       skillsLearned: 'Pivot tables, financial modelling',
     },
   ];
+  // A sample that exercises every block type, so the gallery and the
+  // documentation previews show real variety (dates, chips, grid, paragraphs).
+  cv.achievementsEnabled = true;
+  cv.achievements = [
+    {
+      id: uid(),
+      title: isBn ? 'সেরা কর্মকর্তা পুরস্কার' : 'Employee of the Year',
+      awardName: isBn ? 'বার্ষিক পারফরম্যান্স অ্যাওয়ার্ড' : 'Annual Performance Award',
+      organization: isBn ? 'মেঘনা গ্রুপ' : 'Meghna Group',
+      date: isBn ? '২০২১' : '2021',
+      description: isBn ? 'ডিসেম্বরে বার্ষিক মূল্যায়নে স্বীকৃতি।' : 'Recognised in the annual review.',
+    },
+  ];
+  cv.strengthsEnabled = true;
+  cv.strengths = [
+    { id: uid(), text: isBn ? 'নির্ভুলতা ও সময়ানুবর্তিতা' : 'Accuracy and punctuality' },
+  ];
   cv.sections = cv.sections.map((s) =>
-    s.id === 'training' || s.id === 'careerObjective' ? { ...s, enabled: true } : s,
+    ['training', 'careerObjective', 'achievements', 'strengths'].includes(s.id)
+      ? { ...s, enabled: true }
+      : s,
   );
   return cv;
 }

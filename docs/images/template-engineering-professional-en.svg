@@ -80,4 +80,15 @@
 <circle cx="48.4" cy="620.2" r="1.6" fill="#7c8b9a"/>
 <text x="55.0" y="622.8" font-family="Inter, Noto Sans Bengali, sans-serif" font-size="7.6" font-weight="400" fill="#1e252d">Skills: Pivot tables, financial modelling</text>
 <rect x="46.0" y="636.6" width="528.0" height="0.5" fill="#5d6874" opacity="0.3"/>
+<rect x="46.0" y="638.6" width="528.0" height="15.0" fill="#eef1f4" rx="2"/>
+<text x="52.0" y="648.6" font-family="Inter, Noto Sans Bengali, sans-serif" font-size="7.8" font-weight="700" fill="#3d4c5c" letter-spacing="0.9">ACHIEVEMENTS &amp; AWARDS</text>
+<text x="46.0" y="665.6" font-family="Inter, Noto Sans Bengali, sans-serif" font-size="9.2" font-weight="600" fill="#1e252d">Employee of the Year</text>
+<text x="574.0" y="665.6" font-family="Inter, Noto Sans Bengali, sans-serif" font-size="7.8" font-weight="400" fill="#5d6874" text-anchor="end">2021</text>
+<text x="46.0" y="675.6" font-family="Inter, Noto Sans Bengali, sans-serif" font-size="8" font-weight="400" fill="#5d6874">Annual Performance Award • Meghna Group</text>
+<text x="46.0" y="684.6" font-family="Inter, Noto Sans Bengali, sans-serif" font-size="7.6" font-weight="400" fill="#1e252d">Recognised in the annual review.</text>
+<rect x="46.0" y="698.4" width="528.0" height="0.5" fill="#5d6874" opacity="0.3"/>
+<rect x="46.0" y="700.4" width="528.0" height="15.0" fill="#eef1f4" rx="2"/>
+<text x="52.0" y="710.4" font-family="Inter, Noto Sans Bengali, sans-serif" font-size="7.8" font-weight="700" fill="#3d4c5c" letter-spacing="0.9">STRENGTHS</text>
+<rect x="46.0" y="720.0" width="98.8" height="11.0" fill="#eef1f4" rx="2"/>
+<text x="51.0" y="728.0" font-family="Inter, Noto Sans Bengali, sans-serif" font-size="7.2" font-weight="400" fill="#1e252d">Accuracy and punctuality</text>
 </svg>

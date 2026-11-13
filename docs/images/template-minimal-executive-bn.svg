@@ -82,4 +82,15 @@
 <circle cx="48.4" cy="571.2" r="1.6" fill="#9aa3ac"/>
 <text x="55.0" y="573.8" font-family="Inter, Noto Sans Bengali, sans-serif" font-size="7.6" font-weight="400" fill="#23282e">অর্জিত দক্ষতা: Pivot tables, financial modelling</text>
 <rect x="46.0" y="587.6" width="528.0" height="0.5" fill="#626b74" opacity="0.3"/>
+<text x="46.0" y="598.6" font-family="Inter, Noto Sans Bengali, sans-serif" font-size="7.9" font-weight="700" fill="#23282e" letter-spacing="0.9">অর্জন ও পুরস্কার</text>
+<rect x="127.6" y="595.2" width="446.4" height="0.5" fill="#23282e" opacity="0.55"/>
+<text x="46.0" y="610.6" font-family="Inter, Noto Sans Bengali, sans-serif" font-size="9.2" font-weight="600" fill="#23282e">সেরা কর্মকর্তা পুরস্কার</text>
+<text x="157.8" y="610.6" font-family="Inter, Noto Sans Bengali, sans-serif" font-size="7.8" font-weight="400" fill="#626b74">· ২০২১</text>
+<text x="46.0" y="620.6" font-family="Inter, Noto Sans Bengali, sans-serif" font-size="8" font-weight="400" fill="#626b74">বার্ষিক পারফরম্যান্স অ্যাওয়ার্ড • মেঘনা গ্রুপ</text>
+<text x="46.0" y="629.6" font-family="Inter, Noto Sans Bengali, sans-serif" font-size="7.6" font-weight="400" fill="#23282e">ডিসেম্বরে বার্ষিক মূল্যায়নে স্বীকৃতি।</text>
+<rect x="46.0" y="643.4" width="528.0" height="0.5" fill="#626b74" opacity="0.3"/>
+<text x="46.0" y="654.4" font-family="Inter, Noto Sans Bengali, sans-serif" font-size="7.9" font-weight="700" fill="#23282e" letter-spacing="0.9">শক্তিশালী দিক</text>
+<rect x="113.8" y="651.0" width="460.2" height="0.5" fill="#23282e" opacity="0.55"/>
+<rect x="46.0" y="659.0" width="106.2" height="11.0" fill="#f5f6f7" rx="2"/>
+<text x="51.0" y="667.0" font-family="Inter, Noto Sans Bengali, sans-serif" font-size="7.2" font-weight="400" fill="#23282e">নির্ভুলতা ও সময়ানুবর্তিতা</text>
 </svg>
