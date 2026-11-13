@@ -291,8 +291,12 @@ export interface TitleStyle {
   fontWeight: number;
   italic: boolean;
   underline: boolean;
+  /** Strike-through. Useful for a heading the operator wants to cancel out. */
+  strikethrough: boolean;
   color: string | null;
   transform: TextTransform;
+  /** em units added between words (0 = normal). Never applied to Bengali. */
+  wordSpacing: number;
   /** em units, e.g. 0.12 */
   letterSpacing: number;
   align: TextAlign;
@@ -399,6 +403,9 @@ export interface DocumentTitleTokens {
   weight: number;
   italic: boolean;
   underline: boolean;
+  strikethrough: boolean;
+  /** em units between words; forced to 0 for Bengali text. */
+  wordSpacing: number;
   color: string | null;
   align: TextAlign;
   letterSpacing: number;

@@ -55,6 +55,8 @@ check "order selector (editor)"    "applyOrderPreset" src/features/editor/Editor
 check "section style model"        "normalizeSectionOverride" src/lib/sectionStyles.ts
 check "section design panel"       "export const SectionStylePanel" src/features/editor/SectionStylePanel.tsx
 check "section override in CSS"    "sec-heading-scale" src/document/styles.ts
+check "title strikethrough (CSS)"   "line-through" src/document/styles.ts
+check "title word spacing"          "word-spacing" src/document/styles.ts
 
 echo "--- counts ---"
 count "wizard steps:"   "$(grep -c "id: '" src/features/cv-wizard/steps.ts)"

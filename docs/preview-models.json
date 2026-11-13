@@ -212,6 +212,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#5b6572",
     "align": "left",
     "letterSpacing": 0.14,
@@ -287,7 +289,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "d4add75a-e744-4fc4-b3e6-b9f22bdec482",
+      "id": "7dc9368c-2f21-4ca2-b542-ff976bb0aa8a",
       "title": "M.Com in Accounting",
       "subtitle": "University of Dhaka",
       "period": "2017",
@@ -299,7 +301,7 @@
       "body": ""
      },
      {
-      "id": "108c85e3-bd50-433b-935b-5d9dd8866944",
+      "id": "3a69e862-dd10-4b0e-9fef-476519048b01",
       "title": "B.Com (Hons.)",
       "subtitle": "Jagannath University",
       "period": "2015",
@@ -322,7 +324,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "538524ce-7ca7-4951-b4e5-87e06a2b3a04",
+      "id": "397c730f-0e98-4142-92b5-c05da1ed5d9f",
       "title": "Senior Accounts Officer",
       "subtitle": "Meghna Group of Industries • Dhaka",
       "period": "Mar 2019 – Present",
@@ -336,7 +338,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "8ecc69ec-f43d-4c30-aabe-22ce26ee69cc",
+      "id": "d449abb0-09e5-4f06-b122-a5ffcd6cac1e",
       "title": "Accounts Assistant",
       "subtitle": "Pacific Traders • Dhaka",
       "period": "Jun 2017 – Feb 2019",
@@ -405,7 +407,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "491301c7-c632-4188-a678-6d99477192fe",
+      "id": "b64bda87-3bc8-4f73-acd8-773a36244585",
       "title": "Advanced Excel for Finance",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -427,7 +429,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "b60d2c53-4fe8-42fb-8bb3-7c856b737804",
+      "id": "9383835c-3640-4c8c-9fb1-7a62858b775c",
       "title": "Employee of the Year",
       "subtitle": "Annual Performance Award • Meghna Group",
       "period": "2021",
@@ -668,6 +670,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#5f6873",
     "align": "left",
     "letterSpacing": 0.14,
@@ -743,7 +747,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "d4add75a-e744-4fc4-b3e6-b9f22bdec482",
+      "id": "7dc9368c-2f21-4ca2-b542-ff976bb0aa8a",
       "title": "M.Com in Accounting",
       "subtitle": "University of Dhaka",
       "period": "2017",
@@ -755,7 +759,7 @@
       "body": ""
      },
      {
-      "id": "108c85e3-bd50-433b-935b-5d9dd8866944",
+      "id": "3a69e862-dd10-4b0e-9fef-476519048b01",
       "title": "B.Com (Hons.)",
       "subtitle": "Jagannath University",
       "period": "2015",
@@ -778,7 +782,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "538524ce-7ca7-4951-b4e5-87e06a2b3a04",
+      "id": "397c730f-0e98-4142-92b5-c05da1ed5d9f",
       "title": "Senior Accounts Officer",
       "subtitle": "Meghna Group of Industries • Dhaka",
       "period": "Mar 2019 – Present",
@@ -792,7 +796,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "8ecc69ec-f43d-4c30-aabe-22ce26ee69cc",
+      "id": "d449abb0-09e5-4f06-b122-a5ffcd6cac1e",
       "title": "Accounts Assistant",
       "subtitle": "Pacific Traders • Dhaka",
       "period": "Jun 2017 – Feb 2019",
@@ -861,7 +865,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "491301c7-c632-4188-a678-6d99477192fe",
+      "id": "b64bda87-3bc8-4f73-acd8-773a36244585",
       "title": "Advanced Excel for Finance",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -883,7 +887,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "b60d2c53-4fe8-42fb-8bb3-7c856b737804",
+      "id": "9383835c-3640-4c8c-9fb1-7a62858b775c",
       "title": "Employee of the Year",
       "subtitle": "Annual Performance Award • Meghna Group",
       "period": "2021",
@@ -1123,6 +1127,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#566360",
     "align": "left",
     "letterSpacing": 0.14,
@@ -1198,7 +1204,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "d4add75a-e744-4fc4-b3e6-b9f22bdec482",
+      "id": "7dc9368c-2f21-4ca2-b542-ff976bb0aa8a",
       "title": "M.Com in Accounting",
       "subtitle": "University of Dhaka",
       "period": "2017",
@@ -1210,7 +1216,7 @@
       "body": ""
      },
      {
-      "id": "108c85e3-bd50-433b-935b-5d9dd8866944",
+      "id": "3a69e862-dd10-4b0e-9fef-476519048b01",
       "title": "B.Com (Hons.)",
       "subtitle": "Jagannath University",
       "period": "2015",
@@ -1233,7 +1239,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "538524ce-7ca7-4951-b4e5-87e06a2b3a04",
+      "id": "397c730f-0e98-4142-92b5-c05da1ed5d9f",
       "title": "Senior Accounts Officer",
       "subtitle": "Meghna Group of Industries • Dhaka",
       "period": "Mar 2019 – Present",
@@ -1247,7 +1253,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "8ecc69ec-f43d-4c30-aabe-22ce26ee69cc",
+      "id": "d449abb0-09e5-4f06-b122-a5ffcd6cac1e",
       "title": "Accounts Assistant",
       "subtitle": "Pacific Traders • Dhaka",
       "period": "Jun 2017 – Feb 2019",
@@ -1316,7 +1322,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "491301c7-c632-4188-a678-6d99477192fe",
+      "id": "b64bda87-3bc8-4f73-acd8-773a36244585",
       "title": "Advanced Excel for Finance",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -1338,7 +1344,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "b60d2c53-4fe8-42fb-8bb3-7c856b737804",
+      "id": "9383835c-3640-4c8c-9fb1-7a62858b775c",
       "title": "Employee of the Year",
       "subtitle": "Annual Performance Award • Meghna Group",
       "period": "2021",
@@ -1579,6 +1585,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#665a5e",
     "align": "left",
     "letterSpacing": 0.14,
@@ -1654,7 +1662,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "d4add75a-e744-4fc4-b3e6-b9f22bdec482",
+      "id": "7dc9368c-2f21-4ca2-b542-ff976bb0aa8a",
       "title": "M.Com in Accounting",
       "subtitle": "University of Dhaka",
       "period": "2017",
@@ -1666,7 +1674,7 @@
       "body": ""
      },
      {
-      "id": "108c85e3-bd50-433b-935b-5d9dd8866944",
+      "id": "3a69e862-dd10-4b0e-9fef-476519048b01",
       "title": "B.Com (Hons.)",
       "subtitle": "Jagannath University",
       "period": "2015",
@@ -1689,7 +1697,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "538524ce-7ca7-4951-b4e5-87e06a2b3a04",
+      "id": "397c730f-0e98-4142-92b5-c05da1ed5d9f",
       "title": "Senior Accounts Officer",
       "subtitle": "Meghna Group of Industries • Dhaka",
       "period": "Mar 2019 – Present",
@@ -1703,7 +1711,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "8ecc69ec-f43d-4c30-aabe-22ce26ee69cc",
+      "id": "d449abb0-09e5-4f06-b122-a5ffcd6cac1e",
       "title": "Accounts Assistant",
       "subtitle": "Pacific Traders • Dhaka",
       "period": "Jun 2017 – Feb 2019",
@@ -1772,7 +1780,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "491301c7-c632-4188-a678-6d99477192fe",
+      "id": "b64bda87-3bc8-4f73-acd8-773a36244585",
       "title": "Advanced Excel for Finance",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -1794,7 +1802,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "b60d2c53-4fe8-42fb-8bb3-7c856b737804",
+      "id": "9383835c-3640-4c8c-9fb1-7a62858b775c",
       "title": "Employee of the Year",
       "subtitle": "Annual Performance Award • Meghna Group",
       "period": "2021",
@@ -2034,6 +2042,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#5b6572",
     "align": "left",
     "letterSpacing": 0.14,
@@ -2109,7 +2119,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "d4add75a-e744-4fc4-b3e6-b9f22bdec482",
+      "id": "7dc9368c-2f21-4ca2-b542-ff976bb0aa8a",
       "title": "M.Com in Accounting",
       "subtitle": "University of Dhaka",
       "period": "2017",
@@ -2121,7 +2131,7 @@
       "body": ""
      },
      {
-      "id": "108c85e3-bd50-433b-935b-5d9dd8866944",
+      "id": "3a69e862-dd10-4b0e-9fef-476519048b01",
       "title": "B.Com (Hons.)",
       "subtitle": "Jagannath University",
       "period": "2015",
@@ -2144,7 +2154,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "538524ce-7ca7-4951-b4e5-87e06a2b3a04",
+      "id": "397c730f-0e98-4142-92b5-c05da1ed5d9f",
       "title": "Senior Accounts Officer",
       "subtitle": "Meghna Group of Industries • Dhaka",
       "period": "Mar 2019 – Present",
@@ -2158,7 +2168,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "8ecc69ec-f43d-4c30-aabe-22ce26ee69cc",
+      "id": "d449abb0-09e5-4f06-b122-a5ffcd6cac1e",
       "title": "Accounts Assistant",
       "subtitle": "Pacific Traders • Dhaka",
       "period": "Jun 2017 – Feb 2019",
@@ -2227,7 +2237,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "491301c7-c632-4188-a678-6d99477192fe",
+      "id": "b64bda87-3bc8-4f73-acd8-773a36244585",
       "title": "Advanced Excel for Finance",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -2249,7 +2259,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "b60d2c53-4fe8-42fb-8bb3-7c856b737804",
+      "id": "9383835c-3640-4c8c-9fb1-7a62858b775c",
       "title": "Employee of the Year",
       "subtitle": "Annual Performance Award • Meghna Group",
       "period": "2021",
@@ -2489,6 +2499,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#665f4e",
     "align": "left",
     "letterSpacing": 0.14,
@@ -2564,7 +2576,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "d4add75a-e744-4fc4-b3e6-b9f22bdec482",
+      "id": "7dc9368c-2f21-4ca2-b542-ff976bb0aa8a",
       "title": "M.Com in Accounting",
       "subtitle": "University of Dhaka",
       "period": "2017",
@@ -2576,7 +2588,7 @@
       "body": ""
      },
      {
-      "id": "108c85e3-bd50-433b-935b-5d9dd8866944",
+      "id": "3a69e862-dd10-4b0e-9fef-476519048b01",
       "title": "B.Com (Hons.)",
       "subtitle": "Jagannath University",
       "period": "2015",
@@ -2599,7 +2611,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "538524ce-7ca7-4951-b4e5-87e06a2b3a04",
+      "id": "397c730f-0e98-4142-92b5-c05da1ed5d9f",
       "title": "Senior Accounts Officer",
       "subtitle": "Meghna Group of Industries • Dhaka",
       "period": "Mar 2019 – Present",
@@ -2613,7 +2625,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "8ecc69ec-f43d-4c30-aabe-22ce26ee69cc",
+      "id": "d449abb0-09e5-4f06-b122-a5ffcd6cac1e",
       "title": "Accounts Assistant",
       "subtitle": "Pacific Traders • Dhaka",
       "period": "Jun 2017 – Feb 2019",
@@ -2682,7 +2694,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "491301c7-c632-4188-a678-6d99477192fe",
+      "id": "b64bda87-3bc8-4f73-acd8-773a36244585",
       "title": "Advanced Excel for Finance",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -2704,7 +2716,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "b60d2c53-4fe8-42fb-8bb3-7c856b737804",
+      "id": "9383835c-3640-4c8c-9fb1-7a62858b775c",
       "title": "Employee of the Year",
       "subtitle": "Annual Performance Award • Meghna Group",
       "period": "2021",
@@ -2945,6 +2957,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#5d6874",
     "align": "left",
     "letterSpacing": 0.14,
@@ -3020,7 +3034,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "d4add75a-e744-4fc4-b3e6-b9f22bdec482",
+      "id": "7dc9368c-2f21-4ca2-b542-ff976bb0aa8a",
       "title": "M.Com in Accounting",
       "subtitle": "University of Dhaka",
       "period": "2017",
@@ -3032,7 +3046,7 @@
       "body": ""
      },
      {
-      "id": "108c85e3-bd50-433b-935b-5d9dd8866944",
+      "id": "3a69e862-dd10-4b0e-9fef-476519048b01",
       "title": "B.Com (Hons.)",
       "subtitle": "Jagannath University",
       "period": "2015",
@@ -3055,7 +3069,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "538524ce-7ca7-4951-b4e5-87e06a2b3a04",
+      "id": "397c730f-0e98-4142-92b5-c05da1ed5d9f",
       "title": "Senior Accounts Officer",
       "subtitle": "Meghna Group of Industries • Dhaka",
       "period": "Mar 2019 – Present",
@@ -3069,7 +3083,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "8ecc69ec-f43d-4c30-aabe-22ce26ee69cc",
+      "id": "d449abb0-09e5-4f06-b122-a5ffcd6cac1e",
       "title": "Accounts Assistant",
       "subtitle": "Pacific Traders • Dhaka",
       "period": "Jun 2017 – Feb 2019",
@@ -3138,7 +3152,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "491301c7-c632-4188-a678-6d99477192fe",
+      "id": "b64bda87-3bc8-4f73-acd8-773a36244585",
       "title": "Advanced Excel for Finance",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -3160,7 +3174,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "b60d2c53-4fe8-42fb-8bb3-7c856b737804",
+      "id": "9383835c-3640-4c8c-9fb1-7a62858b775c",
       "title": "Employee of the Year",
       "subtitle": "Annual Performance Award • Meghna Group",
       "period": "2021",
@@ -3400,6 +3414,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#626b74",
     "align": "left",
     "letterSpacing": 0.14,
@@ -3475,7 +3491,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "d4add75a-e744-4fc4-b3e6-b9f22bdec482",
+      "id": "7dc9368c-2f21-4ca2-b542-ff976bb0aa8a",
       "title": "M.Com in Accounting",
       "subtitle": "University of Dhaka",
       "period": "2017",
@@ -3487,7 +3503,7 @@
       "body": ""
      },
      {
-      "id": "108c85e3-bd50-433b-935b-5d9dd8866944",
+      "id": "3a69e862-dd10-4b0e-9fef-476519048b01",
       "title": "B.Com (Hons.)",
       "subtitle": "Jagannath University",
       "period": "2015",
@@ -3510,7 +3526,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "538524ce-7ca7-4951-b4e5-87e06a2b3a04",
+      "id": "397c730f-0e98-4142-92b5-c05da1ed5d9f",
       "title": "Senior Accounts Officer",
       "subtitle": "Meghna Group of Industries • Dhaka",
       "period": "Mar 2019 – Present",
@@ -3524,7 +3540,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "8ecc69ec-f43d-4c30-aabe-22ce26ee69cc",
+      "id": "d449abb0-09e5-4f06-b122-a5ffcd6cac1e",
       "title": "Accounts Assistant",
       "subtitle": "Pacific Traders • Dhaka",
       "period": "Jun 2017 – Feb 2019",
@@ -3593,7 +3609,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "491301c7-c632-4188-a678-6d99477192fe",
+      "id": "b64bda87-3bc8-4f73-acd8-773a36244585",
       "title": "Advanced Excel for Finance",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -3615,7 +3631,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "b60d2c53-4fe8-42fb-8bb3-7c856b737804",
+      "id": "9383835c-3640-4c8c-9fb1-7a62858b775c",
       "title": "Employee of the Year",
       "subtitle": "Annual Performance Award • Meghna Group",
       "period": "2021",
@@ -3855,6 +3871,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#59616a",
     "align": "left",
     "letterSpacing": 0.14,
@@ -3930,7 +3948,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "d4add75a-e744-4fc4-b3e6-b9f22bdec482",
+      "id": "7dc9368c-2f21-4ca2-b542-ff976bb0aa8a",
       "title": "M.Com in Accounting",
       "subtitle": "University of Dhaka",
       "period": "2017",
@@ -3942,7 +3960,7 @@
       "body": ""
      },
      {
-      "id": "108c85e3-bd50-433b-935b-5d9dd8866944",
+      "id": "3a69e862-dd10-4b0e-9fef-476519048b01",
       "title": "B.Com (Hons.)",
       "subtitle": "Jagannath University",
       "period": "2015",
@@ -3965,7 +3983,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "538524ce-7ca7-4951-b4e5-87e06a2b3a04",
+      "id": "397c730f-0e98-4142-92b5-c05da1ed5d9f",
       "title": "Senior Accounts Officer",
       "subtitle": "Meghna Group of Industries • Dhaka",
       "period": "Mar 2019 – Present",
@@ -3979,7 +3997,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "8ecc69ec-f43d-4c30-aabe-22ce26ee69cc",
+      "id": "d449abb0-09e5-4f06-b122-a5ffcd6cac1e",
       "title": "Accounts Assistant",
       "subtitle": "Pacific Traders • Dhaka",
       "period": "Jun 2017 – Feb 2019",
@@ -4048,7 +4066,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "491301c7-c632-4188-a678-6d99477192fe",
+      "id": "b64bda87-3bc8-4f73-acd8-773a36244585",
       "title": "Advanced Excel for Finance",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -4070,7 +4088,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "b60d2c53-4fe8-42fb-8bb3-7c856b737804",
+      "id": "9383835c-3640-4c8c-9fb1-7a62858b775c",
       "title": "Employee of the Year",
       "subtitle": "Annual Performance Award • Meghna Group",
       "period": "2021",
@@ -4310,6 +4328,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#5f6873",
     "align": "left",
     "letterSpacing": 0.14,
@@ -4385,7 +4405,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "d4add75a-e744-4fc4-b3e6-b9f22bdec482",
+      "id": "7dc9368c-2f21-4ca2-b542-ff976bb0aa8a",
       "title": "M.Com in Accounting",
       "subtitle": "University of Dhaka",
       "period": "2017",
@@ -4397,7 +4417,7 @@
       "body": ""
      },
      {
-      "id": "108c85e3-bd50-433b-935b-5d9dd8866944",
+      "id": "3a69e862-dd10-4b0e-9fef-476519048b01",
       "title": "B.Com (Hons.)",
       "subtitle": "Jagannath University",
       "period": "2015",
@@ -4420,7 +4440,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "538524ce-7ca7-4951-b4e5-87e06a2b3a04",
+      "id": "397c730f-0e98-4142-92b5-c05da1ed5d9f",
       "title": "Senior Accounts Officer",
       "subtitle": "Meghna Group of Industries • Dhaka",
       "period": "Mar 2019 – Present",
@@ -4434,7 +4454,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "8ecc69ec-f43d-4c30-aabe-22ce26ee69cc",
+      "id": "d449abb0-09e5-4f06-b122-a5ffcd6cac1e",
       "title": "Accounts Assistant",
       "subtitle": "Pacific Traders • Dhaka",
       "period": "Jun 2017 – Feb 2019",
@@ -4503,7 +4523,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "491301c7-c632-4188-a678-6d99477192fe",
+      "id": "b64bda87-3bc8-4f73-acd8-773a36244585",
       "title": "Advanced Excel for Finance",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -4525,7 +4545,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "b60d2c53-4fe8-42fb-8bb3-7c856b737804",
+      "id": "9383835c-3640-4c8c-9fb1-7a62858b775c",
       "title": "Employee of the Year",
       "subtitle": "Annual Performance Award • Meghna Group",
       "period": "2021",
@@ -4765,6 +4785,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#536363",
     "align": "left",
     "letterSpacing": 0.14,
@@ -4840,7 +4862,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "d4add75a-e744-4fc4-b3e6-b9f22bdec482",
+      "id": "7dc9368c-2f21-4ca2-b542-ff976bb0aa8a",
       "title": "M.Com in Accounting",
       "subtitle": "University of Dhaka",
       "period": "2017",
@@ -4852,7 +4874,7 @@
       "body": ""
      },
      {
-      "id": "108c85e3-bd50-433b-935b-5d9dd8866944",
+      "id": "3a69e862-dd10-4b0e-9fef-476519048b01",
       "title": "B.Com (Hons.)",
       "subtitle": "Jagannath University",
       "period": "2015",
@@ -4875,7 +4897,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "538524ce-7ca7-4951-b4e5-87e06a2b3a04",
+      "id": "397c730f-0e98-4142-92b5-c05da1ed5d9f",
       "title": "Senior Accounts Officer",
       "subtitle": "Meghna Group of Industries • Dhaka",
       "period": "Mar 2019 – Present",
@@ -4889,7 +4911,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "8ecc69ec-f43d-4c30-aabe-22ce26ee69cc",
+      "id": "d449abb0-09e5-4f06-b122-a5ffcd6cac1e",
       "title": "Accounts Assistant",
       "subtitle": "Pacific Traders • Dhaka",
       "period": "Jun 2017 – Feb 2019",
@@ -4958,7 +4980,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "491301c7-c632-4188-a678-6d99477192fe",
+      "id": "b64bda87-3bc8-4f73-acd8-773a36244585",
       "title": "Advanced Excel for Finance",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -4980,7 +5002,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "b60d2c53-4fe8-42fb-8bb3-7c856b737804",
+      "id": "9383835c-3640-4c8c-9fb1-7a62858b775c",
       "title": "Employee of the Year",
       "subtitle": "Annual Performance Award • Meghna Group",
       "period": "2021",
@@ -5220,6 +5242,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#566360",
     "align": "left",
     "letterSpacing": 0.14,
@@ -5295,7 +5319,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "d4add75a-e744-4fc4-b3e6-b9f22bdec482",
+      "id": "7dc9368c-2f21-4ca2-b542-ff976bb0aa8a",
       "title": "M.Com in Accounting",
       "subtitle": "University of Dhaka",
       "period": "2017",
@@ -5307,7 +5331,7 @@
       "body": ""
      },
      {
-      "id": "108c85e3-bd50-433b-935b-5d9dd8866944",
+      "id": "3a69e862-dd10-4b0e-9fef-476519048b01",
       "title": "B.Com (Hons.)",
       "subtitle": "Jagannath University",
       "period": "2015",
@@ -5330,7 +5354,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "538524ce-7ca7-4951-b4e5-87e06a2b3a04",
+      "id": "397c730f-0e98-4142-92b5-c05da1ed5d9f",
       "title": "Senior Accounts Officer",
       "subtitle": "Meghna Group of Industries • Dhaka",
       "period": "Mar 2019 – Present",
@@ -5344,7 +5368,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "8ecc69ec-f43d-4c30-aabe-22ce26ee69cc",
+      "id": "d449abb0-09e5-4f06-b122-a5ffcd6cac1e",
       "title": "Accounts Assistant",
       "subtitle": "Pacific Traders • Dhaka",
       "period": "Jun 2017 – Feb 2019",
@@ -5413,7 +5437,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "491301c7-c632-4188-a678-6d99477192fe",
+      "id": "b64bda87-3bc8-4f73-acd8-773a36244585",
       "title": "Advanced Excel for Finance",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -5435,7 +5459,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "b60d2c53-4fe8-42fb-8bb3-7c856b737804",
+      "id": "9383835c-3640-4c8c-9fb1-7a62858b775c",
       "title": "Employee of the Year",
       "subtitle": "Annual Performance Award • Meghna Group",
       "period": "2021",
@@ -5675,6 +5699,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#5b6572",
     "align": "left",
     "letterSpacing": 0.14,
@@ -5750,7 +5776,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "d4add75a-e744-4fc4-b3e6-b9f22bdec482",
+      "id": "7dc9368c-2f21-4ca2-b542-ff976bb0aa8a",
       "title": "M.Com in Accounting",
       "subtitle": "University of Dhaka",
       "period": "2017",
@@ -5762,7 +5788,7 @@
       "body": ""
      },
      {
-      "id": "108c85e3-bd50-433b-935b-5d9dd8866944",
+      "id": "3a69e862-dd10-4b0e-9fef-476519048b01",
       "title": "B.Com (Hons.)",
       "subtitle": "Jagannath University",
       "period": "2015",
@@ -5785,7 +5811,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "538524ce-7ca7-4951-b4e5-87e06a2b3a04",
+      "id": "397c730f-0e98-4142-92b5-c05da1ed5d9f",
       "title": "Senior Accounts Officer",
       "subtitle": "Meghna Group of Industries • Dhaka",
       "period": "Mar 2019 – Present",
@@ -5799,7 +5825,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "8ecc69ec-f43d-4c30-aabe-22ce26ee69cc",
+      "id": "d449abb0-09e5-4f06-b122-a5ffcd6cac1e",
       "title": "Accounts Assistant",
       "subtitle": "Pacific Traders • Dhaka",
       "period": "Jun 2017 – Feb 2019",
@@ -5868,7 +5894,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "491301c7-c632-4188-a678-6d99477192fe",
+      "id": "b64bda87-3bc8-4f73-acd8-773a36244585",
       "title": "Advanced Excel for Finance",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -5890,7 +5916,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "b60d2c53-4fe8-42fb-8bb3-7c856b737804",
+      "id": "9383835c-3640-4c8c-9fb1-7a62858b775c",
       "title": "Employee of the Year",
       "subtitle": "Annual Performance Award • Meghna Group",
       "period": "2021",
@@ -6130,6 +6156,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#665a5e",
     "align": "left",
     "letterSpacing": 0.14,
@@ -6205,7 +6233,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "d4add75a-e744-4fc4-b3e6-b9f22bdec482",
+      "id": "7dc9368c-2f21-4ca2-b542-ff976bb0aa8a",
       "title": "M.Com in Accounting",
       "subtitle": "University of Dhaka",
       "period": "2017",
@@ -6217,7 +6245,7 @@
       "body": ""
      },
      {
-      "id": "108c85e3-bd50-433b-935b-5d9dd8866944",
+      "id": "3a69e862-dd10-4b0e-9fef-476519048b01",
       "title": "B.Com (Hons.)",
       "subtitle": "Jagannath University",
       "period": "2015",
@@ -6240,7 +6268,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "538524ce-7ca7-4951-b4e5-87e06a2b3a04",
+      "id": "397c730f-0e98-4142-92b5-c05da1ed5d9f",
       "title": "Senior Accounts Officer",
       "subtitle": "Meghna Group of Industries • Dhaka",
       "period": "Mar 2019 – Present",
@@ -6254,7 +6282,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "8ecc69ec-f43d-4c30-aabe-22ce26ee69cc",
+      "id": "d449abb0-09e5-4f06-b122-a5ffcd6cac1e",
       "title": "Accounts Assistant",
       "subtitle": "Pacific Traders • Dhaka",
       "period": "Jun 2017 – Feb 2019",
@@ -6323,7 +6351,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "491301c7-c632-4188-a678-6d99477192fe",
+      "id": "b64bda87-3bc8-4f73-acd8-773a36244585",
       "title": "Advanced Excel for Finance",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -6345,7 +6373,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "b60d2c53-4fe8-42fb-8bb3-7c856b737804",
+      "id": "9383835c-3640-4c8c-9fb1-7a62858b775c",
       "title": "Employee of the Year",
       "subtitle": "Annual Performance Award • Meghna Group",
       "period": "2021",
@@ -6585,6 +6613,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#536363",
     "align": "left",
     "letterSpacing": 0.14,
@@ -6660,7 +6690,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "d4add75a-e744-4fc4-b3e6-b9f22bdec482",
+      "id": "7dc9368c-2f21-4ca2-b542-ff976bb0aa8a",
       "title": "M.Com in Accounting",
       "subtitle": "University of Dhaka",
       "period": "2017",
@@ -6672,7 +6702,7 @@
       "body": ""
      },
      {
-      "id": "108c85e3-bd50-433b-935b-5d9dd8866944",
+      "id": "3a69e862-dd10-4b0e-9fef-476519048b01",
       "title": "B.Com (Hons.)",
       "subtitle": "Jagannath University",
       "period": "2015",
@@ -6695,7 +6725,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "538524ce-7ca7-4951-b4e5-87e06a2b3a04",
+      "id": "397c730f-0e98-4142-92b5-c05da1ed5d9f",
       "title": "Senior Accounts Officer",
       "subtitle": "Meghna Group of Industries • Dhaka",
       "period": "Mar 2019 – Present",
@@ -6709,7 +6739,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "8ecc69ec-f43d-4c30-aabe-22ce26ee69cc",
+      "id": "d449abb0-09e5-4f06-b122-a5ffcd6cac1e",
       "title": "Accounts Assistant",
       "subtitle": "Pacific Traders • Dhaka",
       "period": "Jun 2017 – Feb 2019",
@@ -6778,7 +6808,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "491301c7-c632-4188-a678-6d99477192fe",
+      "id": "b64bda87-3bc8-4f73-acd8-773a36244585",
       "title": "Advanced Excel for Finance",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -6800,7 +6830,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "b60d2c53-4fe8-42fb-8bb3-7c856b737804",
+      "id": "9383835c-3640-4c8c-9fb1-7a62858b775c",
       "title": "Employee of the Year",
       "subtitle": "Annual Performance Award • Meghna Group",
       "period": "2021",
@@ -7040,6 +7070,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#5d6874",
     "align": "left",
     "letterSpacing": 0.14,
@@ -7115,7 +7147,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "d4add75a-e744-4fc4-b3e6-b9f22bdec482",
+      "id": "7dc9368c-2f21-4ca2-b542-ff976bb0aa8a",
       "title": "M.Com in Accounting",
       "subtitle": "University of Dhaka",
       "period": "2017",
@@ -7127,7 +7159,7 @@
       "body": ""
      },
      {
-      "id": "108c85e3-bd50-433b-935b-5d9dd8866944",
+      "id": "3a69e862-dd10-4b0e-9fef-476519048b01",
       "title": "B.Com (Hons.)",
       "subtitle": "Jagannath University",
       "period": "2015",
@@ -7150,7 +7182,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "538524ce-7ca7-4951-b4e5-87e06a2b3a04",
+      "id": "397c730f-0e98-4142-92b5-c05da1ed5d9f",
       "title": "Senior Accounts Officer",
       "subtitle": "Meghna Group of Industries • Dhaka",
       "period": "Mar 2019 – Present",
@@ -7164,7 +7196,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "8ecc69ec-f43d-4c30-aabe-22ce26ee69cc",
+      "id": "d449abb0-09e5-4f06-b122-a5ffcd6cac1e",
       "title": "Accounts Assistant",
       "subtitle": "Pacific Traders • Dhaka",
       "period": "Jun 2017 – Feb 2019",
@@ -7233,7 +7265,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "491301c7-c632-4188-a678-6d99477192fe",
+      "id": "b64bda87-3bc8-4f73-acd8-773a36244585",
       "title": "Advanced Excel for Finance",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -7255,7 +7287,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "b60d2c53-4fe8-42fb-8bb3-7c856b737804",
+      "id": "9383835c-3640-4c8c-9fb1-7a62858b775c",
       "title": "Employee of the Year",
       "subtitle": "Annual Performance Award • Meghna Group",
       "period": "2021",
@@ -7495,6 +7527,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#5b6572",
     "align": "left",
     "letterSpacing": 0.14,
@@ -7570,7 +7604,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "d4add75a-e744-4fc4-b3e6-b9f22bdec482",
+      "id": "7dc9368c-2f21-4ca2-b542-ff976bb0aa8a",
       "title": "M.Com in Accounting",
       "subtitle": "University of Dhaka",
       "period": "2017",
@@ -7582,7 +7616,7 @@
       "body": ""
      },
      {
-      "id": "108c85e3-bd50-433b-935b-5d9dd8866944",
+      "id": "3a69e862-dd10-4b0e-9fef-476519048b01",
       "title": "B.Com (Hons.)",
       "subtitle": "Jagannath University",
       "period": "2015",
@@ -7605,7 +7639,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "538524ce-7ca7-4951-b4e5-87e06a2b3a04",
+      "id": "397c730f-0e98-4142-92b5-c05da1ed5d9f",
       "title": "Senior Accounts Officer",
       "subtitle": "Meghna Group of Industries • Dhaka",
       "period": "Mar 2019 – Present",
@@ -7619,7 +7653,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "8ecc69ec-f43d-4c30-aabe-22ce26ee69cc",
+      "id": "d449abb0-09e5-4f06-b122-a5ffcd6cac1e",
       "title": "Accounts Assistant",
       "subtitle": "Pacific Traders • Dhaka",
       "period": "Jun 2017 – Feb 2019",
@@ -7688,7 +7722,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "491301c7-c632-4188-a678-6d99477192fe",
+      "id": "b64bda87-3bc8-4f73-acd8-773a36244585",
       "title": "Advanced Excel for Finance",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -7710,7 +7744,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "b60d2c53-4fe8-42fb-8bb3-7c856b737804",
+      "id": "9383835c-3640-4c8c-9fb1-7a62858b775c",
       "title": "Employee of the Year",
       "subtitle": "Annual Performance Award • Meghna Group",
       "period": "2021",
@@ -7951,6 +7985,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#5f6873",
     "align": "left",
     "letterSpacing": 0.14,
@@ -8026,7 +8062,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "d4add75a-e744-4fc4-b3e6-b9f22bdec482",
+      "id": "7dc9368c-2f21-4ca2-b542-ff976bb0aa8a",
       "title": "M.Com in Accounting",
       "subtitle": "University of Dhaka",
       "period": "2017",
@@ -8038,7 +8074,7 @@
       "body": ""
      },
      {
-      "id": "108c85e3-bd50-433b-935b-5d9dd8866944",
+      "id": "3a69e862-dd10-4b0e-9fef-476519048b01",
       "title": "B.Com (Hons.)",
       "subtitle": "Jagannath University",
       "period": "2015",
@@ -8061,7 +8097,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "538524ce-7ca7-4951-b4e5-87e06a2b3a04",
+      "id": "397c730f-0e98-4142-92b5-c05da1ed5d9f",
       "title": "Senior Accounts Officer",
       "subtitle": "Meghna Group of Industries • Dhaka",
       "period": "Mar 2019 – Present",
@@ -8075,7 +8111,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "8ecc69ec-f43d-4c30-aabe-22ce26ee69cc",
+      "id": "d449abb0-09e5-4f06-b122-a5ffcd6cac1e",
       "title": "Accounts Assistant",
       "subtitle": "Pacific Traders • Dhaka",
       "period": "Jun 2017 – Feb 2019",
@@ -8144,7 +8180,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "491301c7-c632-4188-a678-6d99477192fe",
+      "id": "b64bda87-3bc8-4f73-acd8-773a36244585",
       "title": "Advanced Excel for Finance",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -8166,7 +8202,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "b60d2c53-4fe8-42fb-8bb3-7c856b737804",
+      "id": "9383835c-3640-4c8c-9fb1-7a62858b775c",
       "title": "Employee of the Year",
       "subtitle": "Annual Performance Award • Meghna Group",
       "period": "2021",
@@ -8406,6 +8442,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#665a5e",
     "align": "left",
     "letterSpacing": 0.14,
@@ -8481,7 +8519,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "d4add75a-e744-4fc4-b3e6-b9f22bdec482",
+      "id": "7dc9368c-2f21-4ca2-b542-ff976bb0aa8a",
       "title": "M.Com in Accounting",
       "subtitle": "University of Dhaka",
       "period": "2017",
@@ -8493,7 +8531,7 @@
       "body": ""
      },
      {
-      "id": "108c85e3-bd50-433b-935b-5d9dd8866944",
+      "id": "3a69e862-dd10-4b0e-9fef-476519048b01",
       "title": "B.Com (Hons.)",
       "subtitle": "Jagannath University",
       "period": "2015",
@@ -8516,7 +8554,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "538524ce-7ca7-4951-b4e5-87e06a2b3a04",
+      "id": "397c730f-0e98-4142-92b5-c05da1ed5d9f",
       "title": "Senior Accounts Officer",
       "subtitle": "Meghna Group of Industries • Dhaka",
       "period": "Mar 2019 – Present",
@@ -8530,7 +8568,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "8ecc69ec-f43d-4c30-aabe-22ce26ee69cc",
+      "id": "d449abb0-09e5-4f06-b122-a5ffcd6cac1e",
       "title": "Accounts Assistant",
       "subtitle": "Pacific Traders • Dhaka",
       "period": "Jun 2017 – Feb 2019",
@@ -8599,7 +8637,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "491301c7-c632-4188-a678-6d99477192fe",
+      "id": "b64bda87-3bc8-4f73-acd8-773a36244585",
       "title": "Advanced Excel for Finance",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -8621,7 +8659,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "b60d2c53-4fe8-42fb-8bb3-7c856b737804",
+      "id": "9383835c-3640-4c8c-9fb1-7a62858b775c",
       "title": "Employee of the Year",
       "subtitle": "Annual Performance Award • Meghna Group",
       "period": "2021",
@@ -8861,6 +8899,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#626b74",
     "align": "left",
     "letterSpacing": 0.14,
@@ -8936,7 +8976,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "d4add75a-e744-4fc4-b3e6-b9f22bdec482",
+      "id": "7dc9368c-2f21-4ca2-b542-ff976bb0aa8a",
       "title": "M.Com in Accounting",
       "subtitle": "University of Dhaka",
       "period": "2017",
@@ -8948,7 +8988,7 @@
       "body": ""
      },
      {
-      "id": "108c85e3-bd50-433b-935b-5d9dd8866944",
+      "id": "3a69e862-dd10-4b0e-9fef-476519048b01",
       "title": "B.Com (Hons.)",
       "subtitle": "Jagannath University",
       "period": "2015",
@@ -8971,7 +9011,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "538524ce-7ca7-4951-b4e5-87e06a2b3a04",
+      "id": "397c730f-0e98-4142-92b5-c05da1ed5d9f",
       "title": "Senior Accounts Officer",
       "subtitle": "Meghna Group of Industries • Dhaka",
       "period": "Mar 2019 – Present",
@@ -8985,7 +9025,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "8ecc69ec-f43d-4c30-aabe-22ce26ee69cc",
+      "id": "d449abb0-09e5-4f06-b122-a5ffcd6cac1e",
       "title": "Accounts Assistant",
       "subtitle": "Pacific Traders • Dhaka",
       "period": "Jun 2017 – Feb 2019",
@@ -9054,7 +9094,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "491301c7-c632-4188-a678-6d99477192fe",
+      "id": "b64bda87-3bc8-4f73-acd8-773a36244585",
       "title": "Advanced Excel for Finance",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -9076,7 +9116,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "b60d2c53-4fe8-42fb-8bb3-7c856b737804",
+      "id": "9383835c-3640-4c8c-9fb1-7a62858b775c",
       "title": "Employee of the Year",
       "subtitle": "Annual Performance Award • Meghna Group",
       "period": "2021",
@@ -9317,6 +9357,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#626b74",
     "align": "left",
     "letterSpacing": 0.14,
@@ -9392,7 +9434,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "d4add75a-e744-4fc4-b3e6-b9f22bdec482",
+      "id": "7dc9368c-2f21-4ca2-b542-ff976bb0aa8a",
       "title": "M.Com in Accounting",
       "subtitle": "University of Dhaka",
       "period": "2017",
@@ -9404,7 +9446,7 @@
       "body": ""
      },
      {
-      "id": "108c85e3-bd50-433b-935b-5d9dd8866944",
+      "id": "3a69e862-dd10-4b0e-9fef-476519048b01",
       "title": "B.Com (Hons.)",
       "subtitle": "Jagannath University",
       "period": "2015",
@@ -9427,7 +9469,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "538524ce-7ca7-4951-b4e5-87e06a2b3a04",
+      "id": "397c730f-0e98-4142-92b5-c05da1ed5d9f",
       "title": "Senior Accounts Officer",
       "subtitle": "Meghna Group of Industries • Dhaka",
       "period": "Mar 2019 – Present",
@@ -9441,7 +9483,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "8ecc69ec-f43d-4c30-aabe-22ce26ee69cc",
+      "id": "d449abb0-09e5-4f06-b122-a5ffcd6cac1e",
       "title": "Accounts Assistant",
       "subtitle": "Pacific Traders • Dhaka",
       "period": "Jun 2017 – Feb 2019",
@@ -9510,7 +9552,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "491301c7-c632-4188-a678-6d99477192fe",
+      "id": "b64bda87-3bc8-4f73-acd8-773a36244585",
       "title": "Advanced Excel for Finance",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -9532,7 +9574,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "b60d2c53-4fe8-42fb-8bb3-7c856b737804",
+      "id": "9383835c-3640-4c8c-9fb1-7a62858b775c",
       "title": "Employee of the Year",
       "subtitle": "Annual Performance Award • Meghna Group",
       "period": "2021",
@@ -9773,6 +9815,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#5d6874",
     "align": "left",
     "letterSpacing": 0.14,
@@ -9848,7 +9892,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "d4add75a-e744-4fc4-b3e6-b9f22bdec482",
+      "id": "7dc9368c-2f21-4ca2-b542-ff976bb0aa8a",
       "title": "M.Com in Accounting",
       "subtitle": "University of Dhaka",
       "period": "2017",
@@ -9860,7 +9904,7 @@
       "body": ""
      },
      {
-      "id": "108c85e3-bd50-433b-935b-5d9dd8866944",
+      "id": "3a69e862-dd10-4b0e-9fef-476519048b01",
       "title": "B.Com (Hons.)",
       "subtitle": "Jagannath University",
       "period": "2015",
@@ -9883,7 +9927,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "538524ce-7ca7-4951-b4e5-87e06a2b3a04",
+      "id": "397c730f-0e98-4142-92b5-c05da1ed5d9f",
       "title": "Senior Accounts Officer",
       "subtitle": "Meghna Group of Industries • Dhaka",
       "period": "Mar 2019 – Present",
@@ -9897,7 +9941,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "8ecc69ec-f43d-4c30-aabe-22ce26ee69cc",
+      "id": "d449abb0-09e5-4f06-b122-a5ffcd6cac1e",
       "title": "Accounts Assistant",
       "subtitle": "Pacific Traders • Dhaka",
       "period": "Jun 2017 – Feb 2019",
@@ -9966,7 +10010,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "491301c7-c632-4188-a678-6d99477192fe",
+      "id": "b64bda87-3bc8-4f73-acd8-773a36244585",
       "title": "Advanced Excel for Finance",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -9988,7 +10032,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "b60d2c53-4fe8-42fb-8bb3-7c856b737804",
+      "id": "9383835c-3640-4c8c-9fb1-7a62858b775c",
       "title": "Employee of the Year",
       "subtitle": "Annual Performance Award • Meghna Group",
       "period": "2021",
@@ -10228,6 +10272,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#5f6873",
     "align": "left",
     "letterSpacing": 0.14,
@@ -10303,7 +10349,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "d4add75a-e744-4fc4-b3e6-b9f22bdec482",
+      "id": "7dc9368c-2f21-4ca2-b542-ff976bb0aa8a",
       "title": "M.Com in Accounting",
       "subtitle": "University of Dhaka",
       "period": "2017",
@@ -10315,7 +10361,7 @@
       "body": ""
      },
      {
-      "id": "108c85e3-bd50-433b-935b-5d9dd8866944",
+      "id": "3a69e862-dd10-4b0e-9fef-476519048b01",
       "title": "B.Com (Hons.)",
       "subtitle": "Jagannath University",
       "period": "2015",
@@ -10338,7 +10384,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "538524ce-7ca7-4951-b4e5-87e06a2b3a04",
+      "id": "397c730f-0e98-4142-92b5-c05da1ed5d9f",
       "title": "Senior Accounts Officer",
       "subtitle": "Meghna Group of Industries • Dhaka",
       "period": "Mar 2019 – Present",
@@ -10352,7 +10398,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "8ecc69ec-f43d-4c30-aabe-22ce26ee69cc",
+      "id": "d449abb0-09e5-4f06-b122-a5ffcd6cac1e",
       "title": "Accounts Assistant",
       "subtitle": "Pacific Traders • Dhaka",
       "period": "Jun 2017 – Feb 2019",
@@ -10421,7 +10467,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "491301c7-c632-4188-a678-6d99477192fe",
+      "id": "b64bda87-3bc8-4f73-acd8-773a36244585",
       "title": "Advanced Excel for Finance",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -10443,7 +10489,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "b60d2c53-4fe8-42fb-8bb3-7c856b737804",
+      "id": "9383835c-3640-4c8c-9fb1-7a62858b775c",
       "title": "Employee of the Year",
       "subtitle": "Annual Performance Award • Meghna Group",
       "period": "2021",
@@ -10684,6 +10730,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#665f4e",
     "align": "left",
     "letterSpacing": 0.14,
@@ -10759,7 +10807,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "d4add75a-e744-4fc4-b3e6-b9f22bdec482",
+      "id": "7dc9368c-2f21-4ca2-b542-ff976bb0aa8a",
       "title": "M.Com in Accounting",
       "subtitle": "University of Dhaka",
       "period": "2017",
@@ -10771,7 +10819,7 @@
       "body": ""
      },
      {
-      "id": "108c85e3-bd50-433b-935b-5d9dd8866944",
+      "id": "3a69e862-dd10-4b0e-9fef-476519048b01",
       "title": "B.Com (Hons.)",
       "subtitle": "Jagannath University",
       "period": "2015",
@@ -10794,7 +10842,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "538524ce-7ca7-4951-b4e5-87e06a2b3a04",
+      "id": "397c730f-0e98-4142-92b5-c05da1ed5d9f",
       "title": "Senior Accounts Officer",
       "subtitle": "Meghna Group of Industries • Dhaka",
       "period": "Mar 2019 – Present",
@@ -10808,7 +10856,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "8ecc69ec-f43d-4c30-aabe-22ce26ee69cc",
+      "id": "d449abb0-09e5-4f06-b122-a5ffcd6cac1e",
       "title": "Accounts Assistant",
       "subtitle": "Pacific Traders • Dhaka",
       "period": "Jun 2017 – Feb 2019",
@@ -10877,7 +10925,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "491301c7-c632-4188-a678-6d99477192fe",
+      "id": "b64bda87-3bc8-4f73-acd8-773a36244585",
       "title": "Advanced Excel for Finance",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -10899,7 +10947,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "b60d2c53-4fe8-42fb-8bb3-7c856b737804",
+      "id": "9383835c-3640-4c8c-9fb1-7a62858b775c",
       "title": "Employee of the Year",
       "subtitle": "Annual Performance Award • Meghna Group",
       "period": "2021",
@@ -11139,6 +11187,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#59616a",
     "align": "left",
     "letterSpacing": 0.14,
@@ -11214,7 +11264,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "d4add75a-e744-4fc4-b3e6-b9f22bdec482",
+      "id": "7dc9368c-2f21-4ca2-b542-ff976bb0aa8a",
       "title": "M.Com in Accounting",
       "subtitle": "University of Dhaka",
       "period": "2017",
@@ -11226,7 +11276,7 @@
       "body": ""
      },
      {
-      "id": "108c85e3-bd50-433b-935b-5d9dd8866944",
+      "id": "3a69e862-dd10-4b0e-9fef-476519048b01",
       "title": "B.Com (Hons.)",
       "subtitle": "Jagannath University",
       "period": "2015",
@@ -11249,7 +11299,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "538524ce-7ca7-4951-b4e5-87e06a2b3a04",
+      "id": "397c730f-0e98-4142-92b5-c05da1ed5d9f",
       "title": "Senior Accounts Officer",
       "subtitle": "Meghna Group of Industries • Dhaka",
       "period": "Mar 2019 – Present",
@@ -11263,7 +11313,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "8ecc69ec-f43d-4c30-aabe-22ce26ee69cc",
+      "id": "d449abb0-09e5-4f06-b122-a5ffcd6cac1e",
       "title": "Accounts Assistant",
       "subtitle": "Pacific Traders • Dhaka",
       "period": "Jun 2017 – Feb 2019",
@@ -11332,7 +11382,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "491301c7-c632-4188-a678-6d99477192fe",
+      "id": "b64bda87-3bc8-4f73-acd8-773a36244585",
       "title": "Advanced Excel for Finance",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -11354,7 +11404,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "b60d2c53-4fe8-42fb-8bb3-7c856b737804",
+      "id": "9383835c-3640-4c8c-9fb1-7a62858b775c",
       "title": "Employee of the Year",
       "subtitle": "Annual Performance Award • Meghna Group",
       "period": "2021",
@@ -11594,6 +11644,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#5b6572",
     "align": "left",
     "letterSpacing": 0.14,
@@ -11669,7 +11721,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "d4add75a-e744-4fc4-b3e6-b9f22bdec482",
+      "id": "7dc9368c-2f21-4ca2-b542-ff976bb0aa8a",
       "title": "M.Com in Accounting",
       "subtitle": "University of Dhaka",
       "period": "2017",
@@ -11681,7 +11733,7 @@
       "body": ""
      },
      {
-      "id": "108c85e3-bd50-433b-935b-5d9dd8866944",
+      "id": "3a69e862-dd10-4b0e-9fef-476519048b01",
       "title": "B.Com (Hons.)",
       "subtitle": "Jagannath University",
       "period": "2015",
@@ -11704,7 +11756,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "538524ce-7ca7-4951-b4e5-87e06a2b3a04",
+      "id": "397c730f-0e98-4142-92b5-c05da1ed5d9f",
       "title": "Senior Accounts Officer",
       "subtitle": "Meghna Group of Industries • Dhaka",
       "period": "Mar 2019 – Present",
@@ -11718,7 +11770,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "8ecc69ec-f43d-4c30-aabe-22ce26ee69cc",
+      "id": "d449abb0-09e5-4f06-b122-a5ffcd6cac1e",
       "title": "Accounts Assistant",
       "subtitle": "Pacific Traders • Dhaka",
       "period": "Jun 2017 – Feb 2019",
@@ -11787,7 +11839,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "491301c7-c632-4188-a678-6d99477192fe",
+      "id": "b64bda87-3bc8-4f73-acd8-773a36244585",
       "title": "Advanced Excel for Finance",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -11809,7 +11861,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "b60d2c53-4fe8-42fb-8bb3-7c856b737804",
+      "id": "9383835c-3640-4c8c-9fb1-7a62858b775c",
       "title": "Employee of the Year",
       "subtitle": "Annual Performance Award • Meghna Group",
       "period": "2021",
@@ -12050,6 +12102,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#5b6572",
     "align": "left",
     "letterSpacing": 0.14,
@@ -12125,7 +12179,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "d4add75a-e744-4fc4-b3e6-b9f22bdec482",
+      "id": "7dc9368c-2f21-4ca2-b542-ff976bb0aa8a",
       "title": "M.Com in Accounting",
       "subtitle": "University of Dhaka",
       "period": "2017",
@@ -12137,7 +12191,7 @@
       "body": ""
      },
      {
-      "id": "108c85e3-bd50-433b-935b-5d9dd8866944",
+      "id": "3a69e862-dd10-4b0e-9fef-476519048b01",
       "title": "B.Com (Hons.)",
       "subtitle": "Jagannath University",
       "period": "2015",
@@ -12160,7 +12214,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "538524ce-7ca7-4951-b4e5-87e06a2b3a04",
+      "id": "397c730f-0e98-4142-92b5-c05da1ed5d9f",
       "title": "Senior Accounts Officer",
       "subtitle": "Meghna Group of Industries • Dhaka",
       "period": "Mar 2019 – Present",
@@ -12174,7 +12228,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "8ecc69ec-f43d-4c30-aabe-22ce26ee69cc",
+      "id": "d449abb0-09e5-4f06-b122-a5ffcd6cac1e",
       "title": "Accounts Assistant",
       "subtitle": "Pacific Traders • Dhaka",
       "period": "Jun 2017 – Feb 2019",
@@ -12243,7 +12297,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "491301c7-c632-4188-a678-6d99477192fe",
+      "id": "b64bda87-3bc8-4f73-acd8-773a36244585",
       "title": "Advanced Excel for Finance",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -12265,7 +12319,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "b60d2c53-4fe8-42fb-8bb3-7c856b737804",
+      "id": "9383835c-3640-4c8c-9fb1-7a62858b775c",
       "title": "Employee of the Year",
       "subtitle": "Annual Performance Award • Meghna Group",
       "period": "2021",
@@ -12505,6 +12559,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#536363",
     "align": "left",
     "letterSpacing": 0.14,
@@ -12580,7 +12636,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "d4add75a-e744-4fc4-b3e6-b9f22bdec482",
+      "id": "7dc9368c-2f21-4ca2-b542-ff976bb0aa8a",
       "title": "M.Com in Accounting",
       "subtitle": "University of Dhaka",
       "period": "2017",
@@ -12592,7 +12648,7 @@
       "body": ""
      },
      {
-      "id": "108c85e3-bd50-433b-935b-5d9dd8866944",
+      "id": "3a69e862-dd10-4b0e-9fef-476519048b01",
       "title": "B.Com (Hons.)",
       "subtitle": "Jagannath University",
       "period": "2015",
@@ -12615,7 +12671,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "538524ce-7ca7-4951-b4e5-87e06a2b3a04",
+      "id": "397c730f-0e98-4142-92b5-c05da1ed5d9f",
       "title": "Senior Accounts Officer",
       "subtitle": "Meghna Group of Industries • Dhaka",
       "period": "Mar 2019 – Present",
@@ -12629,7 +12685,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "8ecc69ec-f43d-4c30-aabe-22ce26ee69cc",
+      "id": "d449abb0-09e5-4f06-b122-a5ffcd6cac1e",
       "title": "Accounts Assistant",
       "subtitle": "Pacific Traders • Dhaka",
       "period": "Jun 2017 – Feb 2019",
@@ -12698,7 +12754,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "491301c7-c632-4188-a678-6d99477192fe",
+      "id": "b64bda87-3bc8-4f73-acd8-773a36244585",
       "title": "Advanced Excel for Finance",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -12720,7 +12776,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "b60d2c53-4fe8-42fb-8bb3-7c856b737804",
+      "id": "9383835c-3640-4c8c-9fb1-7a62858b775c",
       "title": "Employee of the Year",
       "subtitle": "Annual Performance Award • Meghna Group",
       "period": "2021",
@@ -12961,6 +13017,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#5f6873",
     "align": "left",
     "letterSpacing": 0.14,
@@ -13036,7 +13094,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "d4add75a-e744-4fc4-b3e6-b9f22bdec482",
+      "id": "7dc9368c-2f21-4ca2-b542-ff976bb0aa8a",
       "title": "M.Com in Accounting",
       "subtitle": "University of Dhaka",
       "period": "2017",
@@ -13048,7 +13106,7 @@
       "body": ""
      },
      {
-      "id": "108c85e3-bd50-433b-935b-5d9dd8866944",
+      "id": "3a69e862-dd10-4b0e-9fef-476519048b01",
       "title": "B.Com (Hons.)",
       "subtitle": "Jagannath University",
       "period": "2015",
@@ -13071,7 +13129,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "538524ce-7ca7-4951-b4e5-87e06a2b3a04",
+      "id": "397c730f-0e98-4142-92b5-c05da1ed5d9f",
       "title": "Senior Accounts Officer",
       "subtitle": "Meghna Group of Industries • Dhaka",
       "period": "Mar 2019 – Present",
@@ -13085,7 +13143,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "8ecc69ec-f43d-4c30-aabe-22ce26ee69cc",
+      "id": "d449abb0-09e5-4f06-b122-a5ffcd6cac1e",
       "title": "Accounts Assistant",
       "subtitle": "Pacific Traders • Dhaka",
       "period": "Jun 2017 – Feb 2019",
@@ -13154,7 +13212,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "491301c7-c632-4188-a678-6d99477192fe",
+      "id": "b64bda87-3bc8-4f73-acd8-773a36244585",
       "title": "Advanced Excel for Finance",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -13176,7 +13234,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "b60d2c53-4fe8-42fb-8bb3-7c856b737804",
+      "id": "9383835c-3640-4c8c-9fb1-7a62858b775c",
       "title": "Employee of the Year",
       "subtitle": "Annual Performance Award • Meghna Group",
       "period": "2021",
@@ -13416,6 +13474,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#566360",
     "align": "left",
     "letterSpacing": 0.14,
@@ -13491,7 +13551,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "d4add75a-e744-4fc4-b3e6-b9f22bdec482",
+      "id": "7dc9368c-2f21-4ca2-b542-ff976bb0aa8a",
       "title": "M.Com in Accounting",
       "subtitle": "University of Dhaka",
       "period": "2017",
@@ -13503,7 +13563,7 @@
       "body": ""
      },
      {
-      "id": "108c85e3-bd50-433b-935b-5d9dd8866944",
+      "id": "3a69e862-dd10-4b0e-9fef-476519048b01",
       "title": "B.Com (Hons.)",
       "subtitle": "Jagannath University",
       "period": "2015",
@@ -13526,7 +13586,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "538524ce-7ca7-4951-b4e5-87e06a2b3a04",
+      "id": "397c730f-0e98-4142-92b5-c05da1ed5d9f",
       "title": "Senior Accounts Officer",
       "subtitle": "Meghna Group of Industries • Dhaka",
       "period": "Mar 2019 – Present",
@@ -13540,7 +13600,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "8ecc69ec-f43d-4c30-aabe-22ce26ee69cc",
+      "id": "d449abb0-09e5-4f06-b122-a5ffcd6cac1e",
       "title": "Accounts Assistant",
       "subtitle": "Pacific Traders • Dhaka",
       "period": "Jun 2017 – Feb 2019",
@@ -13609,7 +13669,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "491301c7-c632-4188-a678-6d99477192fe",
+      "id": "b64bda87-3bc8-4f73-acd8-773a36244585",
       "title": "Advanced Excel for Finance",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -13631,7 +13691,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "b60d2c53-4fe8-42fb-8bb3-7c856b737804",
+      "id": "9383835c-3640-4c8c-9fb1-7a62858b775c",
       "title": "Employee of the Year",
       "subtitle": "Annual Performance Award • Meghna Group",
       "period": "2021",
@@ -13871,6 +13931,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#5b6572",
     "align": "left",
     "letterSpacing": 0.14,
@@ -13946,7 +14008,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "dc28dca9-f62d-4101-861d-1190eb78ace7",
+      "id": "d6bd718e-7a99-4545-9b33-ad95c5a6f960",
       "title": "এম.কম (হিসাববিজ্ঞান)",
       "subtitle": "ঢাকা বিশ্ববিদ্যালয়",
       "period": "2017",
@@ -13958,7 +14020,7 @@
       "body": ""
      },
      {
-      "id": "54293639-843a-4870-b497-2561572f08f9",
+      "id": "04e95c3a-31dd-4635-b2e8-16f62f9cd7f1",
       "title": "বি.কম (সম্মান)",
       "subtitle": "জগন্নাথ বিশ্ববিদ্যালয়",
       "period": "2015",
@@ -13981,7 +14043,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "4c6ccea4-5970-4049-abca-c0605444d72e",
+      "id": "8dcf28cd-7647-4c70-b0ff-44acfe6ef938",
       "title": "সিনিয়র অ্যাকাউন্টস অফিসার",
       "subtitle": "মেঘনা গ্রুপ অব ইন্ডাস্ট্রিজ • Dhaka",
       "period": "মার্চ ২০১৯ – বর্তমান",
@@ -13995,7 +14057,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "f960cab2-e93c-440f-8b0a-dcb62ec75df5",
+      "id": "8c84a2c2-4b91-4352-a2a1-79c11a924ccc",
       "title": "অ্যাকাউন্টস এসিস্ট্যান্ট",
       "subtitle": "প্যাসিফিক ট্রেডার্স • Dhaka",
       "period": "জুন ২০১৭ – ফেব্রুয়ারি ২০১৯",
@@ -14064,7 +14126,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "89030982-72df-416b-ad02-43f052f482b8",
+      "id": "d0b6ac86-7e2a-4cdd-9ef5-c622e7c417e7",
       "title": "অ্যাডভান্সড এক্সেল ফর ফাইন্যান্স",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -14086,7 +14148,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "925fd9be-4181-4613-a837-ded1adbb896e",
+      "id": "e571ea8a-fcb5-4613-a453-8b14db76b635",
       "title": "সেরা কর্মকর্তা পুরস্কার",
       "subtitle": "বার্ষিক পারফরম্যান্স অ্যাওয়ার্ড • মেঘনা গ্রুপ",
       "period": "২০২১",
@@ -14327,6 +14389,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#5f6873",
     "align": "left",
     "letterSpacing": 0.14,
@@ -14402,7 +14466,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "dc28dca9-f62d-4101-861d-1190eb78ace7",
+      "id": "d6bd718e-7a99-4545-9b33-ad95c5a6f960",
       "title": "এম.কম (হিসাববিজ্ঞান)",
       "subtitle": "ঢাকা বিশ্ববিদ্যালয়",
       "period": "2017",
@@ -14414,7 +14478,7 @@
       "body": ""
      },
      {
-      "id": "54293639-843a-4870-b497-2561572f08f9",
+      "id": "04e95c3a-31dd-4635-b2e8-16f62f9cd7f1",
       "title": "বি.কম (সম্মান)",
       "subtitle": "জগন্নাথ বিশ্ববিদ্যালয়",
       "period": "2015",
@@ -14437,7 +14501,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "4c6ccea4-5970-4049-abca-c0605444d72e",
+      "id": "8dcf28cd-7647-4c70-b0ff-44acfe6ef938",
       "title": "সিনিয়র অ্যাকাউন্টস অফিসার",
       "subtitle": "মেঘনা গ্রুপ অব ইন্ডাস্ট্রিজ • Dhaka",
       "period": "মার্চ ২০১৯ – বর্তমান",
@@ -14451,7 +14515,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "f960cab2-e93c-440f-8b0a-dcb62ec75df5",
+      "id": "8c84a2c2-4b91-4352-a2a1-79c11a924ccc",
       "title": "অ্যাকাউন্টস এসিস্ট্যান্ট",
       "subtitle": "প্যাসিফিক ট্রেডার্স • Dhaka",
       "period": "জুন ২০১৭ – ফেব্রুয়ারি ২০১৯",
@@ -14520,7 +14584,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "89030982-72df-416b-ad02-43f052f482b8",
+      "id": "d0b6ac86-7e2a-4cdd-9ef5-c622e7c417e7",
       "title": "অ্যাডভান্সড এক্সেল ফর ফাইন্যান্স",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -14542,7 +14606,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "925fd9be-4181-4613-a837-ded1adbb896e",
+      "id": "e571ea8a-fcb5-4613-a453-8b14db76b635",
       "title": "সেরা কর্মকর্তা পুরস্কার",
       "subtitle": "বার্ষিক পারফরম্যান্স অ্যাওয়ার্ড • মেঘনা গ্রুপ",
       "period": "২০২১",
@@ -14782,6 +14846,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#566360",
     "align": "left",
     "letterSpacing": 0.14,
@@ -14857,7 +14923,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "dc28dca9-f62d-4101-861d-1190eb78ace7",
+      "id": "d6bd718e-7a99-4545-9b33-ad95c5a6f960",
       "title": "এম.কম (হিসাববিজ্ঞান)",
       "subtitle": "ঢাকা বিশ্ববিদ্যালয়",
       "period": "2017",
@@ -14869,7 +14935,7 @@
       "body": ""
      },
      {
-      "id": "54293639-843a-4870-b497-2561572f08f9",
+      "id": "04e95c3a-31dd-4635-b2e8-16f62f9cd7f1",
       "title": "বি.কম (সম্মান)",
       "subtitle": "জগন্নাথ বিশ্ববিদ্যালয়",
       "period": "2015",
@@ -14892,7 +14958,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "4c6ccea4-5970-4049-abca-c0605444d72e",
+      "id": "8dcf28cd-7647-4c70-b0ff-44acfe6ef938",
       "title": "সিনিয়র অ্যাকাউন্টস অফিসার",
       "subtitle": "মেঘনা গ্রুপ অব ইন্ডাস্ট্রিজ • Dhaka",
       "period": "মার্চ ২০১৯ – বর্তমান",
@@ -14906,7 +14972,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "f960cab2-e93c-440f-8b0a-dcb62ec75df5",
+      "id": "8c84a2c2-4b91-4352-a2a1-79c11a924ccc",
       "title": "অ্যাকাউন্টস এসিস্ট্যান্ট",
       "subtitle": "প্যাসিফিক ট্রেডার্স • Dhaka",
       "period": "জুন ২০১৭ – ফেব্রুয়ারি ২০১৯",
@@ -14975,7 +15041,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "89030982-72df-416b-ad02-43f052f482b8",
+      "id": "d0b6ac86-7e2a-4cdd-9ef5-c622e7c417e7",
       "title": "অ্যাডভান্সড এক্সেল ফর ফাইন্যান্স",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -14997,7 +15063,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "925fd9be-4181-4613-a837-ded1adbb896e",
+      "id": "e571ea8a-fcb5-4613-a453-8b14db76b635",
       "title": "সেরা কর্মকর্তা পুরস্কার",
       "subtitle": "বার্ষিক পারফরম্যান্স অ্যাওয়ার্ড • মেঘনা গ্রুপ",
       "period": "২০২১",
@@ -15238,6 +15304,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#665a5e",
     "align": "left",
     "letterSpacing": 0.14,
@@ -15313,7 +15381,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "dc28dca9-f62d-4101-861d-1190eb78ace7",
+      "id": "d6bd718e-7a99-4545-9b33-ad95c5a6f960",
       "title": "এম.কম (হিসাববিজ্ঞান)",
       "subtitle": "ঢাকা বিশ্ববিদ্যালয়",
       "period": "2017",
@@ -15325,7 +15393,7 @@
       "body": ""
      },
      {
-      "id": "54293639-843a-4870-b497-2561572f08f9",
+      "id": "04e95c3a-31dd-4635-b2e8-16f62f9cd7f1",
       "title": "বি.কম (সম্মান)",
       "subtitle": "জগন্নাথ বিশ্ববিদ্যালয়",
       "period": "2015",
@@ -15348,7 +15416,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "4c6ccea4-5970-4049-abca-c0605444d72e",
+      "id": "8dcf28cd-7647-4c70-b0ff-44acfe6ef938",
       "title": "সিনিয়র অ্যাকাউন্টস অফিসার",
       "subtitle": "মেঘনা গ্রুপ অব ইন্ডাস্ট্রিজ • Dhaka",
       "period": "মার্চ ২০১৯ – বর্তমান",
@@ -15362,7 +15430,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "f960cab2-e93c-440f-8b0a-dcb62ec75df5",
+      "id": "8c84a2c2-4b91-4352-a2a1-79c11a924ccc",
       "title": "অ্যাকাউন্টস এসিস্ট্যান্ট",
       "subtitle": "প্যাসিফিক ট্রেডার্স • Dhaka",
       "period": "জুন ২০১৭ – ফেব্রুয়ারি ২০১৯",
@@ -15431,7 +15499,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "89030982-72df-416b-ad02-43f052f482b8",
+      "id": "d0b6ac86-7e2a-4cdd-9ef5-c622e7c417e7",
       "title": "অ্যাডভান্সড এক্সেল ফর ফাইন্যান্স",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -15453,7 +15521,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "925fd9be-4181-4613-a837-ded1adbb896e",
+      "id": "e571ea8a-fcb5-4613-a453-8b14db76b635",
       "title": "সেরা কর্মকর্তা পুরস্কার",
       "subtitle": "বার্ষিক পারফরম্যান্স অ্যাওয়ার্ড • মেঘনা গ্রুপ",
       "period": "২০২১",
@@ -15693,6 +15761,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#5b6572",
     "align": "left",
     "letterSpacing": 0.14,
@@ -15768,7 +15838,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "dc28dca9-f62d-4101-861d-1190eb78ace7",
+      "id": "d6bd718e-7a99-4545-9b33-ad95c5a6f960",
       "title": "এম.কম (হিসাববিজ্ঞান)",
       "subtitle": "ঢাকা বিশ্ববিদ্যালয়",
       "period": "2017",
@@ -15780,7 +15850,7 @@
       "body": ""
      },
      {
-      "id": "54293639-843a-4870-b497-2561572f08f9",
+      "id": "04e95c3a-31dd-4635-b2e8-16f62f9cd7f1",
       "title": "বি.কম (সম্মান)",
       "subtitle": "জগন্নাথ বিশ্ববিদ্যালয়",
       "period": "2015",
@@ -15803,7 +15873,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "4c6ccea4-5970-4049-abca-c0605444d72e",
+      "id": "8dcf28cd-7647-4c70-b0ff-44acfe6ef938",
       "title": "সিনিয়র অ্যাকাউন্টস অফিসার",
       "subtitle": "মেঘনা গ্রুপ অব ইন্ডাস্ট্রিজ • Dhaka",
       "period": "মার্চ ২০১৯ – বর্তমান",
@@ -15817,7 +15887,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "f960cab2-e93c-440f-8b0a-dcb62ec75df5",
+      "id": "8c84a2c2-4b91-4352-a2a1-79c11a924ccc",
       "title": "অ্যাকাউন্টস এসিস্ট্যান্ট",
       "subtitle": "প্যাসিফিক ট্রেডার্স • Dhaka",
       "period": "জুন ২০১৭ – ফেব্রুয়ারি ২০১৯",
@@ -15886,7 +15956,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "89030982-72df-416b-ad02-43f052f482b8",
+      "id": "d0b6ac86-7e2a-4cdd-9ef5-c622e7c417e7",
       "title": "অ্যাডভান্সড এক্সেল ফর ফাইন্যান্স",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -15908,7 +15978,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "925fd9be-4181-4613-a837-ded1adbb896e",
+      "id": "e571ea8a-fcb5-4613-a453-8b14db76b635",
       "title": "সেরা কর্মকর্তা পুরস্কার",
       "subtitle": "বার্ষিক পারফরম্যান্স অ্যাওয়ার্ড • মেঘনা গ্রুপ",
       "period": "২০২১",
@@ -16148,6 +16218,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#665f4e",
     "align": "left",
     "letterSpacing": 0.14,
@@ -16223,7 +16295,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "dc28dca9-f62d-4101-861d-1190eb78ace7",
+      "id": "d6bd718e-7a99-4545-9b33-ad95c5a6f960",
       "title": "এম.কম (হিসাববিজ্ঞান)",
       "subtitle": "ঢাকা বিশ্ববিদ্যালয়",
       "period": "2017",
@@ -16235,7 +16307,7 @@
       "body": ""
      },
      {
-      "id": "54293639-843a-4870-b497-2561572f08f9",
+      "id": "04e95c3a-31dd-4635-b2e8-16f62f9cd7f1",
       "title": "বি.কম (সম্মান)",
       "subtitle": "জগন্নাথ বিশ্ববিদ্যালয়",
       "period": "2015",
@@ -16258,7 +16330,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "4c6ccea4-5970-4049-abca-c0605444d72e",
+      "id": "8dcf28cd-7647-4c70-b0ff-44acfe6ef938",
       "title": "সিনিয়র অ্যাকাউন্টস অফিসার",
       "subtitle": "মেঘনা গ্রুপ অব ইন্ডাস্ট্রিজ • Dhaka",
       "period": "মার্চ ২০১৯ – বর্তমান",
@@ -16272,7 +16344,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "f960cab2-e93c-440f-8b0a-dcb62ec75df5",
+      "id": "8c84a2c2-4b91-4352-a2a1-79c11a924ccc",
       "title": "অ্যাকাউন্টস এসিস্ট্যান্ট",
       "subtitle": "প্যাসিফিক ট্রেডার্স • Dhaka",
       "period": "জুন ২০১৭ – ফেব্রুয়ারি ২০১৯",
@@ -16341,7 +16413,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "89030982-72df-416b-ad02-43f052f482b8",
+      "id": "d0b6ac86-7e2a-4cdd-9ef5-c622e7c417e7",
       "title": "অ্যাডভান্সড এক্সেল ফর ফাইন্যান্স",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -16363,7 +16435,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "925fd9be-4181-4613-a837-ded1adbb896e",
+      "id": "e571ea8a-fcb5-4613-a453-8b14db76b635",
       "title": "সেরা কর্মকর্তা পুরস্কার",
       "subtitle": "বার্ষিক পারফরম্যান্স অ্যাওয়ার্ড • মেঘনা গ্রুপ",
       "period": "২০২১",
@@ -16604,6 +16676,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#5d6874",
     "align": "left",
     "letterSpacing": 0.14,
@@ -16679,7 +16753,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "dc28dca9-f62d-4101-861d-1190eb78ace7",
+      "id": "d6bd718e-7a99-4545-9b33-ad95c5a6f960",
       "title": "এম.কম (হিসাববিজ্ঞান)",
       "subtitle": "ঢাকা বিশ্ববিদ্যালয়",
       "period": "2017",
@@ -16691,7 +16765,7 @@
       "body": ""
      },
      {
-      "id": "54293639-843a-4870-b497-2561572f08f9",
+      "id": "04e95c3a-31dd-4635-b2e8-16f62f9cd7f1",
       "title": "বি.কম (সম্মান)",
       "subtitle": "জগন্নাথ বিশ্ববিদ্যালয়",
       "period": "2015",
@@ -16714,7 +16788,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "4c6ccea4-5970-4049-abca-c0605444d72e",
+      "id": "8dcf28cd-7647-4c70-b0ff-44acfe6ef938",
       "title": "সিনিয়র অ্যাকাউন্টস অফিসার",
       "subtitle": "মেঘনা গ্রুপ অব ইন্ডাস্ট্রিজ • Dhaka",
       "period": "মার্চ ২০১৯ – বর্তমান",
@@ -16728,7 +16802,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "f960cab2-e93c-440f-8b0a-dcb62ec75df5",
+      "id": "8c84a2c2-4b91-4352-a2a1-79c11a924ccc",
       "title": "অ্যাকাউন্টস এসিস্ট্যান্ট",
       "subtitle": "প্যাসিফিক ট্রেডার্স • Dhaka",
       "period": "জুন ২০১৭ – ফেব্রুয়ারি ২০১৯",
@@ -16797,7 +16871,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "89030982-72df-416b-ad02-43f052f482b8",
+      "id": "d0b6ac86-7e2a-4cdd-9ef5-c622e7c417e7",
       "title": "অ্যাডভান্সড এক্সেল ফর ফাইন্যান্স",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -16819,7 +16893,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "925fd9be-4181-4613-a837-ded1adbb896e",
+      "id": "e571ea8a-fcb5-4613-a453-8b14db76b635",
       "title": "সেরা কর্মকর্তা পুরস্কার",
       "subtitle": "বার্ষিক পারফরম্যান্স অ্যাওয়ার্ড • মেঘনা গ্রুপ",
       "period": "২০২১",
@@ -17059,6 +17133,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#626b74",
     "align": "left",
     "letterSpacing": 0.14,
@@ -17134,7 +17210,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "dc28dca9-f62d-4101-861d-1190eb78ace7",
+      "id": "d6bd718e-7a99-4545-9b33-ad95c5a6f960",
       "title": "এম.কম (হিসাববিজ্ঞান)",
       "subtitle": "ঢাকা বিশ্ববিদ্যালয়",
       "period": "2017",
@@ -17146,7 +17222,7 @@
       "body": ""
      },
      {
-      "id": "54293639-843a-4870-b497-2561572f08f9",
+      "id": "04e95c3a-31dd-4635-b2e8-16f62f9cd7f1",
       "title": "বি.কম (সম্মান)",
       "subtitle": "জগন্নাথ বিশ্ববিদ্যালয়",
       "period": "2015",
@@ -17169,7 +17245,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "4c6ccea4-5970-4049-abca-c0605444d72e",
+      "id": "8dcf28cd-7647-4c70-b0ff-44acfe6ef938",
       "title": "সিনিয়র অ্যাকাউন্টস অফিসার",
       "subtitle": "মেঘনা গ্রুপ অব ইন্ডাস্ট্রিজ • Dhaka",
       "period": "মার্চ ২০১৯ – বর্তমান",
@@ -17183,7 +17259,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "f960cab2-e93c-440f-8b0a-dcb62ec75df5",
+      "id": "8c84a2c2-4b91-4352-a2a1-79c11a924ccc",
       "title": "অ্যাকাউন্টস এসিস্ট্যান্ট",
       "subtitle": "প্যাসিফিক ট্রেডার্স • Dhaka",
       "period": "জুন ২০১৭ – ফেব্রুয়ারি ২০১৯",
@@ -17252,7 +17328,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "89030982-72df-416b-ad02-43f052f482b8",
+      "id": "d0b6ac86-7e2a-4cdd-9ef5-c622e7c417e7",
       "title": "অ্যাডভান্সড এক্সেল ফর ফাইন্যান্স",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -17274,7 +17350,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "925fd9be-4181-4613-a837-ded1adbb896e",
+      "id": "e571ea8a-fcb5-4613-a453-8b14db76b635",
       "title": "সেরা কর্মকর্তা পুরস্কার",
       "subtitle": "বার্ষিক পারফরম্যান্স অ্যাওয়ার্ড • মেঘনা গ্রুপ",
       "period": "২০২১",
@@ -17514,6 +17590,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#59616a",
     "align": "left",
     "letterSpacing": 0.14,
@@ -17589,7 +17667,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "dc28dca9-f62d-4101-861d-1190eb78ace7",
+      "id": "d6bd718e-7a99-4545-9b33-ad95c5a6f960",
       "title": "এম.কম (হিসাববিজ্ঞান)",
       "subtitle": "ঢাকা বিশ্ববিদ্যালয়",
       "period": "2017",
@@ -17601,7 +17679,7 @@
       "body": ""
      },
      {
-      "id": "54293639-843a-4870-b497-2561572f08f9",
+      "id": "04e95c3a-31dd-4635-b2e8-16f62f9cd7f1",
       "title": "বি.কম (সম্মান)",
       "subtitle": "জগন্নাথ বিশ্ববিদ্যালয়",
       "period": "2015",
@@ -17624,7 +17702,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "4c6ccea4-5970-4049-abca-c0605444d72e",
+      "id": "8dcf28cd-7647-4c70-b0ff-44acfe6ef938",
       "title": "সিনিয়র অ্যাকাউন্টস অফিসার",
       "subtitle": "মেঘনা গ্রুপ অব ইন্ডাস্ট্রিজ • Dhaka",
       "period": "মার্চ ২০১৯ – বর্তমান",
@@ -17638,7 +17716,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "f960cab2-e93c-440f-8b0a-dcb62ec75df5",
+      "id": "8c84a2c2-4b91-4352-a2a1-79c11a924ccc",
       "title": "অ্যাকাউন্টস এসিস্ট্যান্ট",
       "subtitle": "প্যাসিফিক ট্রেডার্স • Dhaka",
       "period": "জুন ২০১৭ – ফেব্রুয়ারি ২০১৯",
@@ -17707,7 +17785,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "89030982-72df-416b-ad02-43f052f482b8",
+      "id": "d0b6ac86-7e2a-4cdd-9ef5-c622e7c417e7",
       "title": "অ্যাডভান্সড এক্সেল ফর ফাইন্যান্স",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -17729,7 +17807,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "925fd9be-4181-4613-a837-ded1adbb896e",
+      "id": "e571ea8a-fcb5-4613-a453-8b14db76b635",
       "title": "সেরা কর্মকর্তা পুরস্কার",
       "subtitle": "বার্ষিক পারফরম্যান্স অ্যাওয়ার্ড • মেঘনা গ্রুপ",
       "period": "২০২১",
@@ -17969,6 +18047,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#5f6873",
     "align": "left",
     "letterSpacing": 0.14,
@@ -18044,7 +18124,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "dc28dca9-f62d-4101-861d-1190eb78ace7",
+      "id": "d6bd718e-7a99-4545-9b33-ad95c5a6f960",
       "title": "এম.কম (হিসাববিজ্ঞান)",
       "subtitle": "ঢাকা বিশ্ববিদ্যালয়",
       "period": "2017",
@@ -18056,7 +18136,7 @@
       "body": ""
      },
      {
-      "id": "54293639-843a-4870-b497-2561572f08f9",
+      "id": "04e95c3a-31dd-4635-b2e8-16f62f9cd7f1",
       "title": "বি.কম (সম্মান)",
       "subtitle": "জগন্নাথ বিশ্ববিদ্যালয়",
       "period": "2015",
@@ -18079,7 +18159,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "4c6ccea4-5970-4049-abca-c0605444d72e",
+      "id": "8dcf28cd-7647-4c70-b0ff-44acfe6ef938",
       "title": "সিনিয়র অ্যাকাউন্টস অফিসার",
       "subtitle": "মেঘনা গ্রুপ অব ইন্ডাস্ট্রিজ • Dhaka",
       "period": "মার্চ ২০১৯ – বর্তমান",
@@ -18093,7 +18173,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "f960cab2-e93c-440f-8b0a-dcb62ec75df5",
+      "id": "8c84a2c2-4b91-4352-a2a1-79c11a924ccc",
       "title": "অ্যাকাউন্টস এসিস্ট্যান্ট",
       "subtitle": "প্যাসিফিক ট্রেডার্স • Dhaka",
       "period": "জুন ২০১৭ – ফেব্রুয়ারি ২০১৯",
@@ -18162,7 +18242,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "89030982-72df-416b-ad02-43f052f482b8",
+      "id": "d0b6ac86-7e2a-4cdd-9ef5-c622e7c417e7",
       "title": "অ্যাডভান্সড এক্সেল ফর ফাইন্যান্স",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -18184,7 +18264,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "925fd9be-4181-4613-a837-ded1adbb896e",
+      "id": "e571ea8a-fcb5-4613-a453-8b14db76b635",
       "title": "সেরা কর্মকর্তা পুরস্কার",
       "subtitle": "বার্ষিক পারফরম্যান্স অ্যাওয়ার্ড • মেঘনা গ্রুপ",
       "period": "২০২১",
@@ -18424,6 +18504,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#536363",
     "align": "left",
     "letterSpacing": 0.14,
@@ -18499,7 +18581,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "dc28dca9-f62d-4101-861d-1190eb78ace7",
+      "id": "d6bd718e-7a99-4545-9b33-ad95c5a6f960",
       "title": "এম.কম (হিসাববিজ্ঞান)",
       "subtitle": "ঢাকা বিশ্ববিদ্যালয়",
       "period": "2017",
@@ -18511,7 +18593,7 @@
       "body": ""
      },
      {
-      "id": "54293639-843a-4870-b497-2561572f08f9",
+      "id": "04e95c3a-31dd-4635-b2e8-16f62f9cd7f1",
       "title": "বি.কম (সম্মান)",
       "subtitle": "জগন্নাথ বিশ্ববিদ্যালয়",
       "period": "2015",
@@ -18534,7 +18616,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "4c6ccea4-5970-4049-abca-c0605444d72e",
+      "id": "8dcf28cd-7647-4c70-b0ff-44acfe6ef938",
       "title": "সিনিয়র অ্যাকাউন্টস অফিসার",
       "subtitle": "মেঘনা গ্রুপ অব ইন্ডাস্ট্রিজ • Dhaka",
       "period": "মার্চ ২০১৯ – বর্তমান",
@@ -18548,7 +18630,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "f960cab2-e93c-440f-8b0a-dcb62ec75df5",
+      "id": "8c84a2c2-4b91-4352-a2a1-79c11a924ccc",
       "title": "অ্যাকাউন্টস এসিস্ট্যান্ট",
       "subtitle": "প্যাসিফিক ট্রেডার্স • Dhaka",
       "period": "জুন ২০১৭ – ফেব্রুয়ারি ২০১৯",
@@ -18617,7 +18699,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "89030982-72df-416b-ad02-43f052f482b8",
+      "id": "d0b6ac86-7e2a-4cdd-9ef5-c622e7c417e7",
       "title": "অ্যাডভান্সড এক্সেল ফর ফাইন্যান্স",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -18639,7 +18721,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "925fd9be-4181-4613-a837-ded1adbb896e",
+      "id": "e571ea8a-fcb5-4613-a453-8b14db76b635",
       "title": "সেরা কর্মকর্তা পুরস্কার",
       "subtitle": "বার্ষিক পারফরম্যান্স অ্যাওয়ার্ড • মেঘনা গ্রুপ",
       "period": "২০২১",
@@ -18879,6 +18961,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#566360",
     "align": "left",
     "letterSpacing": 0.14,
@@ -18954,7 +19038,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "dc28dca9-f62d-4101-861d-1190eb78ace7",
+      "id": "d6bd718e-7a99-4545-9b33-ad95c5a6f960",
       "title": "এম.কম (হিসাববিজ্ঞান)",
       "subtitle": "ঢাকা বিশ্ববিদ্যালয়",
       "period": "2017",
@@ -18966,7 +19050,7 @@
       "body": ""
      },
      {
-      "id": "54293639-843a-4870-b497-2561572f08f9",
+      "id": "04e95c3a-31dd-4635-b2e8-16f62f9cd7f1",
       "title": "বি.কম (সম্মান)",
       "subtitle": "জগন্নাথ বিশ্ববিদ্যালয়",
       "period": "2015",
@@ -18989,7 +19073,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "4c6ccea4-5970-4049-abca-c0605444d72e",
+      "id": "8dcf28cd-7647-4c70-b0ff-44acfe6ef938",
       "title": "সিনিয়র অ্যাকাউন্টস অফিসার",
       "subtitle": "মেঘনা গ্রুপ অব ইন্ডাস্ট্রিজ • Dhaka",
       "period": "মার্চ ২০১৯ – বর্তমান",
@@ -19003,7 +19087,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "f960cab2-e93c-440f-8b0a-dcb62ec75df5",
+      "id": "8c84a2c2-4b91-4352-a2a1-79c11a924ccc",
       "title": "অ্যাকাউন্টস এসিস্ট্যান্ট",
       "subtitle": "প্যাসিফিক ট্রেডার্স • Dhaka",
       "period": "জুন ২০১৭ – ফেব্রুয়ারি ২০১৯",
@@ -19072,7 +19156,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "89030982-72df-416b-ad02-43f052f482b8",
+      "id": "d0b6ac86-7e2a-4cdd-9ef5-c622e7c417e7",
       "title": "অ্যাডভান্সড এক্সেল ফর ফাইন্যান্স",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -19094,7 +19178,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "925fd9be-4181-4613-a837-ded1adbb896e",
+      "id": "e571ea8a-fcb5-4613-a453-8b14db76b635",
       "title": "সেরা কর্মকর্তা পুরস্কার",
       "subtitle": "বার্ষিক পারফরম্যান্স অ্যাওয়ার্ড • মেঘনা গ্রুপ",
       "period": "২০২১",
@@ -19334,6 +19418,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#5b6572",
     "align": "left",
     "letterSpacing": 0.14,
@@ -19409,7 +19495,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "dc28dca9-f62d-4101-861d-1190eb78ace7",
+      "id": "d6bd718e-7a99-4545-9b33-ad95c5a6f960",
       "title": "এম.কম (হিসাববিজ্ঞান)",
       "subtitle": "ঢাকা বিশ্ববিদ্যালয়",
       "period": "2017",
@@ -19421,7 +19507,7 @@
       "body": ""
      },
      {
-      "id": "54293639-843a-4870-b497-2561572f08f9",
+      "id": "04e95c3a-31dd-4635-b2e8-16f62f9cd7f1",
       "title": "বি.কম (সম্মান)",
       "subtitle": "জগন্নাথ বিশ্ববিদ্যালয়",
       "period": "2015",
@@ -19444,7 +19530,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "4c6ccea4-5970-4049-abca-c0605444d72e",
+      "id": "8dcf28cd-7647-4c70-b0ff-44acfe6ef938",
       "title": "সিনিয়র অ্যাকাউন্টস অফিসার",
       "subtitle": "মেঘনা গ্রুপ অব ইন্ডাস্ট্রিজ • Dhaka",
       "period": "মার্চ ২০১৯ – বর্তমান",
@@ -19458,7 +19544,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "f960cab2-e93c-440f-8b0a-dcb62ec75df5",
+      "id": "8c84a2c2-4b91-4352-a2a1-79c11a924ccc",
       "title": "অ্যাকাউন্টস এসিস্ট্যান্ট",
       "subtitle": "প্যাসিফিক ট্রেডার্স • Dhaka",
       "period": "জুন ২০১৭ – ফেব্রুয়ারি ২০১৯",
@@ -19527,7 +19613,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "89030982-72df-416b-ad02-43f052f482b8",
+      "id": "d0b6ac86-7e2a-4cdd-9ef5-c622e7c417e7",
       "title": "অ্যাডভান্সড এক্সেল ফর ফাইন্যান্স",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -19549,7 +19635,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "925fd9be-4181-4613-a837-ded1adbb896e",
+      "id": "e571ea8a-fcb5-4613-a453-8b14db76b635",
       "title": "সেরা কর্মকর্তা পুরস্কার",
       "subtitle": "বার্ষিক পারফরম্যান্স অ্যাওয়ার্ড • মেঘনা গ্রুপ",
       "period": "২০২১",
@@ -19789,6 +19875,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#665a5e",
     "align": "left",
     "letterSpacing": 0.14,
@@ -19864,7 +19952,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "dc28dca9-f62d-4101-861d-1190eb78ace7",
+      "id": "d6bd718e-7a99-4545-9b33-ad95c5a6f960",
       "title": "এম.কম (হিসাববিজ্ঞান)",
       "subtitle": "ঢাকা বিশ্ববিদ্যালয়",
       "period": "2017",
@@ -19876,7 +19964,7 @@
       "body": ""
      },
      {
-      "id": "54293639-843a-4870-b497-2561572f08f9",
+      "id": "04e95c3a-31dd-4635-b2e8-16f62f9cd7f1",
       "title": "বি.কম (সম্মান)",
       "subtitle": "জগন্নাথ বিশ্ববিদ্যালয়",
       "period": "2015",
@@ -19899,7 +19987,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "4c6ccea4-5970-4049-abca-c0605444d72e",
+      "id": "8dcf28cd-7647-4c70-b0ff-44acfe6ef938",
       "title": "সিনিয়র অ্যাকাউন্টস অফিসার",
       "subtitle": "মেঘনা গ্রুপ অব ইন্ডাস্ট্রিজ • Dhaka",
       "period": "মার্চ ২০১৯ – বর্তমান",
@@ -19913,7 +20001,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "f960cab2-e93c-440f-8b0a-dcb62ec75df5",
+      "id": "8c84a2c2-4b91-4352-a2a1-79c11a924ccc",
       "title": "অ্যাকাউন্টস এসিস্ট্যান্ট",
       "subtitle": "প্যাসিফিক ট্রেডার্স • Dhaka",
       "period": "জুন ২০১৭ – ফেব্রুয়ারি ২০১৯",
@@ -19982,7 +20070,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "89030982-72df-416b-ad02-43f052f482b8",
+      "id": "d0b6ac86-7e2a-4cdd-9ef5-c622e7c417e7",
       "title": "অ্যাডভান্সড এক্সেল ফর ফাইন্যান্স",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -20004,7 +20092,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "925fd9be-4181-4613-a837-ded1adbb896e",
+      "id": "e571ea8a-fcb5-4613-a453-8b14db76b635",
       "title": "সেরা কর্মকর্তা পুরস্কার",
       "subtitle": "বার্ষিক পারফরম্যান্স অ্যাওয়ার্ড • মেঘনা গ্রুপ",
       "period": "২০২১",
@@ -20244,6 +20332,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#536363",
     "align": "left",
     "letterSpacing": 0.14,
@@ -20319,7 +20409,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "dc28dca9-f62d-4101-861d-1190eb78ace7",
+      "id": "d6bd718e-7a99-4545-9b33-ad95c5a6f960",
       "title": "এম.কম (হিসাববিজ্ঞান)",
       "subtitle": "ঢাকা বিশ্ববিদ্যালয়",
       "period": "2017",
@@ -20331,7 +20421,7 @@
       "body": ""
      },
      {
-      "id": "54293639-843a-4870-b497-2561572f08f9",
+      "id": "04e95c3a-31dd-4635-b2e8-16f62f9cd7f1",
       "title": "বি.কম (সম্মান)",
       "subtitle": "জগন্নাথ বিশ্ববিদ্যালয়",
       "period": "2015",
@@ -20354,7 +20444,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "4c6ccea4-5970-4049-abca-c0605444d72e",
+      "id": "8dcf28cd-7647-4c70-b0ff-44acfe6ef938",
       "title": "সিনিয়র অ্যাকাউন্টস অফিসার",
       "subtitle": "মেঘনা গ্রুপ অব ইন্ডাস্ট্রিজ • Dhaka",
       "period": "মার্চ ২০১৯ – বর্তমান",
@@ -20368,7 +20458,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "f960cab2-e93c-440f-8b0a-dcb62ec75df5",
+      "id": "8c84a2c2-4b91-4352-a2a1-79c11a924ccc",
       "title": "অ্যাকাউন্টস এসিস্ট্যান্ট",
       "subtitle": "প্যাসিফিক ট্রেডার্স • Dhaka",
       "period": "জুন ২০১৭ – ফেব্রুয়ারি ২০১৯",
@@ -20437,7 +20527,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "89030982-72df-416b-ad02-43f052f482b8",
+      "id": "d0b6ac86-7e2a-4cdd-9ef5-c622e7c417e7",
       "title": "অ্যাডভান্সড এক্সেল ফর ফাইন্যান্স",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -20459,7 +20549,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "925fd9be-4181-4613-a837-ded1adbb896e",
+      "id": "e571ea8a-fcb5-4613-a453-8b14db76b635",
       "title": "সেরা কর্মকর্তা পুরস্কার",
       "subtitle": "বার্ষিক পারফরম্যান্স অ্যাওয়ার্ড • মেঘনা গ্রুপ",
       "period": "২০২১",
@@ -20699,6 +20789,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#5d6874",
     "align": "left",
     "letterSpacing": 0.14,
@@ -20774,7 +20866,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "dc28dca9-f62d-4101-861d-1190eb78ace7",
+      "id": "d6bd718e-7a99-4545-9b33-ad95c5a6f960",
       "title": "এম.কম (হিসাববিজ্ঞান)",
       "subtitle": "ঢাকা বিশ্ববিদ্যালয়",
       "period": "2017",
@@ -20786,7 +20878,7 @@
       "body": ""
      },
      {
-      "id": "54293639-843a-4870-b497-2561572f08f9",
+      "id": "04e95c3a-31dd-4635-b2e8-16f62f9cd7f1",
       "title": "বি.কম (সম্মান)",
       "subtitle": "জগন্নাথ বিশ্ববিদ্যালয়",
       "period": "2015",
@@ -20809,7 +20901,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "4c6ccea4-5970-4049-abca-c0605444d72e",
+      "id": "8dcf28cd-7647-4c70-b0ff-44acfe6ef938",
       "title": "সিনিয়র অ্যাকাউন্টস অফিসার",
       "subtitle": "মেঘনা গ্রুপ অব ইন্ডাস্ট্রিজ • Dhaka",
       "period": "মার্চ ২০১৯ – বর্তমান",
@@ -20823,7 +20915,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "f960cab2-e93c-440f-8b0a-dcb62ec75df5",
+      "id": "8c84a2c2-4b91-4352-a2a1-79c11a924ccc",
       "title": "অ্যাকাউন্টস এসিস্ট্যান্ট",
       "subtitle": "প্যাসিফিক ট্রেডার্স • Dhaka",
       "period": "জুন ২০১৭ – ফেব্রুয়ারি ২০১৯",
@@ -20892,7 +20984,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "89030982-72df-416b-ad02-43f052f482b8",
+      "id": "d0b6ac86-7e2a-4cdd-9ef5-c622e7c417e7",
       "title": "অ্যাডভান্সড এক্সেল ফর ফাইন্যান্স",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -20914,7 +21006,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "925fd9be-4181-4613-a837-ded1adbb896e",
+      "id": "e571ea8a-fcb5-4613-a453-8b14db76b635",
       "title": "সেরা কর্মকর্তা পুরস্কার",
       "subtitle": "বার্ষিক পারফরম্যান্স অ্যাওয়ার্ড • মেঘনা গ্রুপ",
       "period": "২০২১",
@@ -21154,6 +21246,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#5b6572",
     "align": "left",
     "letterSpacing": 0.14,
@@ -21229,7 +21323,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "dc28dca9-f62d-4101-861d-1190eb78ace7",
+      "id": "d6bd718e-7a99-4545-9b33-ad95c5a6f960",
       "title": "এম.কম (হিসাববিজ্ঞান)",
       "subtitle": "ঢাকা বিশ্ববিদ্যালয়",
       "period": "2017",
@@ -21241,7 +21335,7 @@
       "body": ""
      },
      {
-      "id": "54293639-843a-4870-b497-2561572f08f9",
+      "id": "04e95c3a-31dd-4635-b2e8-16f62f9cd7f1",
       "title": "বি.কম (সম্মান)",
       "subtitle": "জগন্নাথ বিশ্ববিদ্যালয়",
       "period": "2015",
@@ -21264,7 +21358,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "4c6ccea4-5970-4049-abca-c0605444d72e",
+      "id": "8dcf28cd-7647-4c70-b0ff-44acfe6ef938",
       "title": "সিনিয়র অ্যাকাউন্টস অফিসার",
       "subtitle": "মেঘনা গ্রুপ অব ইন্ডাস্ট্রিজ • Dhaka",
       "period": "মার্চ ২০১৯ – বর্তমান",
@@ -21278,7 +21372,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "f960cab2-e93c-440f-8b0a-dcb62ec75df5",
+      "id": "8c84a2c2-4b91-4352-a2a1-79c11a924ccc",
       "title": "অ্যাকাউন্টস এসিস্ট্যান্ট",
       "subtitle": "প্যাসিফিক ট্রেডার্স • Dhaka",
       "period": "জুন ২০১৭ – ফেব্রুয়ারি ২০১৯",
@@ -21347,7 +21441,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "89030982-72df-416b-ad02-43f052f482b8",
+      "id": "d0b6ac86-7e2a-4cdd-9ef5-c622e7c417e7",
       "title": "অ্যাডভান্সড এক্সেল ফর ফাইন্যান্স",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -21369,7 +21463,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "925fd9be-4181-4613-a837-ded1adbb896e",
+      "id": "e571ea8a-fcb5-4613-a453-8b14db76b635",
       "title": "সেরা কর্মকর্তা পুরস্কার",
       "subtitle": "বার্ষিক পারফরম্যান্স অ্যাওয়ার্ড • মেঘনা গ্রুপ",
       "period": "২০২১",
@@ -21610,6 +21704,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#5f6873",
     "align": "left",
     "letterSpacing": 0.14,
@@ -21685,7 +21781,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "dc28dca9-f62d-4101-861d-1190eb78ace7",
+      "id": "d6bd718e-7a99-4545-9b33-ad95c5a6f960",
       "title": "এম.কম (হিসাববিজ্ঞান)",
       "subtitle": "ঢাকা বিশ্ববিদ্যালয়",
       "period": "2017",
@@ -21697,7 +21793,7 @@
       "body": ""
      },
      {
-      "id": "54293639-843a-4870-b497-2561572f08f9",
+      "id": "04e95c3a-31dd-4635-b2e8-16f62f9cd7f1",
       "title": "বি.কম (সম্মান)",
       "subtitle": "জগন্নাথ বিশ্ববিদ্যালয়",
       "period": "2015",
@@ -21720,7 +21816,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "4c6ccea4-5970-4049-abca-c0605444d72e",
+      "id": "8dcf28cd-7647-4c70-b0ff-44acfe6ef938",
       "title": "সিনিয়র অ্যাকাউন্টস অফিসার",
       "subtitle": "মেঘনা গ্রুপ অব ইন্ডাস্ট্রিজ • Dhaka",
       "period": "মার্চ ২০১৯ – বর্তমান",
@@ -21734,7 +21830,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "f960cab2-e93c-440f-8b0a-dcb62ec75df5",
+      "id": "8c84a2c2-4b91-4352-a2a1-79c11a924ccc",
       "title": "অ্যাকাউন্টস এসিস্ট্যান্ট",
       "subtitle": "প্যাসিফিক ট্রেডার্স • Dhaka",
       "period": "জুন ২০১৭ – ফেব্রুয়ারি ২০১৯",
@@ -21803,7 +21899,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "89030982-72df-416b-ad02-43f052f482b8",
+      "id": "d0b6ac86-7e2a-4cdd-9ef5-c622e7c417e7",
       "title": "অ্যাডভান্সড এক্সেল ফর ফাইন্যান্স",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -21825,7 +21921,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "925fd9be-4181-4613-a837-ded1adbb896e",
+      "id": "e571ea8a-fcb5-4613-a453-8b14db76b635",
       "title": "সেরা কর্মকর্তা পুরস্কার",
       "subtitle": "বার্ষিক পারফরম্যান্স অ্যাওয়ার্ড • মেঘনা গ্রুপ",
       "period": "২০২১",
@@ -22065,6 +22161,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#665a5e",
     "align": "left",
     "letterSpacing": 0.14,
@@ -22140,7 +22238,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "dc28dca9-f62d-4101-861d-1190eb78ace7",
+      "id": "d6bd718e-7a99-4545-9b33-ad95c5a6f960",
       "title": "এম.কম (হিসাববিজ্ঞান)",
       "subtitle": "ঢাকা বিশ্ববিদ্যালয়",
       "period": "2017",
@@ -22152,7 +22250,7 @@
       "body": ""
      },
      {
-      "id": "54293639-843a-4870-b497-2561572f08f9",
+      "id": "04e95c3a-31dd-4635-b2e8-16f62f9cd7f1",
       "title": "বি.কম (সম্মান)",
       "subtitle": "জগন্নাথ বিশ্ববিদ্যালয়",
       "period": "2015",
@@ -22175,7 +22273,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "4c6ccea4-5970-4049-abca-c0605444d72e",
+      "id": "8dcf28cd-7647-4c70-b0ff-44acfe6ef938",
       "title": "সিনিয়র অ্যাকাউন্টস অফিসার",
       "subtitle": "মেঘনা গ্রুপ অব ইন্ডাস্ট্রিজ • Dhaka",
       "period": "মার্চ ২০১৯ – বর্তমান",
@@ -22189,7 +22287,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "f960cab2-e93c-440f-8b0a-dcb62ec75df5",
+      "id": "8c84a2c2-4b91-4352-a2a1-79c11a924ccc",
       "title": "অ্যাকাউন্টস এসিস্ট্যান্ট",
       "subtitle": "প্যাসিফিক ট্রেডার্স • Dhaka",
       "period": "জুন ২০১৭ – ফেব্রুয়ারি ২০১৯",
@@ -22258,7 +22356,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "89030982-72df-416b-ad02-43f052f482b8",
+      "id": "d0b6ac86-7e2a-4cdd-9ef5-c622e7c417e7",
       "title": "অ্যাডভান্সড এক্সেল ফর ফাইন্যান্স",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -22280,7 +22378,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "925fd9be-4181-4613-a837-ded1adbb896e",
+      "id": "e571ea8a-fcb5-4613-a453-8b14db76b635",
       "title": "সেরা কর্মকর্তা পুরস্কার",
       "subtitle": "বার্ষিক পারফরম্যান্স অ্যাওয়ার্ড • মেঘনা গ্রুপ",
       "period": "২০২১",
@@ -22520,6 +22618,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#626b74",
     "align": "left",
     "letterSpacing": 0.14,
@@ -22595,7 +22695,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "dc28dca9-f62d-4101-861d-1190eb78ace7",
+      "id": "d6bd718e-7a99-4545-9b33-ad95c5a6f960",
       "title": "এম.কম (হিসাববিজ্ঞান)",
       "subtitle": "ঢাকা বিশ্ববিদ্যালয়",
       "period": "2017",
@@ -22607,7 +22707,7 @@
       "body": ""
      },
      {
-      "id": "54293639-843a-4870-b497-2561572f08f9",
+      "id": "04e95c3a-31dd-4635-b2e8-16f62f9cd7f1",
       "title": "বি.কম (সম্মান)",
       "subtitle": "জগন্নাথ বিশ্ববিদ্যালয়",
       "period": "2015",
@@ -22630,7 +22730,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "4c6ccea4-5970-4049-abca-c0605444d72e",
+      "id": "8dcf28cd-7647-4c70-b0ff-44acfe6ef938",
       "title": "সিনিয়র অ্যাকাউন্টস অফিসার",
       "subtitle": "মেঘনা গ্রুপ অব ইন্ডাস্ট্রিজ • Dhaka",
       "period": "মার্চ ২০১৯ – বর্তমান",
@@ -22644,7 +22744,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "f960cab2-e93c-440f-8b0a-dcb62ec75df5",
+      "id": "8c84a2c2-4b91-4352-a2a1-79c11a924ccc",
       "title": "অ্যাকাউন্টস এসিস্ট্যান্ট",
       "subtitle": "প্যাসিফিক ট্রেডার্স • Dhaka",
       "period": "জুন ২০১৭ – ফেব্রুয়ারি ২০১৯",
@@ -22713,7 +22813,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "89030982-72df-416b-ad02-43f052f482b8",
+      "id": "d0b6ac86-7e2a-4cdd-9ef5-c622e7c417e7",
       "title": "অ্যাডভান্সড এক্সেল ফর ফাইন্যান্স",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -22735,7 +22835,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "925fd9be-4181-4613-a837-ded1adbb896e",
+      "id": "e571ea8a-fcb5-4613-a453-8b14db76b635",
       "title": "সেরা কর্মকর্তা পুরস্কার",
       "subtitle": "বার্ষিক পারফরম্যান্স অ্যাওয়ার্ড • মেঘনা গ্রুপ",
       "period": "২০২১",
@@ -22976,6 +23076,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#626b74",
     "align": "left",
     "letterSpacing": 0.14,
@@ -23051,7 +23153,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "dc28dca9-f62d-4101-861d-1190eb78ace7",
+      "id": "d6bd718e-7a99-4545-9b33-ad95c5a6f960",
       "title": "এম.কম (হিসাববিজ্ঞান)",
       "subtitle": "ঢাকা বিশ্ববিদ্যালয়",
       "period": "2017",
@@ -23063,7 +23165,7 @@
       "body": ""
      },
      {
-      "id": "54293639-843a-4870-b497-2561572f08f9",
+      "id": "04e95c3a-31dd-4635-b2e8-16f62f9cd7f1",
       "title": "বি.কম (সম্মান)",
       "subtitle": "জগন্নাথ বিশ্ববিদ্যালয়",
       "period": "2015",
@@ -23086,7 +23188,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "4c6ccea4-5970-4049-abca-c0605444d72e",
+      "id": "8dcf28cd-7647-4c70-b0ff-44acfe6ef938",
       "title": "সিনিয়র অ্যাকাউন্টস অফিসার",
       "subtitle": "মেঘনা গ্রুপ অব ইন্ডাস্ট্রিজ • Dhaka",
       "period": "মার্চ ২০১৯ – বর্তমান",
@@ -23100,7 +23202,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "f960cab2-e93c-440f-8b0a-dcb62ec75df5",
+      "id": "8c84a2c2-4b91-4352-a2a1-79c11a924ccc",
       "title": "অ্যাকাউন্টস এসিস্ট্যান্ট",
       "subtitle": "প্যাসিফিক ট্রেডার্স • Dhaka",
       "period": "জুন ২০১৭ – ফেব্রুয়ারি ২০১৯",
@@ -23169,7 +23271,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "89030982-72df-416b-ad02-43f052f482b8",
+      "id": "d0b6ac86-7e2a-4cdd-9ef5-c622e7c417e7",
       "title": "অ্যাডভান্সড এক্সেল ফর ফাইন্যান্স",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -23191,7 +23293,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "925fd9be-4181-4613-a837-ded1adbb896e",
+      "id": "e571ea8a-fcb5-4613-a453-8b14db76b635",
       "title": "সেরা কর্মকর্তা পুরস্কার",
       "subtitle": "বার্ষিক পারফরম্যান্স অ্যাওয়ার্ড • মেঘনা গ্রুপ",
       "period": "২০২১",
@@ -23432,6 +23534,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#5d6874",
     "align": "left",
     "letterSpacing": 0.14,
@@ -23507,7 +23611,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "dc28dca9-f62d-4101-861d-1190eb78ace7",
+      "id": "d6bd718e-7a99-4545-9b33-ad95c5a6f960",
       "title": "এম.কম (হিসাববিজ্ঞান)",
       "subtitle": "ঢাকা বিশ্ববিদ্যালয়",
       "period": "2017",
@@ -23519,7 +23623,7 @@
       "body": ""
      },
      {
-      "id": "54293639-843a-4870-b497-2561572f08f9",
+      "id": "04e95c3a-31dd-4635-b2e8-16f62f9cd7f1",
       "title": "বি.কম (সম্মান)",
       "subtitle": "জগন্নাথ বিশ্ববিদ্যালয়",
       "period": "2015",
@@ -23542,7 +23646,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "4c6ccea4-5970-4049-abca-c0605444d72e",
+      "id": "8dcf28cd-7647-4c70-b0ff-44acfe6ef938",
       "title": "সিনিয়র অ্যাকাউন্টস অফিসার",
       "subtitle": "মেঘনা গ্রুপ অব ইন্ডাস্ট্রিজ • Dhaka",
       "period": "মার্চ ২০১৯ – বর্তমান",
@@ -23556,7 +23660,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "f960cab2-e93c-440f-8b0a-dcb62ec75df5",
+      "id": "8c84a2c2-4b91-4352-a2a1-79c11a924ccc",
       "title": "অ্যাকাউন্টস এসিস্ট্যান্ট",
       "subtitle": "প্যাসিফিক ট্রেডার্স • Dhaka",
       "period": "জুন ২০১৭ – ফেব্রুয়ারি ২০১৯",
@@ -23625,7 +23729,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "89030982-72df-416b-ad02-43f052f482b8",
+      "id": "d0b6ac86-7e2a-4cdd-9ef5-c622e7c417e7",
       "title": "অ্যাডভান্সড এক্সেল ফর ফাইন্যান্স",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -23647,7 +23751,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "925fd9be-4181-4613-a837-ded1adbb896e",
+      "id": "e571ea8a-fcb5-4613-a453-8b14db76b635",
       "title": "সেরা কর্মকর্তা পুরস্কার",
       "subtitle": "বার্ষিক পারফরম্যান্স অ্যাওয়ার্ড • মেঘনা গ্রুপ",
       "period": "২০২১",
@@ -23887,6 +23991,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#5f6873",
     "align": "left",
     "letterSpacing": 0.14,
@@ -23962,7 +24068,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "dc28dca9-f62d-4101-861d-1190eb78ace7",
+      "id": "d6bd718e-7a99-4545-9b33-ad95c5a6f960",
       "title": "এম.কম (হিসাববিজ্ঞান)",
       "subtitle": "ঢাকা বিশ্ববিদ্যালয়",
       "period": "2017",
@@ -23974,7 +24080,7 @@
       "body": ""
      },
      {
-      "id": "54293639-843a-4870-b497-2561572f08f9",
+      "id": "04e95c3a-31dd-4635-b2e8-16f62f9cd7f1",
       "title": "বি.কম (সম্মান)",
       "subtitle": "জগন্নাথ বিশ্ববিদ্যালয়",
       "period": "2015",
@@ -23997,7 +24103,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "4c6ccea4-5970-4049-abca-c0605444d72e",
+      "id": "8dcf28cd-7647-4c70-b0ff-44acfe6ef938",
       "title": "সিনিয়র অ্যাকাউন্টস অফিসার",
       "subtitle": "মেঘনা গ্রুপ অব ইন্ডাস্ট্রিজ • Dhaka",
       "period": "মার্চ ২০১৯ – বর্তমান",
@@ -24011,7 +24117,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "f960cab2-e93c-440f-8b0a-dcb62ec75df5",
+      "id": "8c84a2c2-4b91-4352-a2a1-79c11a924ccc",
       "title": "অ্যাকাউন্টস এসিস্ট্যান্ট",
       "subtitle": "প্যাসিফিক ট্রেডার্স • Dhaka",
       "period": "জুন ২০১৭ – ফেব্রুয়ারি ২০১৯",
@@ -24080,7 +24186,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "89030982-72df-416b-ad02-43f052f482b8",
+      "id": "d0b6ac86-7e2a-4cdd-9ef5-c622e7c417e7",
       "title": "অ্যাডভান্সড এক্সেল ফর ফাইন্যান্স",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -24102,7 +24208,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "925fd9be-4181-4613-a837-ded1adbb896e",
+      "id": "e571ea8a-fcb5-4613-a453-8b14db76b635",
       "title": "সেরা কর্মকর্তা পুরস্কার",
       "subtitle": "বার্ষিক পারফরম্যান্স অ্যাওয়ার্ড • মেঘনা গ্রুপ",
       "period": "২০২১",
@@ -24343,6 +24449,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#665f4e",
     "align": "left",
     "letterSpacing": 0.14,
@@ -24418,7 +24526,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "dc28dca9-f62d-4101-861d-1190eb78ace7",
+      "id": "d6bd718e-7a99-4545-9b33-ad95c5a6f960",
       "title": "এম.কম (হিসাববিজ্ঞান)",
       "subtitle": "ঢাকা বিশ্ববিদ্যালয়",
       "period": "2017",
@@ -24430,7 +24538,7 @@
       "body": ""
      },
      {
-      "id": "54293639-843a-4870-b497-2561572f08f9",
+      "id": "04e95c3a-31dd-4635-b2e8-16f62f9cd7f1",
       "title": "বি.কম (সম্মান)",
       "subtitle": "জগন্নাথ বিশ্ববিদ্যালয়",
       "period": "2015",
@@ -24453,7 +24561,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "4c6ccea4-5970-4049-abca-c0605444d72e",
+      "id": "8dcf28cd-7647-4c70-b0ff-44acfe6ef938",
       "title": "সিনিয়র অ্যাকাউন্টস অফিসার",
       "subtitle": "মেঘনা গ্রুপ অব ইন্ডাস্ট্রিজ • Dhaka",
       "period": "মার্চ ২০১৯ – বর্তমান",
@@ -24467,7 +24575,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "f960cab2-e93c-440f-8b0a-dcb62ec75df5",
+      "id": "8c84a2c2-4b91-4352-a2a1-79c11a924ccc",
       "title": "অ্যাকাউন্টস এসিস্ট্যান্ট",
       "subtitle": "প্যাসিফিক ট্রেডার্স • Dhaka",
       "period": "জুন ২০১৭ – ফেব্রুয়ারি ২০১৯",
@@ -24536,7 +24644,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "89030982-72df-416b-ad02-43f052f482b8",
+      "id": "d0b6ac86-7e2a-4cdd-9ef5-c622e7c417e7",
       "title": "অ্যাডভান্সড এক্সেল ফর ফাইন্যান্স",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -24558,7 +24666,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "925fd9be-4181-4613-a837-ded1adbb896e",
+      "id": "e571ea8a-fcb5-4613-a453-8b14db76b635",
       "title": "সেরা কর্মকর্তা পুরস্কার",
       "subtitle": "বার্ষিক পারফরম্যান্স অ্যাওয়ার্ড • মেঘনা গ্রুপ",
       "period": "২০২১",
@@ -24798,6 +24906,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#59616a",
     "align": "left",
     "letterSpacing": 0.14,
@@ -24873,7 +24983,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "dc28dca9-f62d-4101-861d-1190eb78ace7",
+      "id": "d6bd718e-7a99-4545-9b33-ad95c5a6f960",
       "title": "এম.কম (হিসাববিজ্ঞান)",
       "subtitle": "ঢাকা বিশ্ববিদ্যালয়",
       "period": "2017",
@@ -24885,7 +24995,7 @@
       "body": ""
      },
      {
-      "id": "54293639-843a-4870-b497-2561572f08f9",
+      "id": "04e95c3a-31dd-4635-b2e8-16f62f9cd7f1",
       "title": "বি.কম (সম্মান)",
       "subtitle": "জগন্নাথ বিশ্ববিদ্যালয়",
       "period": "2015",
@@ -24908,7 +25018,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "4c6ccea4-5970-4049-abca-c0605444d72e",
+      "id": "8dcf28cd-7647-4c70-b0ff-44acfe6ef938",
       "title": "সিনিয়র অ্যাকাউন্টস অফিসার",
       "subtitle": "মেঘনা গ্রুপ অব ইন্ডাস্ট্রিজ • Dhaka",
       "period": "মার্চ ২০১৯ – বর্তমান",
@@ -24922,7 +25032,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "f960cab2-e93c-440f-8b0a-dcb62ec75df5",
+      "id": "8c84a2c2-4b91-4352-a2a1-79c11a924ccc",
       "title": "অ্যাকাউন্টস এসিস্ট্যান্ট",
       "subtitle": "প্যাসিফিক ট্রেডার্স • Dhaka",
       "period": "জুন ২০১৭ – ফেব্রুয়ারি ২০১৯",
@@ -24991,7 +25101,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "89030982-72df-416b-ad02-43f052f482b8",
+      "id": "d0b6ac86-7e2a-4cdd-9ef5-c622e7c417e7",
       "title": "অ্যাডভান্সড এক্সেল ফর ফাইন্যান্স",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -25013,7 +25123,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "925fd9be-4181-4613-a837-ded1adbb896e",
+      "id": "e571ea8a-fcb5-4613-a453-8b14db76b635",
       "title": "সেরা কর্মকর্তা পুরস্কার",
       "subtitle": "বার্ষিক পারফরম্যান্স অ্যাওয়ার্ড • মেঘনা গ্রুপ",
       "period": "২০২১",
@@ -25253,6 +25363,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#5b6572",
     "align": "left",
     "letterSpacing": 0.14,
@@ -25328,7 +25440,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "dc28dca9-f62d-4101-861d-1190eb78ace7",
+      "id": "d6bd718e-7a99-4545-9b33-ad95c5a6f960",
       "title": "এম.কম (হিসাববিজ্ঞান)",
       "subtitle": "ঢাকা বিশ্ববিদ্যালয়",
       "period": "2017",
@@ -25340,7 +25452,7 @@
       "body": ""
      },
      {
-      "id": "54293639-843a-4870-b497-2561572f08f9",
+      "id": "04e95c3a-31dd-4635-b2e8-16f62f9cd7f1",
       "title": "বি.কম (সম্মান)",
       "subtitle": "জগন্নাথ বিশ্ববিদ্যালয়",
       "period": "2015",
@@ -25363,7 +25475,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "4c6ccea4-5970-4049-abca-c0605444d72e",
+      "id": "8dcf28cd-7647-4c70-b0ff-44acfe6ef938",
       "title": "সিনিয়র অ্যাকাউন্টস অফিসার",
       "subtitle": "মেঘনা গ্রুপ অব ইন্ডাস্ট্রিজ • Dhaka",
       "period": "মার্চ ২০১৯ – বর্তমান",
@@ -25377,7 +25489,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "f960cab2-e93c-440f-8b0a-dcb62ec75df5",
+      "id": "8c84a2c2-4b91-4352-a2a1-79c11a924ccc",
       "title": "অ্যাকাউন্টস এসিস্ট্যান্ট",
       "subtitle": "প্যাসিফিক ট্রেডার্স • Dhaka",
       "period": "জুন ২০১৭ – ফেব্রুয়ারি ২০১৯",
@@ -25446,7 +25558,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "89030982-72df-416b-ad02-43f052f482b8",
+      "id": "d0b6ac86-7e2a-4cdd-9ef5-c622e7c417e7",
       "title": "অ্যাডভান্সড এক্সেল ফর ফাইন্যান্স",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -25468,7 +25580,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "925fd9be-4181-4613-a837-ded1adbb896e",
+      "id": "e571ea8a-fcb5-4613-a453-8b14db76b635",
       "title": "সেরা কর্মকর্তা পুরস্কার",
       "subtitle": "বার্ষিক পারফরম্যান্স অ্যাওয়ার্ড • মেঘনা গ্রুপ",
       "period": "২০২১",
@@ -25709,6 +25821,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#5b6572",
     "align": "left",
     "letterSpacing": 0.14,
@@ -25784,7 +25898,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "dc28dca9-f62d-4101-861d-1190eb78ace7",
+      "id": "d6bd718e-7a99-4545-9b33-ad95c5a6f960",
       "title": "এম.কম (হিসাববিজ্ঞান)",
       "subtitle": "ঢাকা বিশ্ববিদ্যালয়",
       "period": "2017",
@@ -25796,7 +25910,7 @@
       "body": ""
      },
      {
-      "id": "54293639-843a-4870-b497-2561572f08f9",
+      "id": "04e95c3a-31dd-4635-b2e8-16f62f9cd7f1",
       "title": "বি.কম (সম্মান)",
       "subtitle": "জগন্নাথ বিশ্ববিদ্যালয়",
       "period": "2015",
@@ -25819,7 +25933,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "4c6ccea4-5970-4049-abca-c0605444d72e",
+      "id": "8dcf28cd-7647-4c70-b0ff-44acfe6ef938",
       "title": "সিনিয়র অ্যাকাউন্টস অফিসার",
       "subtitle": "মেঘনা গ্রুপ অব ইন্ডাস্ট্রিজ • Dhaka",
       "period": "মার্চ ২০১৯ – বর্তমান",
@@ -25833,7 +25947,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "f960cab2-e93c-440f-8b0a-dcb62ec75df5",
+      "id": "8c84a2c2-4b91-4352-a2a1-79c11a924ccc",
       "title": "অ্যাকাউন্টস এসিস্ট্যান্ট",
       "subtitle": "প্যাসিফিক ট্রেডার্স • Dhaka",
       "period": "জুন ২০১৭ – ফেব্রুয়ারি ২০১৯",
@@ -25902,7 +26016,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "89030982-72df-416b-ad02-43f052f482b8",
+      "id": "d0b6ac86-7e2a-4cdd-9ef5-c622e7c417e7",
       "title": "অ্যাডভান্সড এক্সেল ফর ফাইন্যান্স",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -25924,7 +26038,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "925fd9be-4181-4613-a837-ded1adbb896e",
+      "id": "e571ea8a-fcb5-4613-a453-8b14db76b635",
       "title": "সেরা কর্মকর্তা পুরস্কার",
       "subtitle": "বার্ষিক পারফরম্যান্স অ্যাওয়ার্ড • মেঘনা গ্রুপ",
       "period": "২০২১",
@@ -26164,6 +26278,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#536363",
     "align": "left",
     "letterSpacing": 0.14,
@@ -26239,7 +26355,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "dc28dca9-f62d-4101-861d-1190eb78ace7",
+      "id": "d6bd718e-7a99-4545-9b33-ad95c5a6f960",
       "title": "এম.কম (হিসাববিজ্ঞান)",
       "subtitle": "ঢাকা বিশ্ববিদ্যালয়",
       "period": "2017",
@@ -26251,7 +26367,7 @@
       "body": ""
      },
      {
-      "id": "54293639-843a-4870-b497-2561572f08f9",
+      "id": "04e95c3a-31dd-4635-b2e8-16f62f9cd7f1",
       "title": "বি.কম (সম্মান)",
       "subtitle": "জগন্নাথ বিশ্ববিদ্যালয়",
       "period": "2015",
@@ -26274,7 +26390,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "4c6ccea4-5970-4049-abca-c0605444d72e",
+      "id": "8dcf28cd-7647-4c70-b0ff-44acfe6ef938",
       "title": "সিনিয়র অ্যাকাউন্টস অফিসার",
       "subtitle": "মেঘনা গ্রুপ অব ইন্ডাস্ট্রিজ • Dhaka",
       "period": "মার্চ ২০১৯ – বর্তমান",
@@ -26288,7 +26404,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "f960cab2-e93c-440f-8b0a-dcb62ec75df5",
+      "id": "8c84a2c2-4b91-4352-a2a1-79c11a924ccc",
       "title": "অ্যাকাউন্টস এসিস্ট্যান্ট",
       "subtitle": "প্যাসিফিক ট্রেডার্স • Dhaka",
       "period": "জুন ২০১৭ – ফেব্রুয়ারি ২০১৯",
@@ -26357,7 +26473,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "89030982-72df-416b-ad02-43f052f482b8",
+      "id": "d0b6ac86-7e2a-4cdd-9ef5-c622e7c417e7",
       "title": "অ্যাডভান্সড এক্সেল ফর ফাইন্যান্স",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -26379,7 +26495,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "925fd9be-4181-4613-a837-ded1adbb896e",
+      "id": "e571ea8a-fcb5-4613-a453-8b14db76b635",
       "title": "সেরা কর্মকর্তা পুরস্কার",
       "subtitle": "বার্ষিক পারফরম্যান্স অ্যাওয়ার্ড • মেঘনা গ্রুপ",
       "period": "২০২১",
@@ -26620,6 +26736,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#5f6873",
     "align": "left",
     "letterSpacing": 0.14,
@@ -26695,7 +26813,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "dc28dca9-f62d-4101-861d-1190eb78ace7",
+      "id": "d6bd718e-7a99-4545-9b33-ad95c5a6f960",
       "title": "এম.কম (হিসাববিজ্ঞান)",
       "subtitle": "ঢাকা বিশ্ববিদ্যালয়",
       "period": "2017",
@@ -26707,7 +26825,7 @@
       "body": ""
      },
      {
-      "id": "54293639-843a-4870-b497-2561572f08f9",
+      "id": "04e95c3a-31dd-4635-b2e8-16f62f9cd7f1",
       "title": "বি.কম (সম্মান)",
       "subtitle": "জগন্নাথ বিশ্ববিদ্যালয়",
       "period": "2015",
@@ -26730,7 +26848,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "4c6ccea4-5970-4049-abca-c0605444d72e",
+      "id": "8dcf28cd-7647-4c70-b0ff-44acfe6ef938",
       "title": "সিনিয়র অ্যাকাউন্টস অফিসার",
       "subtitle": "মেঘনা গ্রুপ অব ইন্ডাস্ট্রিজ • Dhaka",
       "period": "মার্চ ২০১৯ – বর্তমান",
@@ -26744,7 +26862,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "f960cab2-e93c-440f-8b0a-dcb62ec75df5",
+      "id": "8c84a2c2-4b91-4352-a2a1-79c11a924ccc",
       "title": "অ্যাকাউন্টস এসিস্ট্যান্ট",
       "subtitle": "প্যাসিফিক ট্রেডার্স • Dhaka",
       "period": "জুন ২০১৭ – ফেব্রুয়ারি ২০১৯",
@@ -26813,7 +26931,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "89030982-72df-416b-ad02-43f052f482b8",
+      "id": "d0b6ac86-7e2a-4cdd-9ef5-c622e7c417e7",
       "title": "অ্যাডভান্সড এক্সেল ফর ফাইন্যান্স",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -26835,7 +26953,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "925fd9be-4181-4613-a837-ded1adbb896e",
+      "id": "e571ea8a-fcb5-4613-a453-8b14db76b635",
       "title": "সেরা কর্মকর্তা পুরস্কার",
       "subtitle": "বার্ষিক পারফরম্যান্স অ্যাওয়ার্ড • মেঘনা গ্রুপ",
       "period": "২০২১",
@@ -27075,6 +27193,8 @@
     "weight": 600,
     "italic": false,
     "underline": false,
+    "strikethrough": false,
+    "wordSpacing": 0,
     "color": "#566360",
     "align": "left",
     "letterSpacing": 0.14,
@@ -27150,7 +27270,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "dc28dca9-f62d-4101-861d-1190eb78ace7",
+      "id": "d6bd718e-7a99-4545-9b33-ad95c5a6f960",
       "title": "এম.কম (হিসাববিজ্ঞান)",
       "subtitle": "ঢাকা বিশ্ববিদ্যালয়",
       "period": "2017",
@@ -27162,7 +27282,7 @@
       "body": ""
      },
      {
-      "id": "54293639-843a-4870-b497-2561572f08f9",
+      "id": "04e95c3a-31dd-4635-b2e8-16f62f9cd7f1",
       "title": "বি.কম (সম্মান)",
       "subtitle": "জগন্নাথ বিশ্ববিদ্যালয়",
       "period": "2015",
@@ -27185,7 +27305,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "4c6ccea4-5970-4049-abca-c0605444d72e",
+      "id": "8dcf28cd-7647-4c70-b0ff-44acfe6ef938",
       "title": "সিনিয়র অ্যাকাউন্টস অফিসার",
       "subtitle": "মেঘনা গ্রুপ অব ইন্ডাস্ট্রিজ • Dhaka",
       "period": "মার্চ ২০১৯ – বর্তমান",
@@ -27199,7 +27319,7 @@
       "body": "Tally ERP 9, MS Excel, SAP FI"
      },
      {
-      "id": "f960cab2-e93c-440f-8b0a-dcb62ec75df5",
+      "id": "8c84a2c2-4b91-4352-a2a1-79c11a924ccc",
       "title": "অ্যাকাউন্টস এসিস্ট্যান্ট",
       "subtitle": "প্যাসিফিক ট্রেডার্স • Dhaka",
       "period": "জুন ২০১৭ – ফেব্রুয়ারি ২০১৯",
@@ -27268,7 +27388,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "89030982-72df-416b-ad02-43f052f482b8",
+      "id": "d0b6ac86-7e2a-4cdd-9ef5-c622e7c417e7",
       "title": "অ্যাডভান্সড এক্সেল ফর ফাইন্যান্স",
       "subtitle": "BASIS Institute of Technology • BIT",
       "period": "2021-08 • 3 months",
@@ -27290,7 +27410,7 @@
     "paragraphs": [],
     "timeline": [
      {
-      "id": "925fd9be-4181-4613-a837-ded1adbb896e",
+      "id": "e571ea8a-fcb5-4613-a453-8b14db76b635",
       "title": "সেরা কর্মকর্তা পুরস্কার",
       "subtitle": "বার্ষিক পারফরম্যান্স অ্যাওয়ার্ড • মেঘনা গ্রুপ",
       "period": "২০২১",

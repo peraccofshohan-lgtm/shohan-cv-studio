@@ -84,6 +84,7 @@ function run(
     caps?: boolean;
     spacing?: number;
     underline?: Record<string, never>;
+    strike?: boolean;
   } = {},
 ): TextRun {
   const hasBengali = /[\u0980-\u09FF]/.test(text);
@@ -97,6 +98,7 @@ function run(
     allCaps: opts.caps,
     characterSpacing: opts.spacing,
     underline: opts.underline ? {} : undefined,
+    strike: opts.strike,
     // Complex-script hints: required for correct Bangla shaping.
     rightToLeft: false,
     cs: hasBengali ? (opts.font ?? 'Noto Sans Bengali') : undefined,
@@ -163,9 +165,20 @@ export async function buildDocx({ data, design, title }: DocxExportOptions): Pro
             bold: (data.title?.fontWeight ?? 600) >= 600,
             italics: !!data.title?.italic,
             underline: data.title?.underline ? {} : undefined,
+            strike: data.title?.strikethrough === true,
             color: data.title?.color ? hex(data.title.color) : p.muted,
             font: data.title?.fontFamily ? titleDocxFont(data.title.fontFamily) : bodyFont,
-            spacing: Math.round((data.title?.letterSpacing ?? 0.14) * 20 * 10) / 10,
+            /**
+             * Word has no word-spacing property; character spacing is the
+             * closest control. Both are suppressed for Bengali so conjuncts are
+             * never pulled apart.
+             */
+            spacing: (() => {
+              const bn = /[\u0980-\u09FF]/.test(transformedTitle);
+              const word = bn ? 0 : (data.title?.wordSpacing ?? 0);
+              const letter = bn ? 0 : (data.title?.letterSpacing ?? 0.14);
+              return Math.round((letter + word) * 200);
+            })(),
           }),
         ],
         border:

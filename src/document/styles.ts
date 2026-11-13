@@ -168,9 +168,10 @@ ${showGuides
   font-size: ${(title?.sizePt ?? 10).toFixed(2)}pt;
   font-weight: ${title?.weight ?? 600};
   font-style: ${title?.italic ? 'italic' : 'normal'};
-  text-decoration: ${title?.underline ? 'underline' : 'none'};
+  text-decoration: ${[title?.underline ? 'underline' : '', title?.strikethrough ? 'line-through' : ''].filter(Boolean).join(' ') || 'none'};
   color: ${title?.color ?? 'var(--ink-muted)'};
   letter-spacing: ${(title?.letterSpacing ?? 0.14).toFixed(3)}em;
+  word-spacing: ${(title?.wordSpacing ?? 0).toFixed(3)}em;
   text-align: ${title?.align ?? 'left'};
   text-transform: none;
   line-height: 1.25;

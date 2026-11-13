@@ -7,7 +7,7 @@
 ## 1. Verdict
 
 The application code is complete, compiles, builds, and is covered by **222
-automated tests across 17 files**. The production bundle was audited byte by byte
+automated tests across 18 files**. The production bundle was audited byte by byte
 and passes every check that can be made without a Windows machine.
 
 **The release is NOT declared ready for distribution.** No installer was built
@@ -86,11 +86,11 @@ Status vocabulary used throughout, and used consistently:
 | Font previews | **Partial** | Font pairs are named and applied live in the preview |
 | Font pairing presets | **Implemented & tested** | 4 bundled pairs (Inter/Lora × Bengali) |
 | Import additional fonts | **Not implemented** | Only bundled, OFL-licensed fonts ship (deliberate, offline-first) |
-| Size / weight / bold / italic / underline | **Implemented & tested** | Title and body roles |
-| Strikethrough | **Not implemented** | — |
+| Size / weight / bold / italic / underline | **Implemented & tested** | Title and body roles; underline and strike combine |
+| Strikethrough | **Implemented & tested** (document title) | `TitleStyle.strikethrough` → CSS `line-through` and OOXML `<w:strike>`; combinable with underline |
 | Uppercase / lowercase / Title Case | **Implemented & tested** (title) | Body case follows the source text |
 | Letter spacing, line height | **Implemented & tested** | em + unitless |
-| Word spacing | **Not implemented** | — |
+| Word spacing | **Implemented & tested** (document title, Latin only) | 0–0.5 em, clamped; forced to 0 for Bengali text so conjuncts are never separated (`tests/title-decoration.test.ts`) |
 | Four alignments, at paragraph level | **Implemented & tested** | `bodyAlign` reaches CSS; test asserts all four |
 | Alignment for name / title / headings / objective / declaration / footer | **Partial** | Name follows the header style; title, headings and body are independently controllable; declaration and footer alignment are fixed |
 | First-line indent, before/after spacing, keep-with-next, widow/orphan | **Implemented & tested** | `paragraphIndentMm`, spacing tokens, `orphans/widows: 2` |
@@ -217,7 +217,7 @@ Per-template support matrix (all verified by the composition matrix test):
 | Deliverable | Status |
 | --- | --- |
 | README, USER_MANUAL, TECHNICAL, TESTING, COMPATIBILITY, KNOWN_ISSUES, RELEASE_NOTES, DELIVERY_REPORT updated | **Done** |
-| Feature audit script updated | **Done** — 43 checks |
+| Feature audit script updated | **Done** — 45 checks |
 | Documentation reflects only implemented features | **Done** — audited item by item; unimplemented items are marked as such above |
 | Every feature marked with an explicit status | **Done** (this document) |
 
@@ -231,7 +231,7 @@ Per-template support matrix (all verified by the composition matrix test):
 | Wizard steps | **20** (was 19; the document-title step was added) |
 | Palettes / font pairs | 13 / 4 |
 | Database tables / schema version | 28 / **2** |
-| Test files / tests | **17 / 222** |
+| Test files / tests | **18 / 229** |
 | Production bundle | 1.56 MB JS, 5 chunks; 64 `woff2` (15 Bengali); 128 CSS asset URLs, 0 missing |
 | Documented preview pages | 122 PNG (60 first pages + 62 continuation) |
 | Commits on this branch | 19 (see `git log`) |
@@ -261,7 +261,7 @@ Per-template support matrix (all verified by the composition matrix test):
 Tick every line on a connected machine before distributing.
 
 - [x] `npx tsc --noEmit` — 0 errors
-- [x] `npx vitest run` — 222/222
+- [x] `npx vitest run` — 229/229
 - [x] `npm run build` — green
 - [x] `node scripts/verify-dist.mjs` — 0 failures
 - [x] `bash scripts/feature-audit.sh` — all present
@@ -289,9 +289,8 @@ Tick every line on a connected machine before distributing.
    (`electron-builder.config.cjs`) and the verification gate (`npm run verify`).
 2. **Run the per-OS matrix** in COMPATIBILITY.md and replace every "Not tested".
 3. **Close the remaining composition gaps**, in the order the specification
-   weights them: page thumbnails, before/after comparison, strikethrough and
-   word-spacing, font import, the named 10-preset library and standalone
-   palettes.
+   weights them: page thumbnails, before/after comparison, font import, the
+   named 10-preset library and standalone palettes.
 4. **Add a real pagination check** once a browser engine is available: render the
    print payload to PDF and assert page count against the estimator.
 

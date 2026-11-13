@@ -207,11 +207,16 @@ Choose one of: **CV**, **CURRICULUM VITAE**, **RESUME**, **PROFESSIONAL RESUME**
 **No title**, or **Custom** (your own text, up to 80 characters).
 
 When a title is shown you can style it independently of everything else: font
-size, weight, italic, underline, colour, letter case (UPPERCASE / lowercase /
-Title Case / as typed), letter spacing, alignment, position (above the name,
-below the name, or below the contact details), space above and below, a rule
-under it (none / thin / thick / double / side accent), a background (none / soft
-tint / solid accent), and a short accent line.
+size, weight, italic, underline, strikethrough, colour, letter case (UPPERCASE /
+lowercase / Title Case / as typed), letter spacing, word spacing, alignment,
+position (above the name, below the name, or below the contact details), space
+above and below, a rule under it (none / thin / thick / double / side accent), a
+background (none / soft tint / solid accent), and a short accent line.
+
+Underline and strikethrough can be used together. **Word spacing** (0–0.5 em) is
+applied to Latin titles only: separating words in Bangla also pulls conjuncts
+apart, so the field is disabled-in-effect for a Bengali title and the panel says
+so. Letter spacing is never applied to Bengali anywhere in the app.
 
 With **No title** the title element is not rendered at all — the header moves up
 and no empty band is left. The choice is stored with the CV, so it is remembered

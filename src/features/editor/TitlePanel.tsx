@@ -148,7 +148,7 @@ export const TitlePanel: React.FC = () => {
               unit="em"
               onChange={(v) => patch({ letterSpacing: v })}
             />
-            <div className="row" style={{ gap: 'var(--sp-3)' }}>
+            <div className="row" style={{ gap: 'var(--sp-3)', flexWrap: 'wrap' }}>
               <label className="row" style={{ gap: 6, fontSize: 'var(--fs-sm)' }}>
                 <input type="checkbox" checked={title.italic} onChange={(e) => patch({ italic: e.target.checked })} />
                 {bn('Italic', 'ইটালিক')}
@@ -157,7 +157,32 @@ export const TitlePanel: React.FC = () => {
                 <input type="checkbox" checked={title.underline} onChange={(e) => patch({ underline: e.target.checked })} />
                 {bn('Underline', 'আন্ডারলাইন')}
               </label>
+              <label className="row" style={{ gap: 6, fontSize: 'var(--fs-sm)' }}>
+                <input
+                  type="checkbox"
+                  checked={title.strikethrough === true}
+                  onChange={(e) => patch({ strikethrough: e.target.checked })}
+                />
+                {bn('Strikethrough', 'স্ট্রাইকথ্রু')}
+              </label>
             </div>
+            <NumberField
+              label={bn('Word spacing', 'শব্দের ফাঁক')}
+              value={title.wordSpacing ?? 0}
+              min={0}
+              max={0.5}
+              step={0.01}
+              unit="em"
+              onChange={(v) => patch({ wordSpacing: v })}
+              hint={
+                /[\u0980-\u09FF]/.test(title.text ?? '')
+                  ? bn(
+                      'বাংলা শিরোনামে শব্দের ফাঁক প্রয়োগ হয় না — যুক্তাক্ষর আলাদা হয়ে যাওয়া ঠেকাতে।',
+                      'Word spacing is not applied to Bengali titles — it would pull conjuncts apart.',
+                    )
+                  : bn('ল্যাটিন লেখায় প্রযোজ্য', 'Applies to Latin text')
+              }
+            />
             <HexField
               label={bn('Title colour', 'শিরোনামের রং')}
               value={title.color}
@@ -265,9 +290,11 @@ export const TitlePanel: React.FC = () => {
               fontWeight: 600,
               italic: false,
               underline: false,
+              strikethrough: false,
               color: null,
               transform: 'uppercase',
               letterSpacing: 0.14,
+              wordSpacing: 0,
               align: 'left',
               spaceBeforeMm: 1,
               spaceAfterMm: 1.4,

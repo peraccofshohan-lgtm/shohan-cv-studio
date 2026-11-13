@@ -11,16 +11,16 @@ here is estimated, and anything that could not be executed is listed in
 | Check | Command | Result |
 | --- | --- | --- |
 | TypeScript | `npx tsc --noEmit` | **PASS** — 0 errors |
-| Unit / integration tests | `npx vitest run` | **PASS** — 17 files, **222 tests** |
+| Unit / integration tests | `npx vitest run` | **PASS** — 18 files, **229 tests** |
 | Production build | `npm run build` | **PASS** — Vite + CSP injection |
 | Production bundle audit | `node scripts/verify-dist.mjs` | **PASS** — 8 passed, 2 documented warnings, 0 failures |
-| Feature-presence audit | `bash scripts/feature-audit.sh` | **PASS** — 43 checks, all present |
+| Feature-presence audit | `bash scripts/feature-audit.sh` | **PASS** — 45 checks, all present |
 | Visual rendering | `npm run docs:previews` | **PASS** — 122 A4 pages across 60 template × language previews |
 | One-shot gate | `npm run verify` | runs everything above in order |
 
 ---
 
-## 2. Test inventory (222 tests / 17 files)
+## 2. Test inventory (229 tests / 18 files)
 
 | File | Tests | What it protects |
 | --- | --- | --- |
@@ -38,6 +38,7 @@ here is estimated, and anything that could not be executed is listed in
 | `tests/regression.test.ts` | 3 | Bangla byte round-trip, defaults, no fabricated data |
 | `tests/docx.test.ts` | 3 | DOCX A4 size, textual content, Bengali strings, no image parts |
 | `tests/production-entry.test.tsx` | 2 | `dist/index.html` has `#root`, the strict CSP, no inline script, and every referenced asset exists |
+| `tests/title-decoration.test.ts` | 7 | Title strikethrough and word spacing: combined decoration, clamp, Latin-only word spacing (never Bengali), DOCX `<w:strike>` |
 | `tests/section-styles.test.ts` | 15 | Per-section design overrides: colour/scale/gap clamping, lossless reset, markup attributes, print payload, DOCX page break, colour, alignment and bullet numbering |
 | `tests/emit-models.test.ts` | 1 | Emits `docs/preview-models.json` for 60 template × language previews |
 | `tests/docs-images.test.ts` | 1 | Documentation previews exist, are A4-proportioned and non-blank |

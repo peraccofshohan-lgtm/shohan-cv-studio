@@ -166,6 +166,13 @@ export function resolveTitle(data: CVData): DocumentTitleTokens {
     weight: t.fontWeight,
     italic: t.italic,
     underline: t.underline,
+    strikethrough: t.strikethrough === true,
+    /**
+     * Word spacing separates Bengali conjuncts visually and is the one tracking
+     * control that genuinely damages Bangla typesetting, so it is forced to 0
+     * whenever the title contains Bengali — the control still works for Latin.
+     */
+    wordSpacing: /[\u0980-\u09FF]/.test(raw) ? 0 : clamp(t.wordSpacing ?? 0, 0, 0.5),
     color: t.color,
     align: t.align,
     letterSpacing: t.letterSpacing,
