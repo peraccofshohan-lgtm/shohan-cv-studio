@@ -20,7 +20,7 @@ vi.mock('@/platform', async () => {
     getBridge: () => ({
       info: async () => ({
         kind: 'browser' as const,
-        appVersion: '1.0.0',
+        appVersion: '1.1.0',
         electronVersion: '',
         chromeVersion: '108',
         platform: 'test',

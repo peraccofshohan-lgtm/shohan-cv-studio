@@ -6,7 +6,7 @@
 
 ## 1. Verdict
 
-The application code is complete, compiles, builds, and is covered by **222
+The application code is complete, compiles, builds, and is covered by **251
 automated tests across 21 files**. The production bundle was audited byte by byte
 and passes every check that can be made without a Windows machine.
 
@@ -230,12 +230,12 @@ Per-template support matrix (all verified by the composition matrix test):
 | --- | --- |
 | Templates | **30** |
 | Wizard steps | **20** (was 19; the document-title step was added) |
-| Palettes / font pairs | 13 / 4 |
-| Database tables / schema version | 28 / **2** |
-| Test files / tests | **19 / 235** |
+| Palettes / font pairs | 9 / 4 (+10 named presets) |
+| Database tables / schema version | 29 / **3** |
+| Test files / tests | **21 / 251** |
 | Production bundle | 1.56 MB JS, 5 chunks; 64 `woff2` (15 Bengali); 128 CSS asset URLs, 0 missing |
 | Documented preview pages | 122 PNG (60 first pages + 62 continuation) |
-| Commits on this branch | 19 (see `git log`) |
+| Commits on this branch | 31 (see `git log`) |
 | TypeScript errors | 0 |
 | `verify-dist` | 8 passed, 2 documented warnings, 0 failures |
 
@@ -262,7 +262,7 @@ Per-template support matrix (all verified by the composition matrix test):
 Tick every line on a connected machine before distributing.
 
 - [x] `npx tsc --noEmit` — 0 errors
-- [x] `npx vitest run` — 251/251
+- [x] `npx vitest run` — 252/252
 - [x] `npm run build` — green
 - [x] `node scripts/verify-dist.mjs` — 0 failures
 - [x] `bash scripts/feature-audit.sh` — all present

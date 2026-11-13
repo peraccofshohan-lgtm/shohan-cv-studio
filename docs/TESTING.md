@@ -11,7 +11,7 @@ here is estimated, and anything that could not be executed is listed in
 | Check | Command | Result |
 | --- | --- | --- |
 | TypeScript | `npx tsc --noEmit` | **PASS** — 0 errors |
-| Unit / integration tests | `npx vitest run` | **PASS** — 21 files, **251 tests** |
+| Unit / integration tests | `npx vitest run` | **PASS** — 21 files, **252 tests** |
 | Production build | `npm run build` | **PASS** — Vite + CSP injection |
 | Production bundle audit | `node scripts/verify-dist.mjs` | **PASS** — 8 passed, 2 documented warnings, 0 failures |
 | Feature-presence audit | `bash scripts/feature-audit.sh` | **PASS** — 50 checks, all present |
@@ -20,7 +20,7 @@ here is estimated, and anything that could not be executed is listed in
 
 ---
 
-## 2. Test inventory (251 tests / 21 files)
+## 2. Test inventory (252 tests / 21 files)
 
 | File | Tests | What it protects |
 | --- | --- | --- |
@@ -37,7 +37,7 @@ here is estimated, and anything that could not be executed is listed in
 | `tests/smoke.test.ts` | 3 | App boot and store wiring |
 | `tests/regression.test.ts` | 3 | Bangla byte round-trip, defaults, no fabricated data |
 | `tests/docx.test.ts` | 3 | DOCX A4 size, textual content, Bengali strings, no image parts |
-| `tests/production-entry.test.tsx` | 2 | `dist/index.html` has `#root`, the strict CSP, no inline script, and every referenced asset exists |
+| `tests/production-entry.test.tsx` | 3 | `dist/index.html` has `#root`, the strict CSP, no inline script, every referenced asset exists, and the release version matches `package.json` and the docs |
 | `tests/contrast.test.ts` | 4 | Contrast diagnostics: `LOW_CONTRAST` only when a pair really fails, never blocks the report, both languages |
 | `tests/before-after.test.ts` | 7 | Snapshot diff: no-change silence, `presetId` ignored, design/template/section/content detection |
 | `tests/named-presets.test.ts` | 5 | Ten named presets: ids exist, resolve to A4, render in bn+en without a photo, and never mutate the template catalog |

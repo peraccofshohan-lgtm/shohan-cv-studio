@@ -41,7 +41,7 @@ The application itself never uses the network at runtime.
 
 ### 2.1 Installer (recommended)
 
-1. Run `Shohan-CV-Studio-1.0.0-<arch>.exe`.
+1. Run `Shohan-CV-Studio-1.1.0-<arch>.exe`.
 2. If Windows SmartScreen shows *"Windows protected your PC"*, choose
    **More info → Run anyway**. The build is unsigned unless your release
    engineer supplied a code-signing certificate; unsigned executables always
@@ -55,14 +55,14 @@ administrator rights. Choosing *"Install for all users"* requests elevation.
 
 ### 2.2 Portable build
 
-Run `Shohan-CV-Studio-1.0.0-portable-<arch>.exe` directly. Nothing is written to
+Run `Shohan-CV-Studio-1.1.0-portable-<arch>.exe` directly. Nothing is written to
 `Program Files`; user data still lives in the standard application-data folder
 (see §5) so your CVs survive replacing the executable.
 
 ### 2.3 Silent install (IT deployment)
 
 ```bat
-Shohan-CV-Studio-1.0.0-x64.exe /S
+Shohan-CV-Studio-1.1.0-x64.exe /S
 ```
 
 The NSIS installer accepts `/S` for silent mode. Verify the installation by

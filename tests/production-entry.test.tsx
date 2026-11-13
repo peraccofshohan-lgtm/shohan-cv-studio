@@ -17,3 +17,16 @@ describe('production entry', () => {
     for (const rel of refs) expect(() => readFileSync(resolve('dist', rel))).not.toThrow();
   });
 });
+
+describe('release version consistency', () => {
+  it('the app version, package.json and the docs agree', () => {
+    const meta = readFileSync(resolve('src/lib/appMeta.ts'), 'utf8');
+    const pkg = JSON.parse(readFileSync(resolve('package.json'), 'utf8')) as { version: string };
+    const app = /APP_VERSION = '([^']+)'/.exec(meta)?.[1];
+    expect(app).toBe(pkg.version);
+    // Every document titles itself with the same version.
+    for (const doc of ['README.md', 'docs/RELEASE_NOTES.md', 'docs/DELIVERY_REPORT.md', 'docs/RELEASE_ARTEFACTS.md']) {
+      expect(readFileSync(resolve(doc), 'utf8'), doc).toContain(pkg.version);
+    }
+  });
+});

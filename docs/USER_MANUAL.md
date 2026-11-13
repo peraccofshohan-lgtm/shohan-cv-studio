@@ -1,4 +1,4 @@
-# User Manual — SHOHAN CV STUDIO 1.0.0
+# User Manual — SHOHAN CV STUDIO 1.1.0
 
 এই ম্যানুয়ালটি বাংলা ভাষায় ব্যবহারকারীর জন্য লেখা। Technical details are in
 [TECHNICAL.md](TECHNICAL.md).

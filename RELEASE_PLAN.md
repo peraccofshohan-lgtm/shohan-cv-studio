@@ -88,7 +88,7 @@ HarfBuzz-rendered A4 page bitmaps, sql.js persistence round-trips).
 | Preview controls (Part 8) | Implemented & tested |
 | Preset library (Part 9) | Implemented & tested (combined preset) |
 | Export consistency (Part 10) | Preview/DOCX/HTML/text tested; PDF+print payload tested; PDF file/print blocked (environment) |
-| Test matrix (Part 11) | Implemented & tested — 251 tests, 60 matrix cells, 122 rendered pages |
+| Test matrix (Part 11) | Implemented & tested — 252 tests, 60 matrix cells, 122 rendered pages |
 | Performance/usability (Part 12) | Implemented; measured bundle 1.56 MB |
 | Docs (Part 13) | Complete, with explicit per-feature status |
 | Installers | **Blocked (environment)** |
