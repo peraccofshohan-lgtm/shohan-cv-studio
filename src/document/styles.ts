@@ -53,6 +53,9 @@ ${fontCss}
   color: var(--ink);
   -webkit-font-smoothing: antialiased;
   text-rendering: geometricPrecision;
+  /* Keep header bands, rules and chips in the printed/PDF output. */
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
   font-variant-ligatures: common-ligatures;
   overflow-wrap: break-word;
   word-break: normal;

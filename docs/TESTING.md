@@ -14,7 +14,7 @@ Windows runtime.
 | Command | Result |
 | --- | --- |
 | `npx tsc --noEmit` | **PASS** — 0 errors |
-| `npx vitest run` | **PASS** — 10 files, **59 tests** |
+| `npx vitest run` | **PASS** — 11 files, **66 tests** |
 | `npm run build` | **PASS** — typecheck → Vite bundle → CSP injected into `dist/index.html` |
 | `python3 scripts/render_previews.py` | **PASS** — 80 page images across 40 template × language combinations |
 
@@ -30,6 +30,7 @@ Windows runtime.
 | `tests/design.test.ts` | 16 | φ = 1.6180339887; golden split; 8-point grid; A4 tokens; **no `color-mix()`, container queries, `@layer`, `subgrid`, `:has()`** anywhere in `src/`; ES2019 target; 20 unique templates; no palette-only differentiation; ATS templates photo-free and graphic-free |
 | `tests/emit-models.test.ts` | 1 | Both document languages × 20 templates produce preview models |
 | `tests/text-export.test.ts` | 6 | Plain-text export mirrors the printable document: name/contact block, empty- and disabled-section suppression, user order, sensitive fields hidden unless enabled, timeline formatting, no trailing blank-line noise |
+| `tests/print-output.test.ts` | 7 | The self-contained print/PDF document: complete HTML, A4 page rule, embedded `@font-face` data (including the Bengali face), real selectable text (no `<img>`), byte-exact Bangla, no heading for an emptied section, explicit print-colour-adjust, and screen guides suppressed in print |
 | `tests/ui-smoke.test.tsx` | 7 | React screens actually mount: dashboard renders Bangla and English, the gallery lists all 20 templates, the editor mounts a `.cv-paper` carrying the user's name, the section navigator is populated, the A4 guides toggle works, and a switched-off section disappears from the page |
 | `tests/docs-images.test.ts` | 1 | Documentation preview generation runs offline |
 
@@ -45,7 +46,10 @@ Windows runtime.
 3. **CSP breaking development.** A static `script-src 'self'` meta tag blocked
    Vite's dev preamble and HMR websocket. Moved to build-time injection via
    `scripts/inject-csp.mjs`.
-4. **Preview/layout drift.** The documentation renderer initially used its own type
+4. **Print colour would have dropped.** `print-color-adjust: exact` was missing
+   from the document stylesheet, so header bands, rules and skill chips could
+   print white in some drivers. Added, and locked by `tests/print-output.test.ts`.
+5. **Preview/layout drift.** The documentation renderer initially used its own type
    sizes and drifted from the product. It now reads the millimetre metrics from
    `src/document/styles.ts` and shapes text with HarfBuzz, the same stack Chromium
    uses, and paginates with the same "never split a section" rule.
