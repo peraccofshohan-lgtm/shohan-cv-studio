@@ -98,6 +98,28 @@ assumption.
 
 ---
 
+## 3b. Feature-presence audit
+
+Every capability claimed above was re-checked against the source tree by pattern
+audit (script kept at `scripts/feature-audit.sh`). Results:
+
+| Capability | Present in |
+| --- | --- |
+| Undo/redo + autosave | `src/store/workspace.ts` |
+| Customer CRUD, duplication, soft delete/restore | `src/database/cvRepository.ts` |
+| Search / filter / sort | `src/database/cvRepository.ts` |
+| Export history logging | `export_history` + repository |
+| Backup manifest with SHA-256 + pre-restore safety copy | `src/features/backup/BackupPage.tsx` |
+| DOCX exporter | `src/document/docxExport.ts` |
+| Native print + print-to-PDF | `electron/main.cjs` (`print:run`, `print:pdf`) |
+| CSP injection | `scripts/inject-csp.mjs` |
+| `contextIsolation: true`, `nodeIntegration: false`, navigation and download guards | `electron/main.cjs` |
+
+Counts: **19** wizard steps · **20** templates · **13** palettes · **28** database
+tables · **11** test files.
+
+---
+
 ## 4. What was NOT verified — per-OS status
 
 | OS | Architecture | Installer built | Installed & launched | Print verified | DOCX opened in Word | Status |
