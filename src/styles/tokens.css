@@ -1,0 +1,300 @@
+/* ------------------------------------------------------------------
+   SHOHAN CV STUDIO — design tokens
+   Golden-ratio type scale, 8-point spacing rhythm, restrained palette.
+   ------------------------------------------------------------------ */
+
+:root {
+  /* φ-derived type scale (16px base, steps of φ^(1/2)) */
+  --fs-2xs: 0.6875rem; /* 11px */
+  --fs-xs: 0.75rem; /* 12px */
+  --fs-sm: 0.8125rem; /* 13px */
+  --fs-base: 0.875rem; /* 14px — UI body */
+  --fs-md: 1rem; /* 16px */
+  --fs-lg: 1.125rem; /* 18px */
+  --fs-xl: 1.375rem; /* 22px */
+  --fs-2xl: 1.75rem; /* 28px */
+  --fs-3xl: 2.25rem; /* 36px */
+
+  /* 8-point spacing grid */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 40px;
+  --sp-8: 56px;
+  --sp-9: 72px;
+
+  /* Golden composition */
+  --phi: 1.618;
+  --measure: 62ch;
+
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-pill: 999px;
+
+  --font-ui: 'Inter', 'Noto Sans Bengali', 'Nirmala UI', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-bn: 'Noto Sans Bengali', 'Nirmala UI', 'Shonar Bangla', 'Segoe UI', sans-serif;
+  --font-display: 'Inter', 'Noto Sans Bengali', 'Segoe UI', sans-serif;
+
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur: 180ms;
+  --dur-slow: 280ms;
+
+  --sidebar-w: 252px;
+  --sidebar-w-collapsed: 76px;
+  --topbar-h: 64px;
+}
+
+/* ------------------------------------------------------------- light */
+:root,
+[data-theme='light'] {
+  color-scheme: light;
+  --bg: #f4f6f9;
+  --bg-elevated: #ffffff;
+  --bg-sunken: #eceff4;
+  --bg-subtle: #f8f9fb;
+  --bg-hover: rgba(16, 34, 54, 0.04);
+  --bg-active: rgba(16, 54, 92, 0.08);
+
+  --border: #e2e7ee;
+  --border-strong: #cfd7e2;
+
+  --text: #141a22;
+  --text-muted: #5a6675;
+  --text-faint: #8b96a5;
+  --text-inverse: #ffffff;
+
+  --primary: #14395e;
+  --primary-hover: #0e2b48;
+  --primary-soft: #e7eef6;
+  --primary-contrast: #ffffff;
+
+  --accent: #b4894a;
+  --accent-soft: #f6efe2;
+
+  --success: #17705a;
+  --success-soft: #e4f2ee;
+  --warning: #a06a11;
+  --warning-soft: #fbf1dd;
+  --danger: #a8322c;
+  --danger-soft: #fbe9e8;
+  --info: #2a5d8f;
+  --info-soft: #e8f0f8;
+
+  --shadow-xs: 0 1px 2px rgba(18, 30, 46, 0.06);
+  --shadow-sm: 0 1px 3px rgba(18, 30, 46, 0.08), 0 1px 2px rgba(18, 30, 46, 0.04);
+  --shadow-md: 0 4px 14px rgba(18, 30, 46, 0.08), 0 1px 3px rgba(18, 30, 46, 0.05);
+  --shadow-lg: 0 18px 44px rgba(18, 30, 46, 0.16), 0 4px 12px rgba(18, 30, 46, 0.08);
+
+  --focus: #2f7ad6;
+  --scrim: rgba(14, 22, 34, 0.42);
+  --paper: #ffffff;
+  --paper-shadow: 0 12px 34px rgba(16, 30, 50, 0.16), 0 1px 2px rgba(16, 30, 50, 0.1);
+
+  /* Derived tones (computed here instead of color-mix() so Electron 22 /
+     Chromium 108 on Windows 7 renders the exact same result). */
+  --primary-edge: #0f2d4a;
+  --primary-soft-2: #dbe6f1;
+  --accent-edge: #96703a;
+  --btn-hover-lighten: rgba(255, 255, 255, 0.14);
+  --btn-hover-darken: rgba(0, 0, 0, 0.14);
+  --topbar-bg: rgba(255, 255, 255, 0.92);
+  --rule-soft: rgba(20, 26, 34, 0.14);
+  --focus-ring: rgba(47, 122, 214, 0.2);
+  --info-border: rgba(42, 93, 143, 0.24);
+  --info-ink: #244f7a;
+  --warning-border: rgba(160, 106, 17, 0.26);
+  --warning-ink: #7f530d;
+  --danger-border: rgba(168, 50, 44, 0.26);
+  --danger-ink: #8b2924;
+  --success-border: rgba(23, 112, 90, 0.26);
+  --success-ink: #125c4a;
+  --brand-grad-a: #14395e;
+  --brand-grad-b: #0c2337;
+  --hero-grad-a: #0f2b47;
+  --hero-grad-b: #14395e;
+  --hero-grad-c: #2c4a63;
+}
+
+/* -------------------------------------------------------------- dark */
+[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #0d1117;
+  --bg-elevated: #151b23;
+  --bg-sunken: #0a0e13;
+  --bg-subtle: #11171f;
+  --bg-hover: rgba(255, 255, 255, 0.05);
+  --bg-active: rgba(127, 176, 232, 0.14);
+
+  --border: #232c37;
+  --border-strong: #33404f;
+
+  --text: #e9eef5;
+  --text-muted: #9dabbd;
+  --text-faint: #6f7d8e;
+  --text-inverse: #0d1117;
+
+  --primary: #5e9ee0;
+  --primary-hover: #7fb3ea;
+  --primary-soft: #16283c;
+  --primary-contrast: #07121d;
+
+  --accent: #d9ae6d;
+  --accent-soft: #2a2318;
+
+  --success: #4bbe9c;
+  --success-soft: #12332b;
+  --warning: #e0ab52;
+  --warning-soft: #332714;
+  --danger: #e57b73;
+  --danger-soft: #3a1c1b;
+  --info: #7db4e8;
+  --info-soft: #152737;
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.45), 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 22px 52px rgba(0, 0, 0, 0.6);
+  --focus: #7fb3ea;
+  --scrim: rgba(0, 0, 0, 0.62);
+  --paper: #ffffff;
+  --paper-shadow: 0 14px 40px rgba(0, 0, 0, 0.55);
+
+  --primary-edge: #7fb3ea;
+  --primary-soft-2: #1c3145;
+  --accent-edge: #e5c188;
+  --btn-hover-lighten: rgba(255, 255, 255, 0.1);
+  --btn-hover-darken: rgba(255, 255, 255, 0.08);
+  --topbar-bg: rgba(21, 27, 35, 0.94);
+  --rule-soft: rgba(233, 238, 245, 0.16);
+  --focus-ring: rgba(127, 179, 234, 0.24);
+  --info-border: rgba(125, 180, 232, 0.28);
+  --info-ink: #a9cdf0;
+  --warning-border: rgba(224, 171, 82, 0.3);
+  --warning-ink: #f0c987;
+  --danger-border: rgba(229, 123, 115, 0.3);
+  --danger-ink: #f2a49e;
+  --success-border: rgba(75, 190, 156, 0.3);
+  --success-ink: #86dcc5;
+  --brand-grad-a: #1c3a5c;
+  --brand-grad-b: #0f2235;
+  --hero-grad-a: #0a1a2b;
+  --hero-grad-b: #17324d;
+  --hero-grad-c: #264659;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: var(--fs-base);
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-variant-numeric: tabular-nums;
+}
+
+:lang(bn) {
+  font-family: var(--font-bn);
+  line-height: 1.62;
+}
+
+::selection {
+  background: var(--bg-active);
+  color: var(--text);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-xs);
+}
+
+/* Thin, unobtrusive scrollbars (Chromium 108+ supports these props) */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: var(--radius-pill);
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--text-faint);
+  background-clip: content-box;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+[data-motion='reduced'] *,
+[data-motion='reduced'] *::before,
+[data-motion='reduced'] *::after {
+  animation-duration: 0.01ms !important;
+  transition-duration: 0.01ms !important;
+}
+
+/* Boot splash shown before React mounts */
+.boot-splash {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: var(--sp-3);
+  color: var(--text-muted);
+  font-family: var(--font-ui);
+}
+.boot-splash .boot-mark {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-md);
+  background: var(--primary);
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+.boot-splash p {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  font-size: var(--fs-xs);
+  color: var(--text);
+}
+.boot-splash span {
+  font-size: var(--fs-xs);
+}

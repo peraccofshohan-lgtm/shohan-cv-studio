@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <!--
+      Content-Security-Policy is injected at build time by scripts/inject-csp.mjs
+      (strict production policy: no inline script, no remote origin) and by the
+      Vite dev server (adds the HMR websocket + react-refresh preamble).
+      Keeping it out of the static file avoids weakening production to support dev.
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <title>SHOHAN CV STUDIO</title>
+    <style>
+      html, body, #root { height: 100%; margin: 0; }
+      body { background: #f4f6f9; font-family: 'Inter', 'Noto Sans Bengali', 'Segoe UI', system-ui, sans-serif; }
+      .boot-splash { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 12px; color: #5a6675; }
+      .boot-mark { width: 56px; height: 56px; display: grid; place-items: center; border-radius: 10px; background: #14395e; color: #fff; font-weight: 700; letter-spacing: .08em; }
+      .boot-splash p { margin: 0; font-weight: 600; letter-spacing: .14em; font-size: 12px; color: #141a22; }
+      .boot-splash span { font-size: 12px; }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <div class="boot-splash">
+        <div class="boot-mark">SC</div>
+        <p>SHOHAN CV STUDIO</p>
+        <span>Loading workspace…</span>
+      </div>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

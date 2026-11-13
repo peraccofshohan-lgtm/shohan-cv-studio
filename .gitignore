@@ -1,0 +1,12 @@
+node_modules/
+dist/
+release/
+release-test/
+*.local
+.DS_Store
+coverage/
+.vite/
+*.log
+npm-debug.log*
+/tmp-*
+/tests/__artifacts__/
