@@ -103,7 +103,6 @@ Status vocabulary used throughout, and used consistently:
 | Basic / Advanced modes | **Implemented & tested** | Design panel; test asserts advanced fields are hidden until selected |
 | 13 colour tokens with picker + HEX + RGB | **Implemented & tested** | `ColorToken`, `HexField` (live RGB readout); malformed input rejected |
 | Preset palettes | **Implemented & tested** | 9 built-in palettes with 13 colour tokens each |
-| Named presets (10 ready-made looks) | **Implemented & tested** | `src/lib/namedPresets.ts` — 10 presets applied from the Presets panel by setting a base template + design tokens; `tests/named-presets.test.ts` proves the catalog is never mutated and content is untouched |
 | Custom saved palettes | **Implemented & tested** — schema v3 `color_palettes`; save / apply / delete from the Presets panel; `tests/database.test.ts` round-trip. Closes the last Part 5 gap |
 | Named presets (10 ready-made looks) | **Implemented & tested** | `src/lib/namedPresets.ts` — 10 presets, applied from the Presets panel by setting a base template + design tokens; `tests/named-presets.test.ts` proves the catalog is never mutated and content is untouched |
 | Contrast safety | **Partial** | `contrastRatio` helper exists and is used by the palette design; not enforced on arbitrary user colours |
@@ -113,7 +112,7 @@ Status vocabulary used throughout, and used consistently:
 | Photo absence leaves no placeholder | **Implemented & tested** | Element not emitted |
 | Per-section design (heading colour/align/scale, bullet style) | **Implemented & tested** | `src/lib/sectionStyles.ts` + `SectionStylePanel` (opened from the 🖌 button on a section row); override reaches preview, print payload and DOCX; `tests/section-styles.test.ts` (15 tests) |
 | Borders and decorative elements | **Implemented & tested** | Five title rules, six heading styles, entry rules, bands |
-| Ten named premium presets | **Partial** | The 30 templates act as presets; user presets are save/apply/rename/duplicate/delete. The specific ten names from the prompt are not hard-coded as a separate list |
+| Ten named premium presets | **Implemented & tested** | `src/lib/namedPresets.ts` — Corner Office, Bank Standard, Parser Plain, Academic Archive, Tech Brief, First Interview, Swiss Grid, Burgundy Formal, Editorial, One Page Tight; applied from the Presets panel; `tests/named-presets.test.ts` (5 tests) |
 
 ### Part 6 — Ten new premium templates (30 total)
 
@@ -172,7 +171,7 @@ Per-template support matrix (all verified by the composition matrix test):
 | Save / rename / duplicate / delete / apply presets | **Implemented & tested** |
 | Restore default | **Implemented & tested** (`Reset design`) |
 | Presets never overwrite built-in templates | **Implemented & tested** — applying records the base template + tokens |
-| Separate colour/font/spacing/margin/page presets | **Partial** — one combined style preset |
+| Separate colour/font/spacing/margin/page presets | **Partial** — colour palettes are now standalone (schema v3); font, spacing and margin sets are still saved together in one combined style preset |
 
 ### Part 10 — Export and print consistency
 
