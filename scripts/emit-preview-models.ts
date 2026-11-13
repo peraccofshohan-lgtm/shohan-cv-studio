@@ -11,6 +11,7 @@ import { join } from 'node:path';
 import { TEMPLATES, resolveDesign } from '@/templates/catalog';
 import { buildSampleCv } from '@/features/templates/sampleData';
 import { printableSections } from '@/lib/sections';
+import { composeDocumentTokens } from '@/lib/composition';
 
 export function emitPreviewModels(): number {
   const models: unknown[] = [];
@@ -19,11 +20,15 @@ export function emitPreviewModels(): number {
     for (const template of TEMPLATES) {
       const design = resolveDesign(template.id, {});
       const sections = printableSections(cv, { language });
+      // The previews draw the *resolved composition tokens*, so the documented
+      // images follow the same title block, margins and spacing as the app.
+      const tokens = composeDocumentTokens({ data: cv, design });
       models.push({
         templateId: template.id,
         templateName: template.name,
         language,
         design,
+        tokens,
         data: {
           personal: {
             fullName: cv.personal.fullName,

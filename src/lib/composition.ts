@@ -272,9 +272,19 @@ export function composeDocumentTokens({
       };
 
   const spacingUser = overrides.spacing ?? {};
+  // Density is applied to real spacing tokens here — not just to the visual
+  // type scale — so "Compact" genuinely fits more and "Spacious" genuinely
+  // breathes. Explicit per-token overrides then multiply on top.
+  const densitySpacing: Record<SpacingToken, number> = {
+    ...DEFAULT_SPACING,
+    sectionGap: density.sectionSpacing,
+    paragraph: density.paragraphGap,
+    bullet: density.paragraphGap,
+    line: density.lineHeight / 1.5,
+  };
   const spacing = Object.fromEntries(
-    (Object.keys(DEFAULT_SPACING) as SpacingToken[]).map((key) => {
-      const base = DEFAULT_SPACING[key] * (spacingUser[key] ?? 1);
+    (Object.keys(densitySpacing) as SpacingToken[]).map((key) => {
+      const base = densitySpacing[key] * (spacingUser[key] ?? 1);
       return [key, round2(base)];
     }),
   ) as Record<SpacingToken, number>;

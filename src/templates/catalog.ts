@@ -1,5 +1,5 @@
 /**
- * Template catalogue — 20 premium A4 CV designs.
+ * Template catalogue — 30 premium A4 CV designs.
  *
  * Every template has its own structural identity: header composition, body
  * grid, section-heading treatment, entry layout, typography pair and palette.
@@ -516,6 +516,134 @@ export const TEMPLATES: TemplateDefinition[] = [
     'inter-inter',
     { header: 'minimal', heading: 'caps', entry: 'split', band: 0, upperHeadings: true, entryRule: false, photoShape: 'none' },
     { photoSupported: false },
+  ),
+
+  // =====================================================================
+  // v1.1 — ten premium designs. Each one differs structurally (header
+  // composition, body grid, heading treatment, entry rhythm, palette and
+  // type pair), never by colour alone.
+  // =====================================================================
+
+  // 21 — Swiss Minimalist: strict flush-left grid, one hairline, no decoration.
+  T(
+    'swiss-minimalist',
+    'Swiss Minimalist',
+    'সুইস মিনিমালিস্ট',
+    'Specialized',
+    'International typographic style: flush-left grid, one hairline rule, generous leading and zero decoration.',
+    'আন্তর্জাতিক টাইপোগ্রাফিক ধারা: বাম-সংলগ্ন গ্রিড, একটি সরু রেখা, প্রশস্ত লাইন-স্পেসিং ও কোনো সাজসজ্জা নেই।',
+    'monochrome',
+    'inter-inter',
+    { header: 'minimal', heading: 'caps', entry: 'split', band: 0, upperHeadings: false, entryRule: false, photoShape: 'square', photo: 'right' },
+  ),
+  // 22 — Scandinavian Executive: airy, restrained, lots of white space.
+  T(
+    'scandinavian-executive',
+    'Scandinavian Executive',
+    'স্ক্যান্ডিনেভিয়ান এক্সিকিউটিভ',
+    'Corporate & Executive',
+    'Quiet Nordic composition: airy whitespace, dusty blue accent, small caps headings and softly spaced entries.',
+    'শান্ত নর্ডিক কম্পোজিশন: খোলামেলা স্পেসিং, ধূসর-নীল অ্যাকসেন্ট, স্মল ক্যাপস শিরোনাম ও নরম এন্ট্রি ফাঁক।',
+    'slate',
+    'inter-lora',
+    { header: 'split', heading: 'underline', entry: 'stacked', band: 0, upperHeadings: true, entryRule: false, photoShape: 'circle', photo: 'left' },
+  ),
+  // 23 — Modern Editorial: strong display headings over a two-column grid.
+  T(
+    'modern-editorial',
+    'Modern Editorial',
+    'মডার্ন এডিটোরিয়াল',
+    'Specialized',
+    'Magazine-inspired: oversized serif headings, two balanced columns and an editorial header block.',
+    'ম্যাগাজিন-অনুপ্রাণিত: বড় সেরিফ শিরোনাম, দুটি ভারসাম্যপূর্ণ কলাম ও সম্পাদকীয় ধাঁচের হেডার।',
+    'charcoal',
+    'lora-inter',
+    { header: 'dual', heading: 'bar', entry: 'stacked', band: 1.4, body: 'two-col', upperHeadings: false, entryRule: false, photoShape: 'rounded' },
+  ),
+  // 24 — Premium Luxury: muted gold, thin rules, letter-spaced capitals.
+  T(
+    'premium-luxury',
+    'Premium Luxury',
+    'প্রিমিয়াম লাক্সারি',
+    'Specialized',
+    'Understated luxury: muted gold hairlines, letter-spaced capitals, centred identity and restrained spacing.',
+    'সংযত বিলাসিতা: ম্লান সোনালি সরু রেখা, অক্ষর-ফাঁকা বড় হাতের অক্ষর, কেন্দ্রীভূত পরিচিতি ও নিয়ন্ত্রিত স্পেসিং।',
+    'muted-gold',
+    'lora-inter',
+    { header: 'centered', heading: 'caps', entry: 'inline', band: 0, upperHeadings: true, entryRule: false, photoShape: 'circle', photo: 'right' },
+  ),
+  // 25 — Global ATS Professional: plainest possible, maximum parsing safety.
+  T(
+    'global-ats-professional',
+    'Global ATS Professional',
+    'গ্লোবাল ATS প্রফেশনাল',
+    'ATS-Friendly',
+    'Maximum parsing safety: one column, standard headings, no colour blocks, no photo and no decorative glyphs.',
+    'সর্বোচ্চ পার্সিং নিরাপত্তা: এক কলাম, প্রচলিত শিরোনাম, রঙিন ব্লক নেই, ছবি নেই, সাজসজ্জার প্রতীক নেই।',
+    'black',
+    'inter-inter',
+    { header: 'minimal', heading: 'underline', entry: 'stacked', band: 0, upperHeadings: true, entryRule: false, photoShape: 'none' },
+    { photoSupported: false },
+  ),
+  // 26 — Modern Two-Column Professional: narrow rail for facts, wide body.
+  T(
+    'modern-two-column',
+    'Modern Two-Column Professional',
+    'মডার্ন টু-কলাম প্রফেশনাল',
+    'Experienced Professional',
+    'Compact left rail holds contact, skills and languages while the wide column carries the career story.',
+    'সংক্ষিপ্ত বাম রেলে যোগাযোগ, দক্ষতা ও ভাষা; প্রশস্ত কলামে কর্মজীবনের পূর্ণ বিবরণ।',
+    'navy',
+    'inter-inter',
+    { header: 'split', heading: 'rule', entry: 'split', band: 0, body: 'sidebar-left', upperHeadings: true, entryRule: false, photoShape: 'rounded' },
+  ),
+  // 27 — Executive Leadership Pro: authoritative band header, senior register.
+  T(
+    'executive-leadership-pro',
+    'Executive Leadership Pro',
+    'এক্সিকিউটিভ লিডারশিপ প্রো',
+    'Corporate & Executive',
+    'For directors and senior managers: a solid leadership band, serif headings and achievement-led entries.',
+    'পরিচালক ও ঊর্ধ্বতন ব্যবস্থাপকদের জন্য: গাঢ় লিডারশিপ ব্যান্ড, সেরিফ শিরোনাম ও অর্জন-কেন্দ্রিক এন্ট্রি।',
+    'navy',
+    'lora-inter',
+    { header: 'band', heading: 'underline', entry: 'split', band: 0, upperHeadings: true, entryRule: true, photoShape: 'square', photo: 'left' },
+  ),
+  // 28 — Compact One-Page Expert: dense but readable single-sheet layout.
+  T(
+    'compact-one-page-expert',
+    'Compact One-Page Expert',
+    'কম্প্যাক্ট ওয়ান-পেজ এক্সপার্ট',
+    'Experienced Professional',
+    'Engineered for a single sheet: tight rhythm, inline dates, compact chips — dense without becoming unreadable.',
+    'এক পৃষ্ঠার জন্য নির্মিত: নিবিড় ছন্দ, এক লাইনের তারিখ, সংক্ষিপ্ত চিপ — পাঠযোগ্যতা না হারিয়ে ঘনসন্নিবিষ্ট।',
+    'teal',
+    'inter-inter',
+    { header: 'minimal', heading: 'bar', entry: 'inline', band: 0, upperHeadings: true, entryRule: false, photoShape: 'circle' },
+  ),
+  // 29 — Academic International Pro: publication-friendly, long-form entries.
+  T(
+    'academic-international-pro',
+    'Academic International Pro',
+    'অ্যাকাডেমিক ইন্টারন্যাশনাল প্রো',
+    'Specialized',
+    'Built for research and teaching profiles: long-form entries, serif body text, publication-ready headings.',
+    'গবেষণা ও শিক্ষকতার প্রোফাইলের জন্য: বিস্তৃত এন্ট্রি, সেরিফ মূল লেখা ও প্রকাশনার উপযোগী শিরোনাম।',
+    'charcoal',
+    'lora-inter',
+    { header: 'centered', heading: 'rule', entry: 'stacked', band: 0, upperHeadings: true, entryRule: false, photoShape: 'square', photo: 'right' },
+  ),
+  // 30 — Contemporary Creative Portfolio: expressive rail + portfolio emphasis.
+  T(
+    'contemporary-creative-portfolio',
+    'Contemporary Creative Portfolio',
+    'কনটেম্পোরারি ক্রিয়েটিভ পোর্টফোলিও',
+    'Specialized',
+    'Portfolio-first creative layout with a tinted right rail, bold heading bars and room for project highlights.',
+    'পোর্টফোলিও-কেন্দ্রিক ক্রিয়েটিভ লেআউট: হালকা রঙিন ডান রেল, স্পষ্ট শিরোনাম বার ও প্রকল্পের বিবরণের জায়গা।',
+    'deep-green',
+    'inter-lora',
+    { header: 'banner', heading: 'boxed', entry: 'stacked', band: 2.4, body: 'sidebar-right', headerTint: true, upperHeadings: false, entryRule: false, photoShape: 'rounded' },
   ),
 ];
 

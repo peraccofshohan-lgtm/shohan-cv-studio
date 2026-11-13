@@ -19,7 +19,10 @@ import {
   Printer,
   Redo2,
   RotateCcw,
+  ClipboardCheck,
+  FileStack,
   Ruler,
+  Type,
   Save,
   Settings2,
   Sliders,
@@ -36,11 +39,13 @@ import {
   Input,
   Modal,
   Notice,
+  Segmented,
   Select,
-  Switch,
+  SwitchRow,
   useLang,
   useT,
 } from '@/components/ui';
+import { HexField, NumberField, PanelSection } from '@/components/studioControls';
 import { useWorkspace, flushAutosave } from '@/store/workspace';
 import { useUI } from '@/store/ui';
 import { CvDocument } from '@/document/CvDocument';
@@ -48,11 +53,16 @@ import { buildDocumentCss } from '@/document/styles';
 import { buildStandaloneHtml } from '@/document/standalone';
 import { embeddedFontCss } from '@/assets/fonts';
 import { FONT_PAIRS, PALETTES, resolveDesign, templateById } from '@/templates/catalog';
-import { estimatePageCount, printableSections, SECTION_TITLES } from '@/lib/sections';
+import { printableSections, SECTION_TITLES } from '@/lib/sections';
 import type { SectionId } from '@/types/cv';
 import { exportDocx, exportPdf, exportHtml, printProject } from '@/features/exporting/exportService';
 import { copyAsPlainText } from '@/features/exporting/textExport';
 import { ContentPanel } from './ContentPanel';
+import { TitlePanel } from './TitlePanel';
+import { PageLengthPanel } from './PageLengthPanel';
+import { ReportsPanel } from './ReportsPanel';
+import { composeDocumentTokens } from '@/lib/composition';
+import { buildLayoutReport } from '@/lib/layoutReport';
 
 export const EditorPage: React.FC = () => {
   const current = useWorkspace((s) => s.current);
@@ -64,6 +74,7 @@ export const EditorPage: React.FC = () => {
   const canUndo = useWorkspace((s) => s.undoStack.length > 0);
   const canRedo = useWorkspace((s) => s.redoStack.length > 0);
   const { navigate, editorZoom, setZoom, editorPanel, setEditorPanel, language } = useUI();
+  const bn = (a: string, b: string) => (language === 'bn' ? b : a);
   const tr = useT();
   const lang = language;
   const [previewOpen, setPreviewOpen] = useState(false);
@@ -76,16 +87,36 @@ export const EditorPage: React.FC = () => {
     [current],
   );
   const [guides, setGuides] = useState(false);
-  const css = useMemo(
-    () => buildDocumentCss({ design, fontCss: embeddedFontCss(), mode: 'screen', showGuides: guides }),
-    [design, guides],
-  );
-
   const sections = useMemo(
     () => (data ? printableSections(data, { language: lang }) : []),
     [data, lang],
   );
-  const pages = useMemo(() => estimatePageCount(sections, !!data?.photo.dataUrl), [sections, data?.photo.dataUrl]);
+  /** One composition pass: the preview, the exports and the report all use it. */
+  const tokens = useMemo(
+    () => (data ? composeDocumentTokens({ data, design, overrides: current?.design }) : null),
+    [data, design, current?.design],
+  );
+  const report = useMemo(
+    () =>
+      data && tokens
+        ? buildLayoutReport(data, sections, tokens, { language: lang, hasPhoto: !!data.photo.dataUrl })
+        : null,
+    [data, tokens, sections, lang],
+  );
+  const pages = report?.pages ?? 1;
+
+  const css = useMemo(
+    () =>
+      buildDocumentCss({
+        design,
+        fontCss: embeddedFontCss(),
+        mode: 'screen',
+        showGuides: guides,
+        tokens: tokens ?? undefined,
+      }),
+    [design, guides, tokens],
+  );
+
 
   if (!current || !data) {
     return (
@@ -292,27 +323,52 @@ export const EditorPage: React.FC = () => {
 
         <div className="editor-canvas">
           <div className="editor-canvas-inner" style={{ transform: `scale(${editorZoom})`, width: 793.7 * editorZoom }}>
-            <CvDocument data={data} design={design} language={lang} pageCount={pages} guides={guides} />
+            <CvDocument
+              data={data}
+              design={design}
+              language={lang}
+              pageCount={pages}
+              guides={guides}
+              tokens={tokens ?? undefined}
+            />
           </div>
         </div>
 
         <aside className="editor-right" aria-label={tr('editor.design')}>
           <div style={{ padding: 'var(--sp-4)', borderBottom: '1px solid var(--border)' }}>
             <div className="segmented" style={{ width: '100%' }} role="group" aria-label="Editor panel">
-              <button aria-pressed={editorPanel === 'content'} onClick={() => setEditorPanel('content')} style={{ flex: 1 }}>
-                <FileText size={14} /> {tr('editor.content')}
+              <button aria-pressed={editorPanel === 'content'} onClick={() => setEditorPanel('content')} style={{ flex: 1 }} title={tr('editor.content')}>
+                <FileText size={14} />
               </button>
-              <button aria-pressed={editorPanel === 'design'} onClick={() => setEditorPanel('design')} style={{ flex: 1 }}>
-                <Sliders size={14} /> {tr('editor.design')}
+              <button aria-pressed={editorPanel === 'design'} onClick={() => setEditorPanel('design')} style={{ flex: 1 }} title={tr('editor.design')}>
+                <Sliders size={14} />
+              </button>
+              <button aria-pressed={editorPanel === 'title'} onClick={() => setEditorPanel('title')} style={{ flex: 1 }} title={bn('Title', 'শিরোনাম')}>
+                <Type size={14} />
+              </button>
+              <button aria-pressed={editorPanel === 'pages'} onClick={() => setEditorPanel('pages')} style={{ flex: 1 }} title={bn('Page length', 'পৃষ্ঠার দৈর্ঘ্য')}>
+                <FileStack size={14} />
+              </button>
+              <button aria-pressed={editorPanel === 'reports'} onClick={() => setEditorPanel('reports')} style={{ flex: 1 }} title={bn('Reports', 'রিপোর্ট')}>
+                <ClipboardCheck size={14} />
               </button>
             </div>
           </div>
           <div style={{ padding: 'var(--sp-4)' }}>
-            {editorPanel === 'content' ? (
-              <ContentPanel section={targetSection} />
-            ) : (
-              <DesignPanel />
-            )}
+            {editorPanel === 'content' ? <ContentPanel section={targetSection} /> : null}
+            {editorPanel === 'design' ? <DesignPanel /> : null}
+            {editorPanel === 'title' ? <TitlePanel /> : null}
+            {editorPanel === 'pages' && report ? (
+              <PageLengthPanel
+                pages={report.pages}
+                fits={report.fitsTarget}
+                target={report.targetLabel}
+                warnings={report.diagnostics.filter((d) => d.level !== 'info').length}
+              />
+            ) : null}
+            {editorPanel === 'reports' && report ? (
+              <ReportsPanel report={report} data={data} templateName={design.template.name} />
+            ) : null}
           </div>
         </aside>
       </div>
@@ -436,42 +492,64 @@ const SectionNavigator: React.FC<{
   );
 };
 
-/** Design customisation panel — tokens only, never content. */
+/**
+ * Design panel — tokens only, never content.
+ *
+ * Two modes: Basic (palette, font pair, density, spacing, margins) and Advanced
+ * (individual colours, per-role fonts, photo geometry, footer, layout). Basic is
+ * the default so a first-time operator can produce a professional CV without
+ * opening the advanced controls.
+ */
 export const DesignPanel: React.FC = () => {
   const current = useWorkspace((s) => s.current)!;
   const updateDesign = useWorkspace((s) => s.updateDesign);
   const resetDesign = useWorkspace((s) => s.resetDesign);
   const lang = useLang();
+  const bn = (a: string, b: string) => (lang === 'bn' ? b : a);
   const d = current.design;
+  const [advanced, setAdvanced] = useState(false);
+
+  const margins = d.margins ?? { top: d.marginMm, right: d.marginMm, bottom: d.marginMm, left: d.marginMm };
+  const setMargin = (side: 'top' | 'right' | 'bottom' | 'left', value: number) =>
+    updateDesign({ margins: { ...margins, [side]: value } });
+  const spacing = d.spacing ?? {};
+  const setSpacing = (key: keyof NonNullable<typeof d.spacing>, value: number) =>
+    updateDesign({ spacing: { ...spacing, [key]: value } });
+  const colours = d.colors ?? {};
 
   return (
     <div className="col" style={{ gap: 'var(--sp-4)' }}>
-      <Field label={lang === 'bn' ? 'রঙের প্যালেট' : 'Colour palette'}>
+      <div className="segmented" role="group" aria-label={bn('Design mode', 'ডিজাইন মোড')} style={{ width: '100%' }}>
+        <button aria-pressed={!advanced} onClick={() => setAdvanced(false)} style={{ flex: 1 }}>
+          {bn('Basic', 'সাধারণ')}
+        </button>
+        <button aria-pressed={advanced} onClick={() => setAdvanced(true)} style={{ flex: 1 }}>
+          {bn('Advanced', 'অ্যাডভান্সড')}
+        </button>
+      </div>
+
+      <Field label={bn('Colour palette', 'রঙের প্যালেট')}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 6 }}>
           {PALETTES.map((p) => (
             <button
               key={p.id}
-              onClick={() => updateDesign({ paletteId: p.id })}
+              onClick={() => updateDesign({ paletteId: p.id, colors: {} })}
               title={lang === 'bn' ? p.nameBn : p.name}
               aria-pressed={d.paletteId === p.id}
+              aria-label={lang === 'bn' ? p.nameBn : p.name}
               style={{
                 height: 38,
                 borderRadius: 'var(--radius-sm)',
                 border: d.paletteId === p.id ? '2px solid var(--text)' : '1px solid var(--border)',
-                background: `linear-gradient(135deg, ${p.primary} 0 62%, ${p.accent} 62% 100%)`,
+                background: `linear-gradient(135deg, ${p.primary} 0 55%, ${p.accent} 55% 78%, ${p.tint} 78% 100%)`,
                 cursor: 'pointer',
-                position: 'relative',
               }}
-            >
-              {d.paletteId === p.id ? (
-                <Check size={13} style={{ position: 'absolute', inset: 0, margin: 'auto', color: '#fff' }} />
-              ) : null}
-            </button>
+            />
           ))}
         </div>
       </Field>
 
-      <Field label={lang === 'bn' ? 'ফন্ট' : 'Font pairing'}>
+      <Field label={bn('Font pair', 'ফন্ট জোড়া')}>
         <Select value={d.fontPairId} onChange={(e) => updateDesign({ fontPairId: e.target.value })}>
           {FONT_PAIRS.map((f) => (
             <option key={f.id} value={f.id}>
@@ -481,108 +559,272 @@ export const DesignPanel: React.FC = () => {
         </Select>
       </Field>
 
-      <Field label={lang === 'bn' ? 'হেডিং স্টাইল' : 'Section heading style'}>
-        <Select
-          value={d.headingStyle}
-          onChange={(e) => updateDesign({ headingStyle: e.target.value as typeof d.headingStyle })}
-        >
-          <option value="rule">Rule</option>
-          <option value="bar">Colour bar</option>
-          <option value="caps">Small caps</option>
-          <option value="boxed">Boxed</option>
-          <option value="underline">Underline</option>
-          <option value="side-mark">Side mark</option>
+      <Field label={bn('Density', 'ঘনত্ব')} hint={bn('Changes real spacing, not just the look.', 'শুধু রূপ নয়, প্রকৃত স্পেসিং বদলায়।')}>
+        <Segmented
+          ariaLabel={bn('Density', 'ঘনত্ব')}
+          value={d.density ?? 'balanced'}
+          onChange={(v) => updateDesign({ density: v })}
+          options={[
+            { value: 'compact', label: bn('Compact', 'সংকুচিত') },
+            { value: 'balanced', label: bn('Balanced', 'ভারসাম্য') },
+            { value: 'spacious', label: bn('Spacious', 'প্রশস্ত') },
+          ]}
+        />
+      </Field>
+
+      <Field label={bn('Header style', 'হেডার স্টাইল')}>
+        <Select value={d.headerStyle} onChange={(e) => updateDesign({ headerStyle: e.target.value as typeof d.headerStyle })}>
+          <option value="banner">{bn('Banner with rule', 'রেখাযুক্ত ব্যানার')}</option>
+          <option value="split">{bn('Split', 'বিভক্ত')}</option>
+          <option value="centered">{bn('Centred', 'কেন্দ্রীভূত')}</option>
+          <option value="minimal">{bn('Minimal', 'সংক্ষিপ্ত')}</option>
+          <option value="band">{bn('Solid band', 'গাঢ় ব্যান্ড')}</option>
+          <option value="dual">{bn('Double rule', 'দুই রেখা')}</option>
+        </Select>
+      </Field>
+
+      <Field label={bn('Section heading style', 'সেকশন শিরোনামের ধরন')}>
+        <Select value={d.headingStyle} onChange={(e) => updateDesign({ headingStyle: e.target.value as typeof d.headingStyle })}>
+          <option value="rule">{bn('Rule to the right', 'ডানে রেখা')}</option>
+          <option value="bar">{bn('Accent bar', 'অ্যাকসেন্ট বার')}</option>
+          <option value="caps">{bn('Wide capitals', 'প্রশস্ত বড় হাতের')}</option>
+          <option value="underline">{bn('Heavy underline', 'মোটা আন্ডারলাইন')}</option>
+          <option value="boxed">{bn('Boxed', 'বক্স')}</option>
+          <option value="side-mark">{bn('Side mark', 'পাশের চিহ্ন')}</option>
+        </Select>
+      </Field>
+
+      <Field label={bn('Body layout', 'বডি লেআউট')}>
+        <Select value={d.bodyLayout ?? 'single'} onChange={(e) => updateDesign({ bodyLayout: e.target.value as NonNullable<typeof d.bodyLayout> })}>
+          <option value="single">{bn('Single column', 'এক কলাম')}</option>
+          <option value="two-col">{bn('Two columns', 'দুই কলাম')}</option>
+          <option value="sidebar-left">{bn('Sidebar left', 'বাম সাইডবার')}</option>
+          <option value="sidebar-right">{bn('Sidebar right', 'ডান সাইডবার')}</option>
         </Select>
       </Field>
 
       <SliderField
-        label={lang === 'bn' ? 'হেডিং আকার' : 'Heading size'}
-        value={d.headingScale}
-        min={0.8}
-        max={1.3}
-        step={0.02}
-        onChange={(v) => updateDesign({ headingScale: v })}
-        format={(v) => `${Math.round(v * 100)}%`}
-      />
-      <SliderField
-        label={lang === 'bn' ? 'বডি টেক্সট আকার' : 'Body text size'}
+        label={bn('Overall text size', 'সামগ্রিক লেখার আকার')}
         value={d.bodyScale}
         min={0.85}
-        max={1.2}
+        max={1.15}
         step={0.01}
         onChange={(v) => updateDesign({ bodyScale: v })}
         format={(v) => `${Math.round(v * 100)}%`}
       />
       <SliderField
-        label={lang === 'bn' ? 'লাইন স্পেসিং' : 'Line spacing'}
+        label={bn('Heading size', 'শিরোনামের আকার')}
+        value={d.headingScale}
+        min={0.85}
+        max={1.2}
+        step={0.01}
+        onChange={(v) => updateDesign({ headingScale: v })}
+        format={(v) => `${Math.round(v * 100)}%`}
+      />
+      <SliderField
+        label={bn('Line spacing', 'লাইন ফাঁক')}
         value={d.lineHeight}
-        min={1.2}
+        min={1.25}
         max={1.9}
-        step={0.02}
+        step={0.01}
         onChange={(v) => updateDesign({ lineHeight: v })}
         format={(v) => v.toFixed(2)}
       />
       <SliderField
-        label={lang === 'bn' ? 'সেকশন ফাঁক' : 'Section spacing'}
+        label={bn('Space between sections', 'সেকশনের মাঝে ফাঁক')}
         value={d.sectionSpacing}
         min={0.6}
         max={1.6}
-        step={0.05}
+        step={0.02}
         onChange={(v) => updateDesign({ sectionSpacing: v })}
-        format={(v) => `${v.toFixed(2)}×`}
+        format={(v) => `${Math.round(v * 100)}%`}
       />
       <SliderField
-        label={lang === 'bn' ? 'পেজ মার্জিন' : 'Page margin'}
+        label={bn('Page margin', 'পৃষ্ঠার মার্জিন')}
         value={d.marginMm}
-        min={10}
-        max={26}
-        step={1}
-        onChange={(v) => updateDesign({ marginMm: v })}
+        min={8}
+        max={30}
+        step={0.5}
+        onChange={(v) => updateDesign({ marginMm: v, margins: undefined })}
         format={(v) => `${v} mm`}
       />
 
-      <Field label={lang === 'bn' ? 'ছবির আকৃতি' : 'Photo shape'}>
+      <Field label={bn('Photo frame', 'ছবির ফ্রেম')}>
         <Select value={d.photoShape} onChange={(e) => updateDesign({ photoShape: e.target.value as typeof d.photoShape })}>
-          <option value="circle">Circle</option>
-          <option value="square">Square</option>
-          <option value="rounded">Rounded</option>
-          <option value="none">No photo</option>
+          <option value="circle">{bn('Circle', 'বৃত্ত')}</option>
+          <option value="rounded">{bn('Rounded square', 'গোলাকার বর্গ')}</option>
+          <option value="square">{bn('Square', 'বর্গ')}</option>
+          <option value="none">{bn('No photo', 'ছবি নেই')}</option>
         </Select>
       </Field>
-      <Field label={lang === 'bn' ? 'ছবির অবস্থান' : 'Photo position'}>
+      <Field label={bn('Photo side', 'ছবির দিক')}>
         <Select value={d.photoPosition} onChange={(e) => updateDesign({ photoPosition: e.target.value as 'left' | 'right' })}>
-          <option value="right">{lang === 'bn' ? 'ডান' : 'Right'}</option>
-          <option value="left">{lang === 'bn' ? 'বাম' : 'Left'}</option>
-        </Select>
-      </Field>
-      <Field label={lang === 'bn' ? 'হেডার লেআউট' : 'Header layout'}>
-        <Select value={d.headerStyle} onChange={(e) => updateDesign({ headerStyle: e.target.value as typeof d.headerStyle })}>
-          <option value="banner">Banner</option>
-          <option value="split">Split</option>
-          <option value="centered">Centred</option>
-          <option value="minimal">Minimal</option>
-          <option value="band">Colour band</option>
-          <option value="dual">Dual rule</option>
+          <option value="left">{bn('Left', 'বাম')}</option>
+          <option value="right">{bn('Right', 'ডান')}</option>
         </Select>
       </Field>
 
-      <div className="col" style={{ gap: 'var(--sp-2)' }}>
-        <div className="row between">
-          <span className="field-label" style={{ margin: 0 }}>
-            {lang === 'bn' ? 'ফুটার' : 'Footer'}
-          </span>
-          <Switch checked={!!d.showFooter} onChange={(v) => updateDesign({ showFooter: v })} />
-        </div>
-        <div className="row between">
-          <span className="field-label" style={{ margin: 0 }}>
-            {lang === 'bn' ? 'পৃষ্ঠা নম্বর' : 'Page numbers'}
-          </span>
-          <Switch checked={!!d.showPageNumbers} onChange={(v) => updateDesign({ showPageNumbers: v })} />
-        </div>
-      </div>
+      {advanced ? (
+        <>
+          <PanelSection title={bn('Colours', 'রং')} description={bn('Leave a field empty to use the template colour.', 'টেমপ্লেটের রং ব্যবহার করতে ঘরটি খালি রাখুন।')}>
+            {(
+              [
+                ['primary', bn('Primary', 'প্রাথমিক')],
+                ['accent', bn('Accent', 'অ্যাকসেন্ট')],
+                ['heading', bn('Headings', 'শিরোনাম')],
+                ['text', bn('Body text', 'মূল লেখা')],
+                ['muted', bn('Muted text', 'হালকা লেখা')],
+                ['border', bn('Borders', 'সীমানা')],
+                ['sidebar', bn('Sidebar', 'সাইডবার')],
+                ['photoBorder', bn('Photo border', 'ছবির সীমানা')],
+              ] as const
+            ).map(([token, label]) => (
+              <HexField
+                key={token}
+                label={label}
+                value={colours[token] ?? null}
+                fallback={
+                  token === 'photoBorder'
+                    ? '#b4894a'
+                    : token === 'border'
+                      ? '#d6dbe2'
+                      : token === 'heading'
+                        ? '#14395e'
+                        : token === 'sidebar'
+                          ? '#14395e'
+                          : token === 'muted'
+                            ? '#5b6572'
+                            : token === 'accent'
+                              ? '#b4894a'
+                              : token === 'text'
+                                ? '#1b232c'
+                                : '#14395e'
+                }
+                onChange={(v) => updateDesign({ colors: { ...colours, [token]: v ?? undefined } })}
+                showRgb
+              />
+            ))}
+            <Button
+              variant="outline"
+              block
+              onClick={() => updateDesign({ colors: {} })}
+              disabled={Object.keys(colours).length === 0}
+            >
+              {bn('Reset all colours to the template', 'সব রং টেমপ্লেটে ফিরিয়ে নিন')}
+            </Button>
+          </PanelSection>
+
+          <PanelSection title={bn('Margins', 'মার্জিন')} defaultOpen={false} description={bn('A4 is 210 × 297 mm. 8–25 mm is the professional range.', 'A4 হলো ২১০ × ২৯৭ মিমি। পেশাদার পরিসর ৮–২৫ মিমি।')}>
+            <NumberField label={bn('Top', 'উপর')} value={margins.top} min={6} max={40} step={0.5} unit="mm" onChange={(v) => setMargin('top', v)} />
+            <NumberField label={bn('Right', 'ডান')} value={margins.right} min={6} max={40} step={0.5} unit="mm" onChange={(v) => setMargin('right', v)} />
+            <NumberField label={bn('Bottom', 'নিচ')} value={margins.bottom} min={6} max={40} step={0.5} unit="mm" onChange={(v) => setMargin('bottom', v)} />
+            <NumberField label={bn('Left', 'বাম')} value={margins.left} min={6} max={40} step={0.5} unit="mm" onChange={(v) => setMargin('left', v)} />
+            <Button variant="outline" block onClick={() => updateDesign({ margins: undefined })} disabled={!d.margins}>
+              {bn('Use one margin on all sides', 'সব দিকে একই মার্জিন')}
+            </Button>
+          </PanelSection>
+
+          <PanelSection title={bn('Spacing', 'ফাঁক')} defaultOpen={false}>
+            {(
+              [
+                ['sectionGap', bn('Between sections', 'সেকশনের মাঝে')],
+                ['sectionHeading', bn('Under a heading', 'শিরোনামের নিচে')],
+                ['paragraph', bn('Paragraph spacing', 'অনুচ্ছেদের ফাঁক')],
+                ['bullet', bn('Bullet spacing', 'বুলেটের ফাঁক')],
+                ['nameContact', bn('Name to contact', 'নাম থেকে যোগাযোগ')],
+                ['header', bn('Header block', 'হেডার ব্লক')],
+                ['column', bn('Column gap', 'কলামের ফাঁক')],
+                ['footer', bn('Footer', 'ফুটার')],
+              ] as const
+            ).map(([key, label]) => (
+              <SliderField
+                key={key}
+                label={label}
+                value={spacing[key] ?? 1}
+                min={0.4}
+                max={2}
+                step={0.02}
+                onChange={(v) => setSpacing(key, v)}
+                format={(v) => `${Math.round(v * 100)}%`}
+              />
+            ))}
+            <Button variant="outline" block onClick={() => updateDesign({ spacing: {} })} disabled={Object.keys(spacing).length === 0}>
+              {bn('Reset spacing', 'ফাঁক রিসেট')}
+            </Button>
+          </PanelSection>
+
+          <PanelSection title={bn('Typography', 'টাইপোগ্রাফি')} defaultOpen={false}>
+            <Field label={bn('Body alignment', 'মূল লেখার সারিবদ্ধতা')}>
+              <Select value={d.bodyAlign ?? 'justify'} onChange={(e) => updateDesign({ bodyAlign: e.target.value as 'left' | 'center' | 'right' | 'justify' })}>
+                <option value="left">{bn('Left', 'বাম')}</option>
+                <option value="justify">{bn('Justified', 'জাস্টিফাইড')}</option>
+                <option value="center">{bn('Centre', 'কেন্দ্র')}</option>
+                <option value="right">{bn('Right', 'ডান')}</option>
+              </Select>
+            </Field>
+            <NumberField
+              label={bn('First-line indent', 'প্রথম লাইনের ইন্ডেন্ট')}
+              value={d.paragraphIndentMm ?? 0}
+              min={0}
+              max={10}
+              step={0.5}
+              unit="mm"
+              onChange={(v) => updateDesign({ paragraphIndentMm: v })}
+            />
+            <NumberField
+              label={bn('Name size', 'নামের আকার')}
+              value={d.nameSizePt ?? 23}
+              min={14}
+              max={36}
+              step={0.5}
+              unit="pt"
+              onChange={(v) => updateDesign({ nameSizePt: v })}
+            />
+            <NumberField
+              label={bn('Title size', 'শিরোনামের আকার')}
+              value={d.titleSizePt ?? current.data.title.fontSize}
+              min={6}
+              max={26}
+              step={0.5}
+              unit="pt"
+              onChange={(v) => updateDesign({ titleSizePt: v })}
+            />
+          </PanelSection>
+
+          <PanelSection title={bn('Photo & footer', 'ছবি ও ফুটার')} defaultOpen={false}>
+            <NumberField
+              label={bn('Photo size', 'ছবির আকার')}
+              value={d.photoSizeMm ?? current.data.photo.frameSize}
+              min={16}
+              max={50}
+              step={1}
+              unit="mm"
+              onChange={(v) => updateDesign({ photoSizeMm: v })}
+            />
+            <Field label={bn('Photo border', 'ছবির সীমানা')}>
+              <Select value={d.photoBorder ?? 'none'} onChange={(e) => updateDesign({ photoBorder: e.target.value as NonNullable<typeof d.photoBorder> })}>
+                <option value="none">{bn('None', 'কিছু না')}</option>
+                <option value="thin">{bn('Thin', 'সরু')}</option>
+                <option value="medium">{bn('Medium', 'মাঝারি')}</option>
+                <option value="thick">{bn('Thick', 'মোটা')}</option>
+              </Select>
+            </Field>
+            <SwitchRow
+              title={bn('Footer with the name', 'নামসহ ফুটার')}
+              checked={!!d.showFooter}
+              onChange={(v) => updateDesign({ showFooter: v })}
+            />
+            <SwitchRow
+              title={bn('Page numbers', 'পৃষ্ঠা নম্বর')}
+              checked={!!d.showPageNumbers}
+              onChange={(v) => updateDesign({ showPageNumbers: v })}
+            />
+          </PanelSection>
+        </>
+      ) : null}
 
       <Button variant="outline" icon={<RotateCcw size={14} />} onClick={resetDesign} block>
-        {lang === 'bn' ? 'ডিজাইন রিসেট' : 'Reset design'}
+        {bn('Reset design', 'ডিজাইন রিসেট')}
       </Button>
     </div>
   );

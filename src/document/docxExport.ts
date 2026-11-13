@@ -36,7 +36,9 @@ import {
   type IBorderOptions,
   type IParagraphStyleOptions,
 } from 'docx';
-import type { CVData } from '@/types/cv';
+import type { CVData, TextTransform } from '@/types/cv';
+import { TITLE_PRESET_TEXT } from '@/types/cv';
+import { applyTransform } from '@/lib/composition';
 import type { ResolvedDesign } from '@/templates/catalog';
 import { printableSections, type ResolvedSection } from '@/lib/sections';
 import { MM_TO_PX } from '@/lib/golden';
@@ -72,7 +74,16 @@ function dataUrlToImage(dataUrl: string): { data: Uint8Array; type: 'png' | 'jpg
 /** A run that keeps Bengali conjuncts intact in Word and LibreOffice. */
 function run(
   text: string,
-  opts: { bold?: boolean; size?: number; color?: string; italics?: boolean; font?: string; caps?: boolean; spacing?: number } = {},
+  opts: {
+    bold?: boolean;
+    size?: number;
+    color?: string;
+    italics?: boolean;
+    font?: string;
+    caps?: boolean;
+    spacing?: number;
+    underline?: Record<string, never>;
+  } = {},
 ): TextRun {
   const hasBengali = /[\u0980-\u09FF]/.test(text);
   return new TextRun({
@@ -84,10 +95,18 @@ function run(
     font: { name: opts.font ?? 'Inter', hint: 'default' },
     allCaps: opts.caps,
     characterSpacing: opts.spacing,
+    underline: opts.underline ? {} : undefined,
     // Complex-script hints: required for correct Bangla shaping.
     rightToLeft: false,
     cs: hasBengali ? (opts.font ?? 'Noto Sans Bengali') : undefined,
   } as never);
+}
+
+/** Pick a single installed family name from a CSS font stack for Word. */
+function titleDocxFont(stack: string): string {
+  if (/Lora/i.test(stack)) return 'Lora';
+  if (/Noto Sans Bengali/i.test(stack)) return 'Noto Sans Bengali';
+  return 'Inter';
 }
 
 export async function buildDocx({ data, design, title }: DocxExportOptions): Promise<Uint8Array> {
@@ -118,6 +137,43 @@ export async function buildDocx({ data, design, title }: DocxExportOptions): Pro
     ? dataUrlToImage(data.photo.dataUrl)
     : null;
 
+  /**
+   * Document title block. Mirrors the HTML renderer: when the operator chose
+   * "No title" nothing is emitted at all, so the header does not gain a gap.
+   */
+  const docTitle = data.title?.visible && data.title.preset !== 'none'
+    ? (data.title.preset === 'custom' ? data.title.text.trim() : TITLE_PRESET_TEXT[data.title.preset])
+    : '';
+  const transformedTitle = applyTransform(docTitle, data.title?.transform ?? 'none');
+  const titleParagraph = transformedTitle
+    ? new Paragraph({
+        spacing: { before: Math.round((data.title?.spaceBeforeMm ?? 1) * 56.7), after: Math.round((data.title?.spaceAfterMm ?? 1.4) * 56.7) },
+        alignment:
+          data.title?.align === 'center'
+            ? AlignmentType.CENTER
+            : data.title?.align === 'right'
+              ? AlignmentType.RIGHT
+              : data.title?.align === 'justify'
+                ? AlignmentType.JUSTIFIED
+                : AlignmentType.LEFT,
+        children: [
+          run(transformedTitle, {
+            size: Math.round((data.title?.fontSize ?? 10) * 2),
+            bold: (data.title?.fontWeight ?? 600) >= 600,
+            italics: !!data.title?.italic,
+            underline: data.title?.underline ? {} : undefined,
+            color: data.title?.color ? hex(data.title.color) : p.muted,
+            font: data.title?.fontFamily ? titleDocxFont(data.title.fontFamily) : bodyFont,
+            spacing: Math.round((data.title?.letterSpacing ?? 0.14) * 20 * 10) / 10,
+          }),
+        ],
+        border:
+          data.title?.border && data.title.border !== 'none'
+            ? { bottom: { style: data.title.border === 'double' ? BorderStyle.DOUBLE : BorderStyle.SINGLE, size: data.title.border === 'thick' ? 12 : 6, color: p.primary, space: 2 } }
+            : undefined,
+      })
+    : null;
+
   const nameParagraph = new Paragraph({
     spacing: { after: 40 },
     alignment: design.headerStyle === 'centered' ? AlignmentType.CENTER : AlignmentType.LEFT,
@@ -143,7 +199,16 @@ export async function buildDocx({ data, design, title }: DocxExportOptions): Pro
       })
     : null;
 
-  const identityCellChildren = [nameParagraph, ...(headlineParagraph ? [headlineParagraph] : []), ...(contactParagraph ? [contactParagraph] : [])];
+  const titleFirst = data.title?.position === 'above-name';
+  const titleLast = data.title?.position === 'below-contact';
+  const identityCellChildren = [
+    ...(titleFirst && titleParagraph ? [titleParagraph] : []),
+    nameParagraph,
+    ...(!titleFirst && !titleLast && titleParagraph ? [titleParagraph] : []),
+    ...(headlineParagraph ? [headlineParagraph] : []),
+    ...(contactParagraph ? [contactParagraph] : []),
+    ...(titleLast && titleParagraph ? [titleParagraph] : []),
+  ];
 
   if (photoImage) {
     const frame = Math.round(data.photo.frameSize * 3.7795); // mm → px at 96dpi

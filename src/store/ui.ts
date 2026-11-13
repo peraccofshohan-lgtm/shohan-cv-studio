@@ -4,6 +4,8 @@
  */
 import { create } from 'zustand';
 
+export type EditorPanel = 'content' | 'design' | 'title' | 'pages' | 'reports';
+
 export type Route =
   | { name: 'dashboard' }
   | { name: 'projects' }
@@ -24,7 +26,7 @@ interface UIState {
   theme: 'light' | 'dark' | 'system';
   sidebarCollapsed: boolean;
   editorZoom: number;
-  editorPanel: 'content' | 'design';
+  editorPanel: EditorPanel;
   wizardStep: number;
   /** Route history for Back behaviour. */
   history: Route[];
@@ -35,7 +37,7 @@ interface UIState {
   setTheme: (theme: 'light' | 'dark' | 'system') => void;
   toggleSidebar: () => void;
   setZoom: (zoom: number) => void;
-  setEditorPanel: (panel: 'content' | 'design') => void;
+  setEditorPanel: (panel: EditorPanel) => void;
   setWizardStep: (step: number) => void;
 }
 

@@ -101,8 +101,8 @@ export const defaultTitle = (): TitleState => ({
   transform: 'uppercase',
   letterSpacing: 0.14,
   align: 'left',
-  spaceBeforeMm: 1.2,
-  spaceAfterMm: 2.4,
+  spaceBeforeMm: 1,
+  spaceAfterMm: 1.4,
   border: 'none',
   backgroundPaddingMm: 0,
   background: 'none',
@@ -229,12 +229,30 @@ function defaultPaletteForTemplate(templateId: string): string {
     'academic-research': 'charcoal',
     'creative-professional': 'burgundy',
     'international-resume': 'monochrome',
+    'swiss-minimalist': 'monochrome',
+    'scandinavian-executive': 'slate',
+    'modern-editorial': 'charcoal',
+    'premium-luxury': 'muted-gold',
+    'global-ats-professional': 'black',
+    'modern-two-column': 'navy',
+    'executive-leadership-pro': 'navy',
+    'compact-one-page-expert': 'teal',
+    'academic-international-pro': 'charcoal',
+    'contemporary-creative-portfolio': 'deep-green',
   };
   return map[templateId] ?? 'navy';
 }
 
 function defaultFontForTemplate(templateId: string): string {
-  const serifTemplates = ['traditional-corporate', 'elegant-formal', 'academic-research', 'senior-professional'];
+  const serifTemplates = [
+    'traditional-corporate',
+    'elegant-formal',
+    'academic-research',
+    'senior-professional',
+    'premium-luxury',
+    'executive-leadership-pro',
+    'academic-international-pro',
+  ];
   return serifTemplates.includes(templateId) ? 'lora-inter' : 'inter-inter';
 }
 

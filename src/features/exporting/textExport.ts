@@ -12,6 +12,7 @@
 import type { CVData } from '@/types/cv';
 import type { ProjectRecord } from '@/types/cv';
 import { printableSections } from '@/lib/sections';
+import { resolveTitle } from '@/lib/composition';
 import { getBridge, isDesktop } from '@/platform';
 
 export interface TextExportResult {
@@ -59,6 +60,13 @@ export function buildPlainText(project: ProjectRecord): string {
   const sections = printableSections(data, { language });
   const out: string[] = [];
 
+  // The document title is part of the reading order, so text output carries it
+  // too — plain, without letter-spacing or case tricks.
+  const titleText = resolveTitle(data);
+  if (titleText.visible && titleText.text) {
+    out.unshift(titleText.text);
+    out.splice(1, 0, '');
+  }
   out.push(data.personal.fullName || (language === 'bn' ? 'নাম' : 'Name'));
   if (data.personal.headline) out.push(data.personal.headline);
   out.push(...contactLines(data, language));

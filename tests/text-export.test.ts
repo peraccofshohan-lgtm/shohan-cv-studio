@@ -27,7 +27,7 @@ function project(patch: (cv: ReturnType<typeof createEmptyCv>) => void): Project
 }
 
 describe('plain-text export', () => {
-  it('starts with the name and contact block', () => {
+  it('starts with the title, then the name and contact block', () => {
     const text = buildPlainText(
       project((cv) => {
         cv.personal.fullName = 'মোঃ রফিকুল ইসলাম';
@@ -35,7 +35,9 @@ describe('plain-text export', () => {
         cv.personal.email = 'rafiq@example.com';
       }),
     );
-    expect(text.split('\n')[0]).toBe('মোঃ রফিকুল ইসলাম');
+    // The document title leads the reading order when it is visible.
+    expect(text.split('\n')[0]).toBe('CURRICULUM VITAE');
+    expect(text.split('\n').slice(0, 3)).toEqual(['CURRICULUM VITAE', '', 'মোঃ রফিকুল ইসলাম']);
     expect(text).toContain('Mobile: +880 1711 234 567');
     expect(text).toContain('Email: rafiq@example.com');
   });
@@ -118,5 +120,26 @@ describe('plain-text export', () => {
     const text = buildPlainText(project((cv) => (cv.personal.fullName = 'Only A Name')));
     expect(text.endsWith('\n')).toBe(true);
     expect(text).not.toMatch(/\n{3,}/);
+  });
+
+  it('omits the title entirely when the operator chose "No title"', () => {
+    const text = buildPlainText(
+      project((cv) => {
+        cv.personal.fullName = 'Md. Rafiqul Islam';
+        cv.title = { ...cv.title, preset: 'none', visible: false };
+      }),
+    );
+    expect(text.split('\n')[0]).toBe('Md. Rafiqul Islam');
+    expect(text).not.toContain('CURRICULUM VITAE');
+  });
+
+  it('prints a custom title verbatim', () => {
+    const text = buildPlainText(
+      project((cv) => {
+        cv.personal.fullName = 'Md. Rafiqul Islam';
+        cv.title = { ...cv.title, preset: 'custom', text: 'Professional Profile', visible: true, transform: 'none' };
+      }),
+    );
+    expect(text.split('\n')[0]).toBe('Professional Profile');
   });
 });

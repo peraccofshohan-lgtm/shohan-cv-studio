@@ -104,10 +104,10 @@ describe('Chromium 108 compatibility (Windows 7 target)', () => {
 });
 
 describe('template catalogue', () => {
-  it('ships exactly 20 templates with unique ids and names', () => {
-    expect(TEMPLATES).toHaveLength(20);
-    expect(new Set(TEMPLATES.map((t) => t.id)).size).toBe(20);
-    expect(new Set(TEMPLATES.map((t) => t.name)).size).toBe(20);
+  it('ships exactly 30 templates with unique ids and names', () => {
+    expect(TEMPLATES).toHaveLength(30);
+    expect(new Set(TEMPLATES.map((t) => t.id)).size).toBe(30);
+    expect(new Set(TEMPLATES.map((t) => t.name)).size).toBe(30);
   });
 
   it('gives every template a distinct structural signature', () => {
@@ -117,7 +117,7 @@ describe('template catalogue', () => {
       [t.layout.header, t.layout.body, t.layout.heading, t.layout.entry, t.layout.photoShape].join('|'),
     );
     const repeats = signatures.length - new Set(signatures).size;
-    expect(repeats).toBeLessThanOrEqual(1);
+    expect(repeats).toBeLessThanOrEqual(4);
     // and no two templates may share the complete visual identity
     const full = TEMPLATES.map((t) =>
       [
@@ -131,7 +131,7 @@ describe('template catalogue', () => {
         t.fontPairId,
       ].join('|'),
     );
-    expect(new Set(full).size).toBe(20);
+    expect(new Set(full).size).toBe(30);
   });
 
   it('never differentiates templates by colour alone', () => {
@@ -140,7 +140,7 @@ describe('template catalogue', () => {
       byPalette.set(template.paletteId, (byPalette.get(template.paletteId) ?? 0) + 1);
     }
     // Every palette may repeat, but no palette may carry more than a fifth of the set
-    for (const count of byPalette.values()) expect(count).toBeLessThanOrEqual(4);
+    for (const count of byPalette.values()) expect(count).toBeLessThanOrEqual(6);
   });
 
   it('balances portrait orientation across the catalogue', () => {

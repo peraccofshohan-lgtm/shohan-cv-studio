@@ -293,6 +293,8 @@ def render(model: dict, sections: list[dict], muted: bool = False, continuation:
     data = model["data"]
     language = model["language"]
     palette = design["palette"]
+    tokens = model.get("tokens") or {}
+    title = tokens.get("title") or {}
 
     page = Page(muted=muted)
 
@@ -415,6 +417,35 @@ def render(model: dict, sections: list[dict], muted: bool = False, continuation:
         page.text(name_x, y, data["personal"]["fullName"], size=name_size, weight=700,
                   fill=name_colour, anchor=anchor, line_height=1.12)
         cursor_y = y + name_size * 1.12
+
+        # ---------------------------------------------------- title block
+        # Mirrors .cv-title: hidden titles reserve no space at all.
+        title_h = 0.0
+        if title.get("visible") and title.get("text"):
+            t_size = float(title.get("sizePt", 10)) * PT
+            title_h = (float(title.get("spaceBeforeMm", 0))
+                       + t_size * 1.25 * (1.0 / (4.0 / 3.0)) * 1.0
+                       + float(title.get("spaceAfterMm", 0))) * MM
+            if title.get("accentLine"):
+                title_h += 1.4 * MM
+            identity_h += title_h
+            t_y = cursor_y + float(title.get("spaceBeforeMm", 0)) * MM
+            t_anchor = {"center": "ma", "right": "ra"}.get(title.get("align", "left"), "la")
+            t_x = name_x if t_anchor == "la" else (
+                main_x + main_w / 2 if t_anchor == "ma" and centered else
+                (main_x + main_w if t_anchor == "ra" else name_x))
+            if t_anchor == "ma" and not centered:
+                t_x = main_x + main_w / 2
+            t_colour = title.get("color") or palette["muted"]
+            page.text(t_x, t_y, title["text"], size=t_size,
+                      weight=int(title.get("weight", 600)),
+                      fill=t_colour if not band_header else blend("#ffffff", palette["primary"], 0.82),
+                      anchor=t_anchor, spacing=float(title.get("letterSpacing", 0.14)) * t_size)
+            if title.get("accentLine"):
+                line_w = 26 * MM
+                lx = t_x if t_anchor == "la" else (t_x - line_w / 2 if t_anchor == "ma" else t_x - line_w)
+                page.rect(lx, t_y + t_size * 0.95 + 0.8 * MM, line_w, 0.5 * MM, palette["accent"])
+            cursor_y += title_h
         if data["personal"]["headline"]:
             cursor_y += 1.4 * MM
             page.text(name_x, cursor_y, data["personal"]["headline"], size=(base + 0.7) * PT,
