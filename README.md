@@ -71,6 +71,7 @@ Full instructions: [`docs/INSTALLATION.md`](docs/INSTALLATION.md).
 | [Testing Report](docs/TESTING.md) | What was executed, what passed, what could not be run |
 | [Known Issues](docs/KNOWN_ISSUES.md) | Current limitations and workarounds |
 | [Release Notes](docs/RELEASE_NOTES.md) | What is in 1.0.0 |
+| [Delivery Report](docs/DELIVERY_REPORT.md) | Final status, per-OS results and what remains unverified |
 
 ## Repository layout
 
