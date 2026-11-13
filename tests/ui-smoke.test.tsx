@@ -246,3 +246,20 @@ describe('title and page-length panels drive the document', () => {
     expect(container.textContent).toContain('Margins');
   });
 });
+
+describe('wizard document step', () => {
+  it('offers title and page-length controls while creating a CV', async () => {
+    installStores();
+    useUI.setState({ language: 'en' });
+    const { WizardPage } = await import('@/features/cv-wizard/WizardPage');
+    // Step index 1 is the document step (`document` follows `personal`).
+    const { container } = render(<WizardPage step={1} />);
+    const text = container.textContent ?? '';
+    // Step 2 of 20 is the document-title step. Its heading is rendered in the
+    // step list; the panel itself carries the title choices.
+    expect(text).toContain('Document Title & Length');
+    expect(text).toContain('Title style');
+    expect(text).toContain('No title');
+    expect(text).toContain('Exactly one page');
+  });
+});

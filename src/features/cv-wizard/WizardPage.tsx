@@ -10,6 +10,7 @@ import { useWorkspace } from '@/store/workspace';
 import { TOTAL_STEPS, WIZARD_STEPS } from './steps';
 import { PersonalStep } from './steps/PersonalStep';
 import { PhotoStep } from './steps/PhotoStep';
+import { TitleStep } from './steps/TitleStep';
 import {
   AchievementsStep,
   AdditionalStep,
@@ -35,14 +36,15 @@ import { resolveDesign } from '@/templates/catalog';
 import { embeddedFontCss } from '@/assets/fonts';
 import { printableSections } from '@/lib/sections';
 
-export const WizardPage: React.FC<{ step: number }> = ({ step }) => {
+export const WizardPage: React.FC<{ step?: number }> = ({ step = 0 }) => {
   const { current, createNewProject, saveNow, dirty } = useWorkspace();
   const { navigate, language, setWizardStep } = useUI();
   const tr = useT();
   const scrollRef = useRef<HTMLDivElement>(null);
   const started = useRef(false);
 
-  const safeStep = Math.max(0, Math.min(TOTAL_STEPS - 1, step));
+  // Defensive: an absent or out-of-range step must never index past the array.
+  const safeStep = Number.isFinite(step) ? Math.max(0, Math.min(TOTAL_STEPS - 1, step)) : 0;
   const definition = WIZARD_STEPS[safeStep];
 
   // Create a working project the first time the wizard is opened.
@@ -54,7 +56,8 @@ export const WizardPage: React.FC<{ step: number }> = ({ step }) => {
 
   useEffect(() => {
     setWizardStep(safeStep);
-    scrollRef.current?.scrollTo({ top: 0 });
+    // `scrollTo` is absent in jsdom and in very old embedded webviews.
+    scrollRef.current?.scrollTo?.({ top: 0 });
   }, [safeStep, setWizardStep]);
 
   const data = current?.data;
@@ -96,6 +99,8 @@ export const WizardPage: React.FC<{ step: number }> = ({ step }) => {
     switch (definition.id) {
       case 'personal':
         return <PersonalStep />;
+      case 'document':
+        return <TitleStep />;
       case 'photo':
         return <PhotoStep />;
       case 'objective':

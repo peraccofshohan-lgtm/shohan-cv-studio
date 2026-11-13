@@ -25,6 +25,14 @@ export const WIZARD_STEPS: WizardStep[] = [
     descEn: 'Name, date of birth, address and contact details. Only what you need appears on the CV.',
   },
   {
+    id: 'document',
+    titleBn: 'শিরোনাম ও পৃষ্ঠা',
+    titleEn: 'Document Title & Length',
+    descBn: 'সিভি, কারিকুলাম ভিটা বা রেজুমে — শিরোনাম বেছে নিন এবং এক/দুই পৃষ্ঠার লক্ষ্য ঠিক করুন।',
+    descEn: 'Choose CV / Curriculum Vitae / Resume (or no title) and set the page-length target.',
+    optional: true,
+  },
+  {
     id: 'photo',
     titleBn: 'প্রোফাইল ছবি',
     titleEn: 'Profile Photo',
