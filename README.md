@@ -83,7 +83,7 @@ src/features/        Screens: dashboard, wizard, gallery, editor, projects,
                      customers, exports, backup, settings, help
 src/lib/             Golden-ratio maths, section engine, colour maths, defaults
 scripts/             CSP injection, font builder, documentation preview renderer
-tests/               Vitest suites (engine, DOCX, database, design, sections)
+tests/               Vitest suites (engine, DOCX, database, design, sections, UI)
 docs/                Deliverable documentation + generated template previews
 ```
 

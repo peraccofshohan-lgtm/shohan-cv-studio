@@ -65,10 +65,11 @@ stated there. See [TESTING.md](TESTING.md) for exactly what was executed.
 ### Verified in this release
 
 * `npx tsc --noEmit` — 0 errors
-* `npx vitest run` — 9 suites, 52 tests passing
+* `npx vitest run` — 10 suites, 59 tests passing
 * `npm run build` — production bundle with CSP injected
 * 40 template × language previews rendered (80 A4 pages) through the production
   design model with HarfBuzz shaping
+* Mount-level React tests for the dashboard, template gallery and editor
 
 ### Fixed during the 1.0.0 cycle
 

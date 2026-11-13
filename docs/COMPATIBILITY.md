@@ -101,7 +101,7 @@ executables.
 | npm (build host) | bundled with Node 22 | Tested Passed |
 | TypeScript compiler | 5.x | Tested Passed — 0 errors |
 | Vite production build | 5.x | Tested Passed — build completes, CSP injected |
-| Vitest suites | 8 files / 46 tests | **Tested Passed — 46/46** |
+| Vitest suites | 10 files / 59 tests | **Tested Passed — 59/59** |
 | Chromium 108 CSS parity | static analysis | **Tested Passed** — no `color-mix()`, container queries, `@layer`, `subgrid` or `:has(` in the source |
 
 ---

@@ -14,7 +14,7 @@ Windows runtime.
 | Command | Result |
 | --- | --- |
 | `npx tsc --noEmit` | **PASS** — 0 errors |
-| `npx vitest run` | **PASS** — 8 files, **46 tests** |
+| `npx vitest run` | **PASS** — 10 files, **59 tests** |
 | `npm run build` | **PASS** — typecheck → Vite bundle → CSP injected into `dist/index.html` |
 | `python3 scripts/render_previews.py` | **PASS** — 80 page images across 40 template × language combinations |
 
@@ -29,6 +29,8 @@ Windows runtime.
 | `tests/regression.test.ts` | 3 | SQL parameters bound in appearance order; `$`-prefixed keys accepted; Bangla byte-exact round-trip (`মোঃ রফিকুল ইসলাম`) |
 | `tests/design.test.ts` | 16 | φ = 1.6180339887; golden split; 8-point grid; A4 tokens; **no `color-mix()`, container queries, `@layer`, `subgrid`, `:has()`** anywhere in `src/`; ES2019 target; 20 unique templates; no palette-only differentiation; ATS templates photo-free and graphic-free |
 | `tests/emit-models.test.ts` | 1 | Both document languages × 20 templates produce preview models |
+| `tests/text-export.test.ts` | 6 | Plain-text export mirrors the printable document: name/contact block, empty- and disabled-section suppression, user order, sensitive fields hidden unless enabled, timeline formatting, no trailing blank-line noise |
+| `tests/ui-smoke.test.tsx` | 7 | React screens actually mount: dashboard renders Bangla and English, the gallery lists all 20 templates, the editor mounts a `.cv-paper` carrying the user's name, the section navigator is populated, the A4 guides toggle works, and a switched-off section disappears from the page |
 | `tests/docs-images.test.ts` | 1 | Documentation preview generation runs offline |
 
 ### Notable defects caught by these tests (and fixed)
@@ -134,8 +136,11 @@ To be executed by the release operator on **each** claimed OS. Record
 
 * **Code under automated test:** section engine, DOCX structure, database layer,
   parameter binding, design tokens, catalogue distinctness, preview generation.
-* **Code exercised only by compilation/build:** UI components, wizard screens,
-  Electron IPC handlers, print/PDF paths, installer configuration.
+* **Code exercised by mount-level UI tests:** dashboard, template gallery, editor
+  (document rendering, section navigator, guides toggle, section suppression).
+* **Code exercised only by compilation/build:** the remaining screens (wizard
+  steps, customers, exports, backup, settings, help), Electron IPC handlers,
+  print/PDF paths, installer configuration.
 * **Code not executed at all in this environment:** Electron main process at
   runtime, native dialogs, printer interaction, the NSIS installer.
 
