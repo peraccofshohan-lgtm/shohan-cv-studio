@@ -12,6 +12,8 @@ import { useWorkspace } from '@/store/workspace';
 import { Button, Field, Input, useLang, Badge } from '@/components/ui';
 import { PanelSection } from '@/components/studioControls';
 import { templateById } from '@/templates/catalog';
+import { NAMED_PRESETS } from '@/lib/namedPresets';
+import { defaultDesign } from '@/lib/defaults';
 
 export const PresetsPanel: React.FC = () => {
   const lang = useLang();
@@ -23,6 +25,8 @@ export const PresetsPanel: React.FC = () => {
   const duplicatePreset = useWorkspace((s) => s.duplicatePreset);
   const deletePreset = useWorkspace((s) => s.deletePreset);
   const current = useWorkspace((s) => s.current);
+  const setTemplate = useWorkspace((s) => s.setTemplate);
+  const updateDesign = useWorkspace((s) => s.updateDesign);
   const [name, setName] = useState('');
   const [editing, setEditing] = useState<string | null>(null);
   const [draftName, setDraftName] = useState('');
@@ -56,6 +60,40 @@ export const PresetsPanel: React.FC = () => {
         >
           {bn('Save current design as a preset', 'বর্তমান ডিজাইন প্রিসেট হিসেবে সংরক্ষণ')}
         </Button>
+      </PanelSection>
+
+      <PanelSection
+        title={bn('Named presets', 'নামযুক্ত প্রিসেট')}
+        description={bn(
+          'Ten ready-made looks. Applying one sets its base template and layers the design on top — your text is never touched.',
+          'দশটি প্রস্তুত লুক। প্রয়োগ করলে ভিত্তি টেমপ্লেট নির্ধারিত হয় এবং ডিজাইন তার উপর বসে — আপনার লেখা অপরিবর্তিত থাকে।',
+        )}
+      >
+        <div className="col" style={{ gap: 'var(--sp-2)' }}>
+          {NAMED_PRESETS.map((preset) => (
+            <div key={preset.id} className="card card-pad col" style={{ gap: 4 }}>
+              <strong style={{ fontSize: 'var(--fs-sm)' }}>
+                {lang === 'bn' ? preset.nameBn : preset.nameEn}
+              </strong>
+              <span style={{ fontSize: 'var(--fs-2xs)', color: 'var(--text-muted)', lineHeight: 1.45 }}>
+                {lang === 'bn' ? preset.descriptionBn : preset.descriptionEn}
+              </span>
+              <Button
+                size="sm"
+                variant="primary"
+                style={{ alignSelf: 'flex-start', marginTop: 4 }}
+                onClick={() => {
+                  // Base template + tokens. The template definition itself is
+                  // never modified; only this project's design changes.
+                  setTemplate(preset.baseTemplateId);
+                  updateDesign({ ...defaultDesign(preset.baseTemplateId), ...preset.design, presetId: null });
+                }}
+              >
+                {bn('Apply', 'প্রয়োগ')}
+              </Button>
+            </div>
+          ))}
+        </div>
       </PanelSection>
 
       <PanelSection

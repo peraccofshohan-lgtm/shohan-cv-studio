@@ -25,7 +25,8 @@ internet connection, no subscription and no telemetry.
 | **Section design** | Restyle one section without touching the rest: heading colour, alignment and size (0.8–1.25×), the gap above it (1–2.5×, add-only), dot/dash/square/no bullets and an optional page break. Reset returns the section to the template's exact look. |
 | **Recommended order** | Seven orderings (fresher, experienced, executive, technical, academic, ATS-first, Bangladesh standard) that rearrange existing sections only — nothing is added, hidden or rewritten. |
 | **Typography & spacing** | Ten font roles, exact point sizes, line height, four alignments, first-line indent, twelve spacing tokens, four-sided margins and compact/balanced/spacious density modes that change real layout parameters. |
-| **Colour studio** | 13 palettes plus per-token overrides with a colour picker and HEX/RGB entry; save any look as a reusable preset. |
+| **Colour studio** | 9 built-in palettes plus per-token overrides with a colour picker and HEX/RGB entry; save any look as a reusable preset. |
+| **Named presets** | Ten ready-made looks (Corner Office, Bank Standard, Parser Plain, Academic Archive, Tech Brief, First Interview, Swiss Grid, Burgundy Formal, Editorial, One Page Tight). Applying one changes design only — never the template definition, never your text. |
 | **Inspection** | Layout diagnostics (overflow, orphan headings, duplicate skills, missing dates), an offline ATS suitability score and a ten-point quality checklist. |
 | **Exports** | Editable `.docx` (real A4, selectable text, Bengali Unicode, footer page numbers), searchable `.pdf` (Chromium's own print-to-PDF), and direct printing with a preview. |
 | **Customers & projects** | Save multiple projects per person, duplicate, soft-delete and restore. Search, filter and sort across everything. |
@@ -103,7 +104,7 @@ src/lib/             Golden-ratio maths, section engine, composition tokens,
                      layout report, ATS checks, backup format, colour maths
 scripts/             CSP injection, font builder, preview renderer, bundle
                      verifier, feature audit
-tests/               Vitest suites — 18 files / 229 tests
+tests/               Vitest suites — 19 files / 235 tests
 docs/                Deliverable documentation + generated template previews
 ```
 

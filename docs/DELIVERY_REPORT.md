@@ -7,7 +7,7 @@
 ## 1. Verdict
 
 The application code is complete, compiles, builds, and is covered by **222
-automated tests across 18 files**. The production bundle was audited byte by byte
+automated tests across 19 files**. The production bundle was audited byte by byte
 and passes every check that can be made without a Windows machine.
 
 **The release is NOT declared ready for distribution.** No installer was built
@@ -102,8 +102,10 @@ Status vocabulary used throughout, and used consistently:
 | --- | --- | --- |
 | Basic / Advanced modes | **Implemented & tested** | Design panel; test asserts advanced fields are hidden until selected |
 | 13 colour tokens with picker + HEX + RGB | **Implemented & tested** | `ColorToken`, `HexField` (live RGB readout); malformed input rejected |
-| Preset palettes | **Implemented & tested** | 13 palettes |
+| Preset palettes | **Implemented & tested** | 9 built-in palettes with 13 colour tokens each |
+| Named presets (10 ready-made looks) | **Implemented & tested** | `src/lib/namedPresets.ts` — 10 presets applied from the Presets panel by setting a base template + design tokens; `tests/named-presets.test.ts` proves the catalog is never mutated and content is untouched |
 | Custom saved palettes | **Partial** | Saved as part of a style preset (below), not as standalone palettes |
+| Named presets (10 ready-made looks) | **Implemented & tested** | `src/lib/namedPresets.ts` — 10 presets, applied from the Presets panel by setting a base template + design tokens; `tests/named-presets.test.ts` proves the catalog is never mutated and content is untouched |
 | Contrast safety | **Partial** | `contrastRatio` helper exists and is used by the palette design; not enforced on arbitrary user colours |
 | Layout choices (1-col, 2-col, sidebar L/R) | **Implemented & tested** | `bodyLayout` |
 | Header centred / left / right, compact / balanced / spacious | **Implemented & tested** | Header styles + density presets |
@@ -217,7 +219,7 @@ Per-template support matrix (all verified by the composition matrix test):
 | Deliverable | Status |
 | --- | --- |
 | README, USER_MANUAL, TECHNICAL, TESTING, COMPATIBILITY, KNOWN_ISSUES, RELEASE_NOTES, DELIVERY_REPORT updated | **Done** |
-| Feature audit script updated | **Done** — 45 checks |
+| Feature audit script updated | **Done** — 46 checks |
 | Documentation reflects only implemented features | **Done** — audited item by item; unimplemented items are marked as such above |
 | Every feature marked with an explicit status | **Done** (this document) |
 
@@ -231,7 +233,7 @@ Per-template support matrix (all verified by the composition matrix test):
 | Wizard steps | **20** (was 19; the document-title step was added) |
 | Palettes / font pairs | 13 / 4 |
 | Database tables / schema version | 28 / **2** |
-| Test files / tests | **18 / 229** |
+| Test files / tests | **19 / 235** |
 | Production bundle | 1.56 MB JS, 5 chunks; 64 `woff2` (15 Bengali); 128 CSS asset URLs, 0 missing |
 | Documented preview pages | 122 PNG (60 first pages + 62 continuation) |
 | Commits on this branch | 19 (see `git log`) |
@@ -261,7 +263,7 @@ Per-template support matrix (all verified by the composition matrix test):
 Tick every line on a connected machine before distributing.
 
 - [x] `npx tsc --noEmit` — 0 errors
-- [x] `npx vitest run` — 229/229
+- [x] `npx vitest run` — 235/235
 - [x] `npm run build` — green
 - [x] `node scripts/verify-dist.mjs` — 0 failures
 - [x] `bash scripts/feature-audit.sh` — all present
@@ -289,8 +291,8 @@ Tick every line on a connected machine before distributing.
    (`electron-builder.config.cjs`) and the verification gate (`npm run verify`).
 2. **Run the per-OS matrix** in COMPATIBILITY.md and replace every "Not tested".
 3. **Close the remaining composition gaps**, in the order the specification
-   weights them: page thumbnails, before/after comparison, font import, the
-   named 10-preset library and standalone palettes.
+   weights them: page thumbnails, before/after comparison, font import and
+   standalone palettes.
 4. **Add a real pagination check** once a browser engine is available: render the
    print payload to PDF and assert page count against the estimator.
 

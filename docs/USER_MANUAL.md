@@ -173,7 +173,7 @@ the first one plus the template gallery; the rest are optional.
 | **Title** | The six document titles and their full styling (see §4.1) |
 | **Pages** | One page / two pages / automatic, maximum pages, and per-section manual page breaks (see §4.2) |
 | **Reports** | Layout diagnostics, ATS suitability score and the quality checklist |
-| **Presets** | Save the current look as a reusable style preset |
+| **Presets** | Ten named ready-made looks, plus your own saved presets (rename / duplicate / delete) |
 | **Section design** | Opened by the 🖌 button on any section row — restyle that one section (see §4.3) |
 
 ### 4.3 Section-by-section design

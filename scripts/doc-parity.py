@@ -3,15 +3,31 @@ import re, subprocess, sys
 claims = [
  ("30 templates",            ["src/templates/catalog.ts"], r"^  T\(" , 30),
  ("20 wizard steps",         ["src/features/cv-wizard/steps.ts"], r"^    id: '", 20),
- ("13 palettes",             ["src/templates/catalog.ts"], r"^    id: '", 13),
+ ("9 palettes",              ["src/templates/catalog.ts"], r"PALETTE-SCOPE", 9),
  ("28 db tables",            ["src/database/schema.ts"], r"CREATE TABLE", 28),
  ("schema v2",               ["src/database/schema.ts"], r"SCHEMA_VERSION = 2", 1),
 ]
 ok=True
+def count_in_block(path, start, end, pat):
+    """Count matches between a `start` marker and the next `end` marker.
+
+    The palette and font-pair lists both use `    id: '` lines, so counting the
+    whole file silently mixes the two — which is how the docs once claimed 13
+    palettes when the catalog ships 9 palettes and 4 font pairs.
+    """
+    text = open(path).read()
+    i = text.find(start)
+    j = text.find(end, i + len(start))
+    block = text[i:j if j != -1 else len(text)]
+    return len(re.findall(pat, block, re.M))
+
 for label, files, pat, expected in claims:
     n=0
     for f in files:
-        n += len(re.findall(pat, open(f).read(), re.M))
+        if pat == "PALETTE-SCOPE":
+            n += count_in_block(f, "export const PALETTES", "export const FONT_PAIRS", r"^    id: '")
+        else:
+            n += len(re.findall(pat, open(f).read(), re.M))
     status = "OK " if n==expected else "MISMATCH"
     if n!=expected: ok=False
     print(f"{status} {label}: found {n}, docs say {expected}")
@@ -31,6 +47,10 @@ features = {
  "page length panel":    ("export const PageLengthPanel", ["src/features/editor/PageLengthPanel.tsx"]),
  "reports panel":        ("export const ReportsPanel", ["src/features/editor/ReportsPanel.tsx"]),
  "presets panel":        ("export const PresetsPanel", ["src/features/editor/PresetsPanel.tsx"]),
+ "named 10 presets":     ("export const NAMED_PRESETS", ["src/lib/namedPresets.ts"]),
+ "section order presets": ("export const ORDER_PRESETS", ["src/lib/sectionOrder.ts"]),
+ "section style model":  ("export function normalizeSectionOverride", ["src/lib/sectionStyles.ts"]),
+ "section design panel": ("export const SectionStylePanel", ["src/features/editor/SectionStylePanel.tsx"]),
  "wizard document step": ("Document Title & Length", ["src/features/cv-wizard/steps.ts"]),
  "hex field":            ("export const HexField", ["src/components/studioControls.tsx"]),
  "number field":         ("export const NumberField", ["src/components/studioControls.tsx"]),

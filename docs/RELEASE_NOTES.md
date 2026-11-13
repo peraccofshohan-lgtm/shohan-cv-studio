@@ -54,7 +54,7 @@ is part of the reading order.
 
 ### Verification status
 
-`tsc --noEmit` clean · `vitest run` **229 tests / 18 files** · production build
+`tsc --noEmit` clean · `vitest run` **235 tests / 19 files** · production build
 green · `scripts/verify-dist.mjs` 8 passed / 2 warnings / 0 failures.
 
 **Not verified:** no Windows OS, no installed printer, no Electron runtime and no

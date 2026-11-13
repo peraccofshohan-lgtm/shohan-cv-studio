@@ -309,6 +309,34 @@ describe('per-section design panel', () => {
   });
 });
 
+describe('named presets in the editor', () => {
+  it('applies a named preset by changing the design only', async () => {
+    installStores();
+    useUI.setState({ language: 'en', editorPanel: 'presets' });
+    const store = (await import('@/store/workspace')).useWorkspace;
+    const { EditorPage } = await import('@/features/editor/EditorPage');
+    const { container, getByText } = render(<EditorPage />);
+
+    expect(container.textContent).toContain('Named presets');
+    expect(container.textContent).toContain('Parser Plain');
+    const beforeText = JSON.stringify(store.getState().current!.data);
+
+    // "Parser Plain" is the third named preset in the list.
+    const cards = container.querySelectorAll('.card');
+    const button = Array.from(cards)
+      .find((c) => (c.textContent ?? '').includes('Parser Plain'))!
+      .querySelector('button')!;
+    fireEvent.click(button);
+
+    const current = store.getState().current!;
+    expect(current.templateId).toBe('ats-classic');
+    expect(current.design.density).toBe('compact');
+    // Content is byte-identical: a preset is design only.
+    expect(JSON.stringify(current.data)).toBe(beforeText);
+    expect(getByText('Named presets')).toBeTruthy();
+  });
+});
+
 describe('wizard document step', () => {
   it('offers title and page-length controls while creating a CV', async () => {
     installStores();

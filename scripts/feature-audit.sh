@@ -43,6 +43,7 @@ check "title panel (editor)"       "export const TitlePanel" src/features/editor
 check "page length panel"          "export const PageLengthPanel" src/features/editor/PageLengthPanel.tsx
 check "reports panel"              "export const ReportsPanel" src/features/editor/ReportsPanel.tsx
 check "presets panel"              "export const PresetsPanel" src/features/editor/PresetsPanel.tsx
+check "10 named presets"           "export const NAMED_PRESETS" src/lib/namedPresets.ts
 check "ATS analyser"               "export function analyseAts" src/lib/atsCheck.ts
 check "quality checklist"          "QualityItem" src/lib/atsCheck.ts
 check "preset store actions"       "applyPreset|duplicatePreset" src/store/workspace.ts
@@ -61,7 +62,7 @@ check "title word spacing"          "word-spacing" src/document/styles.ts
 echo "--- counts ---"
 count "wizard steps:"   "$(grep -c "id: '" src/features/cv-wizard/steps.ts)"
 count "templates:"      "$(grep -c '^  T(' src/templates/catalog.ts)"
-count "palettes:"       "$(grep -c "^    id: '" src/templates/catalog.ts)"
+count "palettes:"       "$(awk '/export const PALETTES/{f=1} f&&/^    id:/{c++} /export const FONT_PAIRS/{print c; exit}' src/templates/catalog.ts)"
 count "font pairs:"     "$(awk '/FONT_PAIRS/{f=1} f&&/^    id:/{c++} /^export const fontPairById/{print c; exit}' src/templates/catalog.ts)"
 count "db tables:"      "$(grep -c 'CREATE TABLE' src/database/schema.ts)"
 count "test files:"     "$(ls tests/*.test.ts tests/*.test.tsx 2>/dev/null | wc -l)"
