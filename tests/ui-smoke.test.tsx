@@ -434,3 +434,24 @@ describe('wizard document step', () => {
     expect(text).toContain('Exactly one page');
   });
 });
+
+describe('in-app help', () => {
+  it('states the real wizard and template counts, in both languages', async () => {
+    installStores();
+    const { HelpPage } = await import('@/features/help/HelpPage');
+    const { WIZARD_STEPS } = await import('@/features/cv-wizard/steps');
+    const { TEMPLATES } = await import('@/templates/catalog');
+
+    useUI.setState({ language: 'en' });
+    const en = render(<HelpPage />);
+    expect(en.container.textContent).toContain(`Fill in the ${WIZARD_STEPS.length} steps`);
+    expect(en.container.textContent).toContain(`all ${TEMPLATES.length} templates`);
+    en.unmount();
+
+    useUI.setState({ language: 'bn' });
+    const bn = render(<HelpPage />);
+    // Bengali digits, derived — the page must not hard-code an old count.
+    expect(bn.container.textContent).toContain('টি ধাপে তথ্য দিন');
+    expect(bn.container.textContent).toContain('টি টেমপ্লেটের গ্যালারি');
+  });
+});

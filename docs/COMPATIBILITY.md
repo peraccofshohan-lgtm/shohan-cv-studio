@@ -119,7 +119,7 @@ does not depend on fonts installed on the target machine.
 | npm (build host) | bundled with Node 22 | Tested Passed |
 | TypeScript compiler | 5.x | Tested Passed — 0 errors |
 | Vite production build | 5.x | Tested Passed — build completes, CSP injected |
-| Vitest suites | 21 files / **252 tests** | **Tested Passed — 252/252** |
+| Vitest suites | 21 files / **253 tests** | **Tested Passed — 253/253** |
 | Production bundle verifier | `scripts/verify-dist.mjs` | **Tested Passed** — 8 checks, 0 failures, 2 documented warnings |
 | Feature-presence audit | `scripts/feature-audit.sh` | **Tested Passed** — 50 checks present |
 | Preview rasteriser | HarfBuzz + FreeType via `scripts/render_previews.py` | **Tested Passed** — 122 A4 pages rendered from the production model |

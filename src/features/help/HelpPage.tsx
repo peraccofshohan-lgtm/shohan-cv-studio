@@ -21,6 +21,9 @@ import { Badge, Button, Notice, SectionHeader, useLang } from '@/components/ui';
 import { useWorkspace } from '@/store/workspace';
 import { APP_NAME, APP_VERSION, BUILD_NUMBER } from '@/lib/appMeta';
 import { getBridge, isDesktop } from '@/platform';
+import { WIZARD_STEPS } from '@/features/cv-wizard/steps';
+import { TEMPLATES } from '@/templates/catalog';
+import { toBengaliDigits as bnDigits } from '@/lib/sections';
 
 type PlatformStatus = 'passed' | 'failed' | 'untested' | 'unsupported';
 
@@ -89,18 +92,20 @@ export const HelpPage: React.FC = () => {
               {
                 icon: <FileText size={15} />,
                 title: lang === 'bn' ? '১. নতুন সিভি তৈরি করুন' : '1. Create a new CV',
+                // Counts are derived, never typed: a hard-coded "19 steps" stayed
+                // in this screen after the wizard grew to 20.
                 body:
                   lang === 'bn'
-                    ? 'ড্যাশবোর্ড থেকে “নতুন সিভি” চাপুন। ১৯টি ধাপে তথ্য দিন — প্রতিটি ধাপ স্বয়ংক্রিয়ভাবে সংরক্ষিত হয়। ঐচ্ছিক ধাপগুলো “এড়িয়ে যান” দিয়ে বাদ দিতে পারবেন।'
-                    : 'Press “Create New CV” on the dashboard. Fill in the 19 steps — each one saves automatically. Optional steps can be skipped.',
+                    ? `ড্যাশবোর্ড থেকে “নতুন সিভি” চাপুন। ${bnDigits(String(WIZARD_STEPS.length))}টি ধাপে তথ্য দিন — প্রতিটি ধাপ স্বয়ংক্রিয়ভাবে সংরক্ষিত হয়। ঐচ্ছিক ধাপগুলো “এড়িয়ে যান” দিয়ে বাদ দিতে পারবেন।`
+                    : `Press “Create New CV” on the dashboard. Fill in the ${WIZARD_STEPS.length} steps — each one saves automatically. Optional steps can be skipped.`,
               },
               {
                 icon: <Monitor size={15} />,
                 title: lang === 'bn' ? '২. টেমপ্লেট বেছে নিন' : '2. Choose a template',
                 body:
                   lang === 'bn'
-                    ? 'উইজার্ড শেষে ২০টি টেমপ্লেটের গ্যালারি খুলবে। প্রতিটি কার্ডে আসল লেআউট দেখা যায়। টেমপ্লেট বদলালেও কোনো তথ্য হারাবে না।'
-                    : 'The gallery opens with all 20 templates. Every card shows the real layout. Switching templates never loses data.',
+                    ? `উইজার্ড শেষে ${bnDigits(String(TEMPLATES.length))}টি টেমপ্লেটের গ্যালারি খুলবে। প্রতিটি কার্ডে আসল লেআউট দেখা যায়। টেমপ্লেট বদলালেও কোনো তথ্য হারাবে না।`
+                    : `The gallery opens with all ${TEMPLATES.length} templates. Every card shows the real layout. Switching templates never loses data.`,
               },
               {
                 icon: <Printer size={15} />,
