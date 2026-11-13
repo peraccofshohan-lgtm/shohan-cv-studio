@@ -11,7 +11,7 @@ here is estimated, and anything that could not be executed is listed in
 | Check | Command | Result |
 | --- | --- | --- |
 | TypeScript | `npx tsc --noEmit` | **PASS** — 0 errors |
-| Unit / integration tests | `npx vitest run` | **PASS** — 16 files, **198 tests** |
+| Unit / integration tests | `npx vitest run` | **PASS** — 16 files, **206 tests** |
 | Production build | `npm run build` | **PASS** — Vite + CSP injection |
 | Production bundle audit | `node scripts/verify-dist.mjs` | **PASS** — 8 passed, 2 documented warnings, 0 failures |
 | Feature-presence audit | `bash scripts/feature-audit.sh` | **PASS** — 40 checks, all present |
@@ -20,15 +20,15 @@ here is estimated, and anything that could not be executed is listed in
 
 ---
 
-## 2. Test inventory (198 tests / 16 files)
+## 2. Test inventory (206 tests / 16 files)
 
 | File | Tests | What it protects |
 | --- | --- | --- |
 | `tests/print-payload.test.ts` | 19 | The exact HTML given to `printToPDF`/the spooler: A4 `@page`, 210 × 297 mm sheet, four-margin padding, heading/entry keep rules, widow+orphan control, manual section breaks, selectable text (no canvas, no `<img>` for the CV), embedded Bengali `@font-face`, `print-color-adjust: exact`, page numbering only when enabled |
 | `tests/design.test.ts` | 16 | Golden-ratio tokens, 8 pt spacing scale, **30** templates with unique ids/names/structural signatures, Chromium-108 CSS rules, ES2019 target |
 | `tests/composition-matrix.test.ts` | 15 | 30 templates × 2 languages through the real pipeline (resolver → tokens → CSS → HTML → DOCX); six title modes; photo removal reflow; optional sections; density changes real spacing; four alignments; custom colours/margins; malformed colour rejection; DOCX A4 parity; page-target never loses content |
-| `tests/sections.test.ts` | 14 | Dynamic section engine, empty/disabled sections dropped, Bangla date localisation and Bengali digits |
-| `tests/ui-smoke.test.tsx` | 13 | Real React mounts (jsdom): dashboard, gallery listing all 30 templates, editor A4 page, guides toggle, section hide, **title printed/removed**, title + page-length + report + design panels, wizard document step |
+| `tests/sections.test.ts` | 21 | Dynamic section engine, empty/disabled sections dropped, Bangla date localisation and Bengali digits, **recommended section orderings** (reorder without loss, preset detection, per-CV-type priority) |
+| `tests/ui-smoke.test.tsx` | 14 | Real React mounts (jsdom): dashboard, gallery listing all 30 templates, editor A4 page, guides toggle, section hide, **title printed/removed**, title + page-length + report + design panels, recommended-order selector, wizard document step |
 | `tests/database.test.ts` | 9 | Schema, integrity, normalised round-trip, **schema v2 title/page-length/section-style round-trip**, v1.0 project loading |
 | `tests/text-export.test.ts` | 8 | Plain-text export: privacy flags, reading order, title first, title omitted when hidden, custom title verbatim |
 | `tests/backup-restore.test.ts` | 8 | Real SQLite → archive → validate → restore: customer, project, Bangla content, title, page policy survive; tampered archive rejected; foreign/newer-schema rejection; restart persistence |

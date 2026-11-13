@@ -7,6 +7,8 @@
  */
 import { describe, it, expect } from 'vitest';
 import { createEmptyCv } from '@/lib/defaults';
+import { applyOrderPreset, detectOrderPreset } from '@/lib/sectionOrder';
+import { defaultSections } from '@/lib/defaults';
 import {
   resolveSections,
   printableSections,
@@ -153,5 +155,61 @@ describe('period formatting', () => {
     // A free-text value that Date() can parse is normalised; the engine never throws.
     expect(formatPeriod('Class of 2019', '', false, 'en')).toBe('Jan 2019');
     expect(formatPeriod('not a date at all', '', false, 'en')).toBe('not a date at all');
+  });
+});
+
+describe('recommended section ordering', () => {
+  it('reorders sections without dropping, adding or toggling any', () => {
+    const sections = defaultSections();
+    const before = new Set(sections.map((s) => s.id));
+    const enabledBefore = sections.filter((s) => s.enabled).map((s) => s.id).sort();
+
+    const reordered = applyOrderPreset(sections, 'fresher');
+    expect(reordered).toHaveLength(sections.length);
+    expect(new Set(reordered.map((s) => s.id))).toEqual(before);
+    expect(reordered.filter((s) => s.enabled).map((s) => s.id).sort()).toEqual(enabledBefore);
+    // Order values are contiguous from 0.
+    expect(reordered.map((s) => s.order)).toEqual(reordered.map((_, i) => i));
+  });
+
+  it('puts education before experience for a fresher', () => {
+    const reordered = applyOrderPreset(defaultSections(), 'fresher');
+    const ids = reordered.map((s) => s.id);
+    expect(ids.indexOf('education')).toBeLessThan(ids.indexOf('experience'));
+  });
+
+  it('puts achievements before experience for an executive', () => {
+    const ids = applyOrderPreset(defaultSections(), 'executive').map((s) => s.id);
+    expect(ids.indexOf('achievements')).toBeLessThan(ids.indexOf('experience'));
+  });
+
+  it('leads with skills for a technical CV', () => {
+    const ids = applyOrderPreset(defaultSections(), 'technical').map((s) => s.id);
+    expect(ids.indexOf('skills')).toBeLessThan(ids.indexOf('education'));
+  });
+
+  it('detects which preset is currently applied', () => {
+    const fresher = applyOrderPreset(defaultSections(), 'fresher');
+    expect(detectOrderPreset(fresher)).toBe('fresher');
+    const ats = applyOrderPreset(defaultSections(), 'ats');
+    expect(detectOrderPreset(ats)).toBe('ats');
+  });
+
+  it('returns null for a hand-made order', () => {
+    const custom = defaultSections().reverse().map((s, i) => ({ ...s, order: i }));
+    expect(detectOrderPreset(custom)).toBeNull();
+  });
+
+  it('keeps the same enabled sections after reordering a real project', () => {
+    const cv = createEmptyCv();
+    // Work against the section *config*, not the printable list: an empty
+    // education list would be filtered out before ordering is observable.
+    const enabledBefore = cv.sections.filter((s) => s.enabled).map((s) => s.id).sort();
+    cv.sections = applyOrderPreset(cv.sections, 'bangladesh');
+    const enabledAfter = cv.sections.filter((s) => s.enabled).map((s) => s.id).sort();
+    expect(enabledAfter).toEqual(enabledBefore);
+
+    const order = cv.sections.map((s) => s.id);
+    expect(order.indexOf('education')).toBeLessThan(order.indexOf('experience'));
   });
 });

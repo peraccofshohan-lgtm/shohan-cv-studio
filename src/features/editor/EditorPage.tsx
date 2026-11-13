@@ -66,6 +66,7 @@ import { PageLengthPanel } from './PageLengthPanel';
 import { ReportsPanel } from './ReportsPanel';
 import { PresetsPanel } from './PresetsPanel';
 import { composeDocumentTokens } from '@/lib/composition';
+import { ORDER_PRESETS, applyOrderPreset, detectOrderPreset, type OrderPresetId } from '@/lib/sectionOrder';
 import { buildLayoutReport } from '@/lib/layoutReport';
 
 export const EditorPage: React.FC = () => {
@@ -463,8 +464,43 @@ const SectionNavigator: React.FC<{
       if (section) section.enabled = enabled;
     });
 
+  const currentPreset = detectOrderPreset(data.sections);
+
   return (
     <>
+      <div style={{ padding: '0 10px 8px' }}>
+        <Select
+          value={currentPreset ?? 'custom'}
+          aria-label={lang === 'bn' ? 'প্রস্তাবিত ক্রম' : 'Recommended order'}
+          onChange={(e) => {
+            if (e.target.value === 'custom') return;
+            const presetId = e.target.value as OrderPresetId;
+            update((draft) => {
+              draft.sections = applyOrderPreset(draft.sections, presetId);
+            });
+          }}
+          title={
+            lang === 'bn'
+              ? 'প্রস্তাবিত ক্রম প্রয়োগ করুন — কোনো তথ্য মুছে যাবে না'
+              : 'Apply a recommended order — no content is removed'
+          }
+        >
+          {currentPreset === null && (
+            <option value="custom">{lang === 'bn' ? 'কাস্টম ক্রম' : 'Custom order'}</option>
+          )}
+          {ORDER_PRESETS.map((preset) => (
+            <option key={preset.id} value={preset.id}>
+              {lang === 'bn' ? preset.nameBn : preset.nameEn}
+              {currentPreset === preset.id ? ' ✓' : ''}
+            </option>
+          ))}
+        </Select>
+        <div style={{ fontSize: 'var(--fs-2xs)', color: 'var(--text-muted)', marginTop: 4, lineHeight: 1.45 }}>
+          {lang === 'bn'
+            ? 'প্রস্তাবিত ক্রম শুধু সেকশন সাজায়; কোনো তথ্য যোগ বা বাদ হয় না।'
+            : 'A recommended order only rearranges sections; nothing is added or removed.'}
+        </div>
+      </div>
       {ordered.map((section, index) => {
         const title = SECTION_TITLES[section.id][lang];
         const hasContent = visible.has(section.id);

@@ -6,7 +6,7 @@
 
 ## 1. Verdict
 
-The application code is complete, compiles, builds, and is covered by **198
+The application code is complete, compiles, builds, and is covered by **206
 automated tests across 16 files**. The production bundle was audited byte by byte
 and passes every check that can be made without a Windows machine.
 
@@ -143,7 +143,7 @@ Per-template support matrix (all verified by the composition matrix test):
 | --- | --- | --- |
 | Density modes that change real parameters | **Implemented & tested** | `DENSITY_PRESETS`; matrix test asserts spacing, not just type |
 | Section reordering | **Implemented & tested** | Up/down controls in the section navigator |
-| Recommended orderings by CV type (fresher/experienced/executive/technical/academic/ATS) | **Not implemented** | — |
+| Recommended orderings by CV type (fresher/experienced/executive/technical/academic/ATS) | **Implemented & tested** | `src/lib/sectionOrder.ts` — 7 orderings (the six listed plus a Bangladesh-standard order); selector in the section navigator; `tests/sections.test.ts` asserts the reorder adds/removes/toggles nothing |
 | Section visibility manager with content status | **Implemented & tested** | Navigator shows printed / empty / hidden per row |
 | Content-length warnings (objective, bullets, duplicate skills, missing dates) | **Implemented & tested** | Diagnostics list |
 | ATS checker | **Implemented & tested** (heuristic, offline) | `analyseAts`: contact, headings, reading order, photo, symbols, text volume, template structure |
@@ -231,7 +231,7 @@ Per-template support matrix (all verified by the composition matrix test):
 | Wizard steps | **20** (was 19; the document-title step was added) |
 | Palettes / font pairs | 13 / 4 |
 | Database tables / schema version | 28 / **2** |
-| Test files / tests | **16 / 198** |
+| Test files / tests | **16 / 206** |
 | Production bundle | 1.56 MB JS, 5 chunks; 64 `woff2` (15 Bengali); 128 CSS asset URLs, 0 missing |
 | Documented preview pages | 122 PNG (60 first pages + 62 continuation) |
 | Commits on this branch | 19 (see `git log`) |
@@ -261,7 +261,7 @@ Per-template support matrix (all verified by the composition matrix test):
 Tick every line on a connected machine before distributing.
 
 - [x] `npx tsc --noEmit` — 0 errors
-- [x] `npx vitest run` — 198/198
+- [x] `npx vitest run` — 206/206
 - [x] `npm run build` — green
 - [x] `node scripts/verify-dist.mjs` — 0 failures
 - [x] `bash scripts/feature-audit.sh` — all present
@@ -290,7 +290,7 @@ Tick every line on a connected machine before distributing.
 2. **Run the per-OS matrix** in COMPATIBILITY.md and replace every "Not tested".
 3. **Close the remaining composition gaps**, in the order the specification
    weights them: page thumbnails, per-section style UI, recommended section
-   orderings, strikethrough/word-spacing, font import.
+   strikethrough/word-spacing, font import.
 4. **Add a real pagination check** once a browser engine is available: render the
    print payload to PDF and assert page count against the estimator.
 

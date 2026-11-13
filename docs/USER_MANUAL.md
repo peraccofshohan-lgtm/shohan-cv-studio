@@ -73,6 +73,26 @@ also hidden automatically, with the reason shown next to the section name
 
 Custom sections can be added with your own title and body text.
 
+### Recommended section order
+
+Above the section list the **Recommended order** selector offers seven
+orderings; choosing one rearranges the sections you already have:
+
+| Ordering | Reads first |
+| --- | --- |
+| Fresher / Graduate | Objective → career interests → education → training → projects |
+| Experienced professional | Objective → experience → skills → education → achievements |
+| Executive / Leadership | Objective → achievements → experience → skills → education |
+| Technical / IT | Objective → skills → experience → projects → education |
+| Academic / Research | Objective → education → publications → experience → skills |
+| ATS-first | Contact/objective → skills → experience → education → extras last |
+| Bangladesh standard (local) | Objective → education → experience → personal details → declaration |
+
+Applying an ordering only renumbers the sections; it **adds nothing, hides
+nothing and changes no text**. A tick (✓) marks the ordering that matches the
+current arrangement, and the manual up/down arrows still work afterwards, so a
+custom arrangement is always one arrow away.
+
 ### Is my CV going to fit?
 
 The **Pages** tab shows an estimate and the **Reports** tab explains any problem

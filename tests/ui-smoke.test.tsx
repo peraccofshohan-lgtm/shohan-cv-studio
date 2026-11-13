@@ -247,6 +247,32 @@ describe('title and page-length panels drive the document', () => {
   });
 });
 
+describe('recommended section order in the editor', () => {
+  it('applies an ordering from the navigator and keeps every section', async () => {
+    installStores();
+    useUI.setState({ language: 'en' });
+    const { EditorPage } = await import('@/features/editor/EditorPage');
+    const store = (await import('@/store/workspace')).useWorkspace;
+    const { container, getByLabelText } = render(<EditorPage />);
+
+    const before = store.getState().current!.data.sections.map((s) => s.id);
+    const select = getByLabelText('Recommended order') as HTMLSelectElement;
+    expect(select.value).toBe('custom');
+    for (const label of ['Fresher / Graduate', 'Technical / IT', 'Bangladesh standard']) {
+      expect(container.textContent).toContain(label);
+    }
+
+    fireEvent.change(select, { target: { value: 'bangladesh' } });
+    const after = store.getState().current!.data.sections;
+    expect(after.map((s) => s.id).sort()).toEqual([...before].sort());
+    expect(after.map((s) => s.order)).toEqual(after.map((_, i) => i));
+    expect(after.findIndex((s) => s.id === 'education')).toBeLessThan(
+      after.findIndex((s) => s.id === 'experience'),
+    );
+    expect(select.value).toBe('bangladesh');
+  });
+});
+
 describe('wizard document step', () => {
   it('offers title and page-length controls while creating a CV', async () => {
     installStores();

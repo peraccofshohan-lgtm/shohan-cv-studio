@@ -184,6 +184,14 @@ The print/PDF path uses Chromium's real pagination, so the documented behaviour 
 `hiddenReason`, while `printableSections` returns only what will print. Exports
 use `printableSections`, so a heading can never print without content.
 
+`src/lib/sectionOrder.ts` holds the seven recommended orderings. Each preset is
+a pure `SectionId[]`; `applyOrderPreset` rewrites only the `order` field of the
+**caller's** section array (contiguous `0…n-1`, unlisted ids keep their relative
+place at the end) and never touches `enabled` or content, so it cannot delete a
+section. `detectOrderPreset` compares the stored order against each preset and
+returns the match (or `null` for a hand-made order), which is what the ✓ marker
+in the navigator reads.
+
 ### 4.2 Geometry
 
 * A4 = 210 × 297 mm = 11905 × 16837 twips (DOCX) = 793.7 × 1122.5 px @96 dpi.
@@ -266,7 +274,7 @@ opaque background, because Windows 7 without Aero compositing ignores it.
 | Suite | Covers |
 | --- | --- |
 | `tests/smoke.test.ts` | App metadata, fonts, defaults integrity |
-| `tests/sections.test.ts` | Empty/disabled section suppression, ordering, overrides, localisation, periods |
+| `tests/sections.test.ts` | Empty/disabled section suppression, ordering, overrides, localisation, periods, recommended order presets |
 | `tests/docx.test.ts` | A4 twips, real text (no images), Bengali round-trip, footer fields |
 | `tests/database.test.ts` | Schema + integrity, full project round-trip, cascade delete, version history, soft delete, settings, export logging |
 | `tests/regression.test.ts` | Parameter-binding order, `$`-prefixed keys, Bangla byte-exact round-trip |
