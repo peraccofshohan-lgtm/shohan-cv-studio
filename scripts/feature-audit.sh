@@ -46,6 +46,7 @@ check "presets panel"              "export const PresetsPanel" src/features/edit
 check "10 named presets"           "export const NAMED_PRESETS" src/lib/namedPresets.ts
 check "ATS analyser"               "export function analyseAts" src/lib/atsCheck.ts
 check "quality checklist"          "QualityItem" src/lib/atsCheck.ts
+check "contrast diagnostic"        "LOW_CONTRAST" src/lib/layoutReport.ts
 check "preset store actions"       "applyPreset|duplicatePreset" src/store/workspace.ts
 check "wizard document step"       "Document Title & Length" src/features/cv-wizard/steps.ts
 check "margin/zoom guides"         "margin-guides" src/features/editor/EditorPage.tsx

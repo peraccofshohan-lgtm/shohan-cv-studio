@@ -97,9 +97,11 @@ custom arrangement is always one arrow away.
 
 The **Pages** tab shows an estimate and the **Reports** tab explains any problem
 it finds — a heading that would be orphaned at a page break, a bullet longer than
-32 words, a duplicate skill, an experience entry with no start date, or a last
-page that would be almost empty. These are advice, not blockers: you can export at
-any time.
+32 words, a duplicate skill, an experience entry with no start date, a last page
+that would be almost empty, or text whose contrast against the background is too
+low to read comfortably (4.5:1 for body text, 3:1 for the name and headings).
+These are advice, not blockers: you can export at any time, and a brand-coloured
+CV is printed exactly as designed.
 
 ---
 

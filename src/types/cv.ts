@@ -333,7 +333,8 @@ export interface LayoutDiagnostic {
     | 'MISSING_DATE'
     | 'ALMOST_EMPTY_LAST_PAGE'
     | 'UNBALANCED_COLUMNS'
-    | 'PHOTO_TOO_LARGE';
+    | 'PHOTO_TOO_LARGE'
+    | 'LOW_CONTRAST';
   messageEn: string;
   messageBn: string;
   sectionId?: SectionId;

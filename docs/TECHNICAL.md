@@ -184,6 +184,11 @@ The print/PDF path uses Chromium's real pagination, so the documented behaviour 
 `hiddenReason`, while `printableSections` returns only what will print. Exports
 use `printableSections`, so a heading can never print without content.
 
+`buildLayoutReport` also runs a **contrast check** (`LOW_CONTRAST`): body and
+muted text must clear 4.5:1, the name and headings 3:1, against the resolved
+page background. It is a warning, not a gate — a brand palette that fails WCAG
+exports unchanged, exactly as the operator designed it.
+
 `src/lib/sectionOrder.ts` holds the seven recommended orderings. Each preset is
 a pure `SectionId[]`; `applyOrderPreset` rewrites only the `order` field of the
 **caller's** section array (contiguous `0…n-1`, unlisted ids keep their relative

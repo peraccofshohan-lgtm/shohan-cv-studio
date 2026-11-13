@@ -7,7 +7,7 @@
 ## 1. Verdict
 
 The application code is complete, compiles, builds, and is covered by **222
-automated tests across 20 files**. The production bundle was audited byte by byte
+automated tests across 21 files**. The production bundle was audited byte by byte
 and passes every check that can be made without a Windows machine.
 
 **The release is NOT declared ready for distribution.** No installer was built
@@ -105,7 +105,7 @@ Status vocabulary used throughout, and used consistently:
 | Preset palettes | **Implemented & tested** | 9 built-in palettes with 13 colour tokens each |
 | Custom saved palettes | **Implemented & tested** — schema v3 `color_palettes`; save / apply / delete from the Presets panel; `tests/database.test.ts` round-trip. Closes the last Part 5 gap |
 | Named presets (10 ready-made looks) | **Implemented & tested** | `src/lib/namedPresets.ts` — 10 presets, applied from the Presets panel by setting a base template + design tokens; `tests/named-presets.test.ts` proves the catalog is never mutated and content is untouched |
-| Contrast safety | **Partial** | `contrastRatio` helper exists and is used by the palette design; not enforced on arbitrary user colours |
+| Contrast safety | **Implemented & tested** as a warning | `LOW_CONTRAST` diagnostic — body/muted text checked at 4.5:1, name/headings at 3:1 against the page background; `tests/contrast.test.ts`. A failing colour still exports exactly as designed |
 | Layout choices (1-col, 2-col, sidebar L/R) | **Implemented & tested** | `bodyLayout` |
 | Header centred / left / right, compact / balanced / spacious | **Implemented & tested** | Header styles + density presets |
 | Photo size / shape / border / position / zoom / crop | **Implemented & tested** (size, shape, border, position, zoom) / **crop via zoom+offset** | `PhotoState`, matrix test |
@@ -218,7 +218,7 @@ Per-template support matrix (all verified by the composition matrix test):
 | Deliverable | Status |
 | --- | --- |
 | README, USER_MANUAL, TECHNICAL, TESTING, COMPATIBILITY, KNOWN_ISSUES, RELEASE_NOTES, DELIVERY_REPORT updated | **Done** |
-| Feature audit script updated | **Done** — 49 checks |
+| Feature audit script updated | **Done** — 50 checks |
 | Documentation reflects only implemented features | **Done** — audited item by item; unimplemented items are marked as such above |
 | Every feature marked with an explicit status | **Done** (this document) |
 
@@ -262,7 +262,7 @@ Per-template support matrix (all verified by the composition matrix test):
 Tick every line on a connected machine before distributing.
 
 - [x] `npx tsc --noEmit` — 0 errors
-- [x] `npx vitest run` — 247/247
+- [x] `npx vitest run` — 251/251
 - [x] `npm run build` — green
 - [x] `node scripts/verify-dist.mjs` — 0 failures
 - [x] `bash scripts/feature-audit.sh` — all present

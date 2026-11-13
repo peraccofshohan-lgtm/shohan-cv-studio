@@ -50,7 +50,7 @@ resolution, absence of any remote origin, and Chromium-108 feature compliance.
 | 206 automated tests | PASS |
 | Production build + CSP injection | PASS |
 | Bundle audit (`verify:dist`) | PASS — 0 failures, 2 documented warnings |
-| Feature-presence audit | PASS — 49 checks |
+| Feature-presence audit | PASS — 50 checks |
 | Documentation parity | PASS — audited item by item |
 | Installer build | **BLOCKED (environment)** |
 | Checksums of installers | **N/A — no artefacts** |

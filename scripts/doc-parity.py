@@ -67,6 +67,29 @@ for label,(needle, files) in features.items():
     if not found: ok=False
     print(("OK  " if found else "MISS")+f" {label}")
 
+# The documented test inventory must match the suites on disk, row by row.
+# (An inventory that silently drifts is exactly the kind of doc lie this checker
+# exists to prevent.)
+import glob as _glob
+test_rows = dict(
+    (m.group(1), int(m.group(2)))
+    for m in re.finditer(r"^\| `(tests/[^`]+)` \| (\d+) \|", open("docs/TESTING.md").read(), re.M)
+)
+test_files = sorted(_glob.glob("tests/*.test.ts") + _glob.glob("tests/*.test.tsx"))
+missing = [f for f in test_files if f not in test_rows]
+extra = [f for f in test_rows if f not in test_files]
+if missing or extra:
+    ok = False
+    print(f"MISMATCH test inventory: missing {missing}, stale {extra}")
+else:
+    total = sum(test_rows.values())
+    claimed = re.search(r"## 2\. Test inventory \((\d+) tests / (\d+) files\)", open("docs/TESTING.md").read())
+    if not claimed or int(claimed.group(1)) != total or int(claimed.group(2)) != len(test_rows):
+        ok = False
+        print(f"MISMATCH test inventory totals: rows sum to {total} over {len(test_rows)} files, heading says {claimed.groups() if claimed else None}")
+    else:
+        print(f"OK  test inventory: {len(test_rows)} files, {total} tests (matches the documented table)")
+
 # Documentation files that must exist
 import os
 for doc in ["README.md","docs/INSTALLATION.md","docs/USER_MANUAL.md","docs/TECHNICAL.md",

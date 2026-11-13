@@ -11,22 +11,22 @@ here is estimated, and anything that could not be executed is listed in
 | Check | Command | Result |
 | --- | --- | --- |
 | TypeScript | `npx tsc --noEmit` | **PASS** — 0 errors |
-| Unit / integration tests | `npx vitest run` | **PASS** — 20 files, **247 tests** |
+| Unit / integration tests | `npx vitest run` | **PASS** — 21 files, **251 tests** |
 | Production build | `npm run build` | **PASS** — Vite + CSP injection |
 | Production bundle audit | `node scripts/verify-dist.mjs` | **PASS** — 8 passed, 2 documented warnings, 0 failures |
-| Feature-presence audit | `bash scripts/feature-audit.sh` | **PASS** — 49 checks, all present |
+| Feature-presence audit | `bash scripts/feature-audit.sh` | **PASS** — 50 checks, all present |
 | Visual rendering | `npm run docs:previews` | **PASS** — 122 A4 pages across 60 template × language previews |
 | One-shot gate | `npm run verify` | runs everything above in order |
 
 ---
 
-## 2. Test inventory (247 tests / 20 files)
+## 2. Test inventory (251 tests / 21 files)
 
 | File | Tests | What it protects |
 | --- | --- | --- |
 | `tests/print-payload.test.ts` | 19 | The exact HTML given to `printToPDF`/the spooler: A4 `@page`, 210 × 297 mm sheet, four-margin padding, heading/entry keep rules, widow+orphan control, manual section breaks, selectable text (no canvas, no `<img>` for the CV), embedded Bengali `@font-face`, `print-color-adjust: exact`, page numbering only when enabled |
 | `tests/design.test.ts` | 16 | Golden-ratio tokens, 8 pt spacing scale, **30** templates with unique ids/names/structural signatures, Chromium-108 CSS rules, ES2019 target |
-| `tests/composition-matrix.test.ts` | 15 | 30 templates × 2 languages through the real pipeline (resolver → tokens → CSS → HTML → DOCX); six title modes; photo removal reflow; optional sections; density changes real spacing; four alignments; custom colours/margins; malformed colour rejection; DOCX A4 parity; page-target never loses content |
+| `tests/composition-matrix.test.ts` | 86 | 30 templates × 2 languages through the real pipeline (resolver → tokens → CSS → HTML → DOCX); six title modes; photo removal reflow; optional sections; density changes real spacing; four alignments; custom colours/margins; malformed colour rejection; DOCX A4 parity; page-target never loses content |
 | `tests/sections.test.ts` | 21 | Dynamic section engine, empty/disabled sections dropped, Bangla date localisation and Bengali digits, **recommended section orderings** (reorder without loss, preset detection, per-CV-type priority) |
 | `tests/ui-smoke.test.tsx` | 19 | Real React mounts (jsdom): dashboard, gallery listing all 30 templates, editor A4 page, guides toggle, section hide, **title printed/removed**, title + page-length + report + design panels, recommended-order selector, page thumbnails, before/after modal, named presets, colour palettes, wizard document step |
 | `tests/database.test.ts` | 11 | Schema, integrity, normalised round-trip, **schema v2 title/page-length/section-style round-trip**, **schema v3 saved-palette round-trip**, v1.0 project loading |
@@ -38,7 +38,8 @@ here is estimated, and anything that could not be executed is listed in
 | `tests/regression.test.ts` | 3 | Bangla byte round-trip, defaults, no fabricated data |
 | `tests/docx.test.ts` | 3 | DOCX A4 size, textual content, Bengali strings, no image parts |
 | `tests/production-entry.test.tsx` | 2 | `dist/index.html` has `#root`, the strict CSP, no inline script, and every referenced asset exists |
-| `tests/before-after.test.ts` | 8 | Snapshot diff: no-change silence, `presetId` ignored, design/template/section/content detection |
+| `tests/contrast.test.ts` | 4 | Contrast diagnostics: `LOW_CONTRAST` only when a pair really fails, never blocks the report, both languages |
+| `tests/before-after.test.ts` | 7 | Snapshot diff: no-change silence, `presetId` ignored, design/template/section/content detection |
 | `tests/named-presets.test.ts` | 5 | Ten named presets: ids exist, resolve to A4, render in bn+en without a photo, and never mutate the template catalog |
 | `tests/title-decoration.test.ts` | 7 | Title strikethrough and word spacing: combined decoration, clamp, Latin-only word spacing (never Bengali), DOCX `<w:strike>` |
 | `tests/section-styles.test.ts` | 15 | Per-section design overrides: colour/scale/gap clamping, lossless reset, markup attributes, print payload, DOCX page break, colour, alignment and bullet numbering |

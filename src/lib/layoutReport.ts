@@ -16,6 +16,7 @@
 import type { CVData, LayoutDiagnostic, SectionId } from '@/types/cv';
 import type { ResolvedSection } from '@/lib/sections';
 import { A4, type DocumentTokens } from '@/lib/composition';
+import { contrastRatio } from '@/lib/color';
 
 /* --------------------------------------------------------------- estimation */
 
@@ -134,6 +135,16 @@ const longBullet = (value: string): boolean => value.trim().split(/\s+/).length 
  * Build the full layout report: fit estimate, whitespace/orphan diagnostics and
  * the page-length verdict.
  */
+/**
+ * Readability floor for CV text.
+ *
+ * WCAG AA asks for 4.5:1 on body text and 3:1 on large bold text; the name and
+ * section headings are large, so they are checked against the lower bound. This
+ * is a warning, never a block — the operator may be matching a brand palette.
+ */
+const BODY_MIN_CONTRAST = 4.5;
+const LARGE_TEXT_MIN_CONTRAST = 3;
+
 export function buildLayoutReport(
   data: CVData,
   sections: ResolvedSection[],
@@ -269,6 +280,33 @@ export function buildLayoutReport(
     mode === 'one-page' ? '1' : mode === 'two-pages' ? '2' : `≤ ${tokens.pageLength.maxPages}`;
   const fitsTarget =
     mode === 'one-page' ? estimate.pages === 1 : mode === 'two-pages' ? estimate.pages <= 2 : estimate.pages <= tokens.pageLength.maxPages;
+
+  /* ------------------------------------------------------------ readability */
+  const palette = tokens.colors;
+  const page = palette.background ?? '#ffffff';
+  const checks: { label: string; fg: string; bg: string; min: number }[] = [
+    { label: 'body text', fg: palette.text ?? '#000000', bg: page, min: BODY_MIN_CONTRAST },
+    { label: 'muted text', fg: palette.muted ?? palette.text ?? '#000000', bg: page, min: BODY_MIN_CONTRAST },
+    { label: 'headings', fg: palette.heading ?? palette.primary ?? '#000000', bg: page, min: LARGE_TEXT_MIN_CONTRAST },
+    { label: 'name', fg: palette.primary ?? '#000000', bg: page, min: LARGE_TEXT_MIN_CONTRAST },
+  ];
+  for (const check of checks) {
+    let ratio = Number.NaN;
+    try {
+      ratio = contrastRatio(check.fg, check.bg);
+    } catch {
+      continue; // malformed colours are rejected before they reach the tokens
+    }
+    if (Number.isFinite(ratio) && ratio < check.min) {
+      diagnostics.push({
+        level: 'warning',
+        code: 'LOW_CONTRAST',
+        messageEn: `The ${check.label} colour has a contrast ratio of ${ratio.toFixed(2)}:1 against the page background — below the ${check.min}:1 readability floor. The CV still exports exactly as designed.`,
+        messageBn: `পৃষ্ঠার পটভূমির বিপরীতে ${check.label}-এর কনট্রাস্ট অনুপাত ${ratio.toFixed(2)}:1 — পাঠযোগ্যতার ন্যূনতম ${check.min}:1 এর কম। তবুও সিভি ঠিক ডিজাইন অনুযায়ীই এক্সপোর্ট হবে।`,
+      });
+      break; // one colour warning is enough; the rest of the report still runs
+    }
+  }
 
   return { estimate, diagnostics, fitsTarget, targetLabel, pages: estimate.pages };
 }
