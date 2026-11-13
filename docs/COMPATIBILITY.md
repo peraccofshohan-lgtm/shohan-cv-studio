@@ -1,7 +1,7 @@
-# Compatibility Matrix — SHOHAN CV STUDIO 1.0.0
+# Compatibility Matrix — SHOHAN CV STUDIO 1.1.0
 
 > **Read this first.** Every row below states exactly what was observed during the
-> 1.0.0 build. **No operating system was available to the build environment**, so
+> 1.1.0 build. **No operating system was available to the build environment**, so
 > no Windows version could be launched. Rows therefore say **Not tested**, not
 > "Passed". They are *design targets* supported by concrete technical facts
 > (which Electron line supports which Windows version, which Chromium release
@@ -34,10 +34,24 @@ Legend:
 | macOS / Linux | — | — | **Unsupported** | Not built or tested; Windows-only product |
 
 Installer artefacts produced by `npm run dist:win`: NSIS installer and portable
-EXE for **x64** and **ia32**. The build configuration is committed; **running it
-and testing the resulting executables was not possible in this environment**
-(Electron binary download is blocked and no Windows host or GTK/NSS/X display
-stack exists). See [TESTING.md](TESTING.md#what-could-not-be-run).
+EXE for **x64** and **ia32**. The build configuration is committed.
+
+**In this release environment the installers could not be built at all**, so no
+`.exe` exists to test:
+
+| Step | Result | Evidence |
+| --- | --- | --- |
+| `npm run build` (renderer) | **PASS** | `dist/` 1.56 MB, CSP injected |
+| `node scripts/verify-dist.mjs` | **PASS** | 8 checks passed, 2 documented warnings |
+| `node node_modules/electron/install.js` | **FAIL** | `unable to verify the first certificate` |
+| `npx electron-builder --win --x64` | **FAIL** | cannot fetch `electron-v22.3.27-win32-x64.zip` (release-assets host blocked) |
+| Electron runtime launch | **Not possible** | binary unavailable; also no X display, `libnss3`/`libnspr4` absent |
+| Installer / portable EXE test | **Not tested** | depends on the above |
+
+The blocking failure is environmental, not a defect in the build configuration:
+the sandbox reaches `registry.npmjs.org`, `pypi.org` and `github.com` HTML, but
+not GitHub's release-asset CDN where Electron and NSIS binaries live. See
+[TESTING.md](TESTING.md#what-could-not-be-run).
 
 ---
 
@@ -74,9 +88,9 @@ executables.
 
 | Format | Implementation | Verified by | Status |
 | --- | --- | --- | --- |
-| DOCX | OOXML written with `docx@7.8.2` | Automated: `tests/docx.test.ts` unzips the file and asserts A4 page size, textual content, Bengali strings and absence of image parts | **Tested Passed** (structure) / **Not tested** in Microsoft Word or LibreOffice (not installed) |
-| PDF | Chromium `printToPDF` (desktop) / print dialog (browser) | Code path reviewed; no PDF was generated because Electron could not be launched | **Not tested** |
-| Print | `webContents.print` with A4, no headers/footers (desktop) / iframe print (browser) | Code path reviewed; no physical or virtual printer available | **Not tested** |
+| DOCX | OOXML written with `docx@7.8.2` | Automated: `tests/docx.test.ts` + `tests/docx-payload.test.ts` unzip the file and assert the OOXML part list, A4 page size in twips (11905 × 16837), margin parity with the design, textual content, Bengali strings, the document title (present when shown, absent when hidden) and absence of `<img>` parts | **Tested Passed** (structure) / **Not tested** in Microsoft Word or LibreOffice (not installed) |
+| PDF | Chromium `printToPDF` (desktop) / print dialog (browser) | The exact HTML payload given to Chromium is verified by `tests/print-payload.test.ts` (19 assertions: `@page` A4, 210 × 297 mm sheet, four-margin padding, pagination rules, selectable text, embedded Bengali `@font-face`, colour adjust). **No PDF file was produced**: Chromium/Electron cannot run here | **Payload Tested Passed** / **PDF file Not tested** |
+| Print | `webContents.print` with A4, no headers/footers (desktop) / iframe print (browser) | Same verified payload; no physical or virtual printer and no Windows host available | **Payload Tested Passed** / **Printing Not tested** |
 | A4 geometry | 210 × 297 mm in CSS and in DOCX twips | Automated: CSS assertions + DOCX page-size assertions with ±3 twip tolerance | **Tested Passed** (geometry) |
 | Bengali Unicode in DOCX | UTF-8 through the OOXML writer | Automated: byte-exact round-trip of Bengali strings (`tests/regression.test.ts`, `tests/docx.test.ts`) | **Tested Passed** (data) / **Not tested** rendering in Word |
 
@@ -91,6 +105,10 @@ executables.
 | PDF virtual printer ("Microsoft Print to PDF") | **Not tested** |
 | Label/small-format printers | Not supported for CV output (A4 only) |
 
+The print path forces A4, disables Chromium headers/footers and prints the
+self-contained document (fonts embedded as `data:` URIs), so the printed sheet
+does not depend on fonts installed on the target machine.
+
 ---
 
 ## 6. Tested software environment
@@ -101,7 +119,10 @@ executables.
 | npm (build host) | bundled with Node 22 | Tested Passed |
 | TypeScript compiler | 5.x | Tested Passed — 0 errors |
 | Vite production build | 5.x | Tested Passed — build completes, CSP injected |
-| Vitest suites | 11 files / 68 tests | **Tested Passed — 68/68** |
+| Vitest suites | 16 files / **198 tests** | **Tested Passed — 198/198** |
+| Production bundle verifier | `scripts/verify-dist.mjs` | **Tested Passed** — 8 checks, 0 failures, 2 documented warnings |
+| Feature-presence audit | `scripts/feature-audit.sh` | **Tested Passed** — 40 checks present |
+| Preview rasteriser | HarfBuzz + FreeType via `scripts/render_previews.py` | **Tested Passed** — 122 A4 pages rendered from the production model |
 | Chromium 108 CSS parity | static analysis | **Tested Passed** — no `color-mix()`, container queries, `@layer`, `subgrid` or `:has(` in the source |
 
 ---

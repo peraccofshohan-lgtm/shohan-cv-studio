@@ -1,4 +1,4 @@
-# Installation Guide — SHOHAN CV STUDIO 1.0.0
+# Installation Guide — SHOHAN CV STUDIO 1.1.0
 
 > **Status of this document.** The steps below describe the shipped build. Where
 > an operating system or installer behaviour was not physically exercised during
@@ -101,6 +101,34 @@ npm run dist:win       # Windows installers into ./release
 | `npm run fonts` | Rebuilds the embedded font payload from the bundled WOFF2 files |
 | `npm run dist:win` | Builds NSIS installer + portable EXE for x64 and ia32 |
 | `npm run docs:previews` | Regenerates the template preview PNGs in `docs/images` |
+| `npm run verify` | One gate: typecheck → tests → build → bundle audit → feature audit |
+| `npm run verify:dist` | Audits the shipped bundle (CSP, asset/font resolution, offline, Chromium-108 rules, A4) |
+| `npm run audit` | Asserts that every capability claimed in the documentation exists in the source |
+
+### Release procedure (run on a machine with internet access)
+
+```bash
+npm ci
+npm run verify                  # must be green before packaging
+npm run dist:win                # downloads Electron 22 + NSIS, writes ./release
+cd release
+sha256sum *.exe > SHA256SUMS.txt   # or: certutil -hashfile <file> SHA256 on Windows
+```
+
+Artefacts written by `npm run dist:win`:
+
+| File pattern | Target |
+| --- | --- |
+| `Shohan-CV-Studio-1.1.0-x64.exe` | NSIS installer, 64-bit |
+| `Shohan-CV-Studio-1.1.0-ia32.exe` | NSIS installer, 32-bit (Windows 7 era hardware) |
+| `Shohan-CV-Studio-1.1.0-portable-x64.exe` | Portable, 64-bit |
+| `Shohan-CV-Studio-1.1.0-portable-ia32.exe` | Portable, 32-bit |
+| `SHA256SUMS.txt` | Checksums for the four binaries |
+
+**Status of this list:** the build was configured and reviewed, but in the
+environment where 1.1.0 was assembled the Electron and NSIS downloads were
+blocked, so **no `.exe` was produced and no checksum exists yet**. Nothing in this
+repository claims otherwise — see [DELIVERY_REPORT.md](DELIVERY_REPORT.md).
 
 ### Build configuration
 
@@ -120,8 +148,9 @@ To sign the build, set `CSC_LINK` and `CSC_KEY_PASSWORD` before running
 ## 4. First run
 
 1. The app opens on the **টুলটেবিল (Dashboard)**.
-2. Choose **নতুন CV** to start the 19-step wizard, or **টেমপ্লেট** to browse the
-   20 designs first.
+2. Choose **নতুন CV** to start the 20-step wizard, or **টেমপ্লেট** to browse the
+   30 designs first. Step 2 of the wizard chooses the document title and the
+   page-length target.
 3. Work is autosaved to the local database as you type (interval is configurable
    in *Settings → General*).
 4. You never need to create an account or enter a licence key.
@@ -176,7 +205,17 @@ data.
 Each release includes `SHA256SUMS.txt`. On Windows PowerShell:
 
 ```powershell
-Get-FileHash .\Shohan-CV-Studio-1.0.0-x64.exe -Algorithm SHA256
+Get-FileHash .\Shohan-CV-Studio-1.1.0-x64.exe -Algorithm SHA256
 ```
 
 Compare the value with the matching line in `SHA256SUMS.txt`.
+
+The renderer bundle can also be audited from source before packaging:
+
+```bash
+npm run build && npm run verify:dist
+```
+
+That checks the strict CSP, that every referenced asset and font resolves inside
+`dist/`, that no remote origin is referenced, and that no feature newer than
+Chromium 108 (the Windows 7 runtime) has crept in.

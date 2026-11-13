@@ -72,3 +72,24 @@ HarfBuzz-rendered A4 page bitmaps, sql.js persistence round-trips).
 8. Exporters (docx/pdf/print/html/text) wired to every new token.
 9. Tests: matrix harness, layout contracts, visual page inspection.
 10. Docs + release artefacts + checksums; honest status table.
+
+
+## 3. Final ledger (1.1.0)
+
+| Item | Status |
+| --- | --- |
+| Title management (Part 1) | Implemented & tested |
+| Page length (Part 2) | Implemented & tested (one-page warning contract) |
+| Spacing/measurement (Part 3) | Implemented & tested; reflow solver partial |
+| Typography (Part 4) | Implemented & tested; font import / strikethrough / word-spacing not implemented, and documented as such |
+| Design studio (Part 5) | Implemented & tested; per-section style UI + named 10 presets partial |
+| 10 new templates (Part 6) | Implemented & tested — 30 total |
+| Composition features (Part 7) | Implemented & tested except recommended section orderings |
+| Preview controls (Part 8) | Implemented & tested; thumbnails and before/after not implemented |
+| Preset library (Part 9) | Implemented & tested (combined preset) |
+| Export consistency (Part 10) | Preview/DOCX/HTML/text tested; PDF+print payload tested; PDF file/print blocked (environment) |
+| Test matrix (Part 11) | Implemented & tested — 198 tests, 60 matrix cells, 122 rendered pages |
+| Performance/usability (Part 12) | Implemented; measured bundle 1.56 MB |
+| Docs (Part 13) | Complete, with explicit per-feature status |
+| Installers | **Blocked (environment)** |
+| Windows OS testing | **Blocked (environment)** |

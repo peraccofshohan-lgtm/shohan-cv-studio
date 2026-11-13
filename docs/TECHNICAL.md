@@ -1,4 +1,4 @@
-# Technical Documentation — SHOHAN CV STUDIO 1.0.0
+# Technical Documentation — SHOHAN CV STUDIO 1.1.0
 
 Audience: developers and administrators maintaining or auditing the product.
 
@@ -78,7 +78,7 @@ A missing parameter throws with a snippet of the statement rather than silently
 inserting an empty value. This is covered by `tests/regression.test.ts` because an
 earlier alphabetical-key implementation silently blanked Bengali names.
 
-### 3.2 Schema (28 tables)
+### 3.2 Schema (28 tables, version 2)
 
 `meta`, `customers`, `cv_projects`, `personal_information`, `education`,
 `work_experience`, `skills`, `languages`, `training`, `projects`, `achievements`,
@@ -90,15 +90,27 @@ earlier alphabetical-key implementation silently blanked Bengali names.
 Design rules:
 
 * Normalised child tables keyed by `project_id` with `ON DELETE CASCADE`.
-* `cv_projects` holds language, career level, template and design overrides.
+* `cv_projects` holds language, career level, template and design overrides, plus
+  the v1.1 document-composition columns: `title_json`, `page_length_json` and
+  `section_styles_json`. They are JSON blobs because they are read and written as
+  a unit and are never queried individually.
 * `personal_information` carries one `include_*` flag per sensitive field; all
   default to 0 so nothing sensitive is emitted without an explicit opt-in.
 * `project_versions` records snapshots for restore.
 * `export_history` records format, timestamp, path and status for every export.
 * `error_log` backs the diagnostics view.
 
-`schemaVersion` is stored in `PRAGMA user_version`; migrations apply
-sequentially and are idempotent (`CREATE TABLE IF NOT EXISTS`).
+`schemaVersion` is stored in `meta.schema_version`; migrations apply sequentially
+and are idempotent. `CREATE TABLE IF NOT EXISTS` covers table creation, and the
+migration runner additionally inspects `PRAGMA table_info` before any
+`ALTER TABLE … ADD COLUMN`, so a half-applied migration can always be re-run
+safely.
+
+**v2 (1.1.0)** is additive only: three `TEXT NOT NULL DEFAULT ''` columns on
+`cv_projects` plus two indexes. Projects saved by 1.0 load with default title and
+page-length settings via `hydrateTitle()`, which merges the stored blob over the
+current defaults and drops unknown or wrongly-typed fields, so a corrupt blob can
+never crash the editor.
 
 Persistence: in Electron the bytes are written to
 `%APPDATA%\Shohan CV Studio\data\shohan-cv.sqlite` through the bridge after each
@@ -108,21 +120,63 @@ mutating transaction (debounced); in the browser they are written to IndexedDB.
 
 ## 4. The document pipeline
 
-One model, four outputs — the core reason the formats cannot disagree.
+One model, six outputs — the core reason the formats cannot disagree.
 
 ```
 CVData + DesignOverrides
         │
         ▼
-resolveSections()            ← drops disabled and empty sections
+composeDocumentTokens()      ← v1.1: density, margins, typography roles,
+        │                      spacing tokens, colours, title block, page policy
+        │
+        ├──────────────────────────┐
+        ▼                          ▼
+resolveSections()            buildLayoutReport()
+  ← drops disabled and          ← page fit estimate + diagnostics
+    empty sections                 (never mutates content)
         │
         ├── CvDocument.tsx   → on-screen A4 preview (React)
         ├── buildDocumentCss → mm-based A4 CSS shared by screen/print/PDF
         ├── standalone.ts    → self-contained HTML (fonts as data: URIs)
         │        └── bridge.print()       → webContents.print()  (A4, no headers)
         │        └── bridge.printToPdf()  → webContents.printToPDF()
-        └── buildDocx()      → OOXML (A4, real text, footer PAGE/NUMPAGES)
+        ├── buildDocx()      → OOXML (A4, real text, footer PAGE/NUMPAGES)
+        ├── buildPlainText() → clipboard / .txt (reading order, privacy flags)
+        └── saveText(.html)  → archival HTML
 ```
+
+`composeDocumentTokens` is the single place where a design decision becomes a
+number. It returns a plain serialisable object — no React, no DOM — which is why
+the DOCX generator and the Node-based tests can consume exactly what the browser
+renders.
+
+### 4.0 Composition tokens (v1.1)
+
+| Concern | Module | Note |
+| --- | --- | --- |
+| Density presets | `DENSITY_PRESETS` | Compact / balanced / spacious change **spacing tokens and type scale together**, clamped so body text never drops below 9 pt |
+| Units | `MM_PER_UNIT`, `toMm`, `fromMm` | mm / pt / in / px; A4 constants exported as `A4` |
+| Typography roles | `DocumentTokens.typography` | Ten roles, each with family, point size, weight, italic, underline, letter spacing, line height and colour |
+| Spacing | `DocumentTokens.spacing` | Twelve multipliers with documented base millimetres (`SPACING_BASE_MM`) |
+| Title block | `resolveTitle()` | Returns `visible: false` **and** zero before/after spacing when the operator chose "No title", so no element and no gap can exist |
+| Page policy | `DocumentTokens.pageLength` | Mode, ceiling, per-section breaks, keep-together — consumed by the renderer and the report, never used to delete content |
+
+Colour input is validated in `cleanColors()` before it can reach a stylesheet, so
+a half-typed `#12` cannot produce invalid CSS.
+
+### 4.0.1 Layout report
+
+`buildLayoutReport()` converts the resolved sections and tokens into a page-fit
+estimate and a diagnostic list. The estimate uses the real text box
+(`210 − left − right` mm), real point sizes and line heights, and the actual
+heading/entry gaps, then divides by the printable height. Diagnostics cover page
+overflow, underflow, an almost-empty last page, headings taller than half a page,
+over-long bullets and objectives, duplicate skills, missing dates, oversized
+photos and enabled-but-empty sections.
+
+This is an **estimate by design**: there is no layout engine on the render thread.
+The print/PDF path uses Chromium's real pagination, so the documented behaviour is
+"estimate in the editor, authoritative in the print preview".
 
 ### 4.1 Sections
 
@@ -195,9 +249,15 @@ to an explicit user action (a dialog, a print, a backup).
 * **Responsiveness** — tested layouts from 1024 × 768 to 1920 × 1080; the sidebar
   collapses, panels stack, and the A4 preview scales rather than clipping.
 
-These rules are enforced by `tests/design.test.ts`, which fails the build if
-`color-mix(`, container queries, `@layer`, `subgrid` or `:has(` ever appear in the
-source.
+These rules are enforced by `tests/design.test.ts` against the source and by
+`scripts/verify-dist.mjs` against the shipped bundle, which fail if `color-mix(`,
+container queries, `@layer`, `subgrid` or `:has(` ever appear. The bundle audit
+also verifies the strict CSP, that every CSS font URL resolves inside `dist`, and
+that no remote origin is referenced — the three ways an offline desktop app
+usually breaks after a dependency update.
+
+`backdrop-filter` is permitted (Chromium 108 supports it) but must ship with an
+opaque background, because Windows 7 without Aero compositing ignores it.
 
 ---
 
@@ -211,9 +271,32 @@ source.
 | `tests/database.test.ts` | Schema + integrity, full project round-trip, cascade delete, version history, soft delete, settings, export logging |
 | `tests/regression.test.ts` | Parameter-binding order, `$`-prefixed keys, Bangla byte-exact round-trip |
 | `tests/design.test.ts` | φ maths, 8-point grid, A4 tokens, Chromium-108 compatibility, catalogue distinctness |
-| `tests/emit-models.test.ts` | Documentation preview models |
+| `tests/emit-models.test.ts` | Documentation preview models (60 previews) |
+| `tests/composition-matrix.test.ts` | 30 templates × 2 languages, six title modes, photo reflow, optional sections, density, alignment, colours, margins, DOCX parity, page-target contract |
+| `tests/print-payload.test.ts` | The exact print/PDF payload: A4 `@page`, pagination rules, widow/orphan, selectable text, embedded Bengali fonts, colour adjust, page numbering |
+| `tests/docx-payload.test.ts` | OOXML package structure, A4 twips, margin parity, title present/absent |
+| `tests/backup-restore.test.ts` | Real SQLite → archive → validate → restore round-trip; rejection of tampered, foreign and newer-schema archives |
+| `tests/text-export.test.ts` | Plain-text reading order, privacy flags, title handling |
+| `tests/ui-smoke.test.tsx` | Real React mounts: dashboard, gallery (all 30), editor, all five panels, wizard document step |
+| `tests/production-entry.test.tsx` | `dist/index.html` integrity and asset resolution |
 
-Run with `npm test`. See [TESTING.md](TESTING.md) for measured results.
+Run with `npm test`. `npm run verify` chains typecheck, tests, build, bundle audit
+and feature audit. See [TESTING.md](TESTING.md) for measured results and
+[DELIVERY_REPORT.md](DELIVERY_REPORT.md) for what could not be executed.
+
+---
+
+## 7.1 Renderer hardening
+
+`src/main.tsx` runs two guards before the React bundle evaluates:
+
+1. **CSP-safe `setImmediate`.** The bundled `docx` dependency ships a
+   `setImmediate` polyfill whose fallback compiles a string with `new Function`.
+   The production CSP forbids that, so a `setTimeout`-based implementation is
+   installed first. `verify-dist.mjs` flags any *unguarded* occurrence of
+   `new Function` and reports the known unreachable ones explicitly.
+2. **Opaque top bar.** `backdrop-filter` keeps its visual effect but always has an
+   opaque `background-color` underneath.
 
 ---
 
@@ -242,3 +325,13 @@ language; section headings live in `SECTION_TITLES`.
    that pins the runtime. The codebase therefore avoids every modern CSS/JS
    feature that Chromium 108 lacks, and `tests/design.test.ts` enforces it.
 3. **No auto-update.** Offline-first requirement; distribution is a new installer.
+4. **Page count is estimated, not measured.** No layout engine is available on the
+   render thread (an offscreen render would cost a second per keystroke). The
+   estimator is physically based and the print preview is authoritative; this is a
+   deliberate accuracy/latency trade-off, documented in KNOWN_ISSUES 5b.
+5. **DOCX is a reduced projection of the token model.** OOXML can express
+   paragraphs, tables, borders, images and page setup, but not a padded tinted
+   title box or per-role letter-spacing. The exporter maps what it can and the
+   remainder is listed as a limitation instead of being silently dropped.
+6. **Presets store tokens, never content.** Applying a preset cannot damage a
+   project's text, and `Reset design` always restores the built-in template.

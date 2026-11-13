@@ -1,92 +1,97 @@
-# Release Notes
+# Release Notes — SHOHAN CV STUDIO
 
-## 1.0.0 — first release
+## 1.1.0 — Studio release (2026-11-13)
 
-**SHOHAN CV STUDIO** is a Bangla-first, fully offline CV builder for Windows.
-This is the first complete release: the whole product — data, design, document
-rendering, exporting, backup and documentation — is present and buildable.
+The 1.0 release proved the pipeline: offline Windows app, 20 templates, 19-step
+wizard, DOCX/PDF/print export, customer records and backups. 1.1 turns it into a
+document-composition tool: 30 designs, complete control over the title, the page
+length, the typography, the spacing and the colours, plus inspection tools that
+tell the operator what is wrong before the CV is sent.
 
 ### Highlights
 
-**Templates**
-* 20 CV designs, each with its own header composition, body grid, heading
-  treatment, entry rhythm, typography pair and palette. Colour alone never
-  distinguishes two designs.
-* Exact A4 geometry (210 × 297 mm) in the preview, the PDF, the print pipeline
-  and the DOCX (11905 × 16837 twips).
-* Each template is verified with and without a portrait; four place the portrait
-  on the left, the rest on the right; the ATS templates are portrait-free.
-* Bengali conjuncts render correctly in every template because the Bengali and
-  Latin font families are embedded (SIL OFL 1.1).
+| Area | What is new |
+| --- | --- |
+| Templates | **30** designs (10 new: Swiss Minimalist, Scandinavian Executive, Modern Editorial, Premium Luxury, Global ATS Professional, Modern Two-Column Professional, Executive Leadership Pro, Compact One-Page Expert, Academic International Pro, Contemporary Creative Portfolio) |
+| Document title | Six title modes (CV / CURRICULUM VITAE / RESUME / PROFESSIONAL RESUME / No title / Custom) with full styling: font, size, weight, italic, underline, colour, letter case, letter spacing, alignment, position, spacing, rules, background and accent line |
+| Page length | Exactly one page / target two pages / automatic, with a page ceiling and per-section manual page breaks |
+| Typography | Per-role font families (name, title, heading, subheading, body, contact, dates, bullets, footer, page numbers), exact point sizes, line height, body alignment (left/centre/right/justify) and first-line indent |
+| Spacing | Twelve independent spacing tokens, four-sided page margins, and three density presets that change real layout parameters |
+| Colour | Thirteen palettes plus per-token overrides with a colour picker and HEX/RGB entry |
+| Inspection | Layout diagnostics, ATS suitability score, quality checklist and content-length warnings |
+| Presets | Save / apply / rename / duplicate / delete reusable style presets |
+| Preview | Fit-to-page, fit-to-width, zoom, A4 page guides and margin guides |
+| Wizard | New step 2 — *Document Title & Length* — so the title and page target are chosen at creation time |
 
-**Data capture**
-* 19-step wizard with per-step progress, optional-step marking and autosave.
-* Dynamic section engine: sections can be switched off, reordered and renamed;
-  empty sections hide themselves. A heading can never print without content, and
-  a disabled section is absent from the preview, the DOCX, the PDF and print.
-* Custom sections with your own title and body.
-* Customers, projects, drafts, duplication, soft delete with restore, search,
-  filter and sort.
+### Where the design changes are honoured
 
-**Exporting**
-* **DOCX** — editable text, real A4, Bengali Unicode, footer with PAGE/NUMPAGES.
-  Verified by unzipping the produced file and asserting the OOXML.
-* **PDF** — Chromium print-to-PDF, so the text is selectable and searchable.
-* **Print** — A4, no browser headers/footers, backgrounds preserved.
-* **HTML** — one self-contained file for archiving.
-* **Text** — ATS-safe plain text on the clipboard (or a `.txt` fallback).
-* Every attempt is recorded in the export history with format, time and status.
+Every control reaches the live preview, PDF, print, HTML and DOCX from **one**
+resolved token object (`composeDocumentTokens`). A test asserts DOCX/HTML parity
+per template, so the exporters cannot silently drift.
 
-**Safety**
-* SQLite database in your Windows profile; ZIP backups with SHA-256 verification
-  and an automatic safety copy before any restore.
-* Sensitive personal fields are excluded from output until individually enabled.
-* No account, no cloud, no telemetry, no network code at all.
-* Electron hardening: `contextIsolation` on, `nodeIntegration` off, allow-listed
-  preload bridge, validated IPC, blocked navigation/downloads, strict CSP.
+Plain-text export deliberately drops visual formatting and keeps reading order,
+as the specification requires; it does carry the document title because the title
+is part of the reading order.
 
-**Design**
-* Golden Ratio composition and an 8-point spacing grid, in both the app UI and
-  the templates.
-* Light, dark and system themes; verified layout rules from 1024 × 768 to
-  1920 × 1080.
+### Fixes found during release validation
 
-### Compatibility
+1. **Density was cosmetic.** The compact/balanced/spacious presets scaled type
+   but not spacing. Found by the new composition matrix test; spacing tokens now
+   follow density.
+2. **Title could leave a reserved band.** "No title" is now resolved to an empty
+   element with zero space before/after, so the header reflows.
+3. **`print-color-adjust`** was missing from the document stylesheet, so colour
+   bands and rules could print white. (Also fixed in 1.0.1.)
+4. **Bangla dates printed in English.** `formatPeriod` hard-coded `en-GB`.
+   Bangla documents now render `মার্চ ২০১৯ – বর্তমান` with Bengali digits.
+5. **Pre-restore safety copy was not restorable.** It is now built with the same
+   archive format as a manual backup.
+6. **`setImmediate` polyfill could violate the CSP.** The DOCX dependency carries
+   a string-eval fallback; `src/main.tsx` installs a `setTimeout` implementation
+   before the bundle evaluates.
+7. **Wizard could index past the step array** if no step was supplied.
+8. **`backdrop-filter` had no opaque fallback** for Windows 7 without Aero.
 
-Targets Windows 7 SP1 through Windows 11, 32- and 64-bit, using Electron 22.3.27
-(Chromium 108) — the last Electron line that supports Windows 7. Both NSIS
-installer and portable builds are configured for x64 and ia32.
+### Verification status
 
-**No operating system, installer, printer or PDF output was verified in this
-release.** Every such row is marked *Not tested* in
-[COMPATIBILITY.md](COMPATIBILITY.md); the technical basis for each target is
-stated there. See [TESTING.md](TESTING.md) for exactly what was executed.
+`tsc --noEmit` clean · `vitest run` **198 tests / 16 files** · production build
+green · `scripts/verify-dist.mjs` 8 passed / 2 warnings / 0 failures.
 
-### Verified in this release
+**Not verified:** no Windows OS, no installed printer, no Electron runtime and no
+Chromium was available in the build environment, so installers were not produced,
+a real PDF was not generated, and no OS-level test was run. See
+`DELIVERY_REPORT.md` for the per-item status — nothing untested is marked as
+passing.
 
-* `npx tsc --noEmit` — 0 errors
-* `npx vitest run` — 11 suites, 68 tests passing
-* `npm run build` — production bundle with CSP injected
-* 40 template × language previews rendered (80 A4 pages) through the production
-  design model with HarfBuzz shaping
-* Mount-level React tests for the dashboard, template gallery and editor
+### Upgrade notes
 
-### Fixed during the 1.0.0 cycle
+- The database schema moves to **v2**. The migration is additive
+  (`ALTER TABLE ... ADD COLUMN`), idempotent, and existing projects open with
+  default title/page-length settings. Back up before upgrading, as always.
+- Existing projects keep their current template and design; the new controls
+  apply from the defaults until changed.
 
-* SQL parameter binding wrote empty strings for Bengali names once a statement
-  exceeded 26 parameters (sql.js binds positionally; the binder had sorted keys
-  alphabetically). Now binds in SQL appearance order, guarded by a regression test.
-* `color-mix()` was used in 22 places — unsupported by Chromium 108 and therefore
-  by every Windows 7 target. Replaced with pre-computed design tokens; a test now
-  forbids it, along with container queries, `@layer`, `subgrid` and `:has()`.
-* A static CSP meta tag blocked the Vite dev preamble and HMR; CSP is now injected
-  at build time only.
-* The documentation renderer drifted from the product's metrics; it now consumes
-  the resolved design model and the millimetre values from the document
-  stylesheet, and paginates by the same "never split a section" rule.
+---
 
-### Known limitations
+## 1.0.1 — Print and coverage fixes
 
-See [KNOWN_ISSUES.md](KNOWN_ISSUES.md). The most important is that the installer,
-printing and PDF generation still need to be exercised on real Windows machines
-before distribution.
+- `print-color-adjust: exact` so bands, rules and chips survive printing/PDF.
+- Bangla month names and Bengali digits in all date output.
+- Page guides, plain-text export and HTML export wired to real controls.
+- `Ctrl/Cmd+N` opens the wizard.
+- Regression suite grown to 66 tests including print-payload and UI mount tests.
+
+## 1.0.0 — First release
+
+- Offline Electron 22 desktop app for Windows 7 SP1 – 11 (ia32 + x64), plus a
+  portable build.
+- 20 A4 templates, 19-step wizard with 13 optional steps, dynamic section engine
+  (no empty headings, no blank pages).
+- DOCX (editable OOXML), PDF, direct A4 printing, HTML and plain-text export.
+- Customer records, projects with search/filter/sort, duplication, soft delete,
+  version history and export history.
+- Backup and restore with SHA-256 verification and a pre-restore safety copy.
+- Bangla-first interface (Bangla/English), light and dark themes, golden-ratio
+  design system with an 8 pt spacing scale.
+- Documentation set: README, Installation, User Manual, Technical, Compatibility,
+  Testing, Known Issues, Release Notes.

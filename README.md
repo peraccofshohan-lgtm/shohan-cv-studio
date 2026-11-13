@@ -16,13 +16,18 @@ internet connection, no subscription and no telemetry.
 
 | Area | Detail |
 | --- | --- |
-| **20 CV templates** | Each one a different composition — header, body grid, heading treatment, entry rhythm and typography — not the same page recoloured. A4 210 × 297 mm exactly. |
-| **19-step wizard** | Guided data entry for personal details, education, experience, skills, languages, training, projects and optional sections. |
+| **30 CV templates** | Each one a different composition — header, body grid, heading treatment, entry rhythm and typography — not the same page recoloured. A4 210 × 297 mm exactly. |
+| **20-step wizard** | Guided data entry for personal details, **document title and page length**, photo, education, experience, skills, languages, training, projects and optional sections. |
 | **Dynamic sections** | Optional sections are switchable, reorderable and support custom titles. A section that is empty or turned off **never** produces a heading, a rule or a blank page in any output format. |
-| **Live studio** | Edit any field and see the A4 page update immediately. Undo/redo, zoom, page guides, template switching without touching your text. |
+| **Live studio** | Edit any field and see the A4 page update immediately. Undo/redo, zoom, fit-to-page, A4 and margin guides, template switching without touching your text. |
+| **Document title** | CV / CURRICULUM VITAE / RESUME / PROFESSIONAL RESUME / no title / custom — with font, size, weight, colour, case, letter spacing, alignment, position, spacing, rules and background. "No title" removes the block completely; the header reflows. |
+| **Page length** | Exactly one page, a two-page target, or automatic — with a page ceiling and per-section manual page breaks. A page target **never** deletes information; it warns instead. |
+| **Typography & spacing** | Ten font roles, exact point sizes, line height, four alignments, first-line indent, twelve spacing tokens, four-sided margins and compact/balanced/spacious density modes that change real layout parameters. |
+| **Colour studio** | 13 palettes plus per-token overrides with a colour picker and HEX/RGB entry; save any look as a reusable preset. |
+| **Inspection** | Layout diagnostics (overflow, orphan headings, duplicate skills, missing dates), an offline ATS suitability score and a ten-point quality checklist. |
 | **Exports** | Editable `.docx` (real A4, selectable text, Bengali Unicode, footer page numbers), searchable `.pdf` (Chromium's own print-to-PDF), and direct printing with a preview. |
 | **Customers & projects** | Save multiple projects per person, duplicate, soft-delete and restore. Search, filter and sort across everything. |
-| **Backup** | One-click ZIP backup (database + manifest + SHA-256 verification), restore with an automatic safety copy of the current data first. |
+| **Backup** | One-click ZIP backup (database + manifest + SHA-256 verification), restore with an automatic safety copy of the current data first. A corrupted, foreign or newer-schema archive is rejected before anything is written. |
 | **Offline only** | SQLite (sql.js) on disk, embedded fonts, no network code paths, no analytics, no activation. |
 
 ## Design system
@@ -55,8 +60,17 @@ npm install          # Node 18+ (dev only; the app itself ships Node 16 via Elec
 npm run dev          # http://localhost:5173 — browser preview
 npm run desktop:dev  # Electron window with the real preload bridge
 npm run build        # typecheck → production bundle → CSP injection
+npm run verify       # typecheck + tests + build + bundle audit + feature audit
+npm run verify:dist  # audit the shipped bundle (CSP, assets, fonts, offline, A4)
+npm run audit        # assert every documented feature exists in the source
+npm run docs:previews # regenerate the 122 documentation previews
 npm run dist:win     # Windows installers into release/
 ```
+
+> `npm run dist:win` downloads the Electron 22 runtime and NSIS from GitHub. In
+> the environment where this release was prepared those hosts were unreachable,
+> so **no installer artefact exists yet**. See
+> [`docs/DELIVERY_REPORT.md`](docs/DELIVERY_REPORT.md).
 
 Full instructions: [`docs/INSTALLATION.md`](docs/INSTALLATION.md).
 
@@ -65,26 +79,29 @@ Full instructions: [`docs/INSTALLATION.md`](docs/INSTALLATION.md).
 | Document | Contents |
 | --- | --- |
 | [Installation Guide](docs/INSTALLATION.md) | Requirements, install, portable use, uninstall, data locations |
-| [User Manual](docs/USER_MANUAL.md) | Every screen, the 19-step wizard, templates, exporting, backups |
+| [User Manual](docs/USER_MANUAL.md) | Every screen, the 20-step wizard, title and page-length controls, templates, exporting, backups |
 | [Technical Documentation](docs/TECHNICAL.md) | Architecture, data model, render pipeline, security model |
 | [Compatibility Matrix](docs/COMPATIBILITY.md) | Per-OS status, honestly marked |
 | [Testing Report](docs/TESTING.md) | What was executed, what passed, what could not be run |
 | [Known Issues](docs/KNOWN_ISSUES.md) | Current limitations and workarounds |
-| [Release Notes](docs/RELEASE_NOTES.md) | What is in 1.0.0 |
-| [Delivery Report](docs/DELIVERY_REPORT.md) | Final status, per-OS results and what remains unverified |
+| [Release Notes](docs/RELEASE_NOTES.md) | What changed in 1.1.0 |
+| [Delivery Report](docs/DELIVERY_REPORT.md) | Requirement-by-requirement status and what remains unverified |
+| [Release Artefacts](docs/RELEASE_ARTEFACTS.md) | Installer/checksum status and how to produce them |
 
 ## Repository layout
 
 ```
 electron/            Electron main process + preload bridge (contextIsolation on)
-src/database/        SQLite schema, engine, repository (25 tables)
+src/database/        SQLite schema (v2), engine, repository (28 tables)
 src/document/        HTML/print renderer, CSS builder, DOCX exporter
-src/templates/       20-template catalogue, palettes, font pairs
+src/templates/       30-template catalogue, palettes, font pairs
 src/features/        Screens: dashboard, wizard, gallery, editor, projects,
                      customers, exports, backup, settings, help
-src/lib/             Golden-ratio maths, section engine, colour maths, defaults
-scripts/             CSP injection, font builder, documentation preview renderer
-tests/               Vitest suites (engine, DOCX, database, design, sections, UI)
+src/lib/             Golden-ratio maths, section engine, composition tokens,
+                     layout report, ATS checks, backup format, colour maths
+scripts/             CSP injection, font builder, preview renderer, bundle
+                     verifier, feature audit
+tests/               Vitest suites — 16 files / 198 tests
 docs/                Deliverable documentation + generated template previews
 ```
 
