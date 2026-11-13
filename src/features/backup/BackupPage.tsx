@@ -27,36 +27,11 @@ import {
 import { Badge, Button, ConfirmDialog, Notice, SectionHeader, formatRelative, useLang, useT } from '@/components/ui';
 import { useWorkspace } from '@/store/workspace';
 import { getBridge, isDesktop } from '@/platform';
-import { zipSync, unzipSync, strToU8, strFromU8 } from 'fflate';
+import { buildBackupArchive, validateBackupArchive } from '@/lib/backup';
 import { nowIso, uid } from '@/lib/defaults';
 import { APP_VERSION, BUILD_NUMBER } from '@/lib/appMeta';
 import type { BackupRecord } from '@/types/cv';
 
-interface Manifest {
-  app: string;
-  appVersion: string;
-  build: string;
-  schemaVersion: number;
-  createdAt: string;
-  counts: { customers: number; projects: number };
-  databaseBytes: number;
-  databaseSha256: string;
-  format: number;
-}
-
-const BACKUP_FORMAT = 1;
-
-async function sha256(bytes: Uint8Array): Promise<string> {
-  const subtle = globalThis.crypto?.subtle;
-  if (!subtle) return 'unavailable';
-  // Copy into a plain ArrayBuffer (some engines reject views over shared buffers).
-  const copy = new Uint8Array(bytes.length);
-  copy.set(bytes);
-  const digest = await subtle.digest('SHA-256', copy.buffer);
-  return Array.from(new Uint8Array(digest))
-    .map((b) => b.toString(16).padStart(2, '0'))
-    .join('');
-}
 
 export const BackupPage: React.FC = () => {
   const { repo, refreshLists, counts, projects, customers } = useWorkspace();
@@ -75,37 +50,14 @@ export const BackupPage: React.FC = () => {
     setBusy('create');
     try {
       const dbBytes = repo.db.export();
-      const manifest: Manifest = {
-        app: 'SHOHAN CV STUDIO',
+      const { bytes: zipped } = await buildBackupArchive({
+        database: dbBytes,
+        schemaVersion: repo.db.schemaVersion,
         appVersion: APP_VERSION,
         build: BUILD_NUMBER,
-        schemaVersion: repo.db.schemaVersion,
-        createdAt: nowIso(),
         counts: { customers: counts.customers, projects: counts.projects },
-        databaseBytes: dbBytes.length,
-        databaseSha256: await sha256(dbBytes),
-        format: BACKUP_FORMAT,
-      };
-      const files: Record<string, Uint8Array> = {
-        'manifest.json': strToU8(JSON.stringify(manifest, null, 2)),
-        'database.sqlite': dbBytes,
-      };
-      // A small README makes the archive self-describing on another machine.
-      files['README.txt'] = strToU8(
-        [
-          'SHOHAN CV STUDIO backup',
-          `Created: ${manifest.createdAt}`,
-          `App version: ${manifest.appVersion} (build ${manifest.build})`,
-          `Customers: ${manifest.counts.customers}   CV projects: ${manifest.counts.projects}`,
-          '',
-          'To restore: open SHOHAN CV STUDIO -> Backup & Restore -> Restore from backup,',
-          'then choose this .scvbackup file. Verification runs automatically.',
-          '',
-          'This archive contains personal data. Store it securely and delete it when no longer needed.',
-        ].join('\n'),
-      );
-
-      const zipped = zipSync(files, { level: 6 });
+        createdAt: nowIso(),
+      });
       const fileName = `shohan-backup-${nowIso().slice(0, 10)}.scvbackup`;
       const result = await getBridge().chooseBackupPath(fileName, zipped);
       if (!result.saved) {
@@ -145,22 +97,21 @@ export const BackupPage: React.FC = () => {
     try {
       const result = await getBridge().openBackupFile();
       if (result.cancelled || !result.bytes) return;
-      // Validate before asking for confirmation.
-      const files = unzipSync(result.bytes);
-      const manifestRaw = files['manifest.json'];
-      const dbRaw = files['database.sqlite'];
-      if (!manifestRaw || !dbRaw) {
-        throw new Error(lang === 'bn' ? 'ব্যাকআপ ফাইলটি সঠিক নয় (manifest বা database নেই)।' : 'This is not a valid backup (manifest or database missing).');
+      // Validate before asking for confirmation. Nothing is written until the
+      // operator confirms, and the archive is rejected if any check fails.
+      const validation = await validateBackupArchive(result.bytes, repo?.db.schemaVersion ?? 2);
+      if (!validation.ok) {
+        const messages: Record<string, { en: string; bn: string }> = {
+          'not-a-backup': { en: 'This is not a valid backup (manifest or database missing).', bn: 'ব্যাকআপ ফাইলটি সঠিক নয় (manifest বা database নেই)।' },
+          'foreign-app': { en: 'This backup belongs to a different application.', bn: 'ভিন্ন অ্যাপের ব্যাকআপ ফাইল।' },
+          checksum: { en: 'Checksum mismatch — the backup may be corrupted.', bn: 'ফাইলের চেকসাম মেলেনি — ব্যাকআপটি ক্ষতিগ্রস্ত হতে পারে।' },
+          'too-new': { en: 'This backup was made by a newer version of the app.', bn: 'এই ব্যাকআপটি অ্যাপের নতুন সংস্করণে তৈরি।' },
+          corrupt: { en: 'The file is unreadable or corrupted.', bn: 'ফাইলটি পড়া যাচ্ছে না বা ক্ষতিগ্রস্ত।' },
+        };
+        const copy = messages[validation.reason] ?? messages.corrupt;
+        throw new Error(lang === 'bn' ? copy.bn : copy.en);
       }
-      const manifest = JSON.parse(strFromU8(manifestRaw)) as Manifest;
-      if (manifest.app !== 'SHOHAN CV STUDIO') {
-        throw new Error(lang === 'bn' ? 'ভিন্ন অ্যাপের ব্যাকআপ ফাইল।' : 'This backup belongs to a different application.');
-      }
-      const checksum = await sha256(dbRaw);
-      if (manifest.databaseSha256 !== 'unavailable' && checksum !== manifest.databaseSha256) {
-        throw new Error(lang === 'bn' ? 'ফাইলের চেকসাম মেলেনি — ব্যাকআপটি ক্ষতিগ্রস্ত হতে পারে।' : 'Checksum mismatch — the backup may be corrupted.');
-      }
-      setPendingRestore(dbRaw);
+      setPendingRestore(validation.database);
       setPendingName(result.fileName ?? 'backup.scvbackup');
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err);
@@ -178,10 +129,16 @@ export const BackupPage: React.FC = () => {
       // Safety copy of current data before destructive restore.
       const safety = repo?.db.export();
       if (safety) {
-        const zipped = zipSync(
-          { 'database.sqlite': safety, 'manifest.json': strToU8(JSON.stringify({ app: 'SHOHAN CV STUDIO', createdAt: nowIso(), kind: 'pre-restore' })) },
-          { level: 6 },
-        );
+        // Same archive format as a manual backup, so a pre-restore safety copy
+        // is itself restorable — a half-applied restore can always be undone.
+        const { bytes: zipped } = await buildBackupArchive({
+          database: safety,
+          schemaVersion: repo!.db.schemaVersion,
+          appVersion: APP_VERSION,
+          build: BUILD_NUMBER,
+          counts: { customers: counts.customers, projects: counts.projects },
+          createdAt: nowIso(),
+        });
         await getBridge().chooseBackupPath(`shohan-pre-restore-${Date.now()}.scvbackup`, zipped);
       }
 

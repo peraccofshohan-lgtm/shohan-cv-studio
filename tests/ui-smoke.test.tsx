@@ -177,3 +177,72 @@ describe('editor', () => {
     expect(second.container.querySelector('.cv-paper')!.textContent).not.toContain('Career Objective');
   });
 });
+
+describe('title and page-length panels drive the document', () => {
+  it('renders the CV title on the A4 page and removes it for "No title"', async () => {
+    installStores();
+    useUI.setState({ language: 'en' });
+    const { EditorPage } = await import('@/features/editor/EditorPage');
+    const first = render(<EditorPage />);
+    // Default title is CURRICULUM VITAE, printed above the contact block.
+    expect(first.container.querySelector('.cv-title')?.textContent).toBe('CURRICULUM VITAE');
+    cleanup();
+
+    act(() => {
+      useWorkspace.getState().updateData((draft) => {
+        draft.title = { ...draft.title, preset: 'none', visible: false };
+      });
+    });
+    const second = render(<EditorPage />);
+    // Hiding the title must remove the element entirely — no empty band.
+    expect(second.container.querySelector('.cv-title')).toBeNull();
+  });
+
+  it('opens the Title panel and shows the six title choices', async () => {
+    installStores();
+    useUI.setState({ language: 'en', editorPanel: 'title' });
+    const { EditorPage } = await import('@/features/editor/EditorPage');
+    const { container } = render(<EditorPage />);
+    const text = container.textContent ?? '';
+    for (const label of ['CV', 'CURRICULUM VITAE', 'RESUME', 'PROFESSIONAL RESUME', 'No title', 'Custom']) {
+      expect(text).toContain(label);
+    }
+  });
+
+  it('opens the Page length panel with all three modes', async () => {
+    installStores();
+    useUI.setState({ language: 'en', editorPanel: 'pages' });
+    const { EditorPage } = await import('@/features/editor/EditorPage');
+    const { container } = render(<EditorPage />);
+    const text = container.textContent ?? '';
+    expect(text).toContain('Exactly one page');
+    expect(text).toContain('Target two pages');
+    expect(text).toContain('Automatic');
+    // The "never delete content" contract is stated in the collapsed Limits
+    // section, so check the copy in the always-visible mode descriptions.
+    expect(text).toMatch(/nothing is removed/i);
+  });
+
+  it('opens the Reports panel with ATS and quality sections', async () => {
+    installStores();
+    useUI.setState({ language: 'en', editorPanel: 'reports' });
+    const { EditorPage } = await import('@/features/editor/EditorPage');
+    const { container } = render(<EditorPage />);
+    const text = container.textContent ?? '';
+    expect(text).toContain('Layout diagnostics');
+    expect(text).toContain('ATS suitability');
+    expect(text).toContain('Quality checklist');
+  });
+
+  it('opens the Design panel in Basic mode and reveals Advanced controls', async () => {
+    installStores();
+    useUI.setState({ language: 'en', editorPanel: 'design' });
+    const { EditorPage } = await import('@/features/editor/EditorPage');
+    const { container, getByText } = render(<EditorPage />);
+    // Basic mode: no colour token fields yet.
+    expect(container.textContent).not.toContain('Photo border');
+    fireEvent.click(getByText('Advanced'));
+    expect(container.textContent).toContain('Photo border');
+    expect(container.textContent).toContain('Margins');
+  });
+});
