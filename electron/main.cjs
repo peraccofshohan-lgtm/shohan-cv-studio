@@ -5,11 +5,15 @@
  * line that runs on Windows 7 SP1, 8, 8.1 as well as 10 and 11.
  *
  * Security posture
- *  - contextIsolation: true, nodeIntegration: false, sandbox: false only because
- *    the preload needs a few Node built-ins (fs/path/os) for file dialogs.
+ *  - contextIsolation: true, nodeIntegration: false.
+ *  - The renderer sandbox is disabled ONLY because the preload needs Node's fs,
+ *    path and os for file dialogs. The renderer itself has no Node access: it can
+ *    call the allow-listed bridge functions and nothing else. Print/preview
+ *    windows, which load generated HTML, run with sandbox: true.
  *  - Every IPC channel validates its payload shape and size.
  *  - Navigation and window.open are blocked; external URLs are never loaded.
- *  - CSP is declared in index.html and reinforced with a response header.
+ *  - CSP is injected into the built index.html and reinforced with a response
+ *    header for every response the window loads.
  *
  * Offline posture
  *  - No network requests are ever made. There is no auto-updater, no telemetry,
@@ -64,7 +68,7 @@ function createWindow() {
     show: false,
     backgroundColor: '#f6f7f9',
     title: 'SHOHAN CV STUDIO',
-    icon: path.join(__dirname, '..', 'build', 'icon.ico'),
+    icon: path.join(__dirname, '..', 'build', 'icon.png'),
     autoHideMenuBar: true,
     webPreferences: {
       preload: path.join(__dirname, 'preload.cjs'),

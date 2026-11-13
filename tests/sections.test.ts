@@ -54,7 +54,7 @@ describe('section resolution', () => {
     const cv = empty();
     cv.careerObjective.text = 'Objective text.';
     cv.skills = [{ id: 's1', name: 'Tally ERP 9', category: 'Software', level: 'advanced' }];
-    cv.languages = [{ id: 'l1', name: 'Bangla', reading: 'native', writing: 'native', speaking: 'native', overall: 'native' }];
+    cv.languages = [{ id: 'l1', name: 'Bangla', reading: 'native', writing: 'native', speaking: 'native', listening: 'native', overall: 'native' }];
     setSection(cv, 'careerObjective', 3);
     setSection(cv, 'skills', 2);
     setSection(cv, 'languages', 1);
