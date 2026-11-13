@@ -116,6 +116,10 @@ export const AppShell: React.FC = () => {
         e.preventDefault();
         useWorkspace.getState().undo();
       }
+      if (e.key.toLowerCase() === 'n') {
+        e.preventDefault();
+        navigate({ name: 'wizard', step: 0 });
+      }
       if ((e.key.toLowerCase() === 'y' || (e.key.toLowerCase() === 'z' && e.shiftKey)) && route.name === 'editor') {
         e.preventDefault();
         useWorkspace.getState().redo();

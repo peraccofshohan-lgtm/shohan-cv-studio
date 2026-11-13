@@ -11,13 +11,15 @@ import {
   ArrowUp,
   Check,
   ChevronDown,
+  ClipboardCopy,
   Eye,
   FileDown,
   FileText,
-  Layers,
+  Globe,
   Printer,
   Redo2,
   RotateCcw,
+  Ruler,
   Save,
   Settings2,
   Sliders,
@@ -48,7 +50,8 @@ import { embeddedFontCss } from '@/assets/fonts';
 import { FONT_PAIRS, PALETTES, resolveDesign, templateById } from '@/templates/catalog';
 import { estimatePageCount, printableSections, SECTION_TITLES } from '@/lib/sections';
 import type { SectionId } from '@/types/cv';
-import { exportDocx, exportPdf, printProject } from '@/features/exporting/exportService';
+import { exportDocx, exportPdf, exportHtml, printProject } from '@/features/exporting/exportService';
+import { copyAsPlainText } from '@/features/exporting/textExport';
 import { ContentPanel } from './ContentPanel';
 
 export const EditorPage: React.FC = () => {
@@ -64,7 +67,7 @@ export const EditorPage: React.FC = () => {
   const tr = useT();
   const lang = language;
   const [previewOpen, setPreviewOpen] = useState(false);
-  const [busy, setBusy] = useState<null | 'docx' | 'pdf' | 'print'>(null);
+  const [busy, setBusy] = useState<null | 'docx' | 'pdf' | 'print' | 'html'>(null);
   const [targetSection, setTargetSection] = useState<SectionId | 'personal'>('personal');
 
   const data = current?.data;
@@ -72,7 +75,11 @@ export const EditorPage: React.FC = () => {
     () => (current ? resolveDesign(current.templateId, current.design) : resolveDesign('classic-professional', {})),
     [current],
   );
-  const css = useMemo(() => buildDocumentCss({ design, fontCss: embeddedFontCss(), mode: 'screen', showGuides: false }), [design]);
+  const [guides, setGuides] = useState(false);
+  const css = useMemo(
+    () => buildDocumentCss({ design, fontCss: embeddedFontCss(), mode: 'screen', showGuides: guides }),
+    [design, guides],
+  );
 
   const sections = useMemo(
     () => (data ? printableSections(data, { language: lang }) : []),
@@ -106,7 +113,7 @@ export const EditorPage: React.FC = () => {
     );
   }
 
-  const runExport = async (kind: 'docx' | 'pdf' | 'print') => {
+  const runExport = async (kind: 'docx' | 'pdf' | 'print' | 'html') => {
     setBusy(kind);
     try {
       await flushAutosave();
@@ -114,6 +121,7 @@ export const EditorPage: React.FC = () => {
       if (kind === 'docx') await exportDocx(options);
       if (kind === 'pdf') await exportPdf(options);
       if (kind === 'print') await printProject(options);
+      if (kind === 'html') await exportHtml(options);
     } catch (err) {
       useWorkspace.getState().pushToast({
         kind: 'error',
@@ -186,6 +194,45 @@ export const EditorPage: React.FC = () => {
           </IconButton>
         </div>
         <div className="divider" style={{ width: 1, height: 22, margin: '0 4px' }} />
+        <Button
+          size="sm"
+          variant={guides ? 'primary' : 'ghost'}
+          aria-pressed={guides}
+          icon={<Ruler size={14} />}
+          onClick={() => setGuides((v) => !v)}
+          title={lang === 'bn' ? 'A4 পৃষ্ঠা সীমানা দেখান' : 'Show A4 page boundaries'}
+        >
+          {lang === 'bn' ? 'গাইড' : 'Guides'}
+        </Button>
+        <Button
+          size="sm"
+          icon={<ClipboardCopy size={14} />}
+          onClick={async () => {
+            try {
+              const result = await copyAsPlainText(current);
+              useWorkspace.getState().pushToast({
+                kind: 'success',
+                title:
+                  result.method === 'clipboard'
+                    ? lang === 'bn'
+                      ? 'প্লেইন টেক্সট কপি হয়েছে'
+                      : 'Plain text copied'
+                    : lang === 'bn'
+                      ? 'টেক্সট ফাইল হিসেবে সংরক্ষিত'
+                      : 'Saved as a text file',
+                detail: result.detail,
+              });
+            } catch (err) {
+              useWorkspace.getState().pushToast({
+                kind: 'error',
+                title: lang === 'bn' ? 'কপি করা যায়নি' : 'Could not copy',
+                detail: err instanceof Error ? err.message : String(err),
+              });
+            }
+          }}
+        >
+          {lang === 'bn' ? 'টেক্সট' : 'Text'}
+        </Button>
         <Button size="sm" icon={<Eye size={14} />} onClick={() => setPreviewOpen(true)}>
           {tr('common.preview')}
         </Button>
@@ -194,6 +241,15 @@ export const EditorPage: React.FC = () => {
         </Button>
         <Button size="sm" icon={<FileDown size={14} />} onClick={() => void runExport('docx')} loading={busy === 'docx'}>
           DOCX
+        </Button>
+        <Button
+          size="sm"
+          icon={<Globe size={14} />}
+          onClick={() => void runExport('html')}
+          loading={busy === 'html'}
+          title={lang === 'bn' ? 'স্বয়ংসম্পূর্ণ HTML কপি সংরক্ষণ করুন' : 'Save a self-contained HTML copy'}
+        >
+          HTML
         </Button>
         <Button size="sm" variant="primary" icon={<FileDown size={14} />} onClick={() => void runExport('pdf')} loading={busy === 'pdf'}>
           PDF
@@ -236,7 +292,7 @@ export const EditorPage: React.FC = () => {
 
         <div className="editor-canvas">
           <div className="editor-canvas-inner" style={{ transform: `scale(${editorZoom})`, width: 793.7 * editorZoom }}>
-            <CvDocument data={data} design={design} language={lang} pageCount={pages} />
+            <CvDocument data={data} design={design} language={lang} pageCount={pages} guides={guides} />
           </div>
         </div>
 

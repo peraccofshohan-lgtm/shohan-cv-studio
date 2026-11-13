@@ -144,7 +144,7 @@ export const HelpPage: React.FC = () => {
                 ['Ctrl / Cmd + S', lang === 'bn' ? 'সংরক্ষণ' : 'Save'],
                 ['Ctrl / Cmd + Z', lang === 'bn' ? 'আনডু' : 'Undo'],
                 ['Ctrl / Cmd + Y', lang === 'bn' ? 'রিডু' : 'Redo'],
-                ['Ctrl / Cmd + N', lang === 'bn' ? 'নতুন সিভি' : 'New CV'],
+                ['Ctrl / Cmd + N', lang === 'bn' ? 'নতুন সিভি (উইজার্ড শুরু)' : 'New CV (opens the wizard)'],
                 ['Esc', lang === 'bn' ? 'ডায়ালগ বন্ধ' : 'Close dialog'],
                 ['Tab', lang === 'bn' ? 'পরবর্তী নিয়ন্ত্রণে যান' : 'Next control'],
               ].map(([key, label]) => (
