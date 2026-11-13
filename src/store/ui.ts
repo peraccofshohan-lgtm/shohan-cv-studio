@@ -4,7 +4,7 @@
  */
 import { create } from 'zustand';
 
-export type EditorPanel = 'content' | 'design' | 'title' | 'pages' | 'reports';
+export type EditorPanel = 'content' | 'design' | 'title' | 'pages' | 'reports' | 'presets';
 
 export type Route =
   | { name: 'dashboard' }

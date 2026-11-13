@@ -197,7 +197,10 @@
   gap: var(--sp-3);
   padding: 0 var(--sp-5) 0 var(--sp-4);
   border-bottom: 1px solid var(--border);
-  background: var(--topbar-bg);
+  background: var(--topbar-bg, var(--bg-elevated));
+  /* Chromium 108 supports backdrop-filter, but Windows 7 without DWM/Aero
+     compositing ignores it — the opaque fallback below keeps the bar readable. */
+  background-color: var(--bg-elevated);
   backdrop-filter: saturate(140%) blur(6px);
   position: relative;
   z-index: 5;

@@ -14,6 +14,7 @@ import { defaultDesign } from '@/lib/defaults';
 import { CvRepository, type ProjectSummary } from '@/database/cvRepository';
 import type {
   AppSettings,
+  StylePreset,
   CustomerRecord,
   DesignOverrides,
   ExportRecord,
@@ -75,6 +76,15 @@ interface WorkspaceState {
   redo: () => void;
   resetDesign: () => void;
 
+  /** User-saved style presets (styled variants of a base template). */
+  presets: StylePreset[];
+  refreshPresets: () => void;
+  savePreset: (name: string) => void;
+  applyPreset: (id: string) => void;
+  renamePreset: (id: string, name: string) => void;
+  duplicatePreset: (id: string) => void;
+  deletePreset: (id: string) => void;
+
   saveCustomer: (customer: CustomerRecord) => Promise<CustomerRecord>;
   newCustomerDraft: () => CustomerRecord;
   deleteCustomer: (id: string) => Promise<void>;
@@ -118,6 +128,7 @@ export const useWorkspace = create<WorkspaceState>((set, get) => ({
   lastSavedAt: null,
   undoStack: [],
   redoStack: [],
+  presets: [],
   toasts: [],
 
   async boot() {
@@ -144,6 +155,7 @@ export const useWorkspace = create<WorkspaceState>((set, get) => ({
 
       set({ repo, bridgeInfo: info, settings, ready: true, bootError: null });
       get().refreshLists();
+      get().refreshPresets();
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err);
       set({ ready: false, bootError: message });
@@ -158,6 +170,7 @@ export const useWorkspace = create<WorkspaceState>((set, get) => ({
       projects: repo.listProjects(),
       exports: repo.listExports(),
       counts: repo.counts(),
+      presets: repo.listTemplateVariants(),
     });
   },
 
@@ -328,6 +341,70 @@ export const useWorkspace = create<WorkspaceState>((set, get) => ({
       dirty: true,
     });
     void get().saveNow();
+  },
+
+  // ------------------------------------------------------------- presets
+  refreshPresets() {
+    const { repo } = get();
+    if (!repo) return;
+    set({ presets: repo.listTemplateVariants() });
+  },
+
+  savePreset(name) {
+    const { repo, current } = get();
+    if (!repo || !current) return;
+    const id = uid();
+    repo.saveTemplateVariant(id, current.templateId, name.trim() || 'Untitled preset', current.design);
+    get().refreshPresets();
+    get().pushToast({
+      kind: 'success',
+      title: get().settings.uiLanguage === 'bn' ? 'প্রিসেট সংরক্ষিত' : 'Preset saved',
+      detail: name,
+    });
+  },
+
+  applyPreset(id) {
+    const preset = get().presets.find((p) => p.id === id);
+    const current = get().current;
+    if (!preset || !current) return;
+    set({
+      undoStack: [
+        ...get().undoStack,
+        { data: clone(current.data), design: clone(current.design), templateId: current.templateId },
+      ].slice(-MAX_HISTORY),
+      current: {
+        ...current,
+        // Applying a preset never overwrites the template: it records the base
+        // template and layers the saved design tokens on top.
+        templateId: preset.baseTemplateId,
+        design: { ...defaultDesign(preset.baseTemplateId), ...preset.design, presetId: preset.id },
+      },
+      dirty: true,
+    });
+    void get().saveNow();
+  },
+
+  renamePreset(id, name) {
+    const { repo, presets } = get();
+    const preset = presets.find((p) => p.id === id);
+    if (!repo || !preset) return;
+    repo.saveTemplateVariant(id, preset.baseTemplateId, name.trim() || preset.name, preset.design);
+    get().refreshPresets();
+  },
+
+  duplicatePreset(id) {
+    const { repo, presets } = get();
+    const preset = presets.find((p) => p.id === id);
+    if (!repo || !preset) return;
+    repo.saveTemplateVariant(uid(), preset.baseTemplateId, `${preset.name} copy`, preset.design);
+    get().refreshPresets();
+  },
+
+  deletePreset(id) {
+    const { repo } = get();
+    if (!repo) return;
+    repo.deleteTemplateVariant(id);
+    get().refreshPresets();
   },
 
   async saveCustomer(customer) {

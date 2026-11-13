@@ -19,7 +19,10 @@ import {
   Printer,
   Redo2,
   RotateCcw,
+  Bookmark,
   ClipboardCheck,
+  Minimize2,
+  MoveHorizontal,
   FileStack,
   Ruler,
   Type,
@@ -61,6 +64,7 @@ import { ContentPanel } from './ContentPanel';
 import { TitlePanel } from './TitlePanel';
 import { PageLengthPanel } from './PageLengthPanel';
 import { ReportsPanel } from './ReportsPanel';
+import { PresetsPanel } from './PresetsPanel';
 import { composeDocumentTokens } from '@/lib/composition';
 import { buildLayoutReport } from '@/lib/layoutReport';
 
@@ -182,6 +186,8 @@ export const EditorPage: React.FC = () => {
       .editor-right { border-left: 1px solid var(--border); }
       .editor-canvas { overflow: auto; background: var(--bg-sunken); padding: var(--sp-5); display: flex; justify-content: center; align-items: flex-start; }
       .editor-canvas-inner { transform-origin: top center; }
+      .editor-canvas-inner { position: relative; }
+      .margin-guides { position: absolute; border: 1px dashed rgba(37,99,235,.45); pointer-events: none; z-index: 4; }
       .section-row { display: flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: var(--radius-sm); }
       .section-row:hover { background: var(--bg-hover); }
       .section-row[data-active='true'] { background: var(--primary-soft); }
@@ -214,6 +220,12 @@ export const EditorPage: React.FC = () => {
         <span className="spacer" />
 
         <div className="row" style={{ gap: 2 }}>
+          <IconButton label={bn('Fit to page', 'পৃষ্ঠায় ফিট')} onClick={() => setZoom(0.72)}>
+            <Minimize2 size={15} />
+          </IconButton>
+          <IconButton label={bn('Fit to width', 'প্রস্থে ফিট')} onClick={() => setZoom(1)}>
+            <MoveHorizontal size={15} />
+          </IconButton>
           <IconButton label="Zoom out" onClick={() => setZoom(editorZoom - 0.1)}>
             <ZoomOut size={15} />
           </IconButton>
@@ -322,7 +334,19 @@ export const EditorPage: React.FC = () => {
         </aside>
 
         <div className="editor-canvas">
-          <div className="editor-canvas-inner" style={{ transform: `scale(${editorZoom})`, width: 793.7 * editorZoom }}>
+          <div className="editor-canvas-inner" style={{ transform: `scale(${editorZoom})`, width: 210 * 2.9528 * editorZoom }}>
+            {guides && tokens ? (
+              <div
+                aria-hidden="true"
+                className="margin-guides"
+                style={{
+                  left: tokens.margins.left * 2.9528,
+                  top: tokens.margins.top * 2.9528,
+                  right: tokens.margins.right * 2.9528,
+                  bottom: tokens.margins.bottom * 2.9528,
+                }}
+              />
+            ) : null}
             <CvDocument
               data={data}
               design={design}
@@ -352,6 +376,9 @@ export const EditorPage: React.FC = () => {
               <button aria-pressed={editorPanel === 'reports'} onClick={() => setEditorPanel('reports')} style={{ flex: 1 }} title={bn('Reports', 'রিপোর্ট')}>
                 <ClipboardCheck size={14} />
               </button>
+              <button aria-pressed={editorPanel === 'presets'} onClick={() => setEditorPanel('presets')} style={{ flex: 1 }} title={bn('Style presets', 'স্টাইল প্রিসেট')}>
+                <Bookmark size={14} />
+              </button>
             </div>
           </div>
           <div style={{ padding: 'var(--sp-4)' }}>
@@ -369,6 +396,7 @@ export const EditorPage: React.FC = () => {
             {editorPanel === 'reports' && report ? (
               <ReportsPanel report={report} data={data} templateName={design.template.name} />
             ) : null}
+            {editorPanel === 'presets' ? <PresetsPanel /> : null}
           </div>
         </aside>
       </div>

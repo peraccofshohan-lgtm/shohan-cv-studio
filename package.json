@@ -2,7 +2,7 @@
   "name": "shohan-cv-studio",
   "productName": "SHOHAN CV STUDIO",
   "version": "1.0.0",
-  "description": "SHOHAN CV STUDIO — professional offline Windows CV & resume builder (Windows 7 SP1 – 11), 20 premium A4 templates, DOCX/PDF export and direct A4 printing.",
+  "description": "SHOHAN CV STUDIO \u2014 professional offline Windows CV & resume builder (Windows 7 SP1 \u2013 11), 20 premium A4 templates, DOCX/PDF export and direct A4 printing.",
   "author": {
     "name": "Shohan CV Studio",
     "email": "support@shohancvstudio.local"
@@ -20,7 +20,11 @@
     "desktop": "electron .",
     "desktop:dev": "cross-env SHOHAN_DEV_URL=http://localhost:5173 electron .",
     "dist:win": "npm run build && electron-builder --win --x64 --ia32 --config electron-builder.config.cjs",
-    "fonts": "node scripts/build-fonts.mjs"
+    "fonts": "node scripts/build-fonts.mjs",
+    "verify:dist": "node scripts/verify-dist.mjs",
+    "docs:previews": "npx vitest run tests/emit-models.test.ts && python3 scripts/render_previews.py",
+    "audit": "bash scripts/feature-audit.sh",
+    "verify": "npm run typecheck && npm run test && npm run build && npm run verify:dist && npm run audit"
   },
   "dependencies": {
     "@fontsource/inter": "5.1.1",
