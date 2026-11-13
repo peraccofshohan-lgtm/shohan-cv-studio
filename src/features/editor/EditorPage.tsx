@@ -25,6 +25,7 @@ import {
   MoveHorizontal,
   Paintbrush,
   FileStack,
+  LayoutGrid,
   Ruler,
   Type,
   Save,
@@ -67,6 +68,7 @@ import { PageLengthPanel } from './PageLengthPanel';
 import { ReportsPanel } from './ReportsPanel';
 import { PresetsPanel } from './PresetsPanel';
 import { SectionStylePanel } from './SectionStylePanel';
+import { PageNavigator } from './PageNavigator';
 import { hasOverride } from '@/lib/sectionStyles';
 import { composeDocumentTokens } from '@/lib/composition';
 import { ORDER_PRESETS, applyOrderPreset, detectOrderPreset, type OrderPresetId } from '@/lib/sectionOrder';
@@ -88,6 +90,10 @@ export const EditorPage: React.FC = () => {
   const [previewOpen, setPreviewOpen] = useState(false);
   const [busy, setBusy] = useState<null | 'docx' | 'pdf' | 'print' | 'html'>(null);
   const [targetSection, setTargetSection] = useState<SectionId | 'personal'>('personal');
+  const editorPage = useUI((s) => s.editorPage);
+  const setEditorPage = useUI((s) => s.setEditorPage);
+  const showThumbnails = useUI((s) => s.showThumbnails);
+  const setShowThumbnails = useUI((s) => s.setShowThumbnails);
 
   const data = current?.data;
   const design = useMemo(
@@ -253,6 +259,16 @@ export const EditorPage: React.FC = () => {
         </Button>
         <Button
           size="sm"
+          variant={showThumbnails ? 'primary' : 'ghost'}
+          aria-pressed={showThumbnails}
+          icon={<LayoutGrid size={14} />}
+          onClick={() => setShowThumbnails(!showThumbnails)}
+          title={lang === 'bn' ? 'পৃষ্ঠার থাম্বনেইল দেখান' : 'Show page thumbnails'}
+        >
+          {lang === 'bn' ? 'থাম্বনেইল' : 'Pages'}
+        </Button>
+        <Button
+          size="sm"
           icon={<ClipboardCopy size={14} />}
           onClick={async () => {
             try {
@@ -344,6 +360,34 @@ export const EditorPage: React.FC = () => {
           </div>
         </aside>
 
+        {showThumbnails && tokens ? (
+          <div
+            className="editor-thumbs"
+            style={{
+              flex: '0 0 auto',
+              borderRight: '1px solid var(--border)',
+              background: 'var(--bg-sunken)',
+              overflowY: 'auto',
+              maxHeight: '100%',
+              paddingTop: 10,
+            }}
+          >
+            <PageNavigator
+              data={data}
+              design={design}
+              language={lang}
+              tokens={tokens}
+              pages={pages}
+              active={Math.min(editorPage, pages)}
+              onSelect={(page) => {
+                setEditorPage(page);
+                // Scroll the real A4 page into view: one page is 297 mm tall.
+                const canvas = document.querySelector('.editor-canvas');
+                if (canvas) canvas.scrollTop = (page - 1) * 297 * 2.9528 * editorZoom;
+              }}
+            />
+          </div>
+        ) : null}
         <div className="editor-canvas">
           <div className="editor-canvas-inner" style={{ transform: `scale(${editorZoom})`, width: 210 * 2.9528 * editorZoom }}>
             {guides && tokens ? (

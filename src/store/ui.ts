@@ -26,6 +26,12 @@ interface UIState {
   theme: 'light' | 'dark' | 'system';
   sidebarCollapsed: boolean;
   editorZoom: number;
+  /** 1-based page highlighted in the thumbnail navigator. */
+  editorPage: number;
+  setEditorPage: (page: number) => void;
+  /** Show the page-thumbnail rail beside the A4 canvas. */
+  showThumbnails: boolean;
+  setShowThumbnails: (on: boolean) => void;
   editorPanel: EditorPanel;
   wizardStep: number;
   /** Route history for Back behaviour. */
@@ -64,6 +70,8 @@ export const useUI = create<UIState>((set, get) => ({
   theme: readStored<'light' | 'dark' | 'system'>('ui.theme', 'light'),
   sidebarCollapsed: readStored('ui.sidebarCollapsed', false),
   editorZoom: 1,
+  editorPage: 1,
+  showThumbnails: false,
   editorPanel: 'content',
   wizardStep: 0,
   history: [],
@@ -106,6 +114,14 @@ export const useUI = create<UIState>((set, get) => ({
 
   setEditorPanel(editorPanel) {
     set({ editorPanel });
+  },
+
+  setEditorPage(editorPage) {
+    set({ editorPage: Math.max(1, Math.round(editorPage)) });
+  },
+
+  setShowThumbnails(showThumbnails) {
+    set({ showThumbnails });
   },
 
   setWizardStep(wizardStep) {

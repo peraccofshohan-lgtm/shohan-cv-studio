@@ -54,7 +54,7 @@ HarfBuzz-rendered A4 page bitmaps, sql.js persistence round-trips).
 | 7 | Content-length assistance warnings | missing | implement |
 | 7 | ATS checker | missing | implement |
 | 7 | Quality checklist | missing | implement |
-| 8 | Page view modes, zoom, thumbnails, rulers, guides, print preview | partial | implement |
+| 8 | Page view modes, zoom, thumbnails, rulers, guides, print preview | done (thumbnails + page rail added) | — |
 | 9 | Preset library (save/rename/duplicate/delete/apply/restore) | missing | implement |
 | 10 | Exporters honour title/page-length/typography/colours | partial | implement + limitation reporting |
 | 11 | 30-template test matrix + visual regression | 20 templates | extend |
@@ -85,10 +85,10 @@ HarfBuzz-rendered A4 page bitmaps, sql.js persistence round-trips).
 | Design studio (Part 5) | Implemented & tested; standalone palettes partial |
 | 10 new templates (Part 6) | Implemented & tested — 30 total |
 | Composition features (Part 7) | Implemented & tested |
-| Preview controls (Part 8) | Implemented & tested; thumbnails and before/after not implemented |
+| Preview controls (Part 8) | Implemented & tested; before/after comparison not implemented |
 | Preset library (Part 9) | Implemented & tested (combined preset) |
 | Export consistency (Part 10) | Preview/DOCX/HTML/text tested; PDF+print payload tested; PDF file/print blocked (environment) |
-| Test matrix (Part 11) | Implemented & tested — 235 tests, 60 matrix cells, 122 rendered pages |
+| Test matrix (Part 11) | Implemented & tested — 236 tests, 60 matrix cells, 122 rendered pages |
 | Performance/usability (Part 12) | Implemented; measured bundle 1.56 MB |
 | Docs (Part 13) | Complete, with explicit per-feature status |
 | Installers | **Blocked (environment)** |

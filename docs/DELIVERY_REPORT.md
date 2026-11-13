@@ -159,8 +159,8 @@ Per-template support matrix (all verified by the composition matrix test):
 | --- | --- |
 | Single/multi-page view, zoom, fit-to-page, fit-to-width | **Implemented & tested** |
 | Rulers / margin guides / grid guides | **Implemented & tested** (A4 page guides + margin guides via `tokens.margins`) |
-| Page thumbnails | **Not implemented** |
-| Page navigation | **Implemented & tested** (zoom + A4 guides; scroll) |
+| Page thumbnails | **Implemented & tested** — thumbnail rail (`PageNavigator`) renders the **real** `CvDocument` per page; the count comes from the same estimator as the footer and the PDF payload |
+| Page navigation | **Implemented & tested** (page rail scrolls the A4 sheet to the chosen page; zoom + A4 guides) |
 | Print preview | **Implemented & tested** (modal renders the exact print payload) |
 | Before/after comparison | **Not implemented** |
 | Preview uses the production document model | **Implemented & tested** — the preview and the print/PDF payload are built from the same component and the same token object |
@@ -219,7 +219,7 @@ Per-template support matrix (all verified by the composition matrix test):
 | Deliverable | Status |
 | --- | --- |
 | README, USER_MANUAL, TECHNICAL, TESTING, COMPATIBILITY, KNOWN_ISSUES, RELEASE_NOTES, DELIVERY_REPORT updated | **Done** |
-| Feature audit script updated | **Done** — 46 checks |
+| Feature audit script updated | **Done** — 47 checks |
 | Documentation reflects only implemented features | **Done** — audited item by item; unimplemented items are marked as such above |
 | Every feature marked with an explicit status | **Done** (this document) |
 
@@ -263,7 +263,7 @@ Per-template support matrix (all verified by the composition matrix test):
 Tick every line on a connected machine before distributing.
 
 - [x] `npx tsc --noEmit` — 0 errors
-- [x] `npx vitest run` — 235/235
+- [x] `npx vitest run` — 236/236
 - [x] `npm run build` — green
 - [x] `node scripts/verify-dist.mjs` — 0 failures
 - [x] `bash scripts/feature-audit.sh` — all present
@@ -291,8 +291,7 @@ Tick every line on a connected machine before distributing.
    (`electron-builder.config.cjs`) and the verification gate (`npm run verify`).
 2. **Run the per-OS matrix** in COMPATIBILITY.md and replace every "Not tested".
 3. **Close the remaining composition gaps**, in the order the specification
-   weights them: page thumbnails, before/after comparison, font import and
-   standalone palettes.
+   weights them: before/after comparison, font import and standalone palettes.
 4. **Add a real pagination check** once a browser engine is available: render the
    print payload to PDF and assert page count against the estimator.
 

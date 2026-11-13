@@ -309,6 +309,29 @@ describe('per-section design panel', () => {
   });
 });
 
+describe('page thumbnails', () => {
+  it('renders one thumbnail per estimated page from the real document model', async () => {
+    installStores();
+    useUI.setState({ language: 'en', showThumbnails: false, editorPage: 1, editorPanel: 'content' });
+    const { EditorPage } = await import('@/features/editor/EditorPage');
+    const { container, getByTitle, getByLabelText } = render(<EditorPage />);
+    expect(container.querySelectorAll('.page-nav').length).toBe(0);
+
+    fireEvent.click(getByTitle('Show page thumbnails'));
+    const nav = container.querySelector('.page-nav')!;
+    expect(nav).toBeTruthy();
+    const thumbs = nav.querySelectorAll('button');
+    expect(thumbs.length).toBeGreaterThanOrEqual(1);
+    expect(thumbs.length).toBeLessThanOrEqual(20);
+    // Each thumbnail contains a real rendered CV, not a blank placeholder.
+    expect(nav.textContent).toContain('মোঃ রফিকুল ইসলাম');
+    expect(thumbs[0].getAttribute('aria-pressed')).toBe('true');
+
+    fireEvent.click(getByLabelText('Page 1'));
+    expect(useUI.getState().editorPage).toBe(1);
+  });
+});
+
 describe('named presets in the editor', () => {
   it('applies a named preset by changing the design only', async () => {
     installStores();
