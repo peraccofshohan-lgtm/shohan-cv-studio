@@ -24,7 +24,8 @@
     "verify:dist": "node scripts/verify-dist.mjs",
     "docs:previews": "npx vitest run tests/emit-models.test.ts && python3 scripts/render_previews.py",
     "audit": "bash scripts/feature-audit.sh",
-    "verify": "npm run typecheck && npm run test && npm run build && npm run verify:dist && npm run audit"
+    "verify": "npm run typecheck && npm run test && npm run build && npm run verify:dist && npm run audit && npm run parity",
+    "parity": "python3 scripts/doc-parity.py"
   },
   "dependencies": {
     "@fontsource/inter": "5.1.1",
