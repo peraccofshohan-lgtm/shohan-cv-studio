@@ -82,13 +82,13 @@ HarfBuzz-rendered A4 page bitmaps, sql.js persistence round-trips).
 | Page length (Part 2) | Implemented & tested (one-page warning contract) |
 | Spacing/measurement (Part 3) | Implemented & tested; reflow solver partial |
 | Typography (Part 4) | Implemented & tested; font import not implemented (bundled fonts only) and documented as such |
-| Design studio (Part 5) | Implemented & tested; standalone palettes partial |
+| Design studio (Part 5) | Implemented & tested |
 | 10 new templates (Part 6) | Implemented & tested — 30 total |
 | Composition features (Part 7) | Implemented & tested |
 | Preview controls (Part 8) | Implemented & tested |
 | Preset library (Part 9) | Implemented & tested (combined preset) |
 | Export consistency (Part 10) | Preview/DOCX/HTML/text tested; PDF+print payload tested; PDF file/print blocked (environment) |
-| Test matrix (Part 11) | Implemented & tested — 244 tests, 60 matrix cells, 122 rendered pages |
+| Test matrix (Part 11) | Implemented & tested — 247 tests, 60 matrix cells, 122 rendered pages |
 | Performance/usability (Part 12) | Implemented; measured bundle 1.56 MB |
 | Docs (Part 13) | Complete, with explicit per-feature status |
 | Installers | **Blocked (environment)** |

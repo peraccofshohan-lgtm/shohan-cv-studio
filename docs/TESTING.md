@@ -11,16 +11,16 @@ here is estimated, and anything that could not be executed is listed in
 | Check | Command | Result |
 | --- | --- | --- |
 | TypeScript | `npx tsc --noEmit` | **PASS** — 0 errors |
-| Unit / integration tests | `npx vitest run` | **PASS** — 20 files, **244 tests** |
+| Unit / integration tests | `npx vitest run` | **PASS** — 20 files, **247 tests** |
 | Production build | `npm run build` | **PASS** — Vite + CSP injection |
 | Production bundle audit | `node scripts/verify-dist.mjs` | **PASS** — 8 passed, 2 documented warnings, 0 failures |
-| Feature-presence audit | `bash scripts/feature-audit.sh` | **PASS** — 48 checks, all present |
+| Feature-presence audit | `bash scripts/feature-audit.sh` | **PASS** — 49 checks, all present |
 | Visual rendering | `npm run docs:previews` | **PASS** — 122 A4 pages across 60 template × language previews |
 | One-shot gate | `npm run verify` | runs everything above in order |
 
 ---
 
-## 2. Test inventory (244 tests / 20 files)
+## 2. Test inventory (247 tests / 20 files)
 
 | File | Tests | What it protects |
 | --- | --- | --- |
@@ -28,8 +28,8 @@ here is estimated, and anything that could not be executed is listed in
 | `tests/design.test.ts` | 16 | Golden-ratio tokens, 8 pt spacing scale, **30** templates with unique ids/names/structural signatures, Chromium-108 CSS rules, ES2019 target |
 | `tests/composition-matrix.test.ts` | 15 | 30 templates × 2 languages through the real pipeline (resolver → tokens → CSS → HTML → DOCX); six title modes; photo removal reflow; optional sections; density changes real spacing; four alignments; custom colours/margins; malformed colour rejection; DOCX A4 parity; page-target never loses content |
 | `tests/sections.test.ts` | 21 | Dynamic section engine, empty/disabled sections dropped, Bangla date localisation and Bengali digits, **recommended section orderings** (reorder without loss, preset detection, per-CV-type priority) |
-| `tests/ui-smoke.test.tsx` | 18 | Real React mounts (jsdom): dashboard, gallery listing all 30 templates, editor A4 page, guides toggle, section hide, **title printed/removed**, title + page-length + report + design panels, recommended-order selector, page thumbnails, before/after modal, named presets, wizard document step |
-| `tests/database.test.ts` | 9 | Schema, integrity, normalised round-trip, **schema v2 title/page-length/section-style round-trip**, v1.0 project loading |
+| `tests/ui-smoke.test.tsx` | 19 | Real React mounts (jsdom): dashboard, gallery listing all 30 templates, editor A4 page, guides toggle, section hide, **title printed/removed**, title + page-length + report + design panels, recommended-order selector, page thumbnails, before/after modal, named presets, colour palettes, wizard document step |
+| `tests/database.test.ts` | 11 | Schema, integrity, normalised round-trip, **schema v2 title/page-length/section-style round-trip**, **schema v3 saved-palette round-trip**, v1.0 project loading |
 | `tests/text-export.test.ts` | 8 | Plain-text export: privacy flags, reading order, title first, title omitted when hidden, custom title verbatim |
 | `tests/backup-restore.test.ts` | 8 | Real SQLite → archive → validate → restore: customer, project, Bangla content, title, page policy survive; tampered archive rejected; foreign/newer-schema rejection; restart persistence |
 | `tests/print-output.test.ts` | 7 | Standalone print document: A4, embedded fonts, no empty headings |

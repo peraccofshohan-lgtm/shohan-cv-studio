@@ -95,7 +95,7 @@ Full instructions: [`docs/INSTALLATION.md`](docs/INSTALLATION.md).
 
 ```
 electron/            Electron main process + preload bridge (contextIsolation on)
-src/database/        SQLite schema (v2), engine, repository (28 tables)
+src/database/        SQLite schema (v3), engine, repository (29 tables)
 src/document/        HTML/print renderer, CSS builder, DOCX exporter
 src/templates/       30-template catalogue, palettes, font pairs
 src/features/        Screens: dashboard, wizard, gallery, editor, projects,
@@ -104,7 +104,7 @@ src/lib/             Golden-ratio maths, section engine, composition tokens,
                      layout report, ATS checks, backup format, colour maths
 scripts/             CSP injection, font builder, preview renderer, bundle
                      verifier, feature audit
-tests/               Vitest suites — 20 files / 244 tests
+tests/               Vitest suites — 20 files / 247 tests
 docs/                Deliverable documentation + generated template previews
 ```
 

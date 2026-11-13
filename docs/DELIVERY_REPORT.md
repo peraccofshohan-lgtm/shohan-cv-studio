@@ -104,7 +104,7 @@ Status vocabulary used throughout, and used consistently:
 | 13 colour tokens with picker + HEX + RGB | **Implemented & tested** | `ColorToken`, `HexField` (live RGB readout); malformed input rejected |
 | Preset palettes | **Implemented & tested** | 9 built-in palettes with 13 colour tokens each |
 | Named presets (10 ready-made looks) | **Implemented & tested** | `src/lib/namedPresets.ts` — 10 presets applied from the Presets panel by setting a base template + design tokens; `tests/named-presets.test.ts` proves the catalog is never mutated and content is untouched |
-| Custom saved palettes | **Partial** | Saved as part of a style preset (below), not as standalone palettes |
+| Custom saved palettes | **Implemented & tested** — schema v3 `color_palettes`; save / apply / delete from the Presets panel; `tests/database.test.ts` round-trip. Closes the last Part 5 gap |
 | Named presets (10 ready-made looks) | **Implemented & tested** | `src/lib/namedPresets.ts` — 10 presets, applied from the Presets panel by setting a base template + design tokens; `tests/named-presets.test.ts` proves the catalog is never mutated and content is untouched |
 | Contrast safety | **Partial** | `contrastRatio` helper exists and is used by the palette design; not enforced on arbitrary user colours |
 | Layout choices (1-col, 2-col, sidebar L/R) | **Implemented & tested** | `bodyLayout` |
@@ -219,7 +219,7 @@ Per-template support matrix (all verified by the composition matrix test):
 | Deliverable | Status |
 | --- | --- |
 | README, USER_MANUAL, TECHNICAL, TESTING, COMPATIBILITY, KNOWN_ISSUES, RELEASE_NOTES, DELIVERY_REPORT updated | **Done** |
-| Feature audit script updated | **Done** — 48 checks |
+| Feature audit script updated | **Done** — 49 checks |
 | Documentation reflects only implemented features | **Done** — audited item by item; unimplemented items are marked as such above |
 | Every feature marked with an explicit status | **Done** (this document) |
 
@@ -263,7 +263,7 @@ Per-template support matrix (all verified by the composition matrix test):
 Tick every line on a connected machine before distributing.
 
 - [x] `npx tsc --noEmit` — 0 errors
-- [x] `npx vitest run` — 244/244
+- [x] `npx vitest run` — 247/247
 - [x] `npm run build` — green
 - [x] `node scripts/verify-dist.mjs` — 0 failures
 - [x] `bash scripts/feature-audit.sh` — all present
@@ -291,7 +291,7 @@ Tick every line on a connected machine before distributing.
    (`electron-builder.config.cjs`) and the verification gate (`npm run verify`).
 2. **Run the per-OS matrix** in COMPATIBILITY.md and replace every "Not tested".
 3. **Close the remaining composition gaps**, in the order the specification
-   weights them: font import, standalone palettes and clipping detection.
+   weights them: font import, clipping detection and the reflow solver.
 4. **Add a real pagination check** once a browser engine is available: render the
    print payload to PDF and assert page count against the estimator.
 

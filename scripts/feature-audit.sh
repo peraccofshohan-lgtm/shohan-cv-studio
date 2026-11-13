@@ -52,6 +52,7 @@ check "margin/zoom guides"         "margin-guides" src/features/editor/EditorPag
 check "page thumbnails"            "export const PageNavigator" src/features/editor/PageNavigator.tsx
 check "before/after compare"       "export function diffSnapshots" src/features/editor/BeforeAfter.tsx
 check "schema v2 migration"        "document-composition" src/database/schema.ts
+check "schema v3 palettes"          "saved-palettes" src/database/schema.ts
 check "production verifier"        "verify-dist" package.json
 check "order presets"              "export const ORDER_PRESETS" src/lib/sectionOrder.ts
 check "order selector (editor)"    "applyOrderPreset" src/features/editor/EditorPage.tsx

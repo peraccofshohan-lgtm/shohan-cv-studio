@@ -19,7 +19,7 @@ export interface Migration {
   up: string[];
 }
 
-export const SCHEMA_VERSION = 2;
+export const SCHEMA_VERSION = 3;
 
 export const MIGRATIONS: Migration[] = [
   {
@@ -374,6 +374,27 @@ export const MIGRATIONS: Migration[] = [
       `ALTER TABLE cv_projects ADD COLUMN section_styles_json TEXT NOT NULL DEFAULT '';`,
       `CREATE INDEX IF NOT EXISTS idx_versions_project ON project_versions(project_id, version);`,
       `CREATE INDEX IF NOT EXISTS idx_export_history_project ON export_history(project_id, created_at DESC);`,
+    ],
+  },
+  {
+    /**
+     * v1.2 — standalone colour palettes.
+     *
+     * A palette is now a first-class saved object (a set of the 13 colour
+     * tokens), not only a field inside a style preset. Purely additive: no
+     * existing table is touched, so customer and project data are unaffected.
+     */
+    version: 3,
+    name: 'saved-palettes',
+    up: [
+      `CREATE TABLE IF NOT EXISTS color_palettes (
+         id TEXT PRIMARY KEY,
+         name TEXT NOT NULL,
+         colors_json TEXT NOT NULL DEFAULT '{}',
+         base_palette_id TEXT NOT NULL DEFAULT '',
+         created_at TEXT NOT NULL,
+         updated_at TEXT NOT NULL
+       );`,
     ],
   },
 ];

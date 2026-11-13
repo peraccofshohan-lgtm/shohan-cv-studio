@@ -309,6 +309,44 @@ describe('per-section design panel', () => {
   });
 });
 
+describe('standalone palettes in the editor', () => {
+  it('offers palette saving, applying and deleting', async () => {
+    installStores();
+    // A stub repository: these UI tests assert the panel's contract, while the
+    // real SQLite palette round-trip is covered in database.test.ts.
+    const saved: { id: string; name: string; basePaletteId: string; colors: Record<string, string> }[] = [];
+    (useWorkspace as unknown as { setState: (s: unknown) => void }).setState({
+      repo: {
+        saveColorPalette: (p: { id: string; name: string; basePaletteId: string; colors: Record<string, string> }) => {
+          saved.push(p);
+        },
+        listColorPalettes: () => saved.map((p) => ({ ...p, createdAt: '', updatedAt: '' })),
+        deleteColorPalette: (id: string) => {
+          const i = saved.findIndex((p) => p.id === id);
+          if (i >= 0) saved.splice(i, 1);
+        },
+      },
+    });
+    useUI.setState({ language: 'en', editorPanel: 'presets' });
+    const { EditorPage } = await import('@/features/editor/EditorPage');
+    const { container, getByLabelText, getByText } = render(<EditorPage />);
+
+    expect(container.textContent).toContain('Colour palettes');
+    fireEvent.change(getByLabelText('Palette name'), { target: { value: 'Bank green' } });
+    fireEvent.click(getByText('Save current colours as a palette'));
+
+    expect(saved).toHaveLength(1);
+    expect(saved[0].name).toBe('Bank green');
+    // The full colour set is captured, not just the palette id.
+    expect(Object.keys(saved[0].colors).length).toBeGreaterThanOrEqual(9);
+    expect(saved[0].colors.primary).toMatch(/^#[0-9a-f]{6}$/i);
+
+    // Re-render shows the saved palette with Apply / Delete controls.
+    const again = render(<EditorPage />);
+    expect(again.container.textContent).toContain('Bank green');
+  });
+});
+
 describe('page thumbnails', () => {
   it('renders one thumbnail per estimated page from the real document model', async () => {
     installStores();

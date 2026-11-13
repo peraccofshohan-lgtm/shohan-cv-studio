@@ -4,8 +4,8 @@ claims = [
  ("30 templates",            ["src/templates/catalog.ts"], r"^  T\(" , 30),
  ("20 wizard steps",         ["src/features/cv-wizard/steps.ts"], r"^    id: '", 20),
  ("9 palettes",              ["src/templates/catalog.ts"], r"PALETTE-SCOPE", 9),
- ("28 db tables",            ["src/database/schema.ts"], r"CREATE TABLE", 28),
- ("schema v2",               ["src/database/schema.ts"], r"SCHEMA_VERSION = 2", 1),
+ ("29 db tables",            ["src/database/schema.ts"], r"CREATE TABLE", 29),
+ ("schema v3",               ["src/database/schema.ts"], r"SCHEMA_VERSION = 3", 1),
 ]
 ok=True
 def count_in_block(path, start, end, pat):

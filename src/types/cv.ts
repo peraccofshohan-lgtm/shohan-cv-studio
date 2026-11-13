@@ -492,6 +492,23 @@ export type ColorToken =
   | 'footerBackground'
   | 'photoBorder';
 
+/** The 13 colour tokens, in the order the design studio lists them. */
+export const COLOR_TOKENS: ColorToken[] = [
+  'primary',
+  'secondary',
+  'accent',
+  'heading',
+  'text',
+  'muted',
+  'border',
+  'divider',
+  'background',
+  'sidebar',
+  'headerBackground',
+  'footerBackground',
+  'photoBorder',
+];
+
 export type FontRole =
   | 'name'
   | 'title'
@@ -519,6 +536,17 @@ export type SpacingToken =
   | 'pageBreak';
 
 /** A reusable, user-saved design preset (stored in `template_settings`). */
+/** A saved set of the 13 colour tokens, reusable across projects. */
+export interface SavedPalette {
+  id: UUID;
+  name: string;
+  /** Palette it started from ('' for a hand-built set). */
+  basePaletteId: string;
+  colors: Partial<Record<ColorToken, string>>;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface StylePreset {
   id: UUID;
   name: string;

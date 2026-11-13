@@ -855,6 +855,35 @@ export class CvRepository {
     }));
   }
 
+  // ------------------------------------------------------------------ palettes
+  saveColorPalette(palette: { id: string; name: string; basePaletteId: string; colors: Record<string, string> }): void {
+    const now = nowIso();
+    this.engine.run(
+      `INSERT INTO color_palettes (id, name, colors_json, base_palette_id, created_at, updated_at)
+       VALUES ($a,$b,$c,$d,$e,$e)
+       ON CONFLICT(id) DO UPDATE SET name = excluded.name, colors_json = excluded.colors_json,
+         base_palette_id = excluded.base_palette_id, updated_at = excluded.updated_at`,
+      { a: palette.id, b: palette.name, c: json(palette.colors), d: palette.basePaletteId, e: now },
+    );
+  }
+
+  listColorPalettes(): { id: string; name: string; basePaletteId: string; colors: Record<string, string>; createdAt: string; updatedAt: string }[] {
+    return this.engine
+      .all<Record<string, any>>(`SELECT * FROM color_palettes ORDER BY created_at DESC`)
+      .map((r) => ({
+        id: String(r.id),
+        name: String(r.name),
+        basePaletteId: String(r.base_palette_id ?? ''),
+        colors: parse<Record<string, string>>(r.colors_json, {}),
+        createdAt: String(r.created_at),
+        updatedAt: String(r.updated_at ?? r.created_at),
+      }));
+  }
+
+  deleteColorPalette(id: string): void {
+    this.engine.run(`DELETE FROM color_palettes WHERE id = $a`, { a: id });
+  }
+
   deleteTemplateVariant(id: string): void {
     this.engine.run(`DELETE FROM template_settings WHERE id = $a`, { a: id });
   }

@@ -78,7 +78,7 @@ A missing parameter throws with a snippet of the statement rather than silently
 inserting an empty value. This is covered by `tests/regression.test.ts` because an
 earlier alphabetical-key implementation silently blanked Bengali names.
 
-### 3.2 Schema (28 tables, version 2)
+### 3.2 Schema (29 tables, version 3)
 
 `meta`, `customers`, `cv_projects`, `personal_information`, `education`,
 `work_experience`, `skills`, `languages`, `training`, `projects`, `achievements`,
@@ -193,7 +193,7 @@ returns the match (or `null` for a hand-made order), which is what the ✓ marke
 in the navigator reads.
 
 **Per-section overrides (Part 5.4).** `src/lib/sectionStyles.ts` sanitises the
-`SectionStyleOverride` that schema v2 already stored per section:
+`SectionStyleOverride` that schema v2 introduced per section:
 hex-only heading colour, four alignments, heading scale clamped to 0.8–1.25,
 section-gap multiplier clamped to 1–2.5 (it can add space, never squeeze),
 four bullet markers, and an optional page break. `normalizeSectionOverride`

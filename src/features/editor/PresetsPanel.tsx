@@ -7,7 +7,7 @@
  * change and no risk to customer data.
  */
 import React, { useState } from 'react';
-import { Pencil, Save, Trash2, Copy, Check } from 'lucide-react';
+import { Pencil, Save, Trash2, Copy, Check, Palette } from 'lucide-react';
 import { useWorkspace } from '@/store/workspace';
 import { Button, Field, Input, useLang, Badge } from '@/components/ui';
 import { PanelSection } from '@/components/studioControls';
@@ -25,9 +25,14 @@ export const PresetsPanel: React.FC = () => {
   const duplicatePreset = useWorkspace((s) => s.duplicatePreset);
   const deletePreset = useWorkspace((s) => s.deletePreset);
   const current = useWorkspace((s) => s.current);
+  const palettes = useWorkspace((s) => s.palettes);
+  const savePalette = useWorkspace((s) => s.savePalette);
+  const applyPalette = useWorkspace((s) => s.applyPalette);
+  const deletePalette = useWorkspace((s) => s.deletePalette);
   const setTemplate = useWorkspace((s) => s.setTemplate);
   const updateDesign = useWorkspace((s) => s.updateDesign);
   const [name, setName] = useState('');
+  const [paletteName, setPaletteName] = useState('');
   const [editing, setEditing] = useState<string | null>(null);
   const [draftName, setDraftName] = useState('');
 
@@ -169,6 +174,72 @@ export const PresetsPanel: React.FC = () => {
                 </div>
               );
             })}
+          </div>
+        )}
+      </PanelSection>
+
+      <PanelSection
+        title={bn('Colour palettes', 'রঙের প্যালেট')}
+        description={bn(
+          'Save the current colour set on its own, so it can be reused on any template.',
+          'বর্তমান রঙের সেট আলাদাভাবে সংরক্ষণ করুন, যাতে যেকোনো টেমপ্লেটে ব্যবহার করা যায়।',
+        )}
+      >
+        <Field label={bn('Palette name', 'প্যালেটের নাম')}>
+          <Input
+            aria-label={bn('Palette name', 'প্যালেটের নাম')}
+            value={paletteName}
+            placeholder={bn('e.g. Bank green', 'যেমন: ব্যাংক সবুজ')}
+            onChange={(e) => setPaletteName(e.target.value)}
+            maxLength={60}
+          />
+        </Field>
+        <Button
+          block
+          variant="primary"
+          icon={<Palette size={14} />}
+          disabled={!current}
+          onClick={() => {
+            savePalette(paletteName || (lang === 'bn' ? 'আমার প্যালেট' : 'My palette'));
+            setPaletteName('');
+          }}
+        >
+          {bn('Save current colours as a palette', 'বর্তমান রঙ প্যালেট হিসেবে সংরক্ষণ')}
+        </Button>
+        {palettes.length === 0 ? (
+          <span className="small" style={{ color: 'var(--text-muted)' }}>
+            {bn('No saved palettes yet.', 'এখনো কোনো প্যালেট সংরক্ষিত নেই।')}
+          </span>
+        ) : (
+          <div className="col" style={{ gap: 6 }}>
+            {palettes.map((palette) => (
+              <div key={palette.id} className="row between card card-pad" style={{ gap: 6 }}>
+                <div className="col" style={{ gap: 4, minWidth: 0 }}>
+                  <strong style={{ fontSize: 'var(--fs-sm)' }}>{palette.name}</strong>
+                  <div className="row" style={{ gap: 2 }}>
+                    {Object.values(palette.colors).slice(0, 8).map((color, i) => (
+                      <span
+                        key={`${color}-${i}`}
+                        title={color}
+                        style={{ width: 10, height: 10, borderRadius: 2, background: color, border: '1px solid var(--border)' }}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <div className="row" style={{ gap: 4 }}>
+                  <Button size="sm" variant="primary" onClick={() => applyPalette(palette.id)}>
+                    {bn('Apply', 'প্রয়োগ')}
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="danger"
+                    icon={<Trash2 size={12} />}
+                    aria-label={bn('Delete palette', 'প্যালেট মুছুন')}
+                    onClick={() => deletePalette(palette.id)}
+                  />
+                </div>
+              </div>
+            ))}
           </div>
         )}
       </PanelSection>

@@ -10,10 +10,12 @@
 import { create } from 'zustand';
 import { SqlEngine } from '@/database/sqlite';
 import { resolveDesign } from '@/templates/catalog';
+import { composeDocumentTokens } from '@/lib/composition';
 import { defaultDesign } from '@/lib/defaults';
 import { CvRepository, type ProjectSummary } from '@/database/cvRepository';
 import type {
   AppSettings,
+  SavedPalette,
   StylePreset,
   CustomerRecord,
   DesignOverrides,
@@ -21,6 +23,7 @@ import type {
   ProjectRecord,
 } from '@/types/cv';
 import { DEFAULT_SETTINGS, createEmptyCustomer, createProject, nowIso, uid } from '@/lib/defaults';
+import { COLOR_TOKENS } from '@/types/cv';
 import { getBridge } from '@/platform';
 import type { PlatformInfo } from '@/platform/types';
 
@@ -85,6 +88,13 @@ interface WorkspaceState {
   duplicatePreset: (id: string) => void;
   deletePreset: (id: string) => void;
 
+  /** Standalone saved colour palettes (Part 5). */
+  palettes: SavedPalette[];
+  refreshPalettes: () => void;
+  savePalette: (name: string) => void;
+  applyPalette: (id: string) => void;
+  deletePalette: (id: string) => void;
+
   saveCustomer: (customer: CustomerRecord) => Promise<CustomerRecord>;
   newCustomerDraft: () => CustomerRecord;
   deleteCustomer: (id: string) => Promise<void>;
@@ -129,6 +139,7 @@ export const useWorkspace = create<WorkspaceState>((set, get) => ({
   undoStack: [],
   redoStack: [],
   presets: [],
+  palettes: [],
   toasts: [],
 
   async boot() {
@@ -348,6 +359,55 @@ export const useWorkspace = create<WorkspaceState>((set, get) => ({
     const { repo } = get();
     if (!repo) return;
     set({ presets: repo.listTemplateVariants() });
+    set({ palettes: repo.listColorPalettes() });
+  },
+
+  refreshPalettes() {
+    const { repo } = get();
+    if (!repo) return;
+    set({ palettes: repo.listColorPalettes() });
+  },
+
+  /**
+   * Save the current project's *resolved* colour set as a standalone palette.
+   * Only the 13 colour tokens are stored — never content, never a template.
+   */
+  savePalette(name) {
+    const { repo, current } = get();
+    if (!repo || !current) return;
+    const design = resolveDesign(current.templateId, current.design);
+    // Read the *resolved* tokens, not the raw palette: optional tokens such as
+    // heading/border/divider are derived at compose time, and saving a partial
+    // palette would silently lose them when it is applied again.
+    const resolved = composeDocumentTokens({ data: current.data, design, overrides: current.design }).colors;
+    const colors: Record<string, string> = {};
+    for (const token of COLOR_TOKENS) {
+      const value = (resolved as unknown as Record<string, string>)[token];
+      if (typeof value === 'string' && /^#[0-9a-f]{3,6}$/i.test(value)) colors[token] = value;
+    }
+    repo.saveColorPalette({
+      id: uid(),
+      name: name.trim() || 'Untitled palette',
+      basePaletteId: current.design.paletteId,
+      colors,
+    });
+    get().refreshPalettes();
+    get().pushToast({
+      kind: 'success',
+      title: get().settings.uiLanguage === 'bn' ? 'প্যালেট সংরক্ষিত' : 'Palette saved',
+      detail: name,
+    });
+  },
+
+  applyPalette(id) {
+    const palette = get().palettes.find((p) => p.id === id);
+    if (!palette) return;
+    get().updateDesign({ paletteId: palette.basePaletteId, colors: palette.colors, presetId: null });
+  },
+
+  deletePalette(id) {
+    get().repo?.deleteColorPalette(id);
+    get().refreshPalettes();
   },
 
   savePreset(name) {

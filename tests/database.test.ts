@@ -10,7 +10,8 @@ describe('SQLite repository', () => {
     const engine = await SqlEngine.create(null);
     // v2 adds the document-composition columns (title, page length, section styles).
     expect(engine.schemaVersion).toBe(SCHEMA_VERSION);
-    expect(SCHEMA_VERSION).toBe(2);
+    // v2 added document composition; v3 adds standalone saved palettes.
+    expect(SCHEMA_VERSION).toBe(3);
     const integrity = engine.integrityCheck();
     expect(integrity.ok).toBe(true);
     expect(integrity.message).toBe('ok');
@@ -169,5 +170,49 @@ describe('SQLite repository', () => {
     expect(loaded.data.title.visible).toBe(true);
     expect(loaded.data.pageLength.mode).toBe('automatic');
     expect(loaded.data.sectionStyles).toEqual({});
+  });
+});
+
+describe('standalone colour palettes (schema v3)', () => {
+  it('saves, lists, applies and deletes a palette without touching projects', async () => {
+    const engine = await SqlEngine.create(null);
+    const repo = new CvRepository(engine);
+    const project = createProject({ title: 'Palette test' });
+    repo.saveProject(project);
+
+    repo.saveColorPalette({
+      id: 'pal-1',
+      name: 'Bank green',
+      basePaletteId: 'deep-green',
+      colors: { primary: '#0b6b3a', accent: '#c8a54a' },
+    });
+    const list = repo.listColorPalettes();
+    expect(list).toHaveLength(1);
+    expect(list[0].name).toBe('Bank green');
+    expect(list[0].colors.primary).toBe('#0b6b3a');
+
+    // Renaming keeps the same row (upsert by id).
+    repo.saveColorPalette({ id: 'pal-1', name: 'Bank green v2', basePaletteId: 'deep-green', colors: { primary: '#0b6b3a' } });
+    expect(repo.listColorPalettes()).toHaveLength(1);
+    expect(repo.listColorPalettes()[0].name).toBe('Bank green v2');
+
+    // The project is untouched by any palette operation.
+    expect(repo.getProject(project.id)?.data.personal.fullName).toBe(project.data.personal.fullName);
+
+    repo.deleteColorPalette('pal-1');
+    expect(repo.listColorPalettes()).toEqual([]);
+    expect(repo.getProject(project.id)).toBeTruthy();
+  });
+
+  it('survives a save/reload cycle', async () => {
+    const engine = await SqlEngine.create(null);
+    const repo = new CvRepository(engine);
+    repo.saveColorPalette({ id: 'pal-2', name: 'Navy ink', basePaletteId: 'navy', colors: { primary: '#11224a' } });
+    const bytes = engine.export();
+
+    const engine2 = await SqlEngine.create(bytes);
+    const repo2 = new CvRepository(engine2);
+    expect(engine2.schemaVersion).toBe(SCHEMA_VERSION);
+    expect(repo2.listColorPalettes()[0].colors.primary).toBe('#11224a');
   });
 });
