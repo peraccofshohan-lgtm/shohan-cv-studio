@@ -31,30 +31,30 @@ Keyboard shortcuts are listed in **সহায়তা → কীবোর্�
 
 ## 2. Creating a CV: the 19-step wizard
 
-The wizard is a single scrollable form grouped into steps. You can jump back to
-any step; nothing is lost. Progress is autosaved.
+The wizard has one screen per step with a progress rail; you can move back and
+forward freely and nothing is lost. Progress is autosaved.
 
-| # | Step | Notes |
-| --- | --- | --- |
-| 1 | Language & purpose | CV language (English / Bangla), career level, industry |
-| 2 | Personal information | Name, headline, contact, addresses |
-| 3 | Sensitive identifiers | Date of birth, NID, passport, religion, marital status — **all off by default** |
-| 4 | Photo | Optional portrait; templates without photo support hide the field |
-| 5 | Career objective | Write your own, or start from a category template |
-| 6 | Career interest | Optional tagged interests |
-| 7 | Education | Degrees, institutions, groups, results, years |
-| 8 | Experience | Company, title, dates, responsibilities, achievements |
-| 9 | Skills | Categorised skills (software / technical / management …) |
-| 10 | Language proficiency | Reading, writing, speaking, overall |
-| 11 | Training & certification | Course, institute, year, certificate ID |
-| 12 | Projects | Academic or professional projects |
-| 13 | Achievements | Awards and recognitions |
-| 14 | Strengths | Optional, only what you actually claim |
-| 15 | Hobbies | Optional |
-| 16 | Volunteer experience | Optional |
-| 17 | References | Only real, contacted referees |
-| 18 | Declaration & signature | Optional declaration text and signature image |
-| 19 | Review & customise | Section order, on/off switches, template choice |
+| # | Step | English | Bangla | Notes |
+| --- | --- | --- | --- | --- |
+| 1 | Personal information | Basic Personal Information | ব্যক্তিগত তথ্য | Name, headline, contact, addresses |
+| 2 | Photo | Profile Photo | প্রোফাইল ছবি | Optional; templates without photo support ignore it · *optional* |
+| 3 | Career objective | Career Objective | ক্যারিয়ার অবজেক্টিভ | Your own text, with category starters |
+| 4 | Career interests | Career Interest | ক্যারিয়ার আগ্রহ | Optional tagged interests · *optional* |
+| 5 | Education | Educational Qualifications | শিক্ষাগত যোগ্যতা | Degree, institution, group, result, year |
+| 6 | Experience | Work Experience | কর্ম অভিজ্ঞতা | Company, title, dates, responsibilities, achievements |
+| 7 | Skills | Skills | দক্ষতা | Categorised (software / technical / management …) |
+| 8 | Languages | Language Proficiency | ভাষা দক্ষতা | Reading, writing, speaking, overall |
+| 9 | Training | Training & Certifications | প্রশিক্ষণ ও সার্টিফিকেশন | Course, institute, year, certificate ID |
+| 10 | Projects | Projects | প্রকল্প | Academic or professional · *optional* |
+| 11 | Achievements | Achievements & Awards | অর্জন ও পুরস্কার | Optional · *optional* |
+| 12 | Strengths | Strengths | শক্তিশালী দিক | Optional · *optional* |
+| 13 | Hobbies | Hobbies & Interests | শখ ও আগ্রহ | Optional · *optional* |
+| 14 | Volunteer | Volunteer Experience | স্বেচ্ছাসেবা | Optional · *optional* |
+| 15 | Personal details to publish | Personal Details to Publish | ব্যক্তিগত তথ্য (প্রকাশ) | Per-field publish switches — everything here is off by default · *optional* |
+| 16 | References | References | রেফারেন্স | Only real, contacted referees · *optional* |
+| 17 | Declaration | Declaration | ঘোষণাপত্র | Optional declaration text · *optional* |
+| 18 | Signature | Applicant Signature | স্বাক্ষর | Optional signature image · *optional* |
+| 19 | Additional information | Additional Information | অতিরিক্ত তথ্য | Custom sections and anything else · *optional* |
 
 ### The anti-fabrication rule
 
@@ -64,11 +64,11 @@ the corresponding section simply does not appear in the CV.
 
 ### Optional sections
 
-On step 19 every section has a switch and an order. Turning a section off removes
+In the editor, every section has a switch and an order (left panel). Turning a section off removes
 it completely — no heading, no rule, no gap, no blank page — from the on-screen
 preview, the DOCX and the PDF/print. A section that is switched on but empty is
-also hidden automatically, with the reason shown in the review step
-("empty", "disabled").
+also hidden automatically, with the reason shown next to the section name
+(green = prints, amber = empty so omitted, grey = switched off).
 
 Custom sections can be added with your own title and body text.
 
@@ -190,9 +190,10 @@ physical locations.
 
 ### Privacy defaults
 
-Sensitive fields — national ID, passport number, religion, marital status, blood
-group, date of birth, photo — are **excluded from output unless you explicitly
-include them**, each with its own switch. The CV data never leaves your computer.
+Sensitive fields — father's and mother's names, date of birth, gender,
+nationality, religion, marital status, blood group, height, weight, national ID,
+passport number, permanent address, photo — are **excluded from output unless you
+explicitly include them** on step 15, each with its own switch. The CV data never leaves your computer.
 
 ---
 
