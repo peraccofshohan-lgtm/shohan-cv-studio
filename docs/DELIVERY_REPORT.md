@@ -14,7 +14,7 @@ assumption.
 
 | Question | Answer |
 | --- | --- |
-| Is the product complete as software? | **Yes** — every screen, engine, exporter and configuration described in the specification exists and compiles; 66 automated tests pass. |
+| Is the product complete as software? | **Yes** — every screen, engine, exporter and configuration described in the specification exists and compiles; 68 automated tests pass. |
 | Is it proven to work on Windows? | **No.** No Windows machine, installer run, printer or Electron runtime was available here. Every OS row is *Not tested*. |
 | Is it safe to distribute today? | **Only after** running the manual checklist in [TESTING.md](TESTING.md#manual-smoke-checklist) on each claimed OS and producing the installers with `npm run dist:win` on a machine that can download Electron. |
 | Is anything faked? | No. There are no mock buttons, no placeholder pages, no image stand-ins for DOCX/PDF, no fabricated sample data in the product, and no online dependency. |
@@ -72,7 +72,7 @@ assumption.
 | Check | Command | Result |
 | --- | --- | --- |
 | Type safety | `npx tsc --noEmit` | **0 errors** |
-| Automated tests | `npx vitest run` | **11 files, 66 tests, 66 passing** |
+| Automated tests | `npx vitest run` | **11 files, 68 tests, 68 passing** |
 | Production build | `npm run build` | **Success**; CSP injected into `dist/index.html` |
 | Dev server | Vite on `0.0.0.0:5173` | `/`, `/src/main.tsx`, and source modules return **HTTP 200** |
 | Template rendering | `python3 scripts/render_previews.py` | **80 A4 pages** rendered from the production design model; Bengali conjuncts shaped with HarfBuzz |

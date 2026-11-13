@@ -109,15 +109,50 @@ const PERSONAL_LABELS: Record<string, { en: string; bn: string }> = {
   website: { en: 'Website', bn: 'ওয়েবসাইট' },
 };
 
+/** Bengali month names, in calendar order. */
+const BN_MONTHS = [
+  'জানুয়ারি',
+  'ফেব্রুয়ারি',
+  'মার্চ',
+  'এপ্রিল',
+  'মে',
+  'জুন',
+  'জুলাই',
+  'আগস্ট',
+  'সেপ্টেম্বর',
+  'অক্টোবর',
+  'নভেম্বর',
+  'ডিসেম্বর',
+];
+
+/**
+ * Formats one date the way Bangladeshi CVs are written.
+ *
+ * `2020-03-01` becomes `Mar 2020` in English and `মার্চ ২০২০` in Bangla, using
+ * Bengali digits when the document language is Bangla. Values that are not real
+ * dates (e.g. "Class of 2019") are passed through untouched.
+ */
+function formatMonthYear(value: string, lang: 'bn' | 'en'): string {
+  if (!value) return '';
+  const d = new Date(value);
+  if (Number.isNaN(d.getTime())) return value;
+  const month = d.getMonth();
+  const year = d.getFullYear();
+  if (lang === 'bn') {
+    return `${BN_MONTHS[month]} ${toBengaliDigits(String(year))}`;
+  }
+  return d.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' });
+}
+
+/** Converts Western digits to Bengali digits (০১২৩৪৫৬৭৮৯). */
+export function toBengaliDigits(value: string): string {
+  const map = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+  return String(value).replace(/[0-9]/g, (digit) => map[Number(digit)]);
+}
+
 export function formatPeriod(start: string, end: string, current: boolean, lang: 'bn' | 'en'): string {
-  const fmt = (value: string): string => {
-    if (!value) return '';
-    const d = new Date(value);
-    if (Number.isNaN(d.getTime())) return value;
-    return d.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' });
-  };
-  const a = fmt(start);
-  const b = current ? (lang === 'bn' ? 'বর্তমান' : 'Present') : fmt(end);
+  const a = formatMonthYear(start, lang);
+  const b = current ? (lang === 'bn' ? 'বর্তমান' : 'Present') : formatMonthYear(end, lang);
   if (a && b) return `${a} – ${b}`;
   return a || b;
 }
@@ -126,7 +161,13 @@ export function formatDate(value: string, lang: 'bn' | 'en'): string {
   if (!value) return '';
   const d = new Date(value);
   if (Number.isNaN(d.getTime())) return value;
-  return d.toLocaleDateString(lang === 'bn' ? 'en-GB' : 'en-GB', { day: '2-digit', month: 'long', year: 'numeric' });
+  if (lang === 'bn') {
+    // Two-digit day, matching the English output (০৫ মার্চ ২০১৯).
+    return `${toBengaliDigits(String(d.getDate()).padStart(2, '0'))} ${BN_MONTHS[d.getMonth()]} ${toBengaliDigits(
+      String(d.getFullYear()),
+    )}`;
+  }
+  return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' });
 }
 
 /**

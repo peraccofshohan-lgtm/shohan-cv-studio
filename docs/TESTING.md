@@ -14,7 +14,7 @@ Windows runtime.
 | Command | Result |
 | --- | --- |
 | `npx tsc --noEmit` | **PASS** — 0 errors |
-| `npx vitest run` | **PASS** — 11 files, **66 tests** |
+| `npx vitest run` | **PASS** — 11 files, **68 tests** |
 | `npm run build` | **PASS** — typecheck → Vite bundle → CSP injected into `dist/index.html` |
 | `python3 scripts/render_previews.py` | **PASS** — 80 page images across 40 template × language combinations |
 
@@ -23,7 +23,7 @@ Windows runtime.
 | File | Tests | What it proves |
 | --- | --- | --- |
 | `tests/smoke.test.ts` | 3 | App identity/version, embedded font payload present, default CV is structurally valid |
-| `tests/sections.test.ts` | 12 | Empty sections never print; disabled sections never print; user ordering preserved; title overrides; Bangla/English headings; partial entries; period formatting (open, closed, malformed) |
+| `tests/sections.test.ts` | 14 | Empty sections never print; disabled sections never print; user ordering preserved; title overrides; Bangla/English headings; partial entries; period formatting (open, closed, malformed) |
 | `tests/docx.test.ts` | 3 | DOCX is a valid ZIP; A4 page size in twips (±3 tolerance); document.xml contains real text; **no image parts**; Bengali strings intact; footer page fields present |
 | `tests/database.test.ts` | 7 | 28-table schema + `PRAGMA integrity_check`; full project round-trip across normalised tables; cascade delete; version history & restore; customer soft delete/restore; settings JSON round-trip; export logging and counts |
 | `tests/regression.test.ts` | 3 | SQL parameters bound in appearance order; `$`-prefixed keys accepted; Bangla byte-exact round-trip (`মোঃ রফিকুল ইসলাম`) |
@@ -49,7 +49,11 @@ Windows runtime.
 4. **Print colour would have dropped.** `print-color-adjust: exact` was missing
    from the document stylesheet, so header bands, rules and skill chips could
    print white in some drivers. Added, and locked by `tests/print-output.test.ts`.
-5. **Preview/layout drift.** The documentation renderer initially used its own type
+5. **English dates inside Bangla CVs.** `formatPeriod` always used
+   `toLocaleDateString('en-GB')`, so a fully Bangla CV printed "Mar 2019 – বর্তমান".
+   Dates are now localised through one helper (`মার্চ ২০১৯ – বর্তমান`) with Bengali
+   digits, and every exporter and the preview pick it up automatically.
+6. **Preview/layout drift.** The documentation renderer initially used its own type
    sizes and drifted from the product. It now reads the millimetre metrics from
    `src/document/styles.ts` and shapes text with HarfBuzz, the same stack Chromium
    uses, and paginates with the same "never split a section" rule.

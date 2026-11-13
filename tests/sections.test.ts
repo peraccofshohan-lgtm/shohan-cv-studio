@@ -7,7 +7,14 @@
  */
 import { describe, it, expect } from 'vitest';
 import { createEmptyCv } from '@/lib/defaults';
-import { resolveSections, printableSections, SECTION_TITLES, formatPeriod } from '@/lib/sections';
+import {
+  resolveSections,
+  printableSections,
+  SECTION_TITLES,
+  formatPeriod,
+  formatDate,
+  toBengaliDigits,
+} from '@/lib/sections';
 import type { CVData, SectionId } from '@/types/cv';
 
 const empty = (): CVData => createEmptyCv();
@@ -119,7 +126,21 @@ describe('section resolution', () => {
 describe('period formatting', () => {
   it('formats an open-ended role', () => {
     expect(formatPeriod('2019-03-01', '', true, 'en')).toBe('Mar 2019 – Present');
-    expect(formatPeriod('2019-03-01', '', true, 'bn')).toBe('Mar 2019 – বর্তমান');
+  });
+
+  it('writes Bangla dates in Bangla, not English month names', () => {
+    // Bangladeshi CVs expect মার্চ ২০১৯, never "Mar 2019".
+    expect(formatPeriod('2019-03-01', '', true, 'bn')).toBe('মার্চ ২০১৯ – বর্তমান');
+    expect(formatPeriod('2017-06-01', '2019-02-01', false, 'bn')).toBe('জুন ২০১৭ – ফেব্রুয়ারি ২০১৯');
+    expect(formatDate('2019-03-05', 'bn')).toBe('০৫ মার্চ ২০১৯');
+    expect(formatDate('2019-03-05', 'en')).toBe('05 March 2019');
+  });
+
+  it('converts digits for Bangla output', () => {
+    expect(toBengaliDigits('2019')).toBe('২০১৯');
+    expect(toBengaliDigits('0-1-2')).toBe('০-১-২');
+    // Latin text and punctuation are untouched.
+    expect(toBengaliDigits('BSc 2020')).toBe('BSc ২০২০');
   });
 
   it('formats a closed range', () => {
