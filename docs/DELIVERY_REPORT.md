@@ -235,7 +235,7 @@ Per-template support matrix (all verified by the composition matrix test):
 | Test files / tests | **21 / 251** |
 | Production bundle | 1.60 MB JS, 5 chunks; 64 `woff2` (15 Bengali); 128 CSS asset URLs, 0 missing |
 | Documented preview pages | 122 PNG (60 first pages + 62 continuation) |
-| Commits on this branch | 31 (see `git log`) |
+| Commits on this branch | one commit per verified milestone; run `git log --oneline \| wc -l` for the live count |
 | TypeScript errors | 0 |
 | `verify-dist` | 8 passed, 2 documented warnings, 0 failures |
 
