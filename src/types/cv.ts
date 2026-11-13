@@ -259,6 +259,92 @@ export interface SectionConfig {
   headingScale: number;
 }
 
+/**
+ * Document title block ("CURRICULUM VITAE", "RESUME", …).
+ *
+ * The title lives in its own model instead of ``personal.headline`` so it can be
+ * styled, hidden and positioned independently, and so "no title" can collapse
+ * the header completely rather than leaving an empty band.
+ */
+export type TitlePreset = 'cv' | 'curriculum-vitae' | 'resume' | 'professional-resume' | 'none' | 'custom';
+
+export type TextTransform = 'none' | 'uppercase' | 'lowercase' | 'capitalize';
+export type TextAlign = 'left' | 'center' | 'right' | 'justify';
+
+/** The six built-in titles, in the order they appear in the picker. */
+export const TITLE_PRESET_TEXT: Record<Exclude<TitlePreset, 'custom'>, string> = {
+  cv: 'CV',
+  'curriculum-vitae': 'CURRICULUM VITAE',
+  resume: 'RESUME',
+  'professional-resume': 'PROFESSIONAL RESUME',
+  none: '',
+};
+
+export interface TitleStyle {
+  visible: boolean;
+  preset: TitlePreset;
+  /** Used when preset === 'custom'; also the printed text for the presets. */
+  text: string;
+  fontFamily: string | null;
+  /** Points. */
+  fontSize: number;
+  fontWeight: number;
+  italic: boolean;
+  underline: boolean;
+  color: string | null;
+  transform: TextTransform;
+  /** em units, e.g. 0.12 */
+  letterSpacing: number;
+  align: TextAlign;
+  /** mm above / below the title. */
+  spaceBeforeMm: number;
+  spaceAfterMm: number;
+  border: 'none' | 'thin' | 'thick' | 'double' | 'accent';
+  /** mm padding inside the background box (0 = no box). */
+  backgroundPaddingMm: number;
+  background: 'none' | 'tint' | 'primary';
+  /** Accent rule below the title. */
+  accentLine: boolean;
+  /** Where the title sits relative to the identity block. */
+  position: 'above-name' | 'below-name' | 'below-contact';
+}
+
+/**
+ * Page-length policy. `count` is a *target*: the engine may exceed it (with a
+ * warning) but never truncates content to reach it.
+ */
+export type PageLengthMode = 'one-page' | 'two-pages' | 'automatic';
+export type PageBreakAfter = SectionId[] | null;
+
+export interface LayoutDiagnostic {
+  level: 'info' | 'warning' | 'error';
+  code:
+    | 'PAGE_OVERFLOW'
+    | 'PAGE_UNDERFLOW'
+    | 'EMPTY_SECTION'
+    | 'ORPHAN_HEADING_RISK'
+    | 'OVERLONG_BULLET'
+    | 'OVERLONG_OBJECTIVE'
+    | 'DUPLICATE_SKILL'
+    | 'MISSING_DATE'
+    | 'ALMOST_EMPTY_LAST_PAGE'
+    | 'UNBALANCED_COLUMNS'
+    | 'PHOTO_TOO_LARGE';
+  messageEn: string;
+  messageBn: string;
+  sectionId?: SectionId;
+}
+
+/** Optional per-section design override (Part 5.D). */
+export interface SectionStyleOverride {
+  headingColor?: string | null;
+  headingAlign?: TextAlign | null;
+  headingScale?: number;
+  paragraphSpacing?: number;
+  bulletStyle?: 'dot' | 'dash' | 'square' | 'none';
+  pageBreakBefore?: boolean;
+}
+
 export interface CVData {
   personal: PersonalInfo;
   photo: PhotoState;
@@ -290,6 +376,50 @@ export interface CVData {
   customSections: CustomSectionEntry[];
   sections: SectionConfig[];
   language: CVLanguage;
+  /** Document title block — independent of the name and the headline. */
+  title: TitleState;
+  /** Page-length policy for this CV. */
+  pageLength: PageLengthState;
+  /** Optional per-section design overrides, keyed by section id. */
+  sectionStyles: Partial<Record<SectionId, SectionStyleOverride>>;
+}
+
+export interface TitleState extends TitleStyle {
+  /** Trimmed, resolved text the renderers print ('' when hidden). */
+  resolvedText?: string;
+}
+
+/** Flattened title block produced by `resolveTitle()` for the renderers. */
+export interface DocumentTitleTokens {
+  visible: boolean;
+  text: string;
+  rawText: string;
+  fontFamily: string | null;
+  sizePt: number;
+  weight: number;
+  italic: boolean;
+  underline: boolean;
+  color: string | null;
+  align: TextAlign;
+  letterSpacing: number;
+  spaceBeforeMm: number;
+  spaceAfterMm: number;
+  border: TitleStyle['border'];
+  background: TitleStyle['background'];
+  backgroundPaddingMm: number;
+  accentLine: boolean;
+  position: TitleStyle['position'];
+  transform?: TextTransform;
+}
+
+export interface PageLengthState {
+  mode: PageLengthMode;
+  /** Hard ceiling the operator accepts; exceeded content is reported, never cut. */
+  maxPages: number;
+  /** Sections that always start on a new page. */
+  breakBefore: SectionId[];
+  /** Sections that never start a new page (kept with the previous block). */
+  keepTogether: boolean;
 }
 
 /** Per-project design overrides — never mutates the underlying CV content. */
@@ -314,6 +444,80 @@ export interface DesignOverrides {
   headerTint?: boolean;
   upperHeadings?: boolean;
   entryRule?: boolean;
+
+  /* ---------------------------------------------------------- v1.1 studio */
+  /** Independent page margins in mm. Falls back to `marginMm` when absent. */
+  margins?: { top: number; right: number; bottom: number; left: number };
+  /** Composition density — changes real layout parameters, not just cosmetics. */
+  density?: 'compact' | 'balanced' | 'spacious';
+  /** Colour overrides applied on top of the chosen palette. */
+  colors?: Partial<Record<ColorToken, string>>;
+  /** Per-role font families (CSS font stacks). Empty roles inherit the pair. */
+  fontRoles?: Partial<Record<FontRole, string>>;
+  /** Exact point sizes for the two largest roles. */
+  nameSizePt?: number;
+  titleSizePt?: number;
+  /** Granular spacing multipliers (1 = template default). */
+  spacing?: Partial<Record<SpacingToken, number>>;
+  /** Paragraph-level defaults. */
+  bodyAlign?: TextAlign;
+  paragraphIndentMm?: number;
+  /** Photo geometry overrides. */
+  photoSizeMm?: number;
+  photoBorder?: 'none' | 'thin' | 'medium' | 'thick';
+  photoBorderColor?: string;
+  /** Saved style preset currently applied (for "modified" indication). */
+  presetId?: string | null;
+}
+
+export type ColorToken =
+  | 'primary'
+  | 'secondary'
+  | 'accent'
+  | 'heading'
+  | 'text'
+  | 'muted'
+  | 'border'
+  | 'divider'
+  | 'background'
+  | 'sidebar'
+  | 'headerBackground'
+  | 'footerBackground'
+  | 'photoBorder';
+
+export type FontRole =
+  | 'name'
+  | 'title'
+  | 'heading'
+  | 'subheading'
+  | 'body'
+  | 'contact'
+  | 'dates'
+  | 'bullets'
+  | 'footer'
+  | 'pageNumbers';
+
+export type SpacingToken =
+  | 'header'
+  | 'nameContact'
+  | 'title'
+  | 'sectionHeading'
+  | 'sectionGap'
+  | 'paragraph'
+  | 'bullet'
+  | 'line'
+  | 'column'
+  | 'photo'
+  | 'footer'
+  | 'pageBreak';
+
+/** A reusable, user-saved design preset (stored in `template_settings`). */
+export interface StylePreset {
+  id: UUID;
+  name: string;
+  baseTemplateId: string;
+  design: DesignOverrides;
+  createdAt: string;
 }
 
 export interface ProjectRecord {

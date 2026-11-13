@@ -6,6 +6,8 @@
 import type {
   BackupRecord,
   CVData,
+  PageLengthState,
+  TitleState,
   CustomerRecord,
   DesignOverrides,
   ExportRecord,
@@ -15,7 +17,34 @@ import type {
   SectionId,
 } from '@/types/cv';
 import type { SqlEngine } from './sqlite';
-import { defaultSections, nowIso } from '@/lib/defaults';
+import { defaultPageLength, defaultSections, defaultTitle, nowIso } from '@/lib/defaults';
+import { TITLE_PRESET_TEXT } from '@/types/cv';
+
+/**
+ * Merge a stored title block with the current defaults.
+ *
+ * Projects created by v1.0 predate the title block; they load with the default
+ * title rather than an undefined field. Unknown/renamed fields are dropped so a
+ * corrupt JSON blob can never crash the editor.
+ */
+function hydrateTitle(stored: Partial<TitleState> | null): TitleState {
+  const base = defaultTitle();
+  if (!stored || typeof stored !== 'object') return base;
+  const merged: TitleState = { ...base };
+  const allowed: (keyof TitleState)[] = Object.keys(base) as (keyof TitleState)[];
+  for (const key of allowed) {
+    const value = stored[key];
+    if (value !== undefined && typeof value === typeof base[key]) {
+      (merged as unknown as Record<string, unknown>)[key as string] = value;
+    }
+  }
+  if (merged.preset === 'custom') {
+    merged.text = merged.text ?? '';
+  } else if (!merged.text) {
+    merged.text = TITLE_PRESET_TEXT[merged.preset] ?? '';
+  }
+  return merged;
+}
 
 const json = (v: unknown) => JSON.stringify(v ?? null);
 const parse = <T>(raw: unknown, fallback: T): T => {
@@ -155,11 +184,13 @@ export class CvRepository {
   saveProject(project: ProjectRecord): ProjectRecord {
     this.engine.transaction(() => {
       this.engine.run(
-        `INSERT INTO cv_projects (id, customer_id, title, template_id, status, cv_language, has_experience, version, design_json, created_at, updated_at, deleted_at)
-         VALUES ($a,$b,$c,$d,$e,$f,$g,$h,$i,$j,$k,$l)
+        `INSERT INTO cv_projects (id, customer_id, title, template_id, status, cv_language, has_experience, version, design_json, title_json, page_length_json, section_styles_json, created_at, updated_at, deleted_at)
+         VALUES ($a,$b,$c,$d,$e,$f,$g,$h,$i,$m,$n,$o,$j,$k,$l)
          ON CONFLICT(id) DO UPDATE SET customer_id=excluded.customer_id, title=excluded.title,
            template_id=excluded.template_id, status=excluded.status, cv_language=excluded.cv_language,
            has_experience=excluded.has_experience, version=excluded.version, design_json=excluded.design_json,
+           title_json=excluded.title_json, page_length_json=excluded.page_length_json,
+           section_styles_json=excluded.section_styles_json,
            updated_at=excluded.updated_at, deleted_at=excluded.deleted_at`,
         {
           a: project.id,
@@ -174,6 +205,9 @@ export class CvRepository {
           j: project.createdAt,
           k: project.updatedAt,
           l: project.deletedAt,
+          m: json(project.data.title),
+          n: json(project.data.pageLength),
+          o: json(project.data.sectionStyles ?? {}),
         },
       );
       this.writeChildren(project);
@@ -658,6 +692,15 @@ export class CvRepository {
     if (!data.personalDetails || Object.keys(data.personalDetails as object).length === 0) {
       data.personalDetails = emptyVisibilityFallback();
     }
+
+    // v1.1 document-composition columns. Projects saved by v1.0 have no values
+    // here, so they fall back to the current defaults instead of failing to open.
+    data.title = hydrateTitle(parse<Partial<TitleState> | null>(head.title_json, null));
+    data.pageLength = {
+      ...defaultPageLength(),
+      ...parse<Partial<PageLengthState>>(head.page_length_json, {}),
+    };
+    data.sectionStyles = parse<CVData['sectionStyles']>(head.section_styles_json, {});
 
     return {
       id: pid,

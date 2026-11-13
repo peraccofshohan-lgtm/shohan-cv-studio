@@ -1,5 +1,7 @@
 import type {
   AppSettings,
+  PageLengthState,
+  TitleState,
   CVData,
   CustomerRecord,
   DesignOverrides,
@@ -8,6 +10,7 @@ import type {
   SectionConfig,
   SectionId,
 } from '@/types/cv';
+import { TITLE_PRESET_TEXT } from '@/types/cv';
 
 export const uid = (): string => {
   // crypto.randomUUID exists in Electron 22 / Chromium 108 and Node 16+.
@@ -76,6 +79,42 @@ export const emptyVisibility = (): PersonalDetailVisibility => ({
   linkedin: false,
   website: false,
   address: false,
+});
+
+/**
+ * Default document title block.
+ *
+ * "CURRICULUM VITAE" is the register most Bangladeshi employers expect, so it
+ * is the default *text* — but it is shown only when the operator keeps it
+ * enabled, and hiding it collapses the header instead of leaving a gap.
+ */
+export const defaultTitle = (): TitleState => ({
+  visible: true,
+  preset: 'curriculum-vitae',
+  text: TITLE_PRESET_TEXT['curriculum-vitae'],
+  fontFamily: null,
+  fontSize: 10,
+  fontWeight: 600,
+  italic: false,
+  underline: false,
+  color: null,
+  transform: 'uppercase',
+  letterSpacing: 0.14,
+  align: 'left',
+  spaceBeforeMm: 1.2,
+  spaceAfterMm: 2.4,
+  border: 'none',
+  backgroundPaddingMm: 0,
+  background: 'none',
+  accentLine: true,
+  position: 'below-name',
+});
+
+export const defaultPageLength = (): PageLengthState => ({
+  mode: 'automatic',
+  maxPages: 4,
+  breakBefore: [],
+  keepTogether: true,
 });
 
 export const createEmptyCv = (): CVData => ({
@@ -148,6 +187,9 @@ export const createEmptyCv = (): CVData => ({
   customSections: [],
   sections: defaultSections(),
   language: 'en',
+  title: defaultTitle(),
+  pageLength: defaultPageLength(),
+  sectionStyles: {},
 });
 
 export const defaultDesign = (templateId = 'classic-professional'): DesignOverrides => ({

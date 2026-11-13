@@ -57,7 +57,19 @@ export class SqlEngine {
     for (const migration of MIGRATIONS) {
       if (migration.version <= current) continue;
       this.transaction(() => {
-        for (const stmt of migration.up) this.run(stmt);
+        for (const stmt of migration.up) {
+          // `ADD COLUMN` is not idempotent in SQLite; skip columns that exist
+          // already so a half-applied migration can always be re-run safely.
+          const addColumn = /^ALTER TABLE (\w+) ADD COLUMN (\w+)/i.exec(stmt.trim());
+          if (addColumn) {
+            const [, table, column] = addColumn;
+            const exists = this.all<{ name: string }>(`PRAGMA table_info(${table})`).some(
+              (row) => String(row.name).toLowerCase() === column.toLowerCase(),
+            );
+            if (exists) continue;
+          }
+          this.run(stmt);
+        }
         this.run(
           `INSERT INTO meta(key, value) VALUES('schema_version', $v)
            ON CONFLICT(key) DO UPDATE SET value = excluded.value`,

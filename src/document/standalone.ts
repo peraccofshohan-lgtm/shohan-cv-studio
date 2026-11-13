@@ -14,10 +14,12 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import React from 'react';
 import type { CVData } from '@/types/cv';
 import type { ResolvedDesign } from '@/templates/catalog';
+import type { DocumentTokens } from '@/lib/composition';
 import { CvDocument } from './CvDocument';
 import { buildDocumentCss } from './styles';
 import { embeddedFontCss } from '@/assets/fonts';
 import { escapeHtml } from '@/lib/sanitize';
+import { composeDocumentTokens } from '@/lib/composition';
 
 export interface StandaloneOptions {
   data: CVData;
@@ -26,14 +28,26 @@ export interface StandaloneOptions {
   title?: string;
   /** Include the tiny print-toolbar (browser preview only). */
   toolbar?: boolean;
+  /** Pre-resolved tokens; derived from `data` + `design` when omitted. */
+  tokens?: DocumentTokens;
 }
 
-export function buildStandaloneHtml({ data, design, pageCount = 1, title = 'CV', toolbar = false }: StandaloneOptions): string {
+export function buildStandaloneHtml({
+  data,
+  design,
+  pageCount = 1,
+  title = 'CV',
+  toolbar = false,
+  tokens,
+}: StandaloneOptions): string {
   const language = data.language === 'bn' ? 'bn' : 'en';
+  // One token bag for markup *and* CSS, so the printed page cannot drift from
+  // the on-screen layout.
+  const resolved = tokens ?? composeDocumentTokens({ data, design });
   const markup = renderToStaticMarkup(
-    React.createElement(CvDocument, { data, design, language, pageCount }),
+    React.createElement(CvDocument, { data, design, language, pageCount, tokens: resolved }),
   );
-  const css = buildDocumentCss({ design, fontCss: embeddedFontCss(), mode: 'print' });
+  const css = buildDocumentCss({ design, fontCss: embeddedFontCss(), mode: 'print', tokens: resolved });
 
   return `<!doctype html>
 <html lang="${language}">

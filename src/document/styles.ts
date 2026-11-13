@@ -6,6 +6,8 @@
  * in millimetres so Chromium's A4 pagination is exact.
  */
 import type { ResolvedDesign } from '@/templates/catalog';
+import type { DocumentTokens } from '@/lib/composition';
+import { composeDocumentTokens } from '@/lib/composition';
 import { mm } from '@/lib/golden';
 import { hexToRgba } from '@/lib/color';
 
@@ -17,18 +19,39 @@ export interface DocumentStyleOptions {
   mode: 'screen' | 'print';
   /** Show dashed page-break guides in the editor preview. */
   showGuides?: boolean;
+  /**
+   * Pre-resolved composition tokens. When omitted they are derived from
+   * `design`. Passing them in is how the editor and the exporters guarantee
+   * they render the identical document.
+   */
+  tokens?: DocumentTokens;
 }
 
-export function buildDocumentCss({ design, fontCss = '', mode, showGuides = false }: DocumentStyleOptions): string {
+export function buildDocumentCss({
+  design,
+  fontCss = '',
+  mode,
+  showGuides = false,
+  tokens,
+}: DocumentStyleOptions): string {
   const p = design.palette;
-  const margin = design.marginMm;
-  const base = 9.9 * design.bodyScale; // pt — comfortable for A4 body copy
-  const lineHeight = design.lineHeight;
-  const gap = design.sectionSpacing;
-  const headingSize = 10.2 * design.headingScale;
+  const t = tokens;
+  const margin = t ? t.margins.top : design.marginMm;
+  const marginRight = t ? t.margins.right : design.marginMm;
+  const marginBottom = t ? t.margins.bottom : design.marginMm;
+  const marginLeft = t ? t.margins.left : design.marginMm;
+  const base = t ? t.typography.body.sizePt : 9.9 * design.bodyScale; // pt — comfortable for A4 body copy
+  const lineHeight = t ? t.typography.body.lineHeight : design.lineHeight;
+  const gap = t ? t.spacing.sectionGap : design.sectionSpacing;
+  const headingSize = t ? t.typography.heading.sizePt : 10.2 * design.headingScale;
+  const nameSize = t ? t.typography.name.sizePt : 23 * design.headingScale;
 
-  const bodyFont = design.fontPair.body;
-  const headFont = design.fontPair.display;
+  const bodyFont = t ? t.typography.body.family : design.fontPair.body;
+  const headFont = t ? t.typography.heading.family : design.fontPair.display;
+  const title = t?.title;
+  const sp = (key: keyof DocumentTokens['spacing'], fallback: number): number =>
+    t ? (t.spacing[key] as number) * fallback : fallback;
+  const bodyAlign = t?.bodyAlign ?? 'justify';
 
   return `
 ${fontCss}
@@ -100,12 +123,14 @@ html, body { margin: 0; padding: 0; background: #ffffff; }
 `}
 
 .cv-body {
-  padding: var(--margin);
+  padding: ${margin}mm ${marginRight}mm ${marginBottom}mm ${marginLeft}mm;
   display: flex;
   flex-direction: column;
   gap: var(--gap);
   min-height: 297mm;
 }
+/* A4 page box text area, used by the diagnostics and by DOCX parity. */
+.cv-page { --text-width: ${(210 - marginLeft - marginRight).toFixed(1)}mm; }
 
 ${showGuides
     ? `
@@ -125,13 +150,49 @@ ${showGuides
 .cv-header .identity { flex: 1 1 auto; min-width: 0; }
 .cv-name {
   font-family: ${headFont};
-  font-size: ${(23 * design.headingScale).toFixed(2)}pt;
+  font-size: ${nameSize.toFixed(2)}pt;
   line-height: 1.12;
   font-weight: 700;
   letter-spacing: -0.012em;
   margin: 0;
   color: var(--accent);
 }
+/* ------------------------------------------------------------ title block */
+/*
+ * The title is rendered as its own element so that "No title" removes the
+ * element entirely: no empty band, no stray margin, no reserved space.
+ */
+.cv-title {
+  display: block;
+  font-family: ${title?.fontFamily ?? headFont};
+  font-size: ${(title?.sizePt ?? 10).toFixed(2)}pt;
+  font-weight: ${title?.weight ?? 600};
+  font-style: ${title?.italic ? 'italic' : 'normal'};
+  text-decoration: ${title?.underline ? 'underline' : 'none'};
+  color: ${title?.color ?? 'var(--ink-muted)'};
+  letter-spacing: ${(title?.letterSpacing ?? 0.14).toFixed(3)}em;
+  text-align: ${title?.align ?? 'left'};
+  text-transform: none;
+  line-height: 1.25;
+  margin: ${(title?.spaceBeforeMm ?? 1.2).toFixed(2)}mm 0 ${(title?.spaceAfterMm ?? 2.4).toFixed(2)}mm;
+  ${title?.background && title.background !== 'none' ? `padding: ${(title.backgroundPaddingMm || 1.6).toFixed(2)}mm 3mm; background: ${title.background === 'primary' ? 'var(--accent)' : 'var(--tint)'}; color: ${title.background === 'primary' ? 'var(--on-accent)' : (title.color ?? 'var(--ink-muted)')};` : ''}
+}
+${title?.accentLine ? `.cv-title::after {
+  content: '';
+  display: block;
+  width: 26mm;
+  height: 0.5mm;
+  background: var(--accent-2);
+  margin-top: 1.4mm;
+  ${title.align === 'center' ? 'margin-left: auto; margin-right: auto;' : title.align === 'right' ? 'margin-left: auto;' : ''}
+}` : ''}
+.cv-title[data-border='thin'] { border-bottom: 0.25mm solid var(--accent); padding-bottom: 1.2mm; }
+.cv-title[data-border='thick'] { border-bottom: 0.7mm solid var(--accent); padding-bottom: 1.2mm; }
+.cv-title[data-border='double'] { border-bottom: 0.8mm double var(--accent); padding-bottom: 1.2mm; }
+.cv-title[data-border='accent'] { border-left: 1mm solid var(--accent-2); padding-left: 2.6mm; }
+.cv-title-wrap[data-position='below-contact'] { order: 3; }
+.cv-title-wrap { display: block; }
+
 .cv-headline {
   font-size: ${(base + 0.7).toFixed(2)}pt;
   color: var(--ink-muted);
@@ -257,7 +318,8 @@ ${showGuides
 .entry-stacked .entry-period { margin-top: 0.4mm; display: block; }
 
 /* ---------------------------------------------------------- simple blocks */
-.paragraph { margin: 0; text-align: justify; hyphens: none; }
+.paragraph { margin: 0; text-align: ${bodyAlign}; hyphens: none; ${t && t.paragraphIndentMm > 0 ? `text-indent: ${t.paragraphIndentMm}mm;` : ''} }
+${bodyAlign === 'justify' ? '.entry-bullets li, .labelled-row dd { text-align: left; }' : ''}
 .chips { display: flex; flex-wrap: wrap; gap: 1.4mm 1.8mm; }
 .chip {
   padding: 0.7mm 2.2mm;
@@ -315,6 +377,15 @@ ${showGuides
   margin-top: auto;
   border-color: var(--rule);
 }
+
+/* section-level page breaks requested by the operator */
+.cv-section-break { break-before: page; page-break-before: always; }
+.cv-section[data-keep='true'] { break-inside: avoid; }
+.cv-section-title { break-after: avoid; page-break-after: avoid; }
+.entry-title, .entry-sub { break-after: avoid; page-break-after: avoid; }
+.cv-section-head + * { break-before: avoid; page-break-before: avoid; }
+.entry-bullets li { break-inside: avoid; page-break-inside: avoid; orphans: 2; widows: 2; }
+p.paragraph, .entry-body { orphans: 2; widows: 2; }
 
 /* keep rules attached to their content */
 .cv-section-head { break-after: avoid; page-break-after: avoid; }

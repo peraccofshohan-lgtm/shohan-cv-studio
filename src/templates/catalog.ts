@@ -25,6 +25,15 @@ export interface Palette {
   onPrimary: string;
   /** Optional sidebar background. */
   sidebar: string;
+  /* Optional tokens introduced with the v1.1 colour engine. Palettes that do
+     not declare them inherit `primary` / `text` / `#ffffff` at resolve time. */
+  heading?: string;
+  border?: string;
+  divider?: string;
+  background?: string;
+  headerBackground?: string;
+  footerBackground?: string;
+  photoBorder?: string;
 }
 
 export const PALETTES: Palette[] = [

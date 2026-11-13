@@ -12,7 +12,9 @@ import type { ProjectRecord } from '@/types/cv';
 import type { ResolvedDesign } from '@/templates/catalog';
 import { buildDocx, DOCX_MIME } from '@/document/docxExport';
 import { buildStandaloneHtml } from '@/document/standalone';
-import { estimatePageCount, printableSections } from '@/lib/sections';
+import { printableSections } from '@/lib/sections';
+import { composeDocumentTokens } from '@/lib/composition';
+import { buildLayoutReport } from '@/lib/layoutReport';
 import { buildFileName } from '@/lib/sanitize';
 import { getBridge, isDesktop } from '@/platform';
 import { useWorkspace } from '@/store/workspace';
@@ -35,6 +37,25 @@ function baseName(project: ProjectRecord): string {
     name: project.data.personal.fullName || project.title,
     template: project.templateId,
   });
+}
+
+/**
+ * One composition pass shared by every exporter.
+ *
+ * The tokens are computed from the *saved* project data, so DOCX, PDF, print and
+ * HTML cannot disagree about title mode, margins, density or alignment.
+ */
+function compose(project: ProjectRecord, design: ResolvedDesign) {
+  const language = project.data.language === 'bn' ? 'bn' : 'en';
+  const tokens = composeDocumentTokens({ data: project.data, design, overrides: project.design });
+  const sections = printableSections(project.data, { language });
+  // Page numbering and the page-length verdict come from the same estimator,
+  // so a "1 / 2" footer can never disagree with the layout report.
+  const report = buildLayoutReport(project.data, sections, tokens, {
+    language,
+    hasPhoto: !!project.data.photo.dataUrl,
+  });
+  return { language, tokens, sections, pageCount: report.pages, report };
 }
 
 function log(project: ProjectRecord, format: 'docx' | 'pdf' | 'print', fileName: string, status: 'success' | 'failed', message: string) {
@@ -83,17 +104,14 @@ export async function exportDocx({ project, design }: ExportContext): Promise<vo
 
 /* ------------------------------------------------------------------- PDF */
 export async function exportPdf({ project, design }: ExportContext): Promise<void> {
-  const language = project.data.language === 'bn' ? 'bn' : 'en';
-  const pageCount = estimatePageCount(
-    printableSections(project.data, { language }),
-    !!project.data.photo.dataUrl,
-  );
+  const { language, tokens, pageCount } = compose(project, design);
   const fileName = `${baseName(project)}.pdf`;
   const html = buildStandaloneHtml({
     data: project.data,
     design,
     pageCount,
     title: project.title,
+    tokens,
   });
 
   try {
@@ -140,12 +158,8 @@ export async function exportPdf({ project, design }: ExportContext): Promise<voi
 
 /* ----------------------------------------------------------------- PRINT */
 export async function printProject({ project, design }: ExportContext): Promise<void> {
-  const language = project.data.language === 'bn' ? 'bn' : 'en';
-  const pageCount = estimatePageCount(
-    printableSections(project.data, { language }),
-    !!project.data.photo.dataUrl,
-  );
-  const html = buildStandaloneHtml({ data: project.data, design, pageCount, title: project.title });
+  const { language, tokens, pageCount } = compose(project, design);
+  const html = buildStandaloneHtml({ data: project.data, design, pageCount, title: project.title, tokens });
 
   try {
     const bridge = getBridge();
@@ -177,9 +191,8 @@ export async function printProject({ project, design }: ExportContext): Promise<
 
 /** Save an HTML copy (useful for archival or opening in a browser). */
 export async function exportHtml({ project, design }: ExportContext): Promise<void> {
-  const language = project.data.language === 'bn' ? 'bn' : 'en';
-  const pageCount = estimatePageCount(printableSections(project.data, { language }), !!project.data.photo.dataUrl);
-  const html = buildStandaloneHtml({ data: project.data, design, pageCount, title: project.title, toolbar: true });
+  const { tokens, pageCount } = compose(project, design);
+  const html = buildStandaloneHtml({ data: project.data, design, pageCount, title: project.title, toolbar: true, tokens });
   const result = await getBridge().saveText({
     suggestedName: `${baseName(project)}.html`,
     text: html,

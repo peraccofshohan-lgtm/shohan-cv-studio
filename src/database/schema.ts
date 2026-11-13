@@ -19,7 +19,7 @@ export interface Migration {
   up: string[];
 }
 
-export const SCHEMA_VERSION = 1;
+export const SCHEMA_VERSION = 2;
 
 export const MIGRATIONS: Migration[] = [
   {
@@ -356,6 +356,24 @@ export const MIGRATIONS: Migration[] = [
          message TEXT NOT NULL DEFAULT '',
          detail TEXT NOT NULL DEFAULT ''
        );`,
+    ],
+  },
+  {
+    /**
+     * v1.1 — title block, page-length policy and per-section styling.
+     *
+     * Additive only: existing rows keep their data, new columns carry defaults,
+     * and `ALTER TABLE ... ADD COLUMN` is safe to re-run because the engine
+     * checks `PRAGMA table_info` first (see SqlEngine.applyMigrations).
+     */
+    version: 2,
+    name: 'document-composition',
+    up: [
+      `ALTER TABLE cv_projects ADD COLUMN title_json TEXT NOT NULL DEFAULT '';`,
+      `ALTER TABLE cv_projects ADD COLUMN page_length_json TEXT NOT NULL DEFAULT '';`,
+      `ALTER TABLE cv_projects ADD COLUMN section_styles_json TEXT NOT NULL DEFAULT '';`,
+      `CREATE INDEX IF NOT EXISTS idx_versions_project ON project_versions(project_id, version);`,
+      `CREATE INDEX IF NOT EXISTS idx_export_history_project ON export_history(project_id, created_at DESC);`,
     ],
   },
 ];

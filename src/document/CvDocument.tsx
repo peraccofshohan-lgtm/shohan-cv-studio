@@ -11,6 +11,7 @@ import type { ResolvedDesign } from '@/templates/catalog';
 import type { ResolvedSection } from '@/lib/sections';
 import { printableSections } from '@/lib/sections';
 import { formatDate } from '@/lib/sections';
+import type { DocumentTokens } from '@/lib/composition';
 
 export interface CvDocumentProps {
   data: CVData;
@@ -21,6 +22,8 @@ export interface CvDocumentProps {
   guides?: boolean;
   /** Number of pages (pass estimatePageCount result) for footer numbering. */
   pageCount?: number;
+  /** Pre-resolved composition tokens (see `composeDocumentTokens`). */
+  tokens?: DocumentTokens;
 }
 
 const ContactItem: React.FC<{ mark: string; children: React.ReactNode }> = ({ mark, children }) => (
@@ -59,8 +62,34 @@ function contactList(data: CVData): { mark: string; value: string }[] {
   return out;
 }
 
-export function Header({ data, design }: { data: CVData; design: ResolvedDesign }): React.ReactElement {
+/** The document title block ("CURRICULUM VITAE" / "RESUME" / custom). */
+export function TitleBlock({ tokens }: { tokens?: DocumentTokens }): React.ReactElement | null {
+  const title = tokens?.title;
+  // "No title" must not reserve any space at all.
+  if (!title || !title.visible || !title.text) return null;
+  return (
+    <div className="cv-title-wrap" data-position={title.position}>
+      <div className="cv-title" data-border={title.border} data-align={title.align}>
+        {title.text}
+      </div>
+    </div>
+  );
+}
+
+export function Header({
+  data,
+  design,
+  tokens,
+}: {
+  data: CVData;
+  design: ResolvedDesign;
+  tokens?: DocumentTokens;
+}): React.ReactElement {
   const p = data.personal;
+  const title = tokens?.title;
+  const titleAbove = title?.visible && title.position === 'above-name';
+  const titleBelowName = title?.visible && title.position === 'below-name';
+  const titleBelowContact = title?.visible && title.position === 'below-contact';
   const contacts = contactList(data);
   const showPhoto = !!data.photo.dataUrl && design.photoShape !== 'none' && design.template.photoSupported;
   const frame = data.photo.frameSize || 30;
@@ -84,7 +113,9 @@ export function Header({ data, design }: { data: CVData; design: ResolvedDesign 
 
   const identity = (
     <div className="identity">
+      {titleAbove ? <TitleBlock tokens={tokens} /> : null}
       <h1 className="cv-name">{p.fullName || 'Your Name'}</h1>
+      {titleBelowName ? <TitleBlock tokens={tokens} /> : null}
       {p.headline ? <div className="cv-headline">{p.headline}</div> : null}
       {contacts.length > 0 ? (
         <div className="cv-contact">
@@ -95,6 +126,7 @@ export function Header({ data, design }: { data: CVData; design: ResolvedDesign 
           ))}
         </div>
       ) : null}
+      {titleBelowContact ? <TitleBlock tokens={tokens} /> : null}
     </div>
   );
 
@@ -239,7 +271,15 @@ export function splitTailSections(sections: ResolvedSection[]) {
   };
 }
 
-export function CvDocument({ data, design, language, guides = false, pageCount = 1 }: CvDocumentProps): React.ReactElement {
+export function CvDocument({
+  data,
+  design,
+  language,
+  guides = false,
+  pageCount = 1,
+  tokens = undefined,
+}: CvDocumentProps): React.ReactElement {
+  const pageBreak = new Set(tokens?.pageLength.breakBefore ?? []);
   const sections = printableSections(data, { language });
   const ordered = orderedForRender(sections);
   const { tail } = splitTailSections(ordered);
@@ -249,7 +289,11 @@ export function CvDocument({ data, design, language, guides = false, pageCount =
 
   const renderSections = (list: ResolvedSection[], suffix: string) =>
     list.map((section) => (
-      <section className="cv-section" key={`${section.id}-${suffix}`}>
+      <section
+        className={`cv-section${pageBreak.has(section.id) ? ' cv-section-break' : ''}`}
+        key={`${section.id}-${suffix}`}
+        data-keep={tokens?.pageLength.keepTogether ? 'true' : 'false'}
+      >
         <SectionHeading section={section} design={design} />
         <SectionBody section={section} design={design} />
       </section>
@@ -285,7 +329,7 @@ export function CvDocument({ data, design, language, guides = false, pageCount =
             <RailContent data={data} design={design} language={language} sections={rail} />
           </aside>
           <div className="cv-sections-wrap">
-            <Header data={data} design={design} />
+            <Header data={data} design={design} tokens={tokens} />
             <div className="cv-sections">
               {renderSections(main, 'main')}
               {tailBlock}
@@ -301,7 +345,7 @@ export function CvDocument({ data, design, language, guides = false, pageCount =
     <div className="cv-paper" data-template={design.template.id} data-layout={design.bodyLayout}>
       {guides ? <span className="page-guide" aria-hidden="true" /> : null}
       <div className={`cv-body body-${design.bodyLayout}`}>
-        <Header data={data} design={design} />
+        <Header data={data} design={design} tokens={tokens} />
         {design.band > 0 ? <div className="cv-band" aria-hidden="true" /> : null}
         <div className="cv-sections">
           {renderSections(main, 'main')}

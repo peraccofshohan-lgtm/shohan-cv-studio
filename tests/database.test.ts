@@ -2,12 +2,15 @@
 import { describe, it, expect } from 'vitest';
 import { SqlEngine } from '@/database/sqlite';
 import { CvRepository } from '@/database/cvRepository';
+import { SCHEMA_VERSION } from '@/database/schema';
 import { createEmptyCv, createProject, createEmptyCustomer, nowIso, uid } from '@/lib/defaults';
 
 describe('SQLite repository', () => {
   it('creates the schema and reports integrity', async () => {
     const engine = await SqlEngine.create(null);
-    expect(engine.schemaVersion).toBe(1);
+    // v2 adds the document-composition columns (title, page length, section styles).
+    expect(engine.schemaVersion).toBe(SCHEMA_VERSION);
+    expect(SCHEMA_VERSION).toBe(2);
     const integrity = engine.integrityCheck();
     expect(integrity.ok).toBe(true);
     expect(integrity.message).toBe('ok');
@@ -125,5 +128,46 @@ describe('SQLite repository', () => {
     const counts = repo.counts();
     expect(counts.projects).toBe(1);
     expect(counts.todayProjects).toBe(1);
+  });
+
+  it('round-trips the title block, page length and section styles (schema v2)', async () => {
+    const engine = await SqlEngine.create(null);
+    const repo = new CvRepository(engine);
+    const project = createProject({ title: 'Composition' });
+    project.data.title = {
+      ...project.data.title,
+      preset: 'custom',
+      text: 'PROFESSIONAL PROFILE',
+      align: 'center',
+      letterSpacing: 0.3,
+      visible: true,
+    };
+    project.data.pageLength = { mode: 'one-page', maxPages: 1, breakBefore: ['education'], keepTogether: true };
+    project.data.sectionStyles = { skills: { headingColor: '#123456', bulletStyle: 'dash' } };
+    repo.saveProject(project);
+
+    const loaded = repo.getProject(project.id)!;
+    expect(loaded.data.title.text).toBe('PROFESSIONAL PROFILE');
+    expect(loaded.data.title.align).toBe('center');
+    expect(loaded.data.pageLength.mode).toBe('one-page');
+    expect(loaded.data.pageLength.breakBefore).toEqual(['education']);
+    expect(loaded.data.sectionStyles.skills?.headingColor).toBe('#123456');
+  });
+
+  it('opens a v1.0 project that has no title/page-length columns filled', async () => {
+    const engine = await SqlEngine.create(null);
+    const repo = new CvRepository(engine);
+    const project = createProject({ title: 'Legacy' });
+    repo.saveProject(project);
+    // Simulate a pre-upgrade row: blank the new columns.
+    engine.run(
+      `UPDATE cv_projects SET title_json='', page_length_json='', section_styles_json='' WHERE id=$a`,
+      { a: project.id },
+    );
+    const loaded = repo.getProject(project.id)!;
+    expect(loaded.data.title.preset).toBe('curriculum-vitae');
+    expect(loaded.data.title.visible).toBe(true);
+    expect(loaded.data.pageLength.mode).toBe('automatic');
+    expect(loaded.data.sectionStyles).toEqual({});
   });
 });
